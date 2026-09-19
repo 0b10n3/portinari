@@ -10,15 +10,17 @@ toda a camada de ilustração de `brand/`, e do `agy` (detalhe em [`agy.md`](./a
 | --- | --- | --- |
 | A1 | **Q1:** ampliação aceita, mas **sempre gerar na melhor resolução possível** | O wrapper tenta a maior resolução que a ferramenta permitir e só cai para a menor se falhar; S1 **sonda** resolução (parâmetro, se existir; instrução no prompt) em vez de assumir 1K. O manifesto registra dimensão nativa e fator de ampliação de cada imagem |
 | A2 | **Q2: o pedido vence a marca, exceto paleta de cores** | C1 resolvida a favor do pedido. **Bloqueante = só a paleta** (tokens do modo, uma pilha por modo). Sombras coerentes com uma única fonte de luz e textura de papel (rubrica do pedido) **valem**. As demais regras da marca (proibição de sombra, granulação < 0,028, frame/hairline, corte a 0°/45°, tetos de nº de cores/fundo/lime, descritores proibidos) viram **padrão sobreponível**: entram no prompt/rubrica como padrão, geram **aviso** (não reprovação) e cedem quando o pedido pedir o contrário |
-| A3 | **Q4:** modo primário = **dark** | E7 deriva o light a partir do dark aprovado |
+| A3 | **Q4:** modo primário = **dark** | E8 deriva o light a partir do dark aprovado |
 | A4 | **Q5:** recomendação aceita — injeta só a pilha do modo; "descritores proibidos" só como lint (agora aviso, por A2) | E2 |
 | A5 | **Q3, Q6, Q7, Q9, Q11** nos defaults propostos (Q7: `capa de post para substack` = 16:9, 2560×1440) | — |
 | A6 | **Novo:** salvar os **prompts completos e detalhados** que geraram cada imagem | Ver "Prompts completos" abaixo |
 | A7 | **Novo:** manter **sincronizado com o GitHub**: commitar, mergear e voltar para a `main` ao final. Substitui D4 e "sem push" (autorização de push ao remote `origin` do próprio repo, sem force) | Ver "Fluxo git" abaixo |
+| A8 | **Alternativa A** para o gerador (`agy`, `gemini-3.1-flash-image`). **O autor também gera manualmente no Nano Banana Pro** copiando o prompt salvo | O prompt de cada iteração é **autossuficiente e colável** (`prompt_final.md`, `final/prompts.md`); comando `importar` traz para a execução as imagens geradas à mão (E5b), que seguem pelas mesmas checagens, crítico, recorte e entrega. Não implemento API do Gemini |
+| A9 | **Novo épico:** etapa de **enriquecimento do prompt** (trabalhadores, ferramentas, detalhes nos papéis do título etc.) para imagens mais profissionais | **E4** (spec em `specs/epicos/epico-04-enriquecimento.md`) |
 
 **Interpretação de A2, a confirmar de passagem:** "pedido" = o que você escreveu (o pedido `.md` e
 a rubrica do prompt de implementação). Como sombra cria tons novos, a checagem de paleta tolera
-variantes mais escuras do token da camada (calibração em E4, valores só depois de imagens reais) e o
+variantes mais escuras do token da camada (calibração em E5, valores só depois de imagens reais) e o
 limite de 3–7 cores deixa de reprovar. O bloco de marca **não** injeta a seção "A escada" (a parte
 anti-sombra); mantém âncora de hex absoluto por folha, que é a lição de paleta.
 
@@ -55,7 +57,7 @@ terminando na `main` sincronizada.
   `filter-branch`, deleção de branch remota (deny-list igual à dos irmãos).
 - O primeiro commit (docs) vai direto na `main`, porque o repo ainda não tem nenhum.
 
-## Achados do S1/S2 (18/09/2026) — **decisão necessária**
+## Achados do S1/S2 (18/09/2026) — decidido: **alternativa A** (A8)
 
 Detalhe e evidência em [`agy.md`](./agy.md) §3.2, §3.3, §6. Resumo:
 
@@ -83,8 +85,8 @@ Detalhe e evidência em [`agy.md`](./agy.md) §3.2, §3.3, §6. Resumo:
 
 *Minha recomendação:* **B** (ou D), porque a exigência de "melhor resolução possível" e o
 Nano Banana Pro só se cumprem de verdade por aí, e ainda elimina o risco de o LLM do `agy`
-reescrever o prompt. É uma opção sua: envolve chave, custo e sair do `agy`. O E4–E6 (imagem,
-manifesto, agentes) não dependem dessa escolha; o E3 (wrapper) e o E7 (derivação) sim.
+reescrever o prompt. É uma opção sua: envolve chave, custo e sair do `agy`. O E5–E7 (imagem,
+manifesto, agentes) não dependem dessa escolha; o E3 (wrapper) e o E8 (derivação) sim.
 
 ## 0. Resumo executivo
 
@@ -118,6 +120,7 @@ determinístico. Sem frameworks de agentes, sem SDK de LLM.
  3 diretor-de-arte ─── agente   3 conceitos distintos  ⇢ conceitos.md   (ou perguntas ao autor)
  4 critico-conceito ── agente   ranqueia e justifica    ⇢ conceitos.md
  5 GATE 1 ──────────── humano   escolhe / ajusta / pede novos   (pulável por flag)
+ 5b enriquecer ──────── agente+script  cena com detalhes; código valida paleta/texto/densidade; autor vê a lista
  6 prompter-tecnico ── agente   parte criativa           ⇢ iteracoes/NN/prompt_criativo.md
  7 prompt ──────────── script   criativo + bloco injetado + lint de descritores proibidos
  8 gerar ───────────── script   agy -p (timeout, retentativa, log do comando, verificação do prompt)
@@ -213,7 +216,7 @@ do monorepo eles não carregam. O pedido do prompt sugere `agentes/`; a convenç
 | **C1** | pedido §5 × marca | Rubrica do pedido: "**sombras projetadas** coerentes com uma única fonte de luz", "textura de papel". Marca: sombra proibida em qualquer camada (`DESIGN.md` §4.4/§7.2, `CHECKLIST-PR`, `REVOGACOES` S1/S3/S7); granulação só no fundo, < 0,028 | Rubrica reescrita para a marca: "sem sombra; degrau de tom; luz de scanner; sem parede de recorte". **Q2** |
 | **C2** | `ILUSTRACOES/README`, `_bloco-marca`, `_como-gerar`, `DESIGN.md` §5/§7, tokens `illustration.$description`, `CHECKLIST-PR`, `BRAND_KIT` | "Único consumidor: `pipelines/hemingway`". O `hemingway` (nota de 09/09/2026 em `prompts-visuais.md`) disse que capa/ilustração viraram "projeto próprio, ainda não criado" — é o Portinari. A regra binária "por repositório" formalmente o reprovaria | Reporto. Sugestão para a marca: nomear `pipelines/portinari` como consumidor. **Q3** |
 | **C3** | `_como-gerar.md` | Cita `hemingway/.claude/skills/prompts-visuais/references/{briefing-ilustracao.md, geradores/, estilos-ilustracao.md}` — **não existem** (`prompts-visuais` virou agente; esses arquivos não estão em lugar nenhum de `hemingway/.claude`). Cita também `revisao-2026/01-referencias.md`, hoje em `_arquivo/`. Os passos 2, 4 e a calibração do passo 5 ficam sem fonte. `REVOGACOES` S5/S7 também apontam para um `estilos-ilustracao.md`, que hoje não existe na árvore do `hemingway` | O Portinari passa a ser dono do briefing conceitual (agente Diretor de Arte) e do "gerador ativo" (`docs/agy.md`) |
-| **C4** | `ILUSTRACOES/README` §Gate, `_como-gerar` §5 | `brand/scripts/check-ilustracao.py` **não existe**. O método de medição (quantização, o que é "fundo", tolerância) não está definido em lugar vivo | Defino e calibro as checagens no épico E4 contra `revisao-2026/refs/*` (13 referências) e as primeiras gerações reais. Números iniciais na §6/E4 |
+| **C4** | `ILUSTRACOES/README` §Gate, `_como-gerar` §5 | `brand/scripts/check-ilustracao.py` **não existe**. O método de medição (quantização, o que é "fundo", tolerância) não está definido em lugar vivo | Defino e calibro as checagens no épico E5 contra `revisao-2026/refs/*` (13 referências) e as primeiras gerações reais. Números iniciais na §6/E5 |
 | **C5** | `DESIGN.md` §5, `CHECKLIST-PR` × pedido | Marca: "toda ilustração é contida por frame retangular, radius 0, hairline 1px; nada sangra". Pedido: entrega de 2560×1440 cheia | Assumo que o frame é aplicado no layout (Substack/Canva), não na imagem. **Q6** |
 | **C6** | pedido §6 × `SOCIAL`/`INSTAGRAM` | A tabela de presets "derivada de SOCIAL e INSTAGRAM" **não cobre** o USO do exemplo: não há preset de capa de Substack, nem de thumbnail YouTube, nem de cabeçalho de e-mail. `SOCIAL` traz 1200×627 (destaque LinkedIn), 1080×1080, 1080×1920, mas são peças de sistema | USO sem preset ⇒ pergunta ao autor, nunca chute. **Q7** |
 | **C7** | marca × pedido §3 | Nenhuma regra define qual modo (claro/escuro) é primário por USO. `INSTAGRAM` §5 escolhe fundo por *categoria de conteúdo*, não por superfície | **Q4** |
@@ -250,10 +253,12 @@ pipelines/portinari/
   pedidos/  _TEMPLATE.md  exemplo-cafe-lca.md  _processados/
   src/portinari/  brief.py  brand.py  agy.py  imaging.py  manifest.py  cli.py
   docs/  PLANO.md  agy.md
+  specs/epicos/                          especificação + testes por épico (padrão do gary_halbert)
   tests/  fixtures/pedidos/cafe-lca.md  fixtures/tokens.json  test_*.py
   output/AAAA-MM-DD_slug/
     brief.json  brand_snapshot.json  conceitos.md  manifest.json
     referencias/                          imagens baixadas
+    enriquecimento/  vNN.json  vNN.md      cena enriquecida (validada por código) + visão para o autor
     iteracoes/NN/  prompt_criativo.md  prompt_final.md  gen_*.jpg  checagens.json  critica.md
     final/<slug>_light.png  <slug>_dark.png
 ```
@@ -327,9 +332,22 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   `OutputPath`. ✔ S2 confirma/derruba edição por `ImagePaths`.
 - **Ponto de decisão:** se S2 falhar, escolho com você entre F1 (duas gerações independentes com
   a mesma composição descrita + crítico de consistência) e F2 (remapeamento determinístico de
-  paleta com Pillow); o E7 é reescrito.
+  paleta com Pillow); o E8 é reescrito.
 
-**E4 — Imagem: checagens objetivas e pós-processamento** · `feat(imaging)`
+**E4 — Enriquecimento do prompt** · `feat(enriquecimento)` · spec: `specs/epicos/epico-04-enriquecimento.md`
+- Nova etapa entre o Gate 1 e o Prompter: o agente `enriquecedor-de-cena` expande o conceito
+  escolhido em uma **cena rica e verificável** — trabalhadores, ferramentas de ofício, detalhes
+  nos documentos do título, camadas e recortes do papel — sem trocar a ideia nem o ponto focal.
+- Saída estruturada (`enriquecimento/vNN.json`), validada por **código**: um único foco; nº de
+  elementos e de acréscimos dentro dos limites; cada elemento com **papel de cor da paleta** (nenhuma
+  cor fora dela — pegaria as cerejas vermelhas do S1); nada de texto/número/logo; itens incertos
+  marcados `verificar` e levados ao autor. `portinari enriquecer` valida e renderiza; `portinari
+  prompt` **recusa** um `prompt_criativo.md` que perdeu algum termo do enriquecimento.
+- ✔ o exemplo café/LCA ganha ≥ 10 elementos válidos; o prompt do S1 (sem trabalhadores, sem
+  ferramentas, papéis lisos) falha na checagem de cobertura; cor fora da paleta, 2 focos, texto,
+  excesso de elementos e acréscimos insuficientes são recusados com mensagem acionável.
+
+**E5 — Imagem: checagens objetivas e pós-processamento** · `feat(imaging)`
 - Checagens (todas com limiar em constante nomeada e comentada, calibradas nesta etapa):
   paleta por **ΔE (CIE76)** entre cada cor dominante (≥ 1% do quadro, após quantização) e a
   paleta do modo — *valores iniciais a calibrar*: aviso ΔE > 8, falha ΔE > 15; nº de cores ≥1%
@@ -345,7 +363,14 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   falha); ponto focal no canto não é cortado; `2560×1440` sai exato de 1376×768; o mesmo para
   1080×1080 e 1200×627 (fora da proporção de origem).
 
-**E5 — Manifesto, estado e CLI** · `feat(manifest)`
+**E5b — Geração manual (Nano Banana Pro) e importação** · `feat(manual)` (A8)
+- `portinari importar <saida> --iteracao N <imagem>…` copia imagens geradas fora do `agy` para
+  `iteracoes/NN/gen_KK.<ext>` com `gen_KK.json` (`origem: "manual"`, dimensões nativas, hash) e o
+  prompt usado (`--prompt` = arquivo colado; padrão `prompt_final.md`); conta como geração no teto.
+- ✔ imagem PNG 2K/4K importada aparece no log de gerações e segue para checagem/recorte; formato não
+  imagem é recusado; o prompt é gravado íntegro.
+
+**E6 — Manifesto, estado e CLI** · `feat(manifest)`
 - `manifest.json` conforme §7 do pedido (pedido de origem, versão e fingerprint da marca,
   conceito escolhido, prompts finais **com o bloco injetado**, comandos `agy`, nº de gerações,
   notas por iteração, decisões dos gates) + `etapa_atual` para retomar. Subcomandos:
@@ -354,7 +379,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   `pedidos/_processados/` (não o edita), e recusa se `final/` estiver incompleto.
 - ✔ retomada: matar no meio, `estado` diz onde parou; teto de gerações persiste entre sessões.
 
-**E6 — Agentes, rubrica e skill orquestradora** · `feat(agentes)`
+**E7 — Agentes, rubrica e skill orquestradora** · `feat(agentes)`
 - Quatro agentes em pt-BR + `rubrica/rubrica.md` (notas 1–5; **bloqueantes**: alucinação de
   texto/logo/símbolo — inclui `$` onde deveria ser `R$`; sombra/gradiente; pilhas misturadas;
   violação de teto numérico; elementos factualmente errados) + `SKILL.md` com os dois gates,
@@ -364,12 +389,12 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   financeiros (touro/urso, moedas, gráfico subindo) salvo pedido; contexto visual brasileiro.
 - ✔ verificação por leitura + um ensaio a seco sem `agy` (fixtures) que percorre gates e limites.
 
-**E7 — Variante light/dark** · `feat(variante)` *(desenho final depende de S2)*
+**E8 — Variante light/dark** · `feat(variante)` *(desenho final depende de S2)*
 - Deriva a segunda pilha por edição a partir da aprovada; crítico verifica mesma composição e
   elementos, só a paleta muda; checagens objetivas rodam com a paleta **do modo**.
 - ✔ ambas as variantes passam nas checagens do próprio modo; consistência registrada.
 
-**E8 — Documentação e piloto** · `docs(portinari)`
+**E9 — Documentação e piloto** · `docs(portinari)`
 - `CLAUDE.md` (regras invioláveis, estrutura, fonte única de cada coisa, git) e `README.md`
   (como escrever um pedido, como rodar, como retomar, "se algo der errado") no padrão dos irmãos.
 - **Fase 3:** execução de ponta a ponta com `exemplo-cafe-lca.md`, gates comigo, e relatório
@@ -383,8 +408,8 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 | **R1** | O LLM do `agy` reescreve/encurta o prompt → o bloco de marca não chega íntegro | alta | Verificação pós-fato do `Using prompt:`; retentativa com instrução de literalidade; se nunca vier íntegro, **paro e trago alternativas** (não aprovo peça sem bloco verificado). Medido: 5/14 sessões reescritas |
 | **R2** | Saída 1K → 2560×1440 por ampliação ×1,86 fica mole; o "grão" de papel some/vira borrão | alta | Lanczos; medir em S1; **Q1**. Alternativas fora do `agy` exigem chave/API e decisão sua |
 | **R3** | Nano Banana Pro não verificável (sem parâmetro de modelo) | média | Ler `ModelName` em S1; se ilegível, documento como "não verificado" no manifesto de toda execução |
-| **R4** | Edição por referência (`ImagePaths`) pode não existir/funcionar → derivação light/dark cai | alta p/ E7 | S2 antes de E7; planos F1/F2 |
-| **R5** | Saída JPEG: artefatos de compressão distorcem a checagem de paleta e a "granulação" | média | Tolerância calibrada em imagens reais (E4); checar antes de qualquer reamostragem |
+| **R4** | Edição por referência (`ImagePaths`) pode não existir/funcionar → derivação light/dark cai | alta p/ E8 | S2 antes de E8; planos F1/F2 |
+| **R5** | Saída JPEG: artefatos de compressão distorcem a checagem de paleta e a "granulação" | média | Tolerância calibrada em imagens reais (E5); checar antes de qualquer reamostragem |
 | **R6** | Checagens objetivas mal calibradas (falso positivo/negativo) | média | Calibrar nas 13 refs + gerações reais; aviso vs falha em dois níveis; crítico humano no gate 2 |
 | **R7** | Crítico visual subjetivo / viés de aprovar | média | Bloqueantes explícitos; recebe `checagens.json`; nunca vê o prompt (D7 — controle por instrução) |
 | **R8** | Modelo alucinando texto/logo/`$` numa imagem de LCA (finanças brasileiras) | média | Prompt "sem texto"; crítico confere; bloqueante na rubrica |
@@ -398,13 +423,13 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 
 **Bloqueantes** (preciso da resposta para começar os épicos indicados):
 
-- **Q1 (E4, E8) — Resolução.** A ferramenta entrega ~1376×768. Aceita **ampliar por Lanczos
+- **Q1 (E5, E9) — Resolução.** A ferramenta entrega ~1376×768. Aceita **ampliar por Lanczos
   até 2560×1440** (ficará mais macio, sem detalhe novo), ou 2560×1440 *nativos* são requisito?
   Se forem, o caminho deixa de ser `agy` e preciso que você decida a alternativa.
   *Recomendo aceitar a ampliação, medir em S1 e reavaliar com a imagem real na mão.*
-- **Q2 (E6) — Sombras.** Confirma que a **marca vence** o pedido: rubrica exige *ausência* de
+- **Q2 (E7) — Sombras.** Confirma que a **marca vence** o pedido: rubrica exige *ausência* de
   sombra e profundidade por degrau de tom (C1)? *Recomendo sim.*
-- **Q4 (E7, E8) — Modo primário.** Sem regra na marca (C7). Qual é o primário para "capa de
+- **Q4 (E8, E9) — Modo primário.** Sem regra na marca (C7). Qual é o primário para "capa de
   post para substack" — **dark** ou light? *Recomendo dark: a pilha escura tem 4 níveis e a
   clara 3; derivar do mais rico para o mais pobre é menos arriscado que o inverso — é raciocínio
   meu, não regra da marca.*

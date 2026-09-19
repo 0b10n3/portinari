@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import agy, brand, brief
+from . import agy, brand, brief, enriquecimento
 
 
 def _ingest(a: argparse.Namespace) -> int:
@@ -34,6 +34,28 @@ def _marca(a: argparse.Namespace) -> int:
     return 0
 
 
+def _enriquecer(a: argparse.Namespace) -> int:
+    """Valida enriquecimento/vNN.json (o mais recente, ou --versao) e grava vNN.md para o autor."""
+    saida = Path(a.saida)
+    snap = json.loads((saida / "brand_snapshot.json").read_text())
+    try:
+        enr, arq = enriquecimento.carregar(saida, a.versao)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"ERRO: {e}")
+        return 2
+    r = enriquecimento.validar(enr, snap, a.modo, max_elementos=a.max_elementos,
+                               min_acrescimos=a.min_acrescimos, texto=a.texto)
+    arq.with_suffix(".md").write_text(enriquecimento.renderizar(enr, snap, a.modo, r), encoding="utf-8")
+    print(f"enriquecimento: {arq.name} · {len(enr.elementos)} elementos · visão: {arq.with_suffix('.md')}")
+    for m in r.erros:
+        print(f"ERRO: {m}")
+    for m in r.avisos:
+        print(f"aviso: {m}")
+    for m in r.verificar:
+        print(f"VERIFICAR: {m}")
+    return 2 if r.erros else 0
+
+
 def _iter_dir(a: argparse.Namespace) -> Path:
     return Path(a.saida) / "iteracoes" / f"{a.iteracao:02d}"
 
@@ -44,6 +66,20 @@ def _prompt(a: argparse.Namespace) -> int:
     b = json.loads((saida / "brief.json").read_text())
     s = json.loads((saida / "brand_snapshot.json").read_text())
     criativo = (d / "prompt_criativo.md").read_text(encoding="utf-8")
+    try:
+        enr, venr = enriquecimento.carregar(saida)
+    except FileNotFoundError:
+        enr = None
+    except ValueError as e:
+        print(f"ERRO: {e}")
+        return 2
+    if enr:
+        faltam = enriquecimento.termos_ausentes(enr, criativo)
+        if faltam:
+            print(f"ERRO: o prompt criativo perdeu {len(faltam)} termo(s) do enriquecimento ({venr.name}):")
+            for t in faltam:
+                print(f"  - {t}")
+            return 2
     for termo in brand.lint_descritores(criativo, s["descritores_proibidos"]):
         print(f"aviso: descritor da marca no prompt criativo: '{termo}' (o pedido pode sobrepor)")
     if not b.get("tamanho"):
@@ -91,6 +127,14 @@ def main(argv: list[str] | None = None) -> int:
     m.add_argument("--sem-fetch", action="store_true", help="não consulta o git de brand/")
     m.add_argument("--texto", action="store_true", help="o pedido exige texto na imagem (dropa a regra 'sem texto')")
     m.set_defaults(fn=_marca)
+    en = sub.add_parser("enriquecer", help="valida enriquecimento/vNN.json e grava vNN.md (exit 2 = erros)")
+    en.add_argument("saida")
+    en.add_argument("--versao", type=int, help="padrão: a mais recente")
+    en.add_argument("--modo", choices=brand.MODOS, default="dark")
+    en.add_argument("--max-elementos", type=int, default=12)
+    en.add_argument("--min-acrescimos", type=int, default=3)
+    en.add_argument("--texto", action="store_true", help="o pedido exige texto na imagem (desliga V8)")
+    en.set_defaults(fn=_enriquecer)
     pr = sub.add_parser("prompt", help="monta prompt_final.md = prompt_criativo.md + bloco de marca do modo")
     pr.add_argument("saida")
     pr.add_argument("--iteracao", type=int, required=True)
