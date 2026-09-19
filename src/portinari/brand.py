@@ -109,25 +109,27 @@ def _achar(secoes: dict[str, str], prefixo: str) -> str:
 
 
 def _secao_paleta(p: dict, modo: str) -> str:
+    """Só hex, em prosa. Nada de tabela nem nome de token: no S2 o gerador desenhou uma legenda de
+    amostras com os nomes dos tokens que estavam na tabela (texto espúrio na imagem)."""
     cor = NOMES_MODO[modo]
-    n = len(p["camadas"])
-    linhas = [
-        f"## Paleta — pilha {cor} (a única desta peça)",
-        "",
-        "Use exatamente estes hex, um por folha (âncora absoluta: nunca compare uma folha com outra,",
-        "nunca aproxime uma cor). Nunca misture a pilha escura com a clara na mesma peça.",
-        "",
-        "| Papel | Token | Hex |",
-        "| --- | --- | --- |",
-    ]
-    for i, c in enumerate(p["camadas"], 1):
-        pos = " (mais escuro)" if i == 1 else " (mais claro)" if i == n else ""
-        linhas.append(f"| Pilha {cor}, nível {i}{pos} | `{c['token']}` (`{c['alias']}`) | `{c['hex']}` |")
-    for f, papel in zip(p["figura"], ("Figura, sobre a pilha (nunca empilha)", "Figura secundária")):
-        linhas.append(f"| {papel} | `{f['token']}` | `{f['hex']}` |")
-    a = p["acento"]
-    linhas.append(f"| Acento único — virada, conquista, ação | `{a['token']}` | `{a['hex']}` |")
-    return "\n".join(linhas)
+    niveis = ", ".join(
+        f"nível {i} {c['hex']}" + (" (a mais escura)" if i == 1 else " (a mais clara)" if i == len(p["camadas"]) else "")
+        for i, c in enumerate(p["camadas"], 1)
+    )
+    figura = " e ".join(f["hex"] for f in p["figura"])
+    return "\n".join(
+        [
+            f"## Paleta — pilha {cor} (a única desta peça)",
+            "",
+            "Pinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,",
+            f"nunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,",
+            "legendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.",
+            "",
+            f"- Folhas da pilha {cor}: {niveis}.",
+            f"- Figura, sobre a pilha (nunca empilha): {figura}.",
+            f"- Acento único, só na virada/conquista/ação: {p['acento']['hex']}.",
+        ]
+    )
 
 
 def _secao_tetos(t: dict) -> str:
@@ -135,13 +137,11 @@ def _secao_tetos(t: dict) -> str:
         [
             "## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)",
             "",
-            "| Regra | Valor |",
-            "| --- | --- |",
-            f"| Matizes de pilha por peça | {t['max_matizes']}, mais um neutro estrutural |",
-            f"| Cores ≥1% do quadro | no máximo {t['max_cores']} |",
-            f"| Fundo mínimo do quadro | {t['fundo_minimo']:.0%} |",
-            f"| Acento do quadro | até {t['acento_max']:.0%} |",
-            f"| Granulação (só no fundo), amplitude de luminância | abaixo de {t['granulacao_max']} |",
+            f"- Matizes de pilha por peça: {t['max_matizes']}, mais um neutro estrutural.",
+            f"- Cores ≥1% do quadro: no máximo {t['max_cores']}.",
+            f"- Fundo mínimo do quadro: {t['fundo_minimo']:.0%}.",
+            f"- Acento do quadro: até {t['acento_max']:.0%}.",
+            f"- Granulação (só no fundo), amplitude de luminância: abaixo de {t['granulacao_max']}.",
         ]
     )
 
