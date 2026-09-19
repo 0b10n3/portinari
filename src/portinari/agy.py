@@ -51,6 +51,8 @@ class Geracao(BaseModel):
     erro: str | None = None
     proporcao: str
     nome: str
+    origem: str = "agy"  # "agy" | "manual" (imagem gerada fora e importada)
+    modelo_imagem: str | None = None  # só declarado na importação manual (ex.: nano-banana-pro)
     referencias: list[str] = Field(default_factory=list)
     imagem: str | None = None
     largura: int | None = None
@@ -242,3 +244,45 @@ def _registrar(saida: Path, iteracao: int, g: Geracao, pasta: Path, pretendido: 
     (pasta / f"{g.nome}.json").write_text(g.model_dump_json(indent=2), encoding="utf-8")
     with (saida / "geracoes.jsonl").open("a", encoding="utf-8") as f:
         f.write(json.dumps({"iteracao": iteracao, **g.model_dump()}, ensure_ascii=False) + "\n")
+
+
+def importar(
+    imagens: list[Path],
+    prompt: str,
+    saida: Path,
+    iteracao: int,
+    *,
+    modelo: str | None = None,
+    max_geracoes: int = MAX_GERACOES,
+) -> list[Geracao]:
+    """Traz para a execução imagens geradas à mão (ex.: no Nano Banana Pro colando `prompt_final.md`).
+    Cada imagem vira gen_KK.<ext> + prompt completo + gen_KK.json (origem "manual") e conta como
+    uma geração. Valida que é imagem antes de gravar qualquer coisa."""
+    saida = Path(saida)
+    pasta = saida / "iteracoes" / f"{iteracao:02d}"
+    validas = []
+    for img in map(Path, imagens):
+        try:
+            with Image.open(img) as im:
+                im.verify()
+            with Image.open(img) as im:
+                validas.append((img, im.size))
+        except Exception as e:
+            raise AgyErro(f"{img} não é uma imagem válida") from e
+    if _contar(saida) + len(validas) > max_geracoes:
+        raise TetoDeGeracoes(f"importar {len(validas)} imagem(ns) passaria do teto de {max_geracoes} gerações")
+    pasta.mkdir(parents=True, exist_ok=True)
+    feitas = []
+    for img, (w, h) in validas:
+        k = len(list(pasta.glob("gen_*.json"))) + 1
+        nome = f"gen_{k:02d}"
+        destino = pasta / f"{nome}{img.suffix.lower()}"
+        shutil.copy2(img, destino)
+        g = Geracao(k=k, tentativa=1, comando=[], modelo_orquestrador="manual", modelo_imagem=modelo,
+                    origem="manual", proporcao=melhor_proporcao(w, h), nome=nome, imagem=str(destino),
+                    largura=w, altura=h, sha256=hashlib.sha256(destino.read_bytes()).hexdigest(),
+                    fiel=True, inicio=datetime.now(timezone.utc).isoformat(timespec="seconds"))
+        (pasta / f"{nome}.prompt.md").write_text(prompt, encoding="utf-8")
+        _registrar(saida, iteracao, g, pasta, prompt, "(geração manual: prompt colado pelo autor no gerador; não verificável)")
+        feitas.append(g)
+    return feitas

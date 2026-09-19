@@ -56,6 +56,21 @@ def _enriquecer(a: argparse.Namespace) -> int:
     return 2 if r.erros else 0
 
 
+def _importar(a: argparse.Namespace) -> int:
+    """Importa imagens geradas à mão (ex.: Nano Banana Pro) para iteracoes/NN/."""
+    saida, d = Path(a.saida), _iter_dir(a)
+    arq = d / a.prompt if not Path(a.prompt).is_absolute() else Path(a.prompt)
+    try:
+        gs = agy.importar([Path(x) for x in a.imagens], arq.read_text(encoding="utf-8"), saida, a.iteracao,
+                          modelo=a.modelo, max_geracoes=a.max_geracoes)
+    except (agy.AgyErro, OSError) as e:
+        print(f"ERRO: {e}")
+        return 3
+    for g in gs:
+        print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · manual" + (f" · {g.modelo_imagem}" if g.modelo_imagem else ""))
+    return 0
+
+
 def _iter_dir(a: argparse.Namespace) -> Path:
     return Path(a.saida) / "iteracoes" / f"{a.iteracao:02d}"
 
@@ -140,6 +155,14 @@ def main(argv: list[str] | None = None) -> int:
     pr.add_argument("--iteracao", type=int, required=True)
     pr.add_argument("--modo", choices=brand.MODOS, default="dark")
     pr.set_defaults(fn=_prompt)
+    im = sub.add_parser("importar", help="importa imagens geradas à mão (ex.: Nano Banana Pro) para iteracoes/NN/")
+    im.add_argument("saida")
+    im.add_argument("imagens", nargs="+")
+    im.add_argument("--iteracao", type=int, required=True)
+    im.add_argument("--prompt", default="prompt_final.md", help="o prompt colado no gerador (dentro de iteracoes/NN/ ou caminho absoluto)")
+    im.add_argument("--modelo", help="modelo de imagem usado, só para registro (ex.: nano-banana-pro)")
+    im.add_argument("--max-geracoes", type=int, default=agy.MAX_GERACOES)
+    im.set_defaults(fn=_importar)
     g = sub.add_parser("gerar", help="gera imagens via agy (exit 3 = falha, 4 = paleta não chegou ao gerador)")
     g.add_argument("saida")
     g.add_argument("--iteracao", type=int, required=True)
