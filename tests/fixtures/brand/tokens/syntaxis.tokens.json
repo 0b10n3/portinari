@@ -1,0 +1,165 @@
+{
+ "color": {
+  "neutral": {
+   "ink": {
+    "$value": "#141414",
+    "$type": "color",
+    "$description": "Fundo principal Dark Mode; texto sobre fundos claros E sobre superfícies lime."
+   },
+   "deepForest": {
+    "$value": "#0F3D27",
+    "$type": "color",
+    "$description": "Superfície escura intencional (bandas, blocos de destaque). Distinto do fundo dark-mode em color.theme.dark.background."
+   },
+   "mist": {
+    "$value": "#E2E8F0",
+    "$type": "color",
+    "$description": "Bordas, hairlines estruturais (assinatura §4.4.3), divisórias."
+   },
+   "mint": {
+    "$value": "#E6F4EE",
+    "$type": "color",
+    "$description": "Fundos suaves, cards informativos."
+   },
+   "chalk": {
+    "$value": "#F7F7F5",
+    "$type": "color",
+    "$description": "Fundo principal Light Mode."
+   }
+  },
+  "forest": {
+   "500": {
+    "$value": "#1B6A45",
+    "$type": "color",
+    "$description": "Forest-500 — cor de marca primária."
+   },
+   "700": {
+    "$value": "#125233",
+    "$type": "color"
+   }
+  },
+  "grove": {
+   "300": {
+    "$value": "#78C9A4",
+    "$type": "color"
+   },
+   "500": {
+    "$value": "#2D9E67",
+    "$type": "color",
+    "$description": "Grove-500 — cor de marca secundária."
+   }
+  },
+  "lime": {
+   "500": {
+    "$value": "#CDF163",
+    "$type": "color",
+    "$description": "Lime-500 — cor de ação/conquista. Superfície e marcador; texto/traço apenas sobre fundos escuros."
+   },
+   "700": {
+    "$value": "#5F7D1C",
+    "$type": "color",
+    "$description": "Texto lime sobre fundos claros (AA)."
+   }
+  }
+ },
+ "illustration": {
+  "$description": "Camada de ILUSTRAÇÃO (collage / paper cut) — DESIGN.md v3.1 §7. Todo token de cor aqui é ALIAS: nenhum valor novo, nenhum contraste novo a verificar. ESCOPO (restrito em 04/09/2026, decisão do founder; exceção formalizada em 06/09/2026): consumidor primário é pipelines/hemingway; exceção nomeada única é a capa de brand/templates/livro (DESIGN.md §7.7) — nunca apps/skill_test, nunca o site, nunca o miolo de nenhum template de curso. Proibido em qualquer componente de produto ou de UI. Profundidade é degrau de luminância, nunca sombra.",
+  "stack": {
+   "$description": "Pilha de papel — ordem de empilhamento, do fundo ao topo. Duas camadas adjacentes diferem por um degrau.",
+   "dark": {
+    "$description": "Pilha escura. Degraus medidos de luminância: 0,029 · 0,028 · 0,046.",
+    "layer1": {
+     "$value": "{color.neutral.ink}",
+     "$type": "color",
+     "$description": "Nível 1 da pilha escura. Uso exclusivo na camada de ilustração."
+    },
+    "layer2": {
+     "$value": "{color.neutral.deepForest}",
+     "$type": "color",
+     "$description": "Nível 2 da pilha escura. Uso exclusivo na camada de ilustração."
+    },
+    "layer3": {
+     "$value": "{color.forest.700}",
+     "$type": "color",
+     "$description": "Nível 3 da pilha escura. Uso exclusivo na camada de ilustração."
+    },
+    "layer4": {
+     "$value": "{color.forest.500}",
+     "$type": "color",
+     "$description": "Nível 4 da pilha escura. Uso exclusivo na camada de ilustração."
+    }
+   },
+   "light": {
+    "$description": "Pilha clara. Degraus medidos: 0,075 · 0,052.",
+    "layer1": {
+     "$value": "{color.neutral.mist}",
+     "$type": "color",
+     "$description": "Nível 1 da pilha clara. Uso exclusivo na camada de ilustração."
+    },
+    "layer2": {
+     "$value": "{color.neutral.mint}",
+     "$type": "color",
+     "$description": "Nível 2 da pilha clara. Uso exclusivo na camada de ilustração."
+    },
+    "layer3": {
+     "$value": "{color.neutral.chalk}",
+     "$type": "color",
+     "$description": "Nível 3 da pilha clara. Uso exclusivo na camada de ilustração."
+    }
+   }
+  },
+  "figure": {
+   "$description": "Figura sobre a pilha. NÃO empilha: os saltos de luminância (+0,150 e +0,225) são de cinco a dez vezes um degrau, e é isso que faz a figura destacar em vez de somar profundidade.",
+   "primary": {
+    "$value": "{color.grove.500}",
+    "$type": "color"
+   },
+   "secondary": {
+    "$value": "{color.grove.300}",
+    "$type": "color"
+   }
+  },
+  "accent": {
+   "$value": "{color.lime.500}",
+   "$type": "color",
+   "$description": "Acento único da peça — virada, conquista ou ação. Nunca uma camada de pilha. Teto de cobertura em accentMaxCoverage."
+  },
+  "maxHues": {
+   "$value": 1,
+   "$type": "number",
+   "$description": "Matizes de pilha por peça, mais um neutro estrutural."
+  },
+  "maxColors": {
+   "$value": 7,
+   "$type": "number",
+   "$description": "Cores acima de 1% do quadro. Medido: peças disciplinadas ficam entre 3 e 7; a rejeitada tem 12."
+  },
+  "minBackground": {
+   "$value": 0.4,
+   "$type": "number",
+   "$description": "Fração mínima do quadro ocupada pelo fundo. Medido: 44%–95% nas peças que funcionam, 27% na rejeitada."
+  },
+  "accentMaxCoverage": {
+   "$value": 0.01,
+   "$type": "number",
+   "$description": "Fração máxima do quadro em illustration.accent. Medido na peça de referência: 0,35%."
+  },
+  "grainMaxLuminanceAmplitude": {
+   "$value": 0.028,
+   "$type": "number",
+   "$description": "Amplitude máxima de luminância da granulação, e só na camada de fundo. Acima de um degrau da escada ela cria um quinto nível falso e destrói a leitura de pilha."
+  },
+  "minSizePx": {
+   "$value": 96,
+   "$type": "number",
+   "$description": "Abaixo disso não existe ilustração, existe símbolo: usar os assets de brand/LOGO/."
+  }
+ },
+ "$description": "Fixture de teste: subconjunto de brand/tokens/syntaxis.tokens.json (mesma estrutura).",
+ "$extensions": {
+  "br.com.syntaxis": {
+   "name": "Syntaxis Design Tokens",
+   "version": "2.7.0"
+  }
+ }
+}
