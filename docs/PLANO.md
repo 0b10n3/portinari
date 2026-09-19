@@ -55,11 +55,42 @@ terminando na `main` sincronizada.
   `filter-branch`, deleção de branch remota (deny-list igual à dos irmãos).
 - O primeiro commit (docs) vai direto na `main`, porque o repo ainda não tem nenhum.
 
+## Achados do S1/S2 (18/09/2026) — **decisão necessária**
+
+Detalhe e evidência em [`agy.md`](./agy.md) §3.2, §3.3, §6. Resumo:
+
+1. **O modelo de imagem do `agy` é `gemini-3.1-flash-image` ("Nano Banana 2"), não o Nano Banana
+   Pro.** Está no banco da conversa e no binário; não há parâmetro nem configuração local para
+   trocar. Isso cai na condição que você definiu como bloqueador ("se o agy não suportar geração
+   com Nano Banana Pro… descreva as alternativas e não contorne sozinho"). **Não contornei.**
+2. **Resolução nativa ~1K** (16:9 = 1376×768); pedir mais no prompt não muda. 2560×1440 = ampliação ×1,86.
+3. **O que funciona e está testado:** headless sem flags de permissão, ~25 s por imagem, prompt de
+   3,5 mil caracteres chegou **literal** ao gerador, **edição por `ImagePaths` funciona** (base da
+   derivação light/dark), qualidade boa de paper cut.
+4. **Defeitos encontrados (e o que já corrigi):** legenda de amostras com nomes de token desenhada
+   na imagem (vinha da tabela de paleta que eu injetava → corrigido: só hex, em prosa); cerejas
+   vermelhas fora da paleta (erro de prompt meu → regra do Prompter); acento lime estourando 1% na
+   edição (→ o prompt de edição deve dizer onde o acento aparece).
+
+**Alternativas (escolha sua; nenhuma foi implementada):**
+
+| | Como | Ganha | Perde |
+| --- | --- | --- | --- |
+| **A. Ficar com o `agy` como está** | `gemini-3.1-flash-image`, 1K + ampliação Lanczos | zero chave/custo novo; tudo já testado; edição funciona | não é Nano Banana Pro; 2560×1440 por ampliação (macio); R1 (LLM no meio) permanece |
+| **B. Nano Banana Pro direto pela API do Gemini** | chamada REST (`urllib`, sem SDK) ao modelo `gemini-3-pro-image-preview`, com `GEMINI_API_KEY` no ambiente | Nano Banana Pro de verdade; **2K/4K nativos** (atende "sempre a melhor resolução"); sem LLM no meio (prompt exato, some o R1); referências para edição | deixa de ser "via `agy`"; exige chave e custo por imagem; nome do modelo, tamanhos e preço **precisam ser confirmados** (não consegui verificar daqui) |
+| **C. Testar se o `agy` com `GEMINI_API_KEY` usa o Pro** | o binário tem backend `BackendGeminiAPI` e `imageGenerationModelName` | pode dar Pro mantendo o `agy` | não confirmado, é palpite; custa 1 geração + chave |
+| **D. Híbrido** | `agy` para explorar conceitos/iterar barato; render final no Pro (B) | melhor custo × qualidade | duas integrações |
+
+*Minha recomendação:* **B** (ou D), porque a exigência de "melhor resolução possível" e o
+Nano Banana Pro só se cumprem de verdade por aí, e ainda elimina o risco de o LLM do `agy`
+reescrever o prompt. É uma opção sua: envolve chave, custo e sair do `agy`. O E4–E6 (imagem,
+manifesto, agentes) não dependem dessa escolha; o E3 (wrapper) e o E7 (derivação) sim.
+
 ## 0. Resumo executivo
 
 1. **O `agy` não é um bloqueador total, mas há três pontos que mudam o desenho** e que só o
    smoke test resolve: (a) **não dá para escolher o modelo** — `generate_image` não tem parâmetro
-   de modelo (Nano Banana Pro é coerente com as dimensões de saída, mas não confirmado); (b) **a
+   de modelo (o S1 mostrou que o modelo é `gemini-3.1-flash-image`, não o Nano Banana Pro — ver "Achados do S1/S2"); (b) **a
    saída é ~1K** (1376×768 em 16:9) — 2560×1440 exige ampliar ×1,86; (c) **um LLM de texto
    reescreve o prompt** antes da ferramenta (medido em 14 sessões antigas: 5 reescritas por
    inteiro, 9 quase literais porém ~5–20% mais curtas), o que ameaça a injeção determinística

@@ -47,6 +47,9 @@ def test_bloco_so_com_a_pilha_do_modo():
     assert "Borda e retícula" in dark and "Escala pequena" in dark and "Sem texto renderizado" in dark
     assert "scanner" not in dark and "A escada" not in dark  # parte anti-sombra: o pedido vence
     assert "Descritores proibidos" not in dark  # só lint
+    # S2: a tabela com nomes de token virou legenda de amostras dentro da imagem
+    for bloco in (dark, light):
+        assert "illustration." not in bloco and "color." not in bloco and "|" not in bloco
 
 
 def test_texto_exigido_dropa_regra_sem_texto():
