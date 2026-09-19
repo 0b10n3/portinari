@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/settings.local.json
+
+# Execuções: só texto vai para o git (brief, prompts, críticas, manifest).
+# Imagens (brutas do agy, referências baixadas, finais) ficam fora.
+output/**/*.jpg
+output/**/*.jpeg
+output/**/*.png
+output/**/*.webp
+output/**/referencias/
