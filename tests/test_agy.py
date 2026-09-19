@@ -182,3 +182,43 @@ def test_cli_gerar_falha_quando_paleta_nao_chega(tmp_path, fake, monkeypatch):
     it.mkdir(parents=True)
     (it / "prompt_final.md").write_text(PROMPT)
     assert main(["gerar", str(run), "--iteracao", "1", "--variacoes", "1"]) == 4
+
+
+# --- E5b: importação de imagens geradas à mão -----------------------------------------------------
+def test_importar_imagens_manuais(tmp_path):
+    a, b = tmp_path / "pro_4k.png", tmp_path / "pro2.JPG"
+    Image.new("RGB", (2752, 1536), "#0F3D27").save(a)
+    Image.new("RGB", (1024, 1024), "#141414").save(b)
+    gs = agy.importar([a, b], PROMPT, tmp_path / "run", 1, modelo="nano-banana-pro")
+    d = tmp_path / "run" / "iteracoes" / "01"
+    assert [g.nome for g in gs] == ["gen_01", "gen_02"] and (gs[0].largura, gs[0].altura) == (2752, 1536)
+    assert gs[0].proporcao == "16:9" and gs[1].proporcao == "1:1" and gs[1].imagem.endswith("gen_02.jpg")
+    assert (d / "gen_01.prompt.md").read_text() == PROMPT  # prompt completo, colável
+    meta = json.loads((d / "gen_01.json").read_text())
+    assert meta["origem"] == "manual" and meta["modelo_imagem"] == "nano-banana-pro" and meta["comando"] == []
+    assert [l["origem"] for l in linhas(tmp_path)] == ["manual", "manual"]  # contam como gerações
+
+
+def test_importar_recusa_nao_imagem_e_respeita_teto(tmp_path):
+    ruim = tmp_path / "x.png"
+    ruim.write_text("não sou imagem")
+    ok = tmp_path / "ok.png"
+    Image.new("RGB", (8, 8)).save(ok)
+    with pytest.raises(agy.AgyErro, match="não é uma imagem"):
+        agy.importar([ok, ruim], PROMPT, tmp_path / "run", 1)
+    assert not (tmp_path / "run").exists()  # nada foi gravado
+    with pytest.raises(agy.TetoDeGeracoes):
+        agy.importar([ok, ok], PROMPT, tmp_path / "run", 1, max_geracoes=1)
+
+
+def test_cli_importar_usa_o_prompt_final(tmp_path, capsys):
+    run = tmp_path / "exec"
+    it = run / "iteracoes" / "01"
+    it.mkdir(parents=True)
+    (it / "prompt_final.md").write_text("prompt colado no Pro")
+    img = tmp_path / "pro.png"
+    Image.new("RGB", (16, 9)).save(img)
+    assert main(["importar", str(run), str(img), "--iteracao", "1", "--modelo", "nano-banana-pro"]) == 0
+    assert "manual · nano-banana-pro" in capsys.readouterr().out
+    assert (it / "gen_01.prompt.md").read_text() == "prompt colado no Pro"
+    assert main(["importar", str(run), str(tmp_path / "nao.png"), "--iteracao", "1"]) == 3
