@@ -1,0 +1,140 @@
+{
+  "imagem": "output/2026-09-20_transformacao-da-producao-agricola-em-produto-financeiro/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        36,
+        36,
+        36
+      ],
+      "hex_imagem": "#242424",
+      "fracao": 0.4659,
+      "token_mais_perto": "#141414",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0148
+    },
+    {
+      "rgb": [
+        54,
+        146,
+        100
+      ],
+      "hex_imagem": "#369264",
+      "fracao": 0.1417,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0231
+    },
+    {
+      "rgb": [
+        28,
+        28,
+        28
+      ],
+      "hex_imagem": "#1C1C1C",
+      "fracao": 0.1051,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.9,
+      "amplitude_luminancia": 0.0145
+    },
+    {
+      "rgb": [
+        44,
+        133,
+        88
+      ],
+      "hex_imagem": "#2C8558",
+      "fracao": 0.0905,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 11.2,
+      "amplitude_luminancia": 0.0254
+    },
+    {
+      "rgb": [
+        125,
+        189,
+        149
+      ],
+      "hex_imagem": "#7DBD95",
+      "fracao": 0.0565,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.3,
+      "amplitude_luminancia": 0.0162
+    },
+    {
+      "rgb": [
+        53,
+        120,
+        86
+      ],
+      "hex_imagem": "#357856",
+      "fracao": 0.0365,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 6.9,
+      "amplitude_luminancia": 0.0213
+    },
+    {
+      "rgb": [
+        50,
+        108,
+        78
+      ],
+      "hex_imagem": "#326C4E",
+      "fracao": 0.0337,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 7.2,
+      "amplitude_luminancia": 0.0237
+    },
+    {
+      "rgb": [
+        31,
+        80,
+        56
+      ],
+      "hex_imagem": "#1F5038",
+      "fracao": 0.023,
+      "token_mais_perto": "#125233",
+      "delta_e": 6.0,
+      "amplitude_luminancia": 0.0225
+    },
+    {
+      "rgb": [
+        40,
+        110,
+        74
+      ],
+      "hex_imagem": "#286E4A",
+      "fracao": 0.0176,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 2.7,
+      "amplitude_luminancia": 0.0228
+    },
+    {
+      "rgb": [
+        17,
+        22,
+        19
+      ],
+      "hex_imagem": "#111613",
+      "fracao": 0.0124,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.0,
+      "amplitude_luminancia": 0.012
+    }
+  ],
+  "fundo": {
+    "hex": "#242424",
+    "fracao": 0.4659
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#2C8558 (9.0%) está longe de #1B6A45 (ΔE 11.2)",
+    "10 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
