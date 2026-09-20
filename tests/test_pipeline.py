@@ -65,12 +65,15 @@ def test_skill_nao_e_invocavel_pelo_modelo_e_cobre_os_dois_gates():
     assert "Três voltas por etapa" in s and "--aprovado" in s
 
 
-def test_skill_so_cita_subcomando_que_existe():
-    subcomandos = set(re.findall(r"uv run portinari (\w+)", SKILL.read_text(encoding="utf-8")))
+def test_skill_so_cita_subcomando_que_existe(capsys):
+    """A lista sai do próprio argparse: a skill não pode citar comando que o CLI não tem."""
     with pytest.raises(SystemExit):
         main(["--help"])
-    assert subcomandos <= {"ingest", "marca", "enriquecer", "prompt", "gerar", "checar",
-                           "derivar", "importar", "entregar"}
+    ajuda = capsys.readouterr().out
+    existentes = set(re.findall(r"^\s{4}(\w+)\s{2,}", ajuda, re.M))
+    citados = set(re.findall(r"uv run portinari (\w+)", SKILL.read_text(encoding="utf-8")))
+    assert existentes >= {"ingest", "marca", "gerar", "entregar", "estado"}  # o --help foi lido
+    assert citados and citados <= existentes
 
 
 # --- ensaio a seco --------------------------------------------------------------------------------
