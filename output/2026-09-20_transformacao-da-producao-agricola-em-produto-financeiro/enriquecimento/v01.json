@@ -1,0 +1,78 @@
+{
+  "conceito": "C2",
+  "pedido_preservado": [
+    "produção agrícola de café no lado esquerdo",
+    "transformação dessa produção em produto financeiro (LCA) no lado direito"
+  ],
+  "elementos": [
+    {"id": "e1", "zona": "centro", "papel": "foco", "origem": "pedido",
+     "elemento": "o ponto da costura aberta na boca da saca, onde a trama de juta termina e o mesmo plano do pano segue liso: é ali, e só ali, que a produção vira título",
+     "termo_en": "open seam where jute weave becomes a smooth sheet", "cor": "figura-principal",
+     "justificativa": "único foco: a transformação pedida acontece num ponto de material, não entre duas metades ilustradas"},
+
+    {"id": "e2", "zona": "esquerda", "papel": "apoio", "origem": "pedido",
+     "elemento": "saca de café cheia e de pé, de frente, forma larga na base e boca franzida em poucas dobras retas, lisa por inteiro",
+     "termo_en": "standing full coffee sack with pleated mouth", "cor": "figura-principal",
+     "justificativa": "é a produção agrícola de café pedida, resolvida em um objeto só e legível a 200px"},
+
+    {"id": "e3", "zona": "esquerda", "papel": "textura", "origem": "dominio",
+     "elemento": "trama de juta sugerida por poucas faixas chapadas e largas cruzadas em ângulo reto, sem fibra desenhada",
+     "termo_en": "flat crossed jute weave bands", "cor": "figura-secundaria",
+     "justificativa": "dá o material certo da sacaria de café brasileira sem quebrar o corte chapado do flat"},
+
+    {"id": "e4", "zona": "centro", "papel": "apoio", "origem": "oficio",
+     "elemento": "um único fio de algodão puxado da costura, linha fina e solta, exatamente no ponto onde a trama se abre",
+     "termo_en": "single pulled cotton stitching thread", "cor": "acento",
+     "justificativa": "o acento em um ponto só: a virada do conceito, o fio que desfaz e refaz o material"},
+
+    {"id": "e5", "zona": "centro", "papel": "apoio", "origem": "dominio",
+     "elemento": "fileira de pontos largos e desiguais fechando a boca da saca à esquerda da abertura, costura feita à mão",
+     "termo_en": "hand-sewn bag mouth stitches", "cor": "figura-secundaria",
+     "justificativa": "o trabalho humano entra pelo vestígio: pontos desiguais são mão, não máquina",
+     "verificar": true,
+     "nota_verificacao": "no beneficiamento moderno a boca costuma ser fechada por máquina de costura de saco; a costura à mão é do ensacador de armazém/terreiro. Confirmar se o post fala da cadeia artesanal ou industrial"},
+
+    {"id": "e6", "zona": "primeiro-plano", "papel": "apoio", "origem": "dominio",
+     "elemento": "agulha curva de ensacador com um resto de fio enrolado, apoiada no estrado ao pé da saca",
+     "termo_en": "curved sacking needle", "cor": "figura-secundaria",
+     "justificativa": "ferramenta exata do ofício de ensacar; dá escala humana sem pôr ninguém no quadro"},
+
+    {"id": "e7", "zona": "primeiro-plano", "papel": "apoio", "origem": "dominio",
+     "elemento": "gancho de estivador de cabo curto encostado no flanco inferior da saca, ponta virada para cima",
+     "termo_en": "short stevedore bag hook", "cor": "pilha-2",
+     "justificativa": "quem move saca de sessenta quilos usa gancho: o peso e o braço aparecem pelo objeto"},
+
+    {"id": "e8", "zona": "primeiro-plano", "papel": "textura", "origem": "oficio",
+     "elemento": "estrado de três tábuas retas e chapadas sob a saca, formando a linha de base reta do quadro",
+     "termo_en": "three flat wooden pallet slats", "cor": "pilha-2",
+     "justificativa": "assenta o objeto e dá a linha de base sem trazer cenário nem perspectiva"},
+
+    {"id": "e9", "zona": "esquerda", "papel": "textura", "origem": "oficio",
+     "elemento": "vestígios de uso no pano: um remendo retangular costurado no flanco e um canto inferior com a fibra puída em dentes curtos recortados",
+     "termo_en": "stitched patch and frayed corner on the burlap", "cor": "figura-secundaria",
+     "justificativa": "saca usada conta que houve safra, transporte e reuso; recorte dente a dente prova o ofício do papel"},
+
+    {"id": "e10", "zona": "direita", "papel": "apoio", "origem": "pedido",
+     "elemento": "o mesmo plano do pano seguindo para a direita já liso e uniforme, sem trama, com uma única dobra a 45 graus que desce",
+     "termo_en": "smooth sheet folding once at 45 degrees", "cor": "pilha-4",
+     "justificativa": "é o produto financeiro pedido no lado direito: mesmo material, outro estado"},
+
+    {"id": "e11", "zona": "direita", "papel": "apoio", "origem": "pedido",
+     "elemento": "pilha baixa de folhas lisas e vazias onde a dobra pousa, folhas escorregadas uma da outra, borda superior picotada e o canto da folha da frente dobrado; a pilha termina antes de 0,78 da largura, dentro da área segura",
+     "termo_en": "low stack of blank sheets with perforated edge and folded corner", "cor": "pilha-4",
+     "justificativa": "o desfecho da leitura; borda picotada e canto dobrado fazem documento sem nada legível, e o limite em x 0,78 sobrevive ao preview 14:10 e ao recorte 1,91:1"},
+
+    {"id": "e12", "zona": "primeiro-plano", "papel": "apoio", "origem": "dominio",
+     "elemento": "três grãos de café soltos caídos no estrado, ovais e de perfil, com a fenda central em diagonal, todos na mesma forma de grão",
+     "termo_en": "three loose coffee beans with center crease", "cor": "figura-secundaria",
+     "justificativa": "prova o conteúdo da saca em três formas pequenas, sem abrir uma segunda metáfora"}
+  ],
+  "descartados": [
+    {"elemento": "os grãos que ficavam retangulares na queda", "motivo": "segunda metáfora dizendo mais fraco o que a costura já diz; cortado por decisão do Gate 1"},
+    {"elemento": "ensacador, mão ou silhueta segurando a agulha", "motivo": "C2 ganhou por ser um objeto só: o trabalho entra pela costura à mão, pela agulha e pelo gancho, não por figura humana"},
+    {"elemento": "selo redondo com fita e trama geométrica de segurança na pilha de folhas", "motivo": "vira certificado ornamentado e é a porta de entrada favorita do gerador para escrita alucinada; as folhas ficam vazias"},
+    {"elemento": "carimbo de origem, peso e safra no flanco da saca", "motivo": "saca real vem marcada, mas qualquer marcação vira escrita na imagem; a saca é lisa"},
+    {"elemento": "terreiro de secagem, morro com renques e sacaria empilhada ao fundo", "motivo": "cenário quebra o objeto único e come o fundo vazio de 40% que o conceito reserva"}
+  ],
+  "cena": "Objeto único, grande e centralizado sobre fundo vazio, em papel recortado chapado. À esquerda, uma saca de café cheia e de pé, de frente, base larga e boca franzida em poucas dobras retas; a trama de juta é sugerida por faixas largas cruzadas em ângulo reto, e o pano traz vestígios de uso: um remendo retangular costurado no flanco e um canto inferior puído, recortado dente a dente. A boca está fechada por uma fileira de pontos largos e desiguais, de costura feita à mão, que no meio do quadro se abre: nesse ponto a trama termina e o mesmo plano do pano segue liso, com um único fio de algodão puxado da costura, o único ponto de acento da composição. Dali para a direita o plano continua uniforme, sem trama, dobra uma vez a 45 graus e desce até pousar numa pilha baixa de folhas vazias, escorregadas uma da outra, de borda superior picotada e canto da frente dobrado; a pilha termina dentro da área segura, bem antes da margem direita. No primeiro plano, um estrado de três tábuas retas faz a linha de base: sobre ele descansam a agulha curva de ensacador com um resto de fio, o gancho de estivador encostado no pé da saca e três grãos de café soltos, ovais e de perfil, com a fenda em diagonal. Nenhuma pessoa, nenhum cenário, e amplo espaço vazio acima e nas laterais para o recorte."
+}
