@@ -25,7 +25,15 @@ from typing import Callable
 from PIL import Image
 from pydantic import BaseModel, Field
 
-HOME = Path(os.environ.get("PORTINARI_AGY_HOME", "~/.gemini/antigravity-cli")).expanduser()
+PADRAO_HOME = "~/.gemini/antigravity-cli"
+
+
+def _home() -> Path:
+    """Lido a cada chamada, não no import: o teste (e o `--add-dir`) trocam isto em tempo de execução."""
+    return Path(os.environ.get("PORTINARI_AGY_HOME", PADRAO_HOME)).expanduser()
+
+
+HOME = _home()
 # Enum de AspectRatio que a ferramenta declara ao modelo (docs/agy.md §3.1).
 PROPORCOES = {"1:1": 1.0, "2:3": 2 / 3, "3:2": 3 / 2, "3:4": 3 / 4, "4:3": 4 / 3, "9:16": 9 / 16, "16:9": 16 / 9}
 # Escada de orquestradores: começa barato; se o prompt for reescrito/falhar, sobe (mitiga R1).
@@ -118,11 +126,11 @@ def _instrucao(prompt: str, proporcao: str, nome: str, refs: list[str], tentativ
     return "\n".join(linhas) + f"\n\n<<<PROMPT\n{prompt.strip()}\nPROMPT>>>\n"
 
 
-def passos_imagem(conversation_id: str, home: Path = HOME) -> list[dict]:
+def passos_imagem(conversation_id: str, home: Path | None = None) -> list[dict]:
     """Passos de geração do transcript: [{prompt, caminho}] (prompt = o que a ferramenta recebeu).
     Não filtra pelo `type` do passo: no agy 1.2.7 em headless ele vem como GENERIC (S1), nas sessões
     antigas como GENERATE_IMAGE — o que identifica o passo é o conteúdo."""
-    p = home / "brain" / conversation_id / ".system_generated" / "logs" / "transcript_full.jsonl"
+    p = (home or _home()) / "brain" / conversation_id / ".system_generated" / "logs" / "transcript_full.jsonl"
     if not p.is_file():
         return []
     passos = []
@@ -177,7 +185,7 @@ def gerar(
     """Gera UMA imagem (com retentativas). Grava gen_K.{jpg,prompt.md,efetivo.md,json} em
     `saida/iteracoes/NN/` e uma linha em `saida/geracoes.jsonl` por tentativa.
     Devolve a primeira tentativa fiel; senão a última (com fiel=False para o chamador decidir)."""
-    saida, home = Path(saida), home or HOME
+    saida, home = Path(saida), home or _home()
     pasta = saida / "iteracoes" / f"{iteracao:02d}"
     pasta.mkdir(parents=True, exist_ok=True)
     base = shlex.split(os.environ.get("PORTINARI_AGY", "agy"))

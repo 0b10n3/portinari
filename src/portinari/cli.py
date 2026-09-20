@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import agy, brand, brief, enriquecimento, entrega
+from . import agy, brand, brief, enriquecimento, entrega, imaging
 
 
 def _ingest(a: argparse.Namespace) -> int:
@@ -149,6 +149,53 @@ def _gerar(a: argparse.Namespace) -> int:
     return codigo
 
 
+def _checar(a: argparse.Namespace) -> int:
+    """Checagens objetivas na imagem de validação (exit 2 = cor fora da paleta, que é vinculante)."""
+    saida = Path(a.saida)
+    snap = json.loads((saida / "brand_snapshot.json").read_text())
+    try:
+        g = entrega.geracao(saida, a.iteracao, a.gen)
+    except entrega.EntregaErro as e:
+        print(f"ERRO: {e}")
+        return 2
+    if not g.get("imagem") or not Path(g["imagem"]).is_file():
+        print(f"ERRO: {g['nome']} não tem imagem para checar")
+        return 2
+    r = imaging.checar(Path(g["imagem"]), snap, a.modo)
+    destino = imaging.gravar(r, saida, a.iteracao, g["nome"])
+    resumo = f"{len(r['cores'])} cores ≥1% · acento {r['acento_fracao']:.1%}"
+    if r["fundo"]:
+        resumo += f" · fundo {r['fundo']['hex']} em {r['fundo']['fracao']:.0%}"
+    print(f"checagens: {destino} · {resumo}")
+    for m in r["erros"]:
+        print(f"ERRO: {m}")
+    for m in r["avisos"]:
+        print(f"aviso: {m}")
+    return 2 if r["erros"] else 0
+
+
+def _derivar(a: argparse.Namespace) -> int:
+    """Master (gerado à mão no Nano Banana Pro) -> a entrega exata do uso, por corte e redução."""
+    saida = Path(a.saida)
+    b = json.loads((saida / "brief.json").read_text())
+    if not b.get("tamanho"):
+        print("ERRO: brief.json sem tamanho de entrega; resolva as perguntas do ingest")
+        return 2
+    alvo = tuple(b["tamanho"])
+    ext = a.formato or (b.get("formato") or ["jpeg"])[0]
+    destino = saida / "final" / f"{b['slug']}_{a.modo}_{alvo[0]}x{alvo[1]}.{'jpg' if ext == 'jpeg' else ext}"
+    try:
+        imaging.derivar(Path(a.master), alvo, destino)
+    except (OSError, AssertionError) as e:
+        print(f"ERRO: {e}")
+        return 2
+    mb = destino.stat().st_size / 1024 / 1024
+    print(f"entrega: {destino} {alvo[0]}x{alvo[1]} · {mb:.2f} MB")
+    if b.get("peso_max_mb") and mb > b["peso_max_mb"]:
+        print(f"aviso: o arquivo passa do teto de {b['peso_max_mb']:g} MB do uso; reduza a qualidade")
+    return 0
+
+
 def _entregar(a: argparse.Namespace) -> int:
     """O entregável é o prompt (A16): final/prompt_<modo>.md + COMO-GERAR.md + manifest.json."""
     try:
@@ -159,6 +206,29 @@ def _entregar(a: argparse.Namespace) -> int:
     print(f"entregue: {e['prompt']} (validado por {e['geracao']} da iteração {e['iteracao']:02d}, "
           f"{e['validacao_px'][0]}x{e['validacao_px'][1]})")
     print(f"como gerar: {Path(a.saida) / 'final' / 'COMO-GERAR.md'}")
+    if a.concluir:
+        try:
+            destino = entrega.concluir(Path(a.saida), Path(a.processados))
+        except (entrega.EntregaErro, OSError) as erro:
+            print(f"ERRO: {erro}")
+            return 2
+        print(f"pedido arquivado em {destino}")
+    return 0
+
+
+def _estado(a: argparse.Namespace) -> int:
+    """Onde a execução parou e qual é a próxima ação (retomada entre sessões)."""
+    try:
+        e = entrega.estado(Path(a.saida))
+    except (OSError, ValueError) as erro:
+        print(f"ERRO: {erro}")
+        return 2
+    print(f"execução: {e['saida']} · etapa: {e['etapa_atual']}")
+    print(f"brief {'ok' if e['brief'] else '-'} · marca {'ok' if e['marca'] else '-'} · "
+          f"conceitos {'ok' if e['conceitos'] else '-'} · enriquecimento {len(e['enriquecimento'])} versão(ões)")
+    print(f"iterações: {e['iteracoes'] or '-'} · gerações: {e['geracoes']} · "
+          f"entregues: {', '.join(e['entregas']) or '-'}")
+    print(f"próxima: {e['proxima']}")
     return 0
 
 
@@ -210,13 +280,30 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--modelo", help="orquestrador do agy (padrão: escada low→medium→high)")
     g.add_argument("--timeout", type=int, default=300)
     g.set_defaults(fn=_gerar)
+    ch = sub.add_parser("checar", help="checagens objetivas na imagem de validação (exit 2 = fora da paleta)")
+    ch.add_argument("saida")
+    ch.add_argument("--iteracao", type=int, required=True)
+    ch.add_argument("--gen", help="padrão: a última geração da iteração")
+    ch.add_argument("--modo", choices=brand.MODOS, default="dark")
+    ch.set_defaults(fn=_checar)
+    dv = sub.add_parser("derivar", help="master gerado à mão -> entrega exata do uso (corte + redução)")
+    dv.add_argument("saida")
+    dv.add_argument("master", help="a imagem final que você gerou no Nano Banana Pro")
+    dv.add_argument("--modo", choices=brand.MODOS, default="dark")
+    dv.add_argument("--formato", choices=["jpeg", "png"], help="padrão: o que a marca define para o uso")
+    dv.set_defaults(fn=_derivar)
     e = sub.add_parser("entregar", help="grava o prompt entregável do modo (exit 2 = recusado)")
     e.add_argument("saida")
     e.add_argument("--modo", choices=brand.MODOS, default="dark")
     e.add_argument("--iteracao", type=int, help="padrão: a última")
     e.add_argument("--gen", help="geração que validou o prompt (padrão: a última da iteração)")
     e.add_argument("--aprovado", action="store_true", help="confirma que o Gate 2 aprovou este prompt")
+    e.add_argument("--concluir", action="store_true", help="arquiva o pedido em pedidos/_processados/")
+    e.add_argument("--processados", default=str(brief.PIPELINE / "pedidos" / "_processados"))
     e.set_defaults(fn=_entregar)
+    st = sub.add_parser("estado", help="onde a execução parou e qual é a próxima ação")
+    st.add_argument("saida")
+    st.set_defaults(fn=_estado)
     a = p.parse_args(argv)
     return a.fn(a)
 

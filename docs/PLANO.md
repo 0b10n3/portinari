@@ -393,12 +393,13 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   ferramentas, papéis lisos) falha na checagem de cobertura; cor fora da paleta, 2 focos, texto,
   excesso de elementos e acréscimos insuficientes são recusados com mensagem acionável.
 
-**E5 — Imagem: checagens objetivas e pós-processamento** · `feat(imaging)`
+**E5 — Imagem: checagens objetivas e pós-processamento** · `feat(imaging)` · **implementado em 20/09/2026**
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** as **checagens objetivas ficam** (agora rodam na imagem de validação e é o que sustenta a aprovação do prompt). O **pós-processamento sai do caminho crítico**: corte/resize só existem para uma imagem **importada** (E5b). Sem imagem entregue, não há assert de dimensão exata no fim do pipeline.
 - ⚠️ **Revisado em 20/09/2026:** o pós-processamento passa a ser **master → entrega(s)** (A14): corte central pela fórmula de `FORMATOS.md`, área segura universal, JPEG 4:4:4 q90–92 ou PNG conforme o uso, sRGB, frame só depois da redução. Uma peça pode ter várias entregas.
 - Checagens (todas com limiar em constante nomeada e comentada, calibradas nesta etapa):
   paleta por **ΔE (CIE76)** entre cada cor dominante (≥ 1% do quadro, após quantização) e a
-  paleta do modo — *valores iniciais a calibrar*: aviso ΔE > 8, falha ΔE > 15; nº de cores ≥1%
+  paleta do modo — **calibrado nas duas imagens reais do S1/S2**: folha certa 1,0–4,3 · mistura
+  de borda 6,5–17,3 · cor inventada 36,7, daí aviso ΔE > 8 e falha ΔE > 25; nº de cores ≥1%
   ∈ [3,7]; fundo ≥ 40% (fundo = cluster dominante na borda do quadro); lime ≤ 1%; 1 matiz de
   pilha + neutro; dispersão interna de luminância por camada (proxy de sombra/gradiente; a
   marca cita 0,008–0,030 aceitável × 0,05–0,20 reprovado, mas o método original não está em
@@ -419,7 +420,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ imagem PNG 2K/4K importada aparece no log de gerações e segue para checagem/recorte; formato não
   imagem é recusado; o prompt é gravado íntegro.
 
-**E6 — Manifesto, estado e CLI** · `feat(manifest)`
+**E6 — Manifesto, estado e CLI** · `feat(manifest)` · **implementado em 20/09/2026**
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** `entregar` recusa por **prompt** incompleto (falta um modo, falta o bloco de marca, termo do enriquecimento ausente), nunca por imagem faltando. O manifesto registra qual imagem de validação aprovou cada prompt.
 - `manifest.json` conforme §7 do pedido (pedido de origem, versão e fingerprint da marca,
   conceito escolhido, prompts finais **com o bloco injetado**, comandos `agy`, nº de gerações,
@@ -429,7 +430,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   `pedidos/_processados/` (não o edita), e recusa se `final/` estiver incompleto.
 - ✔ retomada: matar no meio, `estado` diz onde parou; teto de gerações persiste entre sessões.
 
-**E7 — Agentes, rubrica e skill orquestradora** · `feat(agentes)`
+**E7 — Agentes, rubrica e skill orquestradora** · `feat(agentes)` · **implementado em 20/09/2026**
 - Quatro agentes em pt-BR + `rubrica/rubrica.md` (notas 1–5; **bloqueantes**: alucinação de
   texto/logo/símbolo — inclui `$` onde deveria ser `R$`; sombra/gradiente; pilhas misturadas;
   violação de teto numérico; elementos factualmente errados) + `SKILL.md` com os dois gates,
@@ -439,7 +440,8 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   financeiros (touro/urso, moedas, gráfico subindo) salvo pedido; contexto visual brasileiro.
 - ✔ verificação por leitura + um ensaio a seco sem `agy` (fixtures) que percorre gates e limites.
 
-**E8 — Variante light/dark** · `feat(variante)` *(desenho final depende de S2)*
+**E8 — Variante light/dark** · `feat(variante)` · **coberto sem código novo em 20/09/2026**
+- ✅ **20/09/2026:** não precisou de módulo novo — `prompt --modo light`, `gerar --ref <imagem aprovada>` (edição por `ImagePaths`, confirmada no S2), `checar --modo light` e `entregar --modo light` já cobrem o fluxo. O que faltava era a régua: `rubrica/rubrica.md` ganhou D1–D4 (mesma composição, mesmos elementos, pilha do modo novo, acento no mesmo ponto) e a skill, o passo 12.
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** entrega **dois prompts** (dark e light). A edição por `ImagePaths` continua sendo como se **valida** que a derivação preserva a composição — o autor gera as duas finais à mão, cada uma do seu prompt.
 - ⚠️ **Revisado em 20/09/2026:** a derivação usa edição por imagem de referência **na API** (E10), não mais `ImagePaths` do `agy`.
 - Deriva a segunda pilha por edição a partir da aprovada; crítico verifica mesma composição e
@@ -481,13 +483,13 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ o prompt entregue, colado num gerador limpo, não depende de nenhum arquivo do repo; ✔ prompt
   sem bloco de marca ou com termo do enriquecimento faltando é recusado com mensagem acionável.
 
-**E9 — Documentação e piloto** · `docs(portinari)`
+**E9 — Documentação e piloto** · `docs(portinari)` · **documentação feita em 20/09/2026; piloto pendente**
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** o critério de pronto deixa de ser "PNG em exatamente 2560×1440" e passa a ser: prompt colável que, colado no Nano Banana Pro pelo autor, produz peça aprovada no Gate 2. O relatório do piloto compara a imagem de validação (flash, 1K) com a final do autor (Pro).
 - `CLAUDE.md` (regras invioláveis, estrutura, fonte única de cada coisa, git) e `README.md`
   (como escrever um pedido, como rodar, como retomar, "se algo der errado") no padrão dos irmãos.
 - **Fase 3:** execução de ponta a ponta com `exemplo-cafe-lca.md`, gates comigo, e relatório
   (o que funcionou, o que o crítico reprovou e por quê, nº de gerações, melhorias).
-- ✔ `final/<slug>_light.png` e `_dark.png` em **exatamente 2560×1440**; manifesto completo.
+- ✔ ~~`final/<slug>_light.png` e `_dark.png` em exatamente 2560×1440~~ → por A16: `final/prompt_dark.md` e `prompt_light.md` coláveis, `COMO-GERAR.md` e manifesto completo. **Falta rodar o piloto de ponta a ponta com você nos dois gates.**
 
 ## 7. Riscos
 
