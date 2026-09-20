@@ -460,7 +460,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   caminhos (API e colagem manual do E5b).
 - **Dependência externa:** faturamento habilitado no projeto da chave (hoje 429 no free tier).
 
-**E11 — Estilos e formatos da marca** · `feat(estilos)` · spec: `specs/epicos/epico-11-estilos-formatos.md`
+**E11 — Estilos e formatos da marca** · `feat(estilos)` · **implementado em 20/09/2026** · spec: `specs/epicos/epico-11-estilos-formatos.md`
 - 📌 **Reforçado em 20/09/2026 (A16):** **fica mais importante**, não menos: como o entregável é texto, o prompt é o único lugar onde o estilo e o tamanho-alvo chegam ao autor. O §6 daquela spec (master → entregas) passa a valer só para imagem importada.
 - `brand.py` passa a ler `ILUSTRACOES/FORMATOS.md` e `ILUSTRACOES/estilos/*.md`; os dois entram no
   fingerprint e no `brand_snapshot.json` (tabela de formatos parseada + fragmento de prompt por estilo).
@@ -472,7 +472,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ mudar `FORMATOS.md` num `brand/` de teste muda o tamanho de entrega **sem tocar em código**;
   estilo recusado gera pergunta; base+modo incompatíveis geram aviso; `isometric` sem `--piloto` recusa.
 
-**E12 — Entrega do prompt** · `feat(entrega)` · spec: `specs/epicos/epico-12-entrega-prompt.md`
+**E12 — Entrega do prompt** · `feat(entrega)` · **implementado em 20/09/2026** · spec: `specs/epicos/epico-12-entrega-prompt.md`
 - `portinari entregar` grava `final/prompt_<modo>.md` (colável, autossuficiente: criativo + bloco de
   marca + fragmento de estilo + técnico), `final/COMO-GERAR.md` (modelo, proporção, tamanho e
   formato do uso conforme `FORMATOS.md`, área segura, o que conferir na imagem) e `manifest.json`.

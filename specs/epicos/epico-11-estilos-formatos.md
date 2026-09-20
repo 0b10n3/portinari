@@ -1,6 +1,6 @@
 # Épico 11 — Estilos e formatos vindos da marca
 
-**Status:** especificado · **Decisão de origem:** A12, A13, A14 (20/09/2026, PLANO).
+**Status:** implementado · **Decisão de origem:** A12, A13, A14 (20/09/2026, PLANO).
 **Motivo:** `brand/` ganhou em 19/09/2026 (`97cfadd`) dois documentos que o Portinari ainda não lê —
 `ILUSTRACOES/FORMATOS.md` (tamanho, master, área segura e formato por uso) e `ILUSTRACOES/estilos/`
 (os 14 estilos de referência traduzidos para o paper cut). Hoje o tamanho está **no código**
