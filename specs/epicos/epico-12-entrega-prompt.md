@@ -1,6 +1,6 @@
 # Épico 12 — O entregável é o prompt
 
-**Status:** especificado · **Decisão de origem:** A16, A17 (20/09/2026, PLANO).
+**Status:** implementado · **Decisão de origem:** A16, A17 (20/09/2026, PLANO).
 
 ## 1. A virada
 
@@ -66,11 +66,25 @@ Só o que o código sabe verificar sem opinar:
 | T2 | Todo hex da paleta do modo aparece no prompt (a paleta é a única parte vinculante — A2) |
 | T3 | Todo `termo_en` do enriquecimento vigente aparece no prompt (mesma checagem do `portinari prompt`) |
 | T4 | As seções do bloco de marca estão presentes e íntegras |
-| T5 | O Gate 2 do modo está registrado como aprovado no manifesto, com a geração que o sustentou |
+| T5 | O Gate 2 foi declarado: `entregar` só grava com `--aprovado` (o gate é humano; o manifesto registra qual geração o sustentou) |
 | T6 | O `COMO-GERAR.md` tem tamanho, proporção e formato — ou seja, o uso resolveu em `FORMATOS.md` |
 
 Falha em qualquer uma = exit 2 com a lista, nada gravado em `final/`.
-O pedido só vai para `pedidos/_processados/` depois de `final/` completo (regra que o E6 já tinha).
+
+Mover o pedido para `pedidos/_processados/` continua sendo do **E6** (`entregar` aqui só produz o
+entregável). O `manifest.json` nasce neste épico com o que ele sabe — pedido, marca, estilo,
+tamanhos e uma entrada por modo entregue — e o E6 o amplia sem trocar de arquivo (decisão D3).
+
+### Interface
+
+```
+portinari entregar <saida> --modo dark|light [--iteracao N] [--gen gen_KK] --aprovado
+```
+
+Um modo por chamada. Sem `--iteracao`, usa a última; sem `--gen`, a última geração dela — e é por
+isso que T1 existe: pedir `--modo dark` apontando para uma iteração que validou a pilha clara é
+recusado, não entregue calado. O prompt entregue é o `gen_KK.prompt.md` — o texto que **de fato**
+gerou a imagem aprovada, não o `prompt_final.md` que pode ter mudado desde então.
 
 ## 4. O que **não** é mais responsabilidade do pipeline
 

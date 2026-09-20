@@ -7,7 +7,7 @@ import json
 import sys
 from pathlib import Path
 
-from . import agy, brand, brief, enriquecimento
+from . import agy, brand, brief, enriquecimento, entrega
 
 
 def _ingest(a: argparse.Namespace) -> int:
@@ -149,6 +149,19 @@ def _gerar(a: argparse.Namespace) -> int:
     return codigo
 
 
+def _entregar(a: argparse.Namespace) -> int:
+    """O entregável é o prompt (A16): final/prompt_<modo>.md + COMO-GERAR.md + manifest.json."""
+    try:
+        e = entrega.entregar(Path(a.saida), a.modo, iteracao=a.iteracao, gen=a.gen, aprovado=a.aprovado)
+    except (entrega.EntregaErro, FileNotFoundError, KeyError) as erro:
+        print(f"ERRO: {erro}")
+        return 2
+    print(f"entregue: {e['prompt']} (validado por {e['geracao']} da iteração {e['iteracao']:02d}, "
+          f"{e['validacao_px'][0]}x{e['validacao_px'][1]})")
+    print(f"como gerar: {Path(a.saida) / 'final' / 'COMO-GERAR.md'}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="portinari", description="Pipeline de ilustração da Syntaxis")
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -197,6 +210,13 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--modelo", help="orquestrador do agy (padrão: escada low→medium→high)")
     g.add_argument("--timeout", type=int, default=300)
     g.set_defaults(fn=_gerar)
+    e = sub.add_parser("entregar", help="grava o prompt entregável do modo (exit 2 = recusado)")
+    e.add_argument("saida")
+    e.add_argument("--modo", choices=brand.MODOS, default="dark")
+    e.add_argument("--iteracao", type=int, help="padrão: a última")
+    e.add_argument("--gen", help="geração que validou o prompt (padrão: a última da iteração)")
+    e.add_argument("--aprovado", action="store_true", help="confirma que o Gate 2 aprovou este prompt")
+    e.set_defaults(fn=_entregar)
     a = p.parse_args(argv)
     return a.fn(a)
 
