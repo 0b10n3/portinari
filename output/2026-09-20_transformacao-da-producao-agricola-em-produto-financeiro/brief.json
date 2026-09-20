@@ -1,0 +1,42 @@
+{
+  "titulo": "Transformação da Produção Agricola em Produto Financeiro",
+  "slug": "transformacao-da-producao-agricola-em-produto-financeiro",
+  "pedido": "pedidos/exemplo-cafe-lca.md",
+  "saida": "/home/saga/Projects/Syntaxis/pipelines/portinari/output/2026-09-20_transformacao-da-producao-agricola-em-produto-financeiro",
+  "uso": "capa de post para substack",
+  "preset": "substack-capa",
+  "descricao": "Uma ilustração que tenha no lado esquerdo a representação da produção agrícola de café e represente a transformação dessa produção em produto financeiro (LCA) no lado direto da figura.",
+  "estilo": "papercut",
+  "estilo_padrao": false,
+  "estilo_base": "flat",
+  "estilo_modo": null,
+  "aspect_ratio": "16:9",
+  "resolucao": "2k",
+  "tamanho": [
+    2560,
+    1440
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "formato": [
+    "jpeg",
+    "png"
+  ],
+  "peso_max_mb": 2.0,
+  "area_segura": [
+    0.7875,
+    0.930556
+  ],
+  "observacoes_formato": [],
+  "contexto": "",
+  "contexto_arquivos": [],
+  "referencias": [],
+  "avisos": [
+    "ASPECT RATIO '16:9]' lido como 16:9.",
+    "SIZE '2560 × 1440' normalizado para 2560x1440.",
+    "SIZE 2560x1440 do pedido vence a entrega da marca para 'capa de post para substack' (1456x816)."
+  ],
+  "perguntas": []
+}
