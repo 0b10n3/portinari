@@ -1,6 +1,6 @@
 # Portinari — Plano (Fase 1)
 
-18/09/2026 · status: **aprovado com ajustes (ver "Decisões do autor")** · Fase 2 liberada.
+18/09/2026 · revisado em **20/09/2026** (ver "Decisões do autor (20/09/2026)") · Fase 2 em curso.
 Base: leitura de `PROJECT_MAP.md`, dos `CLAUDE.md`/`README.md` de `hemingway` e `gary_halbert`, de
 toda a camada de ilustração de `brand/`, e do `agy` (detalhe em [`agy.md`](./agy.md)).
 
@@ -56,6 +56,39 @@ terminando na `main` sincronizada.
 - **Nunca:** `push --force`, `reset --hard`, `rebase` de histórico publicado, `clean -fd`,
   `filter-branch`, deleção de branch remota (deny-list igual à dos irmãos).
 - O primeiro commit (docs) vai direto na `main`, porque o repo ainda não tem nenhum.
+
+## Decisões do autor (20/09/2026) — novo rumo; prevalecem sobre tudo acima
+
+| # | Decisão | Consequência no plano |
+| --- | --- | --- |
+| **A10** | **Gerador = API do Gemini direto** (alternativa **D**, híbrida). Rascunho/avaliação no **flash**; imagem **final** só no **Nano Banana Pro** | Novo épico **E10** (`gemini.py`). O `agy` (E3) vira **fallback testado**, não o caminho principal. Cai o risco **R1** (nenhum LLM reescreve o prompt) e boa parte do **R2** (2K/4K nativos) |
+| **A11** | **Nome real dos modelos** (verificado na API com a chave do `.env`, 20/09/2026): não existe modelo de **imagem** "3.8 flash" — `gemini-3.8-flash` é **texto**. Os de imagem são `gemini-3.1-flash-image` (**Nano Banana 2**), `gemini-3.1-flash-lite-image`, `gemini-2.5-flash-image` e `gemini-3-pro-image` (**Nano Banana Pro**) | Avaliação = `gemini-3.1-flash-image`; final = `gemini-3-pro-image`. Constantes nomeadas em `gemini.py`, sobreponíveis por `--modelo` |
+| **A12** | **A marca manda no tamanho e no estilo.** `ILUSTRACOES/FORMATOS.md` e `ILUSTRACOES/estilos/` entram na lista de arquivos lidos em runtime | Novo épico **E11**. `brief.py` **para** de trazer tamanho no código (os `PRESETS` viram só o mapa USO→chave da marca); `STYLE` passa a ser `base + modo` |
+| **A13** | **Nunca gerar com marca desatualizada.** `portinari marca` confere `brand/` antes de qualquer execução: atrás do remoto = **erro** (hoje é só pergunta), alteração local não commitada = aviso | `cli._marca` exit 2 → exit 1 quando atrás; `--permitir-desatualizada` para sobrepor conscientemente |
+| **A14** | **Master × entrega.** Gera-se o **master** (a maior resolução que o modelo permitir), entrega-se a derivação por **corte central + redução**, respeitando a área segura universal de `FORMATOS.md` | Reescreve o pós-processamento do **E5**; o manifesto passa a registrar master e cada entrega |
+| **A15** | Chave em `.env` na raiz do pipeline, fora do git | `.gitignore` += `.env`; `gemini.py` lê `GEMINI_API_KEY` do ambiente ou do `.env` |
+| **A16** | **O entregável final é o PROMPT, não a imagem.** O pipeline entrega `final/prompt_<modo>.md` — autossuficiente e colável — e o autor gera a imagem final à mão no Nano Banana Pro | Reescreve o fim do pipeline: **E12** (novo, spec própria). E5 perde o recorte/resize do caminho crítico; E6 `entregar` recusa por prompt incompleto, não por imagem faltando; E9 muda o critério de pronto |
+| **A17** | **O `agy` gera só imagem de validação.** A imagem do `gemini-3.1-flash-image` existe para **provar que o prompt funciona** (composição, paleta, uma ideia, sem texto) — nunca para ser entregue | `--via agy` é o padrão e não precisa de faturamento (R14 deixa de bloquear). **E10 (API do Gemini) fica adiado**, especificado e não implementado, até haver motivo |
+
+**Bloqueio conhecido (20/09/2026), hoje sem efeito:** a chave é válida (texto responde), mas os
+modelos de **imagem** devolvem **429 · `free_tier_requests, limit: 0`** — o projeto está no *free
+tier*. Por A17 isso deixa de bloquear qualquer coisa: a validação roda no `agy` (quota da
+assinatura do Antigravity) e a final é manual. O E10 só volta à fila se o faturamento for
+habilitado **e** houver ganho em automatizar a final.
+
+**Por que o `agy` basta para validar (medido em 20/09/2026):** `FORMATOS.md` reposicionou
+2560×1440 como **master** ("o maior que o gerador permitir") e a entrega real é menor — a capa de
+Substack é 1456×816. Contra o nativo do `agy` (1376×768 em 16:9), o fator de ampliação por uso fica
+em ×1,06 (substack-capa), ×0,80 (substack-email), ×0,87 (linkedin-destaque), ×1,21
+(instagram-post), ×1,41 (instagram-story e youtube-thumb) — todos abaixo do ×2 a partir do qual a
+própria marca exige olho humano. Exceção: `substack-email` é 5:1, que **não** está no enum de
+`AspectRatio` do `agy`, e `FORMATOS.md` proíbe cortá-lo de 16:9 — esse uso nasce manual.
+O schema de `generate_image` foi reconferido em 20/09 (agy 1.2.7): **sem** parâmetro de modelo e
+**sem** parâmetro de tamanho. O nativo de 9:16 (768×1376) é simetria, ainda não medido.
+
+**O que continua valendo:** A2 (só a paleta é vinculante), A3 (primário dark), A6 (prompts
+completos salvos), A7 (fluxo git), A9 (enriquecimento). **A8 fica superada por A10** — a geração
+manual no Nano Banana Pro (E5b) continua existindo como caminho alternativo e não muda.
 
 ## Achados do S1/S2 (18/09/2026) — decidido: **alternativa A** (A8)
 
@@ -123,13 +156,13 @@ determinístico. Sem frameworks de agentes, sem SDK de LLM.
  5b enriquecer ──────── agente+script  cena com detalhes; código valida paleta/texto/densidade; autor vê a lista
  6 prompter-tecnico ── agente   parte criativa           ⇢ iteracoes/NN/prompt_criativo.md
  7 prompt ──────────── script   criativo + bloco injetado + lint de descritores proibidos
- 8 gerar ───────────── script   agy -p (timeout, retentativa, log do comando, verificação do prompt)
- 9 checar ──────────── script   checagens objetivas (paleta ΔE, nº de cores, fundo, lime, granulação)
-10 critico-visual ──── agente   rubrica + checagens → APROVADO | REVISAR (≤ 3 voltas por etapa)
-11 derivar variante ── script+agente   outra pilha por edição + consistência light/dark
-12 finalizar ───────── script   corte no ponto focal, resize, PNG, confere dimensões
-13 GATE 2 ──────────── humano   aprovar / ajustar / regenerar / abortar
-14 entregar ────────── script   final/, manifest.json, pedido → pedidos/_processados/
+ 8 gerar ───────────── script   API do Gemini: flash p/ avaliar, Pro p/ a final (agy = fallback)
+ 9 checar ──────────── script   checagens objetivas na imagem de VALIDAÇÃO (paleta ΔE, nº de cores, fundo, lime)
+10 critico-visual ──── agente   rubrica + checagens → o PROMPT está aprovado? (≤ 3 voltas por etapa)
+11 derivar variante ── script+agente   prompt da outra pilha, validado por edição (ImagePaths)
+12 GATE 2 ──────────── humano   aprova o PROMPT (vendo a imagem de validação) / ajusta / aborta
+13 entregar ────────── script   final/prompt_<modo>.md + COMO-GERAR.md + manifest.json
+14 (fora do pipeline)  autor    cola o prompt no Nano Banana Pro e gera a final; opcional: `importar`
 ```
 
 **Onde as coisas vivem (convenção dos irmãos):** skills e agentes ficam em
@@ -145,12 +178,13 @@ do monorepo eles não carregam. O pedido do prompt sugere `agentes/`; a convenç
 | --- | --- |
 | `brief.py` | parser tolerante, schemas, presets por USO, validação cruzada, download/validação de referências |
 | `brand.py` | resolve tokens (aliases `{color.x.y}`), monta o bloco, fingerprint, drift, `git fetch` |
-| `agy.py` | wrapper: monta o comando, chama, acha a imagem por `conversation_id`, verifica o prompt, retenta, conta gerações |
-| `imaging.py` | checagens objetivas + pós-processamento (corte no ponto focal, resize, PNG) |
+| `agy.py` | wrapper **fallback**: monta o comando, chama, acha a imagem por `conversation_id`, verifica o prompt, retenta, conta gerações |
+| `gemini.py` | **gerador principal (A10)**: `generateContent` por `urllib`, papel rascunho (flash) × final (Pro), referências para edição, grava a mesma `Geracao` |
+| `imaging.py` | checagens objetivas + pós-processamento **master → entrega(s)** (corte no ponto focal dentro da área segura, resize, PNG/JPEG) |
 | `manifest.py` | `manifest.json` (também é o estado/retomada — ver decisão D3) |
 | `cli.py` | cola os subcomandos que o orquestrador chama |
 
-**Dependências:** `pydantic`, `pillow` (runtime); `pytest` (dev). Nada mais — download por
+**Dependências:** `pydantic`, `pillow` (runtime); `pytest` (dev). Nada mais — API do Gemini e download por
 `urllib`, tokens por `json`, ΔE por fórmula própria (~15 linhas), sem numpy, sem OCR, sem YAML.
 
 ### Decisões que já tomei (e que você pode reverter)
@@ -260,7 +294,10 @@ pipelines/portinari/
     referencias/                          imagens baixadas
     enriquecimento/  vNN.json  vNN.md      cena enriquecida (validada por código) + visão para o autor
     iteracoes/NN/  prompt_criativo.md  prompt_final.md  gen_*.jpg  checagens.json  critica.md
-    final/<slug>_light.png  <slug>_dark.png
+                   (gen_*.jpg = imagem de VALIDAÇÃO, nunca entregue; fora do git)
+    final/  prompt_dark.md  prompt_light.md   ENTREGÁVEL: colável, autossuficiente
+            COMO-GERAR.md                     modelo, proporção, tamanho, o que conferir
+            validacao/                        cópia da imagem que aprovou cada prompt (fora do git)
 ```
 
 Desvio da §7 do pedido: agentes em `.claude/agents/` (convenção), `estado.json` fundido em
@@ -282,7 +319,14 @@ visual, que precisa ficar cego ao raciocínio do Prompter).
 - **`RESOLUTION` é faixa, não valor:** `1k` = aresta maior ≤ 1536; `2k` = 1537–3071; `4k` ≥ 3072.
   `2560×1440` cai em `2k` (coerente). Divergência de `SIZE` × proporção × faixa vira **pergunta**.
 - Obrigatórios: `TITLE`, `USO`, `DESCRIPTION`. `USO` sem preset conhecido ⇒ pergunta.
-- Presets propostos (só o que tem fonte; o resto é pergunta — Q7):
+- **Revisado por A12 (20/09/2026):** a tabela abaixo virou histórica. A fonte de tamanho passa a
+  ser `brand/ILUSTRACOES/FORMATOS.md`, lida em runtime (E11): a coluna **Chave** de lá é a mesma
+  chave dos `PRESETS`, e o pipeline usa dali **entrega**, **master**, proporção, formato/peso e
+  área segura. O que muda na prática: `substack-capa` entrega **1456×816** com master 2560×1440
+  (antes o código entregava 2560×1440), e `substack-email` (1100×220) e `youtube-thumb`
+  (1920×1080) deixam de ser pergunta ao autor. O pedido do autor continua vencendo o preset.
+
+- Presets propostos em 18/09 (só o que tinha fonte; **superados por `FORMATOS.md`**):
 
   | USO | proporção | tamanho | fonte |
   | --- | --- | --- | --- |
@@ -298,6 +342,7 @@ visual, que precisa ficar cego ao raciocínio do Prompter).
 Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 
 **E1 — Fundação e parser de pedido** · `feat(parser)`
+- ⚠️ **Revisado em 20/09/2026:** os tamanhos saem do código e passam a vir de `FORMATOS.md` (A12, E11); `STYLE` passa a aceitar `base + modo` dos `estilos/`.
 - `pyproject.toml`/`uv.lock`, pacote `portinari`, `.gitignore`.
 - `pedidos/_TEMPLATE.md` e `pedidos/exemplo-cafe-lca.md`; `tests/fixtures/pedidos/cafe-lca.md`
   **byte a byte igual** ao exemplo da §6 do pedido (teste compara hash entre os dois).
@@ -321,6 +366,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   bloco; seções ausentes em `_bloco-marca.md` falham alto (não silenciosamente).
 
 **E3 — Wrapper do `agy` + smoke tests** · `feat(agy)`
+- ⚠️ **Revisado em 20/09/2026:** **entregue e mantido, mas rebaixado a fallback** por A10. O caminho principal passa a ser a API do Gemini (E10). Nada aqui é removido; `gerar --via agy` continua funcionando.
 - `agy.py`: comando exato logado; `--print-timeout`; retentativa só em falha transitória
   (exit 3 com `retryable`); localiza o JPEG por `conversation_id`; **verifica o prompt real**
   (`Using prompt:` do transcript) contra o esperado e retenta com instrução de literalidade;
@@ -348,6 +394,8 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   excesso de elementos e acréscimos insuficientes são recusados com mensagem acionável.
 
 **E5 — Imagem: checagens objetivas e pós-processamento** · `feat(imaging)`
+- ⚠️ **Revisado em 20/09/2026 (A16/A17):** as **checagens objetivas ficam** (agora rodam na imagem de validação e é o que sustenta a aprovação do prompt). O **pós-processamento sai do caminho crítico**: corte/resize só existem para uma imagem **importada** (E5b). Sem imagem entregue, não há assert de dimensão exata no fim do pipeline.
+- ⚠️ **Revisado em 20/09/2026:** o pós-processamento passa a ser **master → entrega(s)** (A14): corte central pela fórmula de `FORMATOS.md`, área segura universal, JPEG 4:4:4 q90–92 ou PNG conforme o uso, sRGB, frame só depois da redução. Uma peça pode ter várias entregas.
 - Checagens (todas com limiar em constante nomeada e comentada, calibradas nesta etapa):
   paleta por **ΔE (CIE76)** entre cada cor dominante (≥ 1% do quadro, após quantização) e a
   paleta do modo — *valores iniciais a calibrar*: aviso ΔE > 8, falha ΔE > 15; nº de cores ≥1%
@@ -364,6 +412,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   1080×1080 e 1200×627 (fora da proporção de origem).
 
 **E5b — Geração manual (Nano Banana Pro) e importação** · `feat(manual)` (A8)
+- ⚠️ **Revisado em 20/09/2026 (A16/A17):** deixa de ser caminho alternativo e vira **o caminho da imagem final**. `importar` continua opcional: serve para trazer a final de volta e rodar checagens/recorte sobre ela, não para o pipeline poder terminar.
 - `portinari importar <saida> --iteracao N <imagem>…` copia imagens geradas fora do `agy` para
   `iteracoes/NN/gen_KK.<ext>` com `gen_KK.json` (`origem: "manual"`, dimensões nativas, hash) e o
   prompt usado (`--prompt` = arquivo colado; padrão `prompt_final.md`); conta como geração no teto.
@@ -371,6 +420,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   imagem é recusado; o prompt é gravado íntegro.
 
 **E6 — Manifesto, estado e CLI** · `feat(manifest)`
+- ⚠️ **Revisado em 20/09/2026 (A16/A17):** `entregar` recusa por **prompt** incompleto (falta um modo, falta o bloco de marca, termo do enriquecimento ausente), nunca por imagem faltando. O manifesto registra qual imagem de validação aprovou cada prompt.
 - `manifest.json` conforme §7 do pedido (pedido de origem, versão e fingerprint da marca,
   conceito escolhido, prompts finais **com o bloco injetado**, comandos `agy`, nº de gerações,
   notas por iteração, decisões dos gates) + `etapa_atual` para retomar. Subcomandos:
@@ -390,11 +440,49 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ verificação por leitura + um ensaio a seco sem `agy` (fixtures) que percorre gates e limites.
 
 **E8 — Variante light/dark** · `feat(variante)` *(desenho final depende de S2)*
+- ⚠️ **Revisado em 20/09/2026 (A16/A17):** entrega **dois prompts** (dark e light). A edição por `ImagePaths` continua sendo como se **valida** que a derivação preserva a composição — o autor gera as duas finais à mão, cada uma do seu prompt.
+- ⚠️ **Revisado em 20/09/2026:** a derivação usa edição por imagem de referência **na API** (E10), não mais `ImagePaths` do `agy`.
 - Deriva a segunda pilha por edição a partir da aprovada; crítico verifica mesma composição e
   elementos, só a paleta muda; checagens objetivas rodam com a paleta **do modo**.
 - ✔ ambas as variantes passam nas checagens do próprio modo; consistência registrada.
 
+**E10 — Gerador pela API do Gemini (flash para avaliar, Pro para a final)** · `feat(gemini)` · spec: `specs/epicos/epico-10-gemini.md`
+- ⛔ **Adiado em 20/09/2026 (A17):** **ADIADO** por A17. A spec fica de pé e não é implementada: a validação roda no `agy` (sem faturamento) e a final é manual. Volta à fila se o faturamento for habilitado e automatizar a final valer a pena.
+- `gemini.py`: `generateContent` por `urllib` (sem SDK), chave de `GEMINI_API_KEY` (ambiente ou
+  `.env`), `imageConfig` (proporção + `imageSize`), imagens de referência para edição/derivação.
+- **Dois papéis:** `--papel rascunho` (padrão) = `gemini-3.1-flash-image`; `--papel final` =
+  `gemini-3-pro-image`. Só a final gasta Pro; toda iteração de crítica roda no flash.
+- Reaproveita `Geracao`, `geracoes.jsonl`, teto de gerações e o layout `gen_KK.*` do `agy.py`
+  (nada duplicado). `fiel` passa a ser **sempre verdadeiro**: o prompt vai literal, sem LLM no meio.
+- ✔ testes com servidor HTTP falso: sucesso, 429/500 com retentativa e *backoff*, resposta sem
+  imagem, `SAFETY`/`PROHIBITED_CONTENT`, teto de gerações, master 2K/4K gravado com as dimensões
+  nativas corretas; nenhum teste toca a rede real. ✔ o mesmo `prompt_final.md` serve aos dois
+  caminhos (API e colagem manual do E5b).
+- **Dependência externa:** faturamento habilitado no projeto da chave (hoje 429 no free tier).
+
+**E11 — Estilos e formatos da marca** · `feat(estilos)` · spec: `specs/epicos/epico-11-estilos-formatos.md`
+- 📌 **Reforçado em 20/09/2026 (A16):** **fica mais importante**, não menos: como o entregável é texto, o prompt é o único lugar onde o estilo e o tamanho-alvo chegam ao autor. O §6 daquela spec (master → entregas) passa a valer só para imagem importada.
+- `brand.py` passa a ler `ILUSTRACOES/FORMATOS.md` e `ILUSTRACOES/estilos/*.md`; os dois entram no
+  fingerprint e no `brand_snapshot.json` (tabela de formatos parseada + fragmento de prompt por estilo).
+- `brief.py`: `PRESETS` vira só USO→chave de `FORMATOS.md`; `STYLE` aceita **uma base + até um modo**
+  (padrão `flat`, conforme `estilos/README.md`); `isometric` exige `--piloto` e avisa que é restrito;
+  estilo "Fora" (pop art, pixel art…) vira pergunta ao autor com o motivo da marca.
+- O fragmento do estilo entra no prompt **depois** do bloco de marca, nunca no lugar dele.
+- `portinari marca` **bloqueia** execução com `brand/` atrás do remoto (A13).
+- ✔ mudar `FORMATOS.md` num `brand/` de teste muda o tamanho de entrega **sem tocar em código**;
+  estilo recusado gera pergunta; base+modo incompatíveis geram aviso; `isometric` sem `--piloto` recusa.
+
+**E12 — Entrega do prompt** · `feat(entrega)` · spec: `specs/epicos/epico-12-entrega-prompt.md`
+- `portinari entregar` grava `final/prompt_<modo>.md` (colável, autossuficiente: criativo + bloco de
+  marca + fragmento de estilo + técnico), `final/COMO-GERAR.md` (modelo, proporção, tamanho e
+  formato do uso conforme `FORMATOS.md`, área segura, o que conferir na imagem) e `manifest.json`.
+- Recusa entregar prompt que não passou pelas checagens que o código sabe fazer: hex da paleta
+  presentes, termos do enriquecimento cobertos, bloco de marca íntegro, um modo por arquivo.
+- ✔ o prompt entregue, colado num gerador limpo, não depende de nenhum arquivo do repo; ✔ prompt
+  sem bloco de marca ou com termo do enriquecimento faltando é recusado com mensagem acionável.
+
 **E9 — Documentação e piloto** · `docs(portinari)`
+- ⚠️ **Revisado em 20/09/2026 (A16/A17):** o critério de pronto deixa de ser "PNG em exatamente 2560×1440" e passa a ser: prompt colável que, colado no Nano Banana Pro pelo autor, produz peça aprovada no Gate 2. O relatório do piloto compara a imagem de validação (flash, 1K) com a final do autor (Pro).
 - `CLAUDE.md` (regras invioláveis, estrutura, fonte única de cada coisa, git) e `README.md`
   (como escrever um pedido, como rodar, como retomar, "se algo der errado") no padrão dos irmãos.
 - **Fase 3:** execução de ponta a ponta com `exemplo-cafe-lca.md`, gates comigo, e relatório
@@ -405,9 +493,9 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 
 | # | Risco | Sev. | Mitigação |
 | --- | --- | --- | --- |
-| **R1** | O LLM do `agy` reescreve/encurta o prompt → o bloco de marca não chega íntegro | alta | Verificação pós-fato do `Using prompt:`; retentativa com instrução de literalidade; se nunca vier íntegro, **paro e trago alternativas** (não aprovo peça sem bloco verificado). Medido: 5/14 sessões reescritas |
-| **R2** | Saída 1K → 2560×1440 por ampliação ×1,86 fica mole; o "grão" de papel some/vira borrão | alta | Lanczos; medir em S1; **Q1**. Alternativas fora do `agy` exigem chave/API e decisão sua |
-| **R3** | Nano Banana Pro não verificável (sem parâmetro de modelo) | média | Ler `ModelName` em S1; se ilegível, documento como "não verificado" no manifesto de toda execução |
+| **R1** | ~~(A10: some no caminho da API — a `generateContent` recebe o prompt literal; vale só para o fallback `agy`)~~ O LLM do `agy` reescreve/encurta o prompt → o bloco de marca não chega íntegro | alta | Verificação pós-fato do `Using prompt:`; retentativa com instrução de literalidade; se nunca vier íntegro, **paro e trago alternativas** (não aprovo peça sem bloco verificado). Medido: 5/14 sessões reescritas |
+| **R2** | ~~(A10: o Pro gera 2K/4K nativos)~~ Saída 1K → 2560×1440 por ampliação ×1,86 fica mole; o "grão" de papel some/vira borrão | alta | Lanczos; medir em S1; **Q1**. Alternativas fora do `agy` exigem chave/API e decisão sua |
+| **R3** | ~~(A10: o modelo é parâmetro explícito da API e vai para o manifesto)~~ Nano Banana Pro não verificável | média | Ler `ModelName` em S1; se ilegível, documento como "não verificado" no manifesto de toda execução |
 | **R4** | Edição por referência (`ImagePaths`) pode não existir/funcionar → derivação light/dark cai | alta p/ E8 | S2 antes de E8; planos F1/F2 |
 | **R5** | Saída JPEG: artefatos de compressão distorcem a checagem de paleta e a "granulação" | média | Tolerância calibrada em imagens reais (E5); checar antes de qualquer reamostragem |
 | **R6** | Checagens objetivas mal calibradas (falso positivo/negativo) | média | Calibrar nas 13 refs + gerações reais; aviso vs falha em dois níveis; crítico humano no gate 2 |
@@ -418,6 +506,15 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 | **R11** | Skills/agentes só carregam abrindo o Claude Code em `pipelines/portinari` | baixa | Documentar no README (mesmo aviso do `hemingway`) |
 | **R12** | Dois repos git aninhados (C11): `git add -A` na raiz pode gerar gitlink acidental | baixa | Commits só dentro de `pipelines/portinari`; pedir `.gitignore` na raiz (Q8) |
 | **R13** | O piloto (café → LCA) mistura dois mundos visuais numa imagem só; risco de "duas ideias" | média | Diretor de Arte deve propor **uma** metáfora de transformação, não duas metades ilustradas |
+
+**Riscos novos (20/09/2026)**
+
+| # | Risco | Sev. | Mitigação |
+| --- | --- | --- | --- |
+| **R14** | Faturamento não habilitado: todo modelo de imagem devolve 429 `limit: 0` | **alta** | Mensagem de erro do `gemini.py` diz exatamente isso e aponta o console; E5b (colagem manual) segue como caminho alternativo |
+| **R15** | Custo por imagem no Pro × nº de iterações | média | Papéis: toda iteração no flash, só a final no Pro (A10); teto de gerações já existente, contado por papel no manifesto |
+| **R16** | Chave vazando em commit/log | **alta** | `.env` no `.gitignore` (feito); a chave nunca entra em `gen_KK.json`, em `geracoes.jsonl` nem em mensagem de erro |
+| **R17** | `FORMATOS.md`/`estilos/` mudam de estrutura e o parser quebra em silêncio | média | Parser falha alto (como `_bloco-marca.md` já faz), fingerprint cobre os dois, teste de runtime com `brand/` de fixture |
 
 ## 8. Perguntas
 

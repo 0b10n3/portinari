@@ -62,10 +62,10 @@ def test_chaves_em_portugues_e_formatos(tmp_path):
     b = carregar(
         tmp_path,
         "# Título: Meu pedido\nuso: instagram\n**Descrição:** cena X\n**Estilo**: Collage\n"
-        "**Contexto**: texto\n**Proporção**: 1:1\n**Resolução**: 1K\n",
+        "**Contexto**: texto\n**Proporção**: 4:5\n**Resolução**: 1K\n",
     )
     assert (b.titulo, b.descricao, b.estilo, b.contexto) == ("Meu pedido", "cena X", "papercut", "texto")
-    assert b.tamanho == (1080, 1080) and b.aspect_ratio == "1:1" and b.resolucao == "1k"
+    assert b.tamanho == (1080, 1350) and b.aspect_ratio == "4:5" and b.resolucao == "1k"  # FORMATOS.md
 
 
 def test_contexto_longo_com_markdown_e_chave_falsa(tmp_path):
@@ -115,9 +115,19 @@ def test_uso_sem_preset_mas_com_size_ok(tmp_path):
     assert b.tamanho == (900, 1200) and b.aspect_ratio == "3:4" and b.perguntas == []
 
 
-def test_uso_conhecido_sem_tamanho_na_marca(tmp_path):
+def test_usos_que_a_marca_passou_a_definir(tmp_path):
+    """FORMATOS.md fechou as lacunas que o código tinha (E11): estes dois não perguntam mais."""
     b = carregar(tmp_path, "# TITLE: x\n**USO**: thumbnail de youtube\n**DESCRIPTION**: y\n")
-    assert any("nem brand/ nem o pedido" in p for p in b.perguntas)
+    assert (b.preset, b.tamanho, b.master) == ("youtube-thumb", (1920, 1080), (2560, 1440))
+    b = carregar(tmp_path, "# TITLE: x\n**USO**: cabeçalho de e-mail do substack\n**DESCRIPTION**: y\n")
+    assert (b.preset, b.tamanho, b.aspect_ratio) == ("substack-email", (1100, 220), "5:1")
+    assert b.formato == ["png"] and any("não cortar de 16:9" in o for o in b.observacoes_formato)
+
+
+def test_uso_conhecido_fora_da_tabela_da_marca(tmp_path):
+    b = carregar(tmp_path, "# TITLE: x\n**USO**: thumbnail de youtube\n**DESCRIPTION**: y\n",
+                 marca={"formatos": {}, "estilos": {}, "estilos_recusados": {}, "areas_seguras": {}})
+    assert any("FORMATOS.md da marca não traz a chave 'youtube-thumb'" in p for p in b.perguntas)
 
 
 def test_size_incoerente_com_proporcao_vira_pergunta(tmp_path):
@@ -136,8 +146,11 @@ def test_proporcao_diferente_do_preset_sem_size_pergunta(tmp_path):
 
 
 def test_preset_preenche_o_que_falta(tmp_path):
+    """A entrega vem de FORMATOS.md (1456×816), não mais do código; o master é 2560×1440."""
     b = carregar(tmp_path, BASE)
-    assert (b.tamanho, b.aspect_ratio, b.resolucao) == ((2560, 1440), "16:9", "2k") and b.perguntas == []
+    assert (b.tamanho, b.master, b.aspect_ratio, b.resolucao) == ((1456, 816), (2560, 1440), "16:9", "1k")
+    assert b.formato == ["jpeg", "png"] and b.peso_max_mb == 2.0 and b.perguntas == []
+    assert b.area_segura == [0.7875, 0.930556]  # universal de FORMATOS.md
 
 
 def test_valores_invalidos(tmp_path):

@@ -36,18 +36,21 @@ CHAVES = {
 APELIDO = {a: k for k, v in CHAVES.items() for a in v}
 OBRIGATORIOS = ("titulo", "uso", "descricao")
 
-# Só o que tem fonte (docs/PLANO.md §5). (regex sobre o USO normalizado, tamanho | None).
-# tamanho None = USO reconhecido, mas sem tamanho definido em brand/ nem no pedido do autor.
+# USO (regex sobre o USO normalizado) -> chave da tabela de brand/ILUSTRACOES/FORMATOS.md.
+# Nenhum tamanho aqui: quem define tamanho, proporção, formato e peso é a marca, em runtime (A12).
 PRESETS = [
-    ("substack-email", r"substack.*(e-?mail|cabecalho)|(e-?mail|cabecalho).*substack", None),
-    ("substack-capa", r"substack", (2560, 1440)),  # fonte: exemplo do autor; brand/ não define
-    ("youtube-thumb", r"youtube.*(thumb|miniatura)|(thumb|miniatura).*youtube", None),
-    ("linkedin-destaque", r"linkedin", (1200, 627)),  # brand/SOCIAL/README.md
-    ("instagram-story", r"instagram.*(story|stories|reels|destaque)", (1080, 1920)),
-    ("instagram-post", r"instagram", (1080, 1080)),  # brand/INSTAGRAM.md §2
+    ("substack-email", r"substack.*(e-?mail|cabecalho)|(e-?mail|cabecalho).*substack"),
+    ("substack-capa", r"substack"),
+    ("youtube-thumb", r"youtube.*(thumb|miniatura)|(thumb|miniatura).*youtube"),
+    ("linkedin-destaque", r"linkedin"),
+    ("instagram-story", r"instagram.*(story|stories|reels|destaque)"),
+    ("instagram-post", r"instagram"),
 ]
+# A marca tem UM estilo de ilustração (DESIGN.md §7): collage / paper cut. "base" e "modo" são
+# vocabulário dentro dele (brand/ILUSTRACOES/estilos/README.md, decisão D1 da spec da marca).
 ESTILOS = {"papercut": r"paper\s*-?\s*cut|collage|colagem|recorte"}
-ESTILO_PADRAO = "papercut"  # brand/ILUSTRACOES/: hoje só existe collage / paper cut
+ESTILO_PADRAO = "papercut"
+BASE_PADRAO = "flat"  # declarado em brand/ILUSTRACOES/estilos/README.md ("sem base declarada")
 LIMITE_REF = 25 * 1024 * 1024
 
 
@@ -69,9 +72,16 @@ class Brief(BaseModel):
     descricao: str = ""
     estilo: str = ESTILO_PADRAO
     estilo_padrao: bool = True
+    estilo_base: str = BASE_PADRAO    # técnica da folha (estilos/*.md, papel "base")
+    estilo_modo: str | None = None    # tema/composição (estilos/*.md, papel "modo")
     aspect_ratio: str | None = None
     resolucao: str | None = None
-    tamanho: tuple[int, int] | None = None
+    tamanho: tuple[int, int] | None = None   # ENTREGA (FORMATOS.md), não o que se gera
+    master: tuple[int, int] | None = None    # o que se pede ao gerador
+    formato: list[str] = Field(default_factory=list)
+    peso_max_mb: float | None = None
+    area_segura: list[float] | None = None   # fração (largura, altura) da universal
+    observacoes_formato: list[str] = Field(default_factory=list)
     contexto: str = ""
     contexto_arquivos: list[str] = Field(default_factory=list)
     referencias: list[Referencia] = Field(default_factory=list)
@@ -194,13 +204,72 @@ def _referencia(origem: str, i: int, pasta: Path, bases: list[Path]) -> Referenc
     )
 
 
+def _cita(texto_norm: str, termo: str) -> bool:
+    """O texto cita `termo` como expressão inteira (ignora acento, caixa, hífen e sublinhado)."""
+    alvo = _norm(termo).lower()
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(alvo)}(?![a-z0-9])", texto_norm))
+
+
+def _estilo(b: Brief, texto: str, marca: dict, piloto: bool) -> None:
+    """STYLE → a técnica da marca (paper cut) + uma base e até um modo de ILUSTRACOES/estilos/.
+
+    A marca tem um estilo só; base e modo são vocabulário dentro dele. Estilo que a marca recusa
+    vira pergunta com o motivo dela — nunca escolha nossa (estilos/README.md).
+    """
+    alvo = _norm(texto).lower()
+    achados: dict[str, list[tuple[str, dict]]] = {"base": [], "modo": []}
+    for chave, e in (marca.get("estilos") or {}).items():
+        if _cita(alvo, chave) or _cita(alvo, e["nome"]):
+            achados[e["papel"]].append((chave, e))
+    for chave, r in (marca.get("estilos_recusados") or {}).items():
+        primeiro = _norm(r["nome"]).lower().split()[0]
+        if _cita(alvo, r["nome"]) or _cita(alvo, chave) or (len(primeiro) >= 5 and _cita(alvo, primeiro)):
+            b.perguntas.append(
+                f"STYLE cita '{r['nome']}', que a marca recusa: {r['motivo']}. "
+                "Escolher outro estilo ou seguir com o padrão?"
+            )
+    tecnica = bool(re.search(ESTILOS[ESTILO_PADRAO], texto, re.I))
+    if tecnica:
+        b.estilo_padrao = False
+    for papel, rotulo in (("base", "base"), ("modo", "modo")):
+        if len(achados[papel]) > 1:
+            b.perguntas.append(
+                f"STYLE cita mais de uma {rotulo} ({', '.join(n for n, _ in achados[papel])}); "
+                f"a marca permite uma base e no máximo um modo por peça. Qual vale?"
+            )
+        elif achados[papel]:
+            chave, e = achados[papel][0]
+            if e["restrito"] and not piloto:
+                b.perguntas.append(
+                    f"STYLE pede '{e['nome']}', que a marca marca como restrito até existir peça-piloto "
+                    f"medida (brand/ILUSTRACOES/estilos/{chave}.md). Rodar como piloto (--piloto) ou trocar?"
+                )
+                continue
+            setattr(b, f"estilo_{papel}", chave)
+            b.estilo_padrao = False
+    if not (tecnica or achados["base"] or achados["modo"] or b.perguntas):
+        b.perguntas.append(
+            f"STYLE '{texto}' não tem linguagem definida em brand/ILUSTRACOES/ "
+            f"(técnica: collage / paper cut; bases e modos: estilos/). Usar o padrão ou definir o estilo?"
+        )
+
+
 def carregar(
     pedido: Path,
     saida: Path | None = None,
     raiz: Path = RAIZ,
     hoje: date | None = None,
+    marca: dict | None = None,
+    piloto: bool = False,
 ) -> Brief:
-    """Lê o pedido, normaliza, valida e devolve o Brief (avisos e perguntas dentro dele)."""
+    """Lê o pedido, normaliza, valida e devolve o Brief (avisos e perguntas dentro dele).
+
+    `marca` = formatos e estilos de brand/ (brand.marca_leve()); `piloto` libera estilo restrito.
+    """
+    if marca is None:
+        from . import brand  # tardio: brand importa RAIZ deste módulo
+
+        marca = brand.marca_leve()
     pedido = Path(pedido)
     campos, avisos, perguntas = _campos(pedido.read_text(encoding="utf-8"))
     b = Brief(pedido=str(pedido), avisos=avisos, perguntas=perguntas)
@@ -218,16 +287,9 @@ def carregar(
     saida = saida or PIPELINE / "output" / f"{(hoje or date.today()).isoformat()}_{b.slug}"
     b.saida = str(saida)
 
-    # --- estilo
+    # --- estilo: a técnica é sempre paper cut; o autor escolhe uma base e até um modo
     if "estilo" in campos:
-        alvo = next((n for n, rx in ESTILOS.items() if re.search(rx, campos["estilo"], re.I)), None)
-        if alvo:
-            b.estilo, b.estilo_padrao = alvo, False
-        else:
-            b.perguntas.append(
-                f"STYLE '{campos['estilo']}' não tem linguagem definida em brand/ILUSTRACOES/ "
-                f"(hoje só existe collage / paper cut). Usar o padrão ou definir o estilo?"
-            )
+        _estilo(b, campos["estilo"], marca, piloto)
 
     # --- proporção, resolução, tamanho (o que o autor escreveu vence o preset do USO)
     ratio = tam = None
@@ -255,28 +317,47 @@ def carregar(
         else:
             b.perguntas.append(f"RESOLUTION '{campos['resolucao']}' inválida (use 1k, 2k ou 4k).")
 
-    # --- preset do USO preenche o que faltou
+    # --- o USO resolve na tabela de brand/ILUSTRACOES/FORMATOS.md (nunca no código)
     uso_n = _norm(b.uso).lower()
-    preset = next((p for p in PRESETS if re.search(p[1], uso_n)), None)
-    if b.uso and preset is None and tam is None:
+    chave = next((c for c, rx in PRESETS if re.search(rx, uso_n)), None)
+    fmt = (marca.get("formatos") or {}).get(chave) if chave else None
+    if b.uso and chave is None and tam is None:
         b.perguntas.append(f"USO '{b.uso}' não tem preset conhecido: informe SIZE (e, se quiser, proporção).")
-    elif preset:
-        b.preset = preset[0]
-        if preset[2] is None and tam is None:
-            b.perguntas.append(
-                f"USO '{b.uso}' é conhecido, mas nem brand/ nem o pedido definem o tamanho: informe SIZE."
-            )
-        elif tam is None and preset[2]:
-            if ratio and abs(_num(ratio) - preset[2][0] / preset[2][1]) > 0.01 * _num(ratio):
+    elif chave:
+        b.preset = chave
+        if fmt is None:
+            if tam is None:
                 b.perguntas.append(
-                    f"ASPECT RATIO {ratio} difere do preset de '{b.uso}' ({_razao_str(*preset[2])}) "
-                    "e não há SIZE: informe o tamanho exato."
+                    f"USO '{b.uso}' é conhecido, mas FORMATOS.md da marca não traz a chave '{chave}': informe SIZE."
                 )
-            else:
-                tam = preset[2]
-                b.avisos.append(f"SIZE ausente: usado o preset de '{b.uso}' ({tam[0]}x{tam[1]}).")
-                if res and res != _faixa(*tam):
-                    b.perguntas.append(f"RESOLUTION {res} diverge do preset de '{b.uso}' ({tam[0]}x{tam[1]}).")
+        else:
+            b.formato, b.peso_max_mb = list(fmt["formato"]), fmt["peso_max_mb"]
+            b.observacoes_formato = list(fmt["observacoes"])
+            b.master = tuple(fmt["master"]) if fmt["master"] else None
+            entrega = tuple(fmt["entrega"])
+            if tam is None:
+                if ratio and abs(_num(ratio) - entrega[0] / entrega[1]) > 0.01 * _num(ratio):
+                    b.perguntas.append(
+                        f"ASPECT RATIO {ratio} difere do que a marca define para '{b.uso}' "
+                        f"({fmt['proporcao']}, {entrega[0]}x{entrega[1]}) e não há SIZE: informe o tamanho exato."
+                    )
+                else:
+                    tam = entrega
+                    # a proporção é a que a marca declara: 1456x816 é "16:9" para ela, não 91:51
+                    ratio = ratio or fmt["proporcao"]
+                    b.avisos.append(
+                        f"SIZE ausente: usada a entrega que a marca define para '{b.uso}' "
+                        f"({tam[0]}x{tam[1]}; master {fmt['master'][0]}x{fmt['master'][1]})."
+                        if fmt["master"] else
+                        f"SIZE ausente: usada a entrega que a marca define para '{b.uso}' ({tam[0]}x{tam[1]})."
+                    )
+                    if res and res != _faixa(*tam):
+                        b.perguntas.append(f"RESOLUTION {res} diverge da entrega de '{b.uso}' ({tam[0]}x{tam[1]}).")
+            elif tuple(tam) != entrega:
+                b.avisos.append(
+                    f"SIZE {tam[0]}x{tam[1]} do pedido vence a entrega da marca para '{b.uso}' "
+                    f"({entrega[0]}x{entrega[1]})."
+                )
     if tam and ratio is None:
         ratio = _razao_str(*tam)
     if tam and ratio and abs(tam[0] / tam[1] - _num(ratio)) > 0.01 * _num(ratio):
@@ -285,6 +366,9 @@ def carregar(
         b.perguntas.append(f"SIZE {tam[0]}x{tam[1]} é {_faixa(*tam)}, mas RESOLUTION diz {res}. Qual vale?")
     b.aspect_ratio, b.tamanho = ratio, tam
     b.resolucao = res or (_faixa(*tam) if tam else None)
+    if tam and (b.master is None or b.master[0] * b.master[1] < tam[0] * tam[1]):
+        b.master = tam  # nunca gerar menor do que se entrega
+    b.area_segura = ((marca.get("areas_seguras") or {}).get("zonas", {}).get("universal") or {}).get("fracao")
 
     # --- contexto e referências
     b.contexto, b.contexto_arquivos = _resolver_arquivos(campos.get("contexto", ""), raiz, b.perguntas)

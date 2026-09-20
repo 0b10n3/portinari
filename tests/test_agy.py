@@ -151,7 +151,7 @@ def test_melhor_proporcao(tam, esperado):
 
 def test_montar_prompt_injeta_o_bloco_verbatim():
     bloco = "# Bloco\n\n| x | `#0F3D27` |\n"
-    p = agy.montar_prompt("Criativo aqui.  ", bloco, 2560, 1440)
+    p = agy.montar_prompt("Criativo aqui.  ", bloco, (1456, 816), (2560, 1440))
     assert bloco.strip() in p and p.startswith("Criativo aqui.") and "2560x1440" in p
 
 

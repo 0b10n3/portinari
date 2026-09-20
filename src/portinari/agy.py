@@ -70,13 +70,32 @@ def melhor_proporcao(largura: int, altura: int) -> str:
     return min(PROPORCOES, key=lambda p: abs(math.log(PROPORCOES[p]) - alvo))
 
 
-def montar_prompt(criativo: str, bloco: str, largura: int, altura: int) -> str:
-    """Parte criativa + bloco de marca injetado por código (o LLM nunca o reescreve)."""
-    tecnico = (
-        f"## Technical\nTarget final size {largura}x{altura}. Render at the highest resolution and "
-        "level of detail the generator supports; keep every edge crisp."
-    )
-    return f"{criativo.strip()}\n\n{bloco.strip()}\n\n{tecnico}\n"
+def montar_prompt(
+    criativo: str,
+    bloco: str,
+    entrega: tuple[int, int],
+    master: tuple[int, int] | None = None,
+    fragmentos: list[str] | tuple[str, ...] = (),
+) -> str:
+    """Parte criativa + bloco de marca + fragmento(s) de estilo + técnico.
+
+    O bloco e os fragmentos são injetados por código (o LLM nunca os reescreve). A ordem é a que
+    brand/ILUSTRACOES/estilos/README.md exige: o fragmento do estilo entra DEPOIS do bloco de
+    marca, nunca no lugar dele. `master` = o que se pede ao gerador; `entrega` = o tamanho final
+    da peça (FORMATOS.md), derivado do master por corte central e redução.
+    """
+    largura, altura = master or entrega
+    tecnico = [
+        "## Technical",
+        f"Render at {largura}x{altura}, or the largest size the generator supports; keep every edge crisp.",
+    ]
+    if tuple(entrega) != (largura, altura):
+        tecnico.append(
+            f"Final delivery is {entrega[0]}x{entrega[1]}, taken from this image by centre crop and "
+            "downscale: keep the focal point and everything that must survive well inside the frame."
+        )
+    partes = [criativo.strip(), bloco.strip(), *(f.strip() for f in fragmentos if f and f.strip()), "\n".join(tecnico)]
+    return "\n\n".join(partes) + "\n"
 
 
 def _norm(s: str) -> str:
