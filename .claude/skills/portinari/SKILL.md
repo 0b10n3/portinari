@@ -29,6 +29,12 @@ comportamento: **A2** (o pedido vence a marca, exceto a paleta), **A3** (modo pr
 7. **Git:** branch `arte/<slug>`, um commit por etapa, merge em `main` só depois do Gate 2, push,
    e o repositório termina na `main`. Nunca `push --force`, `reset --hard` ou `clean -fd`.
 
+## Retomando uma execução
+
+Sessão nova, execução no meio? `uv run portinari estado <saida>` diz a etapa, as gerações já gastas
+e o próximo comando. Comece por ele antes de refazer qualquer coisa — gerar de novo o que já existe
+queima o teto à toa.
+
 ## Passo a passo
 
 Chame sempre por `uv run portinari …`, de dentro de `pipelines/portinari`.
@@ -102,5 +108,6 @@ prompt inteiro nem crítica inteira no chat — dê o caminho do arquivo.
 
 - Teto de gerações atingido · três voltas sem aprovar · `agy` falhando de forma não transitória ·
   a paleta não chegando ao gerador · a marca desatualizada e o autor indisponível.
-- Em qualquer um: pare, diga onde parou, o que existe em `<saida>` e qual é a próxima ação humana.
+- Em qualquer um: pare, rode `uv run portinari estado <saida>`, diga onde parou, o que existe em
+  `<saida>` e qual é a próxima ação humana.
   A branch `arte/<slug>` fica; nada é apagado.
