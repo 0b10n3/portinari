@@ -430,7 +430,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   `pedidos/_processados/` (não o edita), e recusa se `final/` estiver incompleto.
 - ✔ retomada: matar no meio, `estado` diz onde parou; teto de gerações persiste entre sessões.
 
-**E7 — Agentes, rubrica e skill orquestradora** · `feat(agentes)`
+**E7 — Agentes, rubrica e skill orquestradora** · `feat(agentes)` · **implementado em 20/09/2026**
 - Quatro agentes em pt-BR + `rubrica/rubrica.md` (notas 1–5; **bloqueantes**: alucinação de
   texto/logo/símbolo — inclui `$` onde deveria ser `R$`; sombra/gradiente; pilhas misturadas;
   violação de teto numérico; elementos factualmente errados) + `SKILL.md` com os dois gates,
@@ -440,7 +440,8 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   financeiros (touro/urso, moedas, gráfico subindo) salvo pedido; contexto visual brasileiro.
 - ✔ verificação por leitura + um ensaio a seco sem `agy` (fixtures) que percorre gates e limites.
 
-**E8 — Variante light/dark** · `feat(variante)` *(desenho final depende de S2)*
+**E8 — Variante light/dark** · `feat(variante)` · **coberto sem código novo em 20/09/2026**
+- ✅ **20/09/2026:** não precisou de módulo novo — `prompt --modo light`, `gerar --ref <imagem aprovada>` (edição por `ImagePaths`, confirmada no S2), `checar --modo light` e `entregar --modo light` já cobrem o fluxo. O que faltava era a régua: `rubrica/rubrica.md` ganhou D1–D4 (mesma composição, mesmos elementos, pilha do modo novo, acento no mesmo ponto) e a skill, o passo 12.
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** entrega **dois prompts** (dark e light). A edição por `ImagePaths` continua sendo como se **valida** que a derivação preserva a composição — o autor gera as duas finais à mão, cada uma do seu prompt.
 - ⚠️ **Revisado em 20/09/2026:** a derivação usa edição por imagem de referência **na API** (E10), não mais `ImagePaths` do `agy`.
 - Deriva a segunda pilha por edição a partir da aprovada; crítico verifica mesma composição e
