@@ -11,3 +11,6 @@ output/**/*.jpeg
 output/**/*.png
 output/**/*.webp
 output/**/referencias/
+
+# Chaves (GEMINI_API_KEY). Nunca no git.
+.env

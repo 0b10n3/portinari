@@ -11,7 +11,12 @@ from . import agy, brand, brief, enriquecimento
 
 
 def _ingest(a: argparse.Namespace) -> int:
-    b = brief.carregar(Path(a.pedido), Path(a.saida) if a.saida else None)
+    try:
+        marca = brand.marca_leve(Path(a.brand))
+    except (brand.BrandError, OSError) as e:
+        print(f"ERRO: não consegui ler os formatos/estilos da marca: {e}")
+        return 1
+    b = brief.carregar(Path(a.pedido), Path(a.saida) if a.saida else None, marca=marca, piloto=a.piloto)
     destino = brief.gravar(b)
     print(f"brief: {destino}")
     for av in b.avisos:
@@ -27,10 +32,17 @@ def _marca(a: argparse.Namespace) -> int:
     print(f"tokens v{s['versao_tokens']} · DESIGN v{s['versao_design']} · fingerprint {s['fingerprint'][:12]}")
     for av in s["avisos"] + (s["git"] or {}).get("avisos", []):
         print(f"aviso: {av}")
+    print(f"formatos: {len(s['formatos'])} usos · estilos: {len(s['estilos'])} "
+          f"({sum(e['papel'] == 'base' for e in s['estilos'].values())} base)")
     atras = (s["git"] or {}).get("atras")
-    if atras:  # nunca faz pull por conta própria
-        print(f"PERGUNTA AO AUTOR: brand/ está {atras} commit(s) atrás do remoto. Atualizar (git pull) antes de seguir?")
-        return 2
+    if atras:  # nunca faz pull por conta própria (A13: desatualizada bloqueia)
+        msg = f"brand/ está {atras} commit(s) atrás do remoto — atualize com `git -C {a.brand} pull` antes de gerar."
+        if not a.permitir_desatualizada:
+            print(f"ERRO: {msg}")
+            return 1
+        print(f"aviso: {msg} Seguindo por --permitir-desatualizada.")
+        s["avisos"].append(f"executado com brand/ {atras} commit(s) atrás do remoto (--permitir-desatualizada)")
+        brand.gravar(s, Path(a.saida))
     return 0
 
 
@@ -100,7 +112,15 @@ def _prompt(a: argparse.Namespace) -> int:
     if not b.get("tamanho"):
         print("PERGUNTA AO AUTOR: brief.json sem tamanho; resolva as perguntas do ingest.")
         return 2
-    final = agy.montar_prompt(criativo, s["bloco"][a.modo], *b["tamanho"])
+    fragmentos = [
+        s.get("estilos", {})[k]["fragmento"]
+        for k in (b.get("estilo_base"), b.get("estilo_modo"))
+        if k and k in s.get("estilos", {})
+    ]
+    final = agy.montar_prompt(
+        criativo, s["bloco"][a.modo], tuple(b["tamanho"]),
+        tuple(b["master"]) if b.get("master") else None, fragmentos,
+    )
     (d / "prompt_final.md").write_text(final, encoding="utf-8")
     print(f"prompt: {d / 'prompt_final.md'} ({len(final)} caracteres)")
     return 0
@@ -135,12 +155,15 @@ def main(argv: list[str] | None = None) -> int:
     i = sub.add_parser("ingest", help="lê o pedido e grava brief.json (exit 2 = há perguntas)")
     i.add_argument("pedido")
     i.add_argument("--saida", help="pasta da execução (padrão: output/AAAA-MM-DD_slug)")
+    i.add_argument("--brand", default=str(brand.BRAND))
+    i.add_argument("--piloto", action="store_true", help="libera estilo que a marca marca como restrito")
     i.set_defaults(fn=_ingest)
-    m = sub.add_parser("marca", help="resolve a marca e grava brand_snapshot.json (exit 2 = brand/ atrás do remoto)")
+    m = sub.add_parser("marca", help="resolve a marca e grava brand_snapshot.json (exit 1 = brand/ atrás do remoto)")
     m.add_argument("saida", help="pasta da execução")
     m.add_argument("--brand", default=str(brand.BRAND))
     m.add_argument("--sem-fetch", action="store_true", help="não consulta o git de brand/")
     m.add_argument("--texto", action="store_true", help="o pedido exige texto na imagem (dropa a regra 'sem texto')")
+    m.add_argument("--permitir-desatualizada", action="store_true", help="segue mesmo com brand/ atrás do remoto")
     m.set_defaults(fn=_marca)
     en = sub.add_parser("enriquecer", help="valida enriquecimento/vNN.json e grava vNN.md (exit 2 = erros)")
     en.add_argument("saida")
