@@ -1,0 +1,43 @@
+{
+  "pedido": "pedidos/capa-cafe-lca.md",
+  "slug": "transformacao-da-producao-agricola-em-produto-financeiro",
+  "titulo": "Transformação da Produção Agricola em Produto Financeiro",
+  "uso": "capa de post para substack",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    1456,
+    816
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "flat",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "2.7.0",
+    "versao_design": "3.1",
+    "fingerprint": "723434af59c552f272e671805e7dd9eec6675230274f22fa26fbd4430c6576f6"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 1,
+      "geracao": "gen_02",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/dark_gen_02.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "568b96e84454a994527933597b67239e8b24cae8a14859ac479cc99abfda583e",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "entregue"
+}
