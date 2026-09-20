@@ -1,0 +1,101 @@
+{
+  "imagem": "output/2026-09-20_transformacao-da-producao-agricola-em-produto-financeiro/iteracoes/01/gen_02.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        23,
+        23,
+        23
+      ],
+      "hex_imagem": "#171717",
+      "fracao": 0.5727,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0039
+    },
+    {
+      "rgb": [
+        127,
+        200,
+        164
+      ],
+      "hex_imagem": "#7FC8A4",
+      "fracao": 0.1489,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 2.5,
+      "amplitude_luminancia": 0.0173
+    },
+    {
+      "rgb": [
+        45,
+        151,
+        102
+      ],
+      "hex_imagem": "#2D9766",
+      "fracao": 0.147,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 4.3,
+      "amplitude_luminancia": 0.006
+    },
+    {
+      "rgb": [
+        14,
+        62,
+        40
+      ],
+      "hex_imagem": "#0E3E28",
+      "fracao": 0.0382,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 0.6,
+      "amplitude_luminancia": 0.0087
+    },
+    {
+      "rgb": [
+        120,
+        191,
+        155
+      ],
+      "hex_imagem": "#78BF9B",
+      "fracao": 0.0187,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.3,
+      "amplitude_luminancia": 0.0218
+    },
+    {
+      "rgb": [
+        12,
+        18,
+        14
+      ],
+      "hex_imagem": "#0C120E",
+      "fracao": 0.0143,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.4,
+      "amplitude_luminancia": 0.0061
+    },
+    {
+      "rgb": [
+        109,
+        183,
+        145
+      ],
+      "hex_imagem": "#6DB791",
+      "fracao": 0.01,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.6,
+      "amplitude_luminancia": 0.0225
+    }
+  ],
+  "fundo": {
+    "hex": "#171717",
+    "fracao": 0.5727
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": []
+}
