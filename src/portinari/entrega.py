@@ -230,6 +230,69 @@ def entregar(
     return m["entregas"][modo]
 
 
+def concluir(saida: Path, processados: Path) -> Path:
+    """Arquiva o pedido: copia para a execução e MOVE o original para pedidos/_processados/.
+
+    Só depois de `final/` ter pelo menos um prompt — o pedido é a única cópia do que o autor
+    escreveu, e um pedido arquivado sem entregável é trabalho perdido.
+    """
+    saida = Path(saida)
+    prompts = sorted((saida / "final").glob("prompt_*.md"))
+    if not prompts:
+        raise EntregaErro("final/ não tem nenhum prompt: não arquivo o pedido antes de entregar")
+    m = manifesto(saida)
+    origem = Path(m.get("pedido") or "")
+    if not origem.is_file():
+        raise EntregaErro(f"o pedido original não está mais em {origem}")
+    shutil.copy2(origem, saida / "pedido.md")  # a execução guarda o que o autor escreveu
+    destino = Path(processados) / origem.name
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    if destino.exists():
+        raise EntregaErro(f"{destino} já existe: resolva à mão antes de arquivar de novo")
+    shutil.move(str(origem), destino)
+    m["etapa_atual"] = "concluido"
+    m["pedido_arquivado"] = str(destino)
+    (saida / "manifest.json").write_text(json.dumps(m, indent=2, ensure_ascii=False), encoding="utf-8")
+    return destino
+
+
+def estado(saida: Path) -> dict:
+    """Onde a execução parou e qual é a próxima ação — é o que permite retomar numa sessão nova."""
+    saida = Path(saida)
+    m = json.loads((saida / "manifest.json").read_text(encoding="utf-8")) if (saida / "manifest.json").is_file() else {}
+    log = saida / "geracoes.jsonl"
+    feito = {
+        "brief": (saida / "brief.json").is_file(),
+        "marca": (saida / "brand_snapshot.json").is_file(),
+        "conceitos": (saida / "conceitos.md").is_file(),
+        "enriquecimento": sorted(p.name for p in (saida / "enriquecimento").glob("v*.json")),
+        "iteracoes": iteracoes(saida) if (saida / "iteracoes").is_dir() else [],
+        "geracoes": len(log.read_text(encoding="utf-8").splitlines()) if log.is_file() else 0,
+        "entregas": sorted(m.get("entregas", {})),
+    }
+    # de trás para a frente: o que já foi feito mais adiante manda, mesmo que uma etapa
+    # intermediária não tenha deixado arquivo (o autor pode ter pulado o gate de conceito).
+    if m.get("etapa_atual") == "concluido":
+        proxima = "nada: execução concluída"
+    elif feito["entregas"]:
+        proxima = f"entregar o outro modo, ou `uv run portinari entregar {saida} ... --concluir`"
+    elif feito["geracoes"]:
+        proxima = f"checar, crítica visual, Gate 2 e `uv run portinari entregar {saida} --modo dark --aprovado`"
+    elif feito["iteracoes"]:
+        proxima = f"uv run portinari gerar {saida} --iteracao {feito['iteracoes'][-1]}"
+    elif feito["enriquecimento"]:
+        proxima = "subagente prompter-tecnico (iteracoes/01/prompt_criativo.md)"
+    elif feito["conceitos"]:
+        proxima = "Gate 1 e depois o subagente enriquecedor-de-cena"
+    elif feito["marca"]:
+        proxima = "subagente diretor-de-arte (conceitos.md)"
+    elif feito["brief"]:
+        proxima = f"uv run portinari marca {saida}"
+    else:
+        proxima = "uv run portinari ingest <pedido.md>"
+    return {"saida": str(saida), "etapa_atual": m.get("etapa_atual", "em andamento"), **feito, "proxima": proxima}
+
+
 def manifesto(saida: Path) -> dict:
     """O manifesto da execução (criado aqui; o E6 o amplia). Nunca perde o que já está nele."""
     p = Path(saida) / "manifest.json"

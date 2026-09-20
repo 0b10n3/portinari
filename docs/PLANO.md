@@ -420,7 +420,7 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ imagem PNG 2K/4K importada aparece no log de gerações e segue para checagem/recorte; formato não
   imagem é recusado; o prompt é gravado íntegro.
 
-**E6 — Manifesto, estado e CLI** · `feat(manifest)`
+**E6 — Manifesto, estado e CLI** · `feat(manifest)` · **implementado em 20/09/2026**
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** `entregar` recusa por **prompt** incompleto (falta um modo, falta o bloco de marca, termo do enriquecimento ausente), nunca por imagem faltando. O manifesto registra qual imagem de validação aprovou cada prompt.
 - `manifest.json` conforme §7 do pedido (pedido de origem, versão e fingerprint da marca,
   conceito escolhido, prompts finais **com o bloco injetado**, comandos `agy`, nº de gerações,
@@ -483,13 +483,13 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 - ✔ o prompt entregue, colado num gerador limpo, não depende de nenhum arquivo do repo; ✔ prompt
   sem bloco de marca ou com termo do enriquecimento faltando é recusado com mensagem acionável.
 
-**E9 — Documentação e piloto** · `docs(portinari)`
+**E9 — Documentação e piloto** · `docs(portinari)` · **documentação feita em 20/09/2026; piloto pendente**
 - ⚠️ **Revisado em 20/09/2026 (A16/A17):** o critério de pronto deixa de ser "PNG em exatamente 2560×1440" e passa a ser: prompt colável que, colado no Nano Banana Pro pelo autor, produz peça aprovada no Gate 2. O relatório do piloto compara a imagem de validação (flash, 1K) com a final do autor (Pro).
 - `CLAUDE.md` (regras invioláveis, estrutura, fonte única de cada coisa, git) e `README.md`
   (como escrever um pedido, como rodar, como retomar, "se algo der errado") no padrão dos irmãos.
 - **Fase 3:** execução de ponta a ponta com `exemplo-cafe-lca.md`, gates comigo, e relatório
   (o que funcionou, o que o crítico reprovou e por quê, nº de gerações, melhorias).
-- ✔ `final/<slug>_light.png` e `_dark.png` em **exatamente 2560×1440**; manifesto completo.
+- ✔ ~~`final/<slug>_light.png` e `_dark.png` em exatamente 2560×1440~~ → por A16: `final/prompt_dark.md` e `prompt_light.md` coláveis, `COMO-GERAR.md` e manifesto completo. **Falta rodar o piloto de ponta a ponta com você nos dois gates.**
 
 ## 7. Riscos
 

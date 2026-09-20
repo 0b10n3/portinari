@@ -206,6 +206,29 @@ def _entregar(a: argparse.Namespace) -> int:
     print(f"entregue: {e['prompt']} (validado por {e['geracao']} da iteração {e['iteracao']:02d}, "
           f"{e['validacao_px'][0]}x{e['validacao_px'][1]})")
     print(f"como gerar: {Path(a.saida) / 'final' / 'COMO-GERAR.md'}")
+    if a.concluir:
+        try:
+            destino = entrega.concluir(Path(a.saida), Path(a.processados))
+        except (entrega.EntregaErro, OSError) as erro:
+            print(f"ERRO: {erro}")
+            return 2
+        print(f"pedido arquivado em {destino}")
+    return 0
+
+
+def _estado(a: argparse.Namespace) -> int:
+    """Onde a execução parou e qual é a próxima ação (retomada entre sessões)."""
+    try:
+        e = entrega.estado(Path(a.saida))
+    except (OSError, ValueError) as erro:
+        print(f"ERRO: {erro}")
+        return 2
+    print(f"execução: {e['saida']} · etapa: {e['etapa_atual']}")
+    print(f"brief {'ok' if e['brief'] else '-'} · marca {'ok' if e['marca'] else '-'} · "
+          f"conceitos {'ok' if e['conceitos'] else '-'} · enriquecimento {len(e['enriquecimento'])} versão(ões)")
+    print(f"iterações: {e['iteracoes'] or '-'} · gerações: {e['geracoes']} · "
+          f"entregues: {', '.join(e['entregas']) or '-'}")
+    print(f"próxima: {e['proxima']}")
     return 0
 
 
@@ -275,7 +298,12 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--iteracao", type=int, help="padrão: a última")
     e.add_argument("--gen", help="geração que validou o prompt (padrão: a última da iteração)")
     e.add_argument("--aprovado", action="store_true", help="confirma que o Gate 2 aprovou este prompt")
+    e.add_argument("--concluir", action="store_true", help="arquiva o pedido em pedidos/_processados/")
+    e.add_argument("--processados", default=str(brief.PIPELINE / "pedidos" / "_processados"))
     e.set_defaults(fn=_entregar)
+    st = sub.add_parser("estado", help="onde a execução parou e qual é a próxima ação")
+    st.add_argument("saida")
+    st.set_defaults(fn=_estado)
     a = p.parse_args(argv)
     return a.fn(a)
 

@@ -162,3 +162,46 @@ def test_cli_entregar(execucao, capsys):
     assert "final/prompt_dark.md" in out and "1376x768" in out and "COMO-GERAR.md" in out
     assert main(["entregar", str(execucao), "--modo", "dark"]) == 2
     assert "Gate 2" in capsys.readouterr().out
+
+
+# --- E6: estado e arquivamento do pedido ---------------------------------------------------------
+def test_estado_diz_a_proxima_acao(tmp_path, execucao):
+    vazio = entrega.estado(tmp_path / "nada")
+    assert vazio["brief"] is False and vazio["proxima"].startswith("uv run portinari ingest")
+
+    e = entrega.estado(execucao)
+    assert e["iteracoes"] == [1] and e["geracoes"] == 1 and e["entregas"] == []
+    assert "Gate 2" in e["proxima"]  # já há geração: a próxima é checar e aprovar
+
+    entregar(execucao)
+    depois = entrega.estado(execucao)
+    assert depois["entregas"] == ["dark"] and "concluir" in depois["proxima"]
+
+
+def test_concluir_arquiva_o_pedido(tmp_path, execucao):
+    entregar(execucao)
+    processados = tmp_path / "_processados"
+    origem = Path(json.loads((execucao / "brief.json").read_text())["pedido"])
+    destino = entrega.concluir(execucao, processados)
+
+    assert destino == processados / origem.name and destino.is_file()
+    assert not origem.exists()  # movido, não copiado
+    assert (execucao / "pedido.md").read_text(encoding="utf-8") == PEDIDO  # a execução guarda a cópia
+    m = json.loads((execucao / "manifest.json").read_text())
+    assert m["etapa_atual"] == "concluido" and m["pedido_arquivado"] == str(destino)
+    assert entrega.estado(execucao)["proxima"] == "nada: execução concluída"
+
+
+def test_nao_arquiva_pedido_sem_entregavel(tmp_path, execucao):
+    with pytest.raises(entrega.EntregaErro, match="não tem nenhum prompt"):
+        entrega.concluir(execucao, tmp_path / "_processados")
+    assert Path(json.loads((execucao / "brief.json").read_text())["pedido"]).is_file()
+
+
+def test_cli_entregar_com_concluir_e_estado(tmp_path, execucao, capsys):
+    proc = tmp_path / "_processados"
+    assert main(["entregar", str(execucao), "--modo", "dark", "--aprovado",
+                 "--concluir", "--processados", str(proc)]) == 0
+    assert "pedido arquivado" in capsys.readouterr().out
+    assert main(["estado", str(execucao)]) == 0
+    assert "etapa: concluido" in capsys.readouterr().out
