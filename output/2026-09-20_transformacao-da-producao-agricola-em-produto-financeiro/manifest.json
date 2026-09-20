@@ -39,5 +39,6 @@
       "gate2": "aprovado"
     }
   },
-  "etapa_atual": "entregue"
+  "etapa_atual": "concluido",
+  "pedido_arquivado": "/home/saga/Projects/Syntaxis/pipelines/portinari/pedidos/_processados/capa-cafe-lca.md"
 }
