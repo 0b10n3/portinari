@@ -491,13 +491,18 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   (o que funcionou, o que o crítico reprovou e por quê, nº de gerações, melhorias).
 - ✔ ~~`final/<slug>_light.png` e `_dark.png` em exatamente 2560×1440~~ → por A16: `final/prompt_dark.md` e `prompt_light.md` coláveis, `COMO-GERAR.md` e manifesto completo. **Falta rodar o piloto de ponta a ponta com você nos dois gates.**
 
-**E13 — Validação local com Qwen-Image 2.1** · `docs(qwen)` → `feat(qwen)` · **especificado em 22/09/2026** · spec: `specs/epicos/epico-13-qwen-local.md`
-- Testa se o `Qwen/Qwen-Image-2.1` (7B, GGUF no `stable-diffusion.cpp`) rodando **nesta máquina**
-  (RTX 3050 6 GB, 14 GB RAM) serve de **gerador de validação**. Não reabre A16/A17: o entregável é o prompt e a final é do autor.
-- **Fase A (sem código):** `sd-cli` + pesos fora do repo, prompt do piloto `cafe-lca` literal e sem
-  negativo, 3 sementes, `importar` numa cópia da execução, `checar` e crítico às cegas. Relatório em `docs/qwen-local.md`.
-- ✔ Fase A passa se: roda em ≥ 1376×768 e ≤ 5 min por imagem; o bloco de marca não é truncado; ≥ 1/3 sementes APROVADA (o `agy` teve 1/2) e nenhuma com cor fora da paleta ou texto. O autor decide se abre a B.
-- **Fase B (condicional):** `gerar --via qwen` reaproveitando `Geracao`/`_registrar`/teto; `sd-cli` falso nos testes.
+**E13 — Validação local com Qwen-Image 2.1** · `docs(qwen)` · **Fase A concluída e reprovada, 23/09/2026** · spec: `specs/epicos/epico-13-qwen-local.md` · relatório: `docs/qwen-local.md`
+- Testou se o `Qwen/Qwen-Image-2.1` (7B, GGUF no `stable-diffusion.cpp`) rodando **nesta máquina**
+  (RTX 3050 6 GB, 14 GB RAM) serve de **gerador de validação**. Não reabriu A16/A17: o entregável é o prompt e a final é do autor.
+- **Fase A rodou sem código novo:** `sd-cli` (Vulkan, não CUDA) + pesos Q4_K_M fora do repo, prompt do
+  piloto `cafe-lca` literal e sem negativo, 3 sementes (1376×768), `importar` numa cópia da execução,
+  `checar` e 3 críticos às cegas em paralelo.
+- ✘ **Não passou.** ~25 min/imagem (5× o teto de 5 min) e **0 de 3 sementes aprovadas**: as três
+  saíram com a paleta inteira fora da pilha dark (ΔE 32–47, o modelo priorizou tons realistas de
+  juta/café sobre os hex) e leram como díptico, sem o foco de transformação do enriquecimento. Os
+  hex chegaram inteiros ao codificador (R19 não se confirmou); nenhuma tinha texto (R8/R20 idem).
+- **Épico fechado. Fase B não abre** — "roda, mas discorda do `agy`" (um dos três resultados válidos
+  da spec): não serve para validar prompt de Nano Banana Pro nesta configuração.
 
 ## 7. Riscos
 
