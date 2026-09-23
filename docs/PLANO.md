@@ -491,6 +491,14 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
   (o que funcionou, o que o crítico reprovou e por quê, nº de gerações, melhorias).
 - ✔ ~~`final/<slug>_light.png` e `_dark.png` em exatamente 2560×1440~~ → por A16: `final/prompt_dark.md` e `prompt_light.md` coláveis, `COMO-GERAR.md` e manifesto completo. **Falta rodar o piloto de ponta a ponta com você nos dois gates.**
 
+**E13 — Validação local com Qwen-Image 2.1** · `docs(qwen)` → `feat(qwen)` · **especificado em 22/09/2026** · spec: `specs/epicos/epico-13-qwen-local.md`
+- Testa se o `Qwen/Qwen-Image-2.1` (7B, GGUF no `stable-diffusion.cpp`) rodando **nesta máquina**
+  (RTX 3050 6 GB, 14 GB RAM) serve de **gerador de validação**. Não reabre A16/A17: o entregável é o prompt e a final é do autor.
+- **Fase A (sem código):** `sd-cli` + pesos fora do repo, prompt do piloto `cafe-lca` literal e sem
+  negativo, 3 sementes, `importar` numa cópia da execução, `checar` e crítico às cegas. Relatório em `docs/qwen-local.md`.
+- ✔ Fase A passa se: roda em ≥ 1376×768 e ≤ 5 min por imagem; o bloco de marca não é truncado; ≥ 1/3 sementes APROVADA (o `agy` teve 1/2) e nenhuma com cor fora da paleta ou texto. O autor decide se abre a B.
+- **Fase B (condicional):** `gerar --via qwen` reaproveitando `Geracao`/`_registrar`/teto; `sd-cli` falso nos testes.
+
 ## 7. Riscos
 
 | # | Risco | Sev. | Mitigação |
@@ -517,6 +525,10 @@ Cada épico: testes verdes (`uv run pytest`) + um commit em pt-BR.
 | **R15** | Custo por imagem no Pro × nº de iterações | média | Papéis: toda iteração no flash, só a final no Pro (A10); teto de gerações já existente, contado por papel no manifesto |
 | **R16** | Chave vazando em commit/log | **alta** | `.env` no `.gitignore` (feito); a chave nunca entra em `gen_KK.json`, em `geracoes.jsonl` nem em mensagem de erro |
 | **R17** | `FORMATOS.md`/`estilos/` mudam de estrutura e o parser quebra em silêncio | média | Parser falha alto (como `_bloco-marca.md` já faz), fingerprint cobre os dois, teste de runtime com `brand/` de fixture |
+| **R18** | Qwen Research License pode restringir uso comercial (E13) | média | Ler antes de baixar; decisão do autor registrada em `docs/qwen-local.md` |
+| **R19** | O Qwen trunca o prompt de ~1.100 palavras e corta os hex do bloco de marca (E13) | **alta** | Medir com `sd-cli -v` na Fase A; truncou = reprovado |
+| **R20** | O Qwen-Image 2.1 é forte em tipografia e tende a escrever na imagem (E13) | média | Regra 8 e rubrica já barram; o relatório conta a taxa |
+| **R21** | 6 GB de VRAM / 5 GB de RAM livres: OOM ou minutos por imagem (E13) | média | Q3_K_M de reserva; "não roda aqui" é resultado válido |
 
 ## 8. Perguntas
 
