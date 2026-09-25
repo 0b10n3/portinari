@@ -1,0 +1,43 @@
+{
+  "pedido": "pedidos/borboletas_caos_carreira.md",
+  "slug": "borboletas-caos-e-carreira",
+  "titulo": "Borboletas, Caos e Carreira",
+  "uso": "capa substack",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    2560,
+    1440
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "flat",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "2.7.0",
+    "versao_design": "3.1",
+    "fingerprint": "723434af59c552f272e671805e7dd9eec6675230274f22fa26fbd4430c6576f6"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 3,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/dark_gen_01.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "e35bed7abfe1797bd98490e4a1a7ead6c81841ec182320f7037c96402d5d8fe6",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "entregue"
+}
