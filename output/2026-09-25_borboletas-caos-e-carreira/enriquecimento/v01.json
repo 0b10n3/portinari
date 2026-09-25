@@ -1,0 +1,104 @@
+{
+  "conceito": "C1",
+  "pedido_preservado": [
+    "borboleta/atrator de Lorenz que se desfia em tiras de papel entrelaçadas",
+    "jovem executivo de finanças trabalhando feliz na mesa com laptop, resultado da transformação"
+  ],
+  "elementos": [
+    {
+      "id": "e1",
+      "zona": "primeiro-plano",
+      "papel": "foco",
+      "elemento": "o trecho final da fita de papel, esticado e empilhado em faixas paralelas horizontais que formam a borda da mesa e a tela aberta do laptop; sobre elas, a silhueta plana do jovem executivo, sem rosto, tronco ereto, mãos sobre o teclado, expressão sutil de concentração tranquila",
+      "termo_en": "paper-strip desk with faceless seated executive at laptop",
+      "cor": "figura-principal",
+      "origem": "pedido",
+      "justificativa": "é o próprio verbo do pedido: a fita que se desfia e vira o trabalho do executivo, maior massa de contraste da composição"
+    },
+    {
+      "id": "e2",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "elemento": "aglomerado de tiras de papel facetadas, entrelaçadas em dois laços soltos e sobrepostos, sem nenhuma curva lisa — a leitura geométrica do atrator de Lorenz",
+      "termo_en": "tangled faceted paper loops",
+      "cor": "figura-secundaria",
+      "origem": "pedido",
+      "justificativa": "é a borboleta do atrator de Lorenz citada no pedido, ponto de partida da transformação"
+    },
+    {
+      "id": "e3",
+      "zona": "centro",
+      "papel": "apoio",
+      "elemento": "trecho intermediário da mesma fita, onde os laços se desfazem aos poucos: as facetas se alongam e passam a se repetir em espaçamento regular, sem mais entrelaçamento",
+      "termo_en": "ribbon segment losing its tangle into even spacing",
+      "cor": "figura-secundaria",
+      "origem": "oficio",
+      "justificativa": "sustenta a leitura de fita única contínua entre o emaranhado e a mesa, evitando que a peça vire dois blocos separados"
+    },
+    {
+      "id": "e4",
+      "zona": "direita",
+      "papel": "apoio",
+      "elemento": "uma única dobra de acento exatamente no ponto em que a última faceta da fita vira aresta reta da mesa e da tela do laptop",
+      "termo_en": "single accent fold crease",
+      "cor": "acento",
+      "origem": "oficio",
+      "justificativa": "marca o ponto focal da peça — a virada onde a turbulência se arquiteta em trabalho — com o único acento da composição"
+    },
+    {
+      "id": "e5",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "elemento": "pequena pilha de folhas soltas ao lado do aglomerado de laços, ecoando visualmente o emaranhado do início",
+      "termo_en": "loose paper sheaf",
+      "cor": "pilha-2",
+      "origem": "oficio",
+      "justificativa": "reforça a leitura de material recortado e cria um segundo ponto de textura sem competir com o foco"
+    },
+    {
+      "id": "e6",
+      "zona": "fundo",
+      "papel": "textura",
+      "elemento": "camada de fundo lisa e única, ocupando a maior parte do quadro, sem nenhum elemento sobreposto",
+      "termo_en": "flat uniform background sheet",
+      "cor": "pilha-1",
+      "origem": "oficio",
+      "justificativa": "cumpre o respiro mínimo de fundo pedido pelo conceito e dá espaço negativo para o recorte da capa"
+    },
+    {
+      "id": "e7",
+      "zona": "primeiro-plano",
+      "papel": "textura",
+      "elemento": "pequena xícara de papel dobrado, discreta, pousada ao lado do teclado do laptop",
+      "termo_en": "small folded paper coffee cup",
+      "cor": "neutro",
+      "origem": "contexto",
+      "justificativa": "referência sutil ao café que Lorenz foi buscar antes de perceber que os números tinham divergido, sem disputar o foco com o executivo"
+    },
+    {
+      "id": "e8",
+      "zona": "direita",
+      "papel": "apoio",
+      "elemento": "pequena pilha de folhas de papel empilhadas ao lado do laptop, com a folha de cima levemente aberta em leque, sem nada desenhado ou marcado nela",
+      "termo_en": "stack of blank paper documents",
+      "cor": "pilha-3",
+      "origem": "dominio",
+      "justificativa": "dá ao executivo o material de trabalho de uma mesa de finanças de verdade, sem recorrer a clichê financeiro"
+    }
+  ],
+  "descartados": [
+    {
+      "elemento": "gráfico de linha ascendente na tela do laptop",
+      "motivo": "clichê financeiro explícito, proibido salvo pedido — e a tela é só mais uma faixa reta de papel, sem desenho"
+    },
+    {
+      "elemento": "pilha de moedas ao lado do laptop",
+      "motivo": "clichê financeiro (moedas), a pilha de documentos já cumpre o papel de mesa de trabalho"
+    },
+    {
+      "elemento": "borboleta figurativa pousada sobre o monitor",
+      "motivo": "reintroduziria a curva orgânica livre que o próprio conceito proíbe; a leitura de borboleta já vem do aglomerado de laços facetados"
+    }
+  ],
+  "cena": "Sobre um fundo liso que ocupa a maior parte do quadro, no canto superior esquerdo um aglomerado de tiras de papel facetadas se entrelaça em dois laços soltos e sobrepostos, sem nenhuma curva lisa — a leitura geométrica do atrator de Lorenz — com uma pequena pilha de folhas soltas ao lado, ecoando o mesmo emaranhado. Dali a mesma fita segue para o centro do quadro, onde os laços se desfazem aos poucos e as facetas passam a se repetir em espaçamento regular. No canto inferior direito, em primeiro plano, a fita termina esticada em faixas paralelas horizontais, empilhadas como a borda de uma mesa e a tela aberta de um laptop; exatamente na dobra onde a última faceta vira aresta reta, uma única dobra de acento marca a virada. Sobre a mesa, a silhueta plana e sem rosto de um jovem executivo trabalha com as mãos no teclado, tronco ereto, expressão sutil de concentração tranquila; ao lado do laptop, uma pequena pilha de folhas em leque e uma xícara de papel dobrado completam a mesa, discretas, sem nada desenhado ou marcado em nenhuma folha."
+}

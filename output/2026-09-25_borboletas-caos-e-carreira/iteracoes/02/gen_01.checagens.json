@@ -1,0 +1,183 @@
+{
+  "imagem": "output/2026-09-25_borboletas-caos-e-carreira/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        27,
+        27,
+        29
+      ],
+      "hex_imagem": "#1B1B1D",
+      "fracao": 0.5488,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.8,
+      "amplitude_luminancia": 0.0209
+    },
+    {
+      "rgb": [
+        36,
+        36,
+        38
+      ],
+      "hex_imagem": "#242426",
+      "fracao": 0.1506,
+      "token_mais_perto": "#141414",
+      "delta_e": 8.1,
+      "amplitude_luminancia": 0.0171
+    },
+    {
+      "rgb": [
+        13,
+        15,
+        14
+      ],
+      "hex_imagem": "#0D0F0E",
+      "fracao": 0.1125,
+      "token_mais_perto": "#141414",
+      "delta_e": 2.3,
+      "amplitude_luminancia": 0.0198
+    },
+    {
+      "rgb": [
+        21,
+        21,
+        22
+      ],
+      "hex_imagem": "#151516",
+      "fracao": 0.0268,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0215
+    },
+    {
+      "rgb": [
+        32,
+        69,
+        51
+      ],
+      "hex_imagem": "#204533",
+      "fracao": 0.0217,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 5.7,
+      "amplitude_luminancia": 0.0225
+    },
+    {
+      "rgb": [
+        128,
+        183,
+        143
+      ],
+      "hex_imagem": "#80B78F",
+      "fracao": 0.0205,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 9.5,
+      "amplitude_luminancia": 0.0169
+    },
+    {
+      "rgb": [
+        61,
+        119,
+        87
+      ],
+      "hex_imagem": "#3D7757",
+      "fracao": 0.0201,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 8.8,
+      "amplitude_luminancia": 0.0259
+    },
+    {
+      "rgb": [
+        19,
+        64,
+        42
+      ],
+      "hex_imagem": "#13402A",
+      "fracao": 0.0177,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.3,
+      "amplitude_luminancia": 0.0231
+    },
+    {
+      "rgb": [
+        18,
+        44,
+        32
+      ],
+      "hex_imagem": "#122C20",
+      "fracao": 0.0157,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 11.3,
+      "amplitude_luminancia": 0.0254
+    },
+    {
+      "rgb": [
+        115,
+        173,
+        136
+      ],
+      "hex_imagem": "#73AD88",
+      "fracao": 0.0155,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 11.3,
+      "amplitude_luminancia": 0.0221
+    },
+    {
+      "rgb": [
+        51,
+        100,
+        74
+      ],
+      "hex_imagem": "#33644A",
+      "fracao": 0.0155,
+      "token_mais_perto": "#125233",
+      "delta_e": 9.8,
+      "amplitude_luminancia": 0.0296
+    },
+    {
+      "rgb": [
+        36,
+        91,
+        61
+      ],
+      "hex_imagem": "#245B3D",
+      "fracao": 0.0154,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.023
+    },
+    {
+      "rgb": [
+        84,
+        142,
+        109
+      ],
+      "hex_imagem": "#548E6D",
+      "fracao": 0.0128,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 16.3,
+      "amplitude_luminancia": 0.0257
+    }
+  ],
+  "fundo": {
+    "hex": "#1B1B1D",
+    "fracao": 0.5488
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#242426 (15.1%) está longe de #141414 (ΔE 8.1)",
+    "#80B78F (2.1%) está longe de #78C9A4 (ΔE 9.5)",
+    "#3D7757 (2.0%) está longe de #1B6A45 (ΔE 8.8)",
+    "#122C20 (1.6%) está longe de #0F3D27 (ΔE 11.3)",
+    "#73AD88 (1.6%) está longe de #78C9A4 (ΔE 11.3)",
+    "#33644A (1.6%) está longe de #125233 (ΔE 9.8)",
+    "#33644A varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "#548E6D (1.3%) está longe de #1B6A45 (ΔE 16.3)",
+    "13 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
