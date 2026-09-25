@@ -1,0 +1,231 @@
+{
+  "imagem": "output/2026-09-25_borboletas-caos-e-carreira/iteracoes/05/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        233,
+        234,
+        229
+      ],
+      "hex_imagem": "#E9EAE5",
+      "fracao": 0.6113,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 5.0,
+      "amplitude_luminancia": 0.0236
+    },
+    {
+      "rgb": [
+        241,
+        242,
+        237
+      ],
+      "hex_imagem": "#F1F2ED",
+      "fracao": 0.1224,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 2.5,
+      "amplitude_luminancia": 0.0202
+    },
+    {
+      "rgb": [
+        221,
+        223,
+        217
+      ],
+      "hex_imagem": "#DDDFD9",
+      "fracao": 0.0689,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 7.7,
+      "amplitude_luminancia": 0.0213
+    },
+    {
+      "rgb": [
+        63,
+        123,
+        90
+      ],
+      "hex_imagem": "#3F7B5A",
+      "fracao": 0.0192,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 21.5,
+      "amplitude_luminancia": 0.0296
+    },
+    {
+      "rgb": [
+        80,
+        138,
+        104
+      ],
+      "hex_imagem": "#508A68",
+      "fracao": 0.0182,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 19.6,
+      "amplitude_luminancia": 0.0263
+    },
+    {
+      "rgb": [
+        49,
+        99,
+        72
+      ],
+      "hex_imagem": "#316348",
+      "fracao": 0.0167,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 30.3,
+      "amplitude_luminancia": 0.0274
+    },
+    {
+      "rgb": [
+        44,
+        84,
+        61
+      ],
+      "hex_imagem": "#2C543D",
+      "fracao": 0.0165,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 37.0,
+      "amplitude_luminancia": 0.029
+    },
+    {
+      "rgb": [
+        187,
+        192,
+        183
+      ],
+      "hex_imagem": "#BBC0B7",
+      "fracao": 0.0164,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 17.2,
+      "amplitude_luminancia": 0.0368
+    },
+    {
+      "rgb": [
+        67,
+        142,
+        103
+      ],
+      "hex_imagem": "#438E67",
+      "fracao": 0.0155,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 13.8,
+      "amplitude_luminancia": 0.0266
+    },
+    {
+      "rgb": [
+        131,
+        168,
+        144
+      ],
+      "hex_imagem": "#83A890",
+      "fracao": 0.015,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 18.4,
+      "amplitude_luminancia": 0.0314
+    },
+    {
+      "rgb": [
+        216,
+        229,
+        219
+      ],
+      "hex_imagem": "#D8E5DB",
+      "fracao": 0.0148,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 5.7,
+      "amplitude_luminancia": 0.017
+    },
+    {
+      "rgb": [
+        28,
+        65,
+        46
+      ],
+      "hex_imagem": "#1C412E",
+      "fracao": 0.0141,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 44.1,
+      "amplitude_luminancia": 0.0228
+    },
+    {
+      "rgb": [
+        208,
+        214,
+        206
+      ],
+      "hex_imagem": "#D0D6CE",
+      "fracao": 0.0135,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 10.5,
+      "amplitude_luminancia": 0.0227
+    },
+    {
+      "rgb": [
+        139,
+        190,
+        161
+      ],
+      "hex_imagem": "#8BBEA1",
+      "fracao": 0.0129,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 10.8,
+      "amplitude_luminancia": 0.0291
+    },
+    {
+      "rgb": [
+        67,
+        107,
+        78
+      ],
+      "hex_imagem": "#436B4E",
+      "fracao": 0.0122,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 29.7,
+      "amplitude_luminancia": 0.028
+    },
+    {
+      "rgb": [
+        116,
+        140,
+        118
+      ],
+      "hex_imagem": "#748C76",
+      "fracao": 0.0102,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 27.9,
+      "amplitude_luminancia": 0.03
+    }
+  ],
+  "fundo": {
+    "hex": "#DDDFD9",
+    "fracao": 0.0689
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "#316348 ocupa 1.7% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 30.3)",
+    "#2C543D ocupa 1.7% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 37.0)",
+    "#1C412E ocupa 1.4% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 44.1)",
+    "#436B4E ocupa 1.2% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 29.7)",
+    "#748C76 ocupa 1.0% do quadro e não é nenhuma cor da paleta light (mais perto: #78C9A4, ΔE 27.9)"
+  ],
+  "avisos": [
+    "#3F7B5A (1.9%) está longe de #2D9E67 (ΔE 21.5)",
+    "#3F7B5A varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "#508A68 (1.8%) está longe de #2D9E67 (ΔE 19.6)",
+    "#2C543D varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão demais",
+    "#BBC0B7 (1.6%) está longe de #E2E8F0 (ΔE 17.2)",
+    "#BBC0B7 varia de tom dentro da própria folha (amplitude 0.037 > 0.028): sombra, gradiente ou grão demais",
+    "#438E67 (1.6%) está longe de #2D9E67 (ΔE 13.8)",
+    "#83A890 (1.5%) está longe de #78C9A4 (ΔE 18.4)",
+    "#83A890 varia de tom dentro da própria folha (amplitude 0.031 > 0.028): sombra, gradiente ou grão demais",
+    "#D0D6CE (1.4%) está longe de #E6F4EE (ΔE 10.5)",
+    "#8BBEA1 (1.3%) está longe de #78C9A4 (ΔE 10.8)",
+    "#8BBEA1 varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão demais",
+    "#748C76 varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "16 cores ≥1% do quadro; a marca pede entre 3 e 7",
+    "o fundo ocupa 7% do quadro; a marca pede ao menos 40%"
+  ]
+}

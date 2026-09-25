@@ -1,0 +1,209 @@
+{
+  "imagem": "output/2026-09-25_borboletas-caos-e-carreira/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        27,
+        27,
+        27
+      ],
+      "hex_imagem": "#1B1B1B",
+      "fracao": 0.3566,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.4,
+      "amplitude_luminancia": 0.0212
+    },
+    {
+      "rgb": [
+        45,
+        45,
+        45
+      ],
+      "hex_imagem": "#2D2D2D",
+      "fracao": 0.1923,
+      "token_mais_perto": "#141414",
+      "delta_e": 12.2,
+      "amplitude_luminancia": 0.0208
+    },
+    {
+      "rgb": [
+        36,
+        36,
+        37
+      ],
+      "hex_imagem": "#242425",
+      "fracao": 0.1448,
+      "token_mais_perto": "#141414",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0271
+    },
+    {
+      "rgb": [
+        6,
+        10,
+        8
+      ],
+      "hex_imagem": "#060A08",
+      "fracao": 0.0465,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.1,
+      "amplitude_luminancia": 0.0243
+    },
+    {
+      "rgb": [
+        18,
+        20,
+        18
+      ],
+      "hex_imagem": "#121412",
+      "fracao": 0.035,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.6,
+      "amplitude_luminancia": 0.0248
+    },
+    {
+      "rgb": [
+        240,
+        241,
+        246
+      ],
+      "hex_imagem": "#F0F1F6",
+      "fracao": 0.0232,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 41.5,
+      "amplitude_luminancia": 0.0187
+    },
+    {
+      "rgb": [
+        44,
+        121,
+        87
+      ],
+      "hex_imagem": "#2C7957",
+      "fracao": 0.0227,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 6.5,
+      "amplitude_luminancia": 0.0245
+    },
+    {
+      "rgb": [
+        122,
+        175,
+        145
+      ],
+      "hex_imagem": "#7AAF91",
+      "fracao": 0.0225,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 12.2,
+      "amplitude_luminancia": 0.0268
+    },
+    {
+      "rgb": [
+        39,
+        97,
+        71
+      ],
+      "hex_imagem": "#276147",
+      "fracao": 0.0204,
+      "token_mais_perto": "#125233",
+      "delta_e": 7.6,
+      "amplitude_luminancia": 0.0295
+    },
+    {
+      "rgb": [
+        57,
+        132,
+        97
+      ],
+      "hex_imagem": "#398461",
+      "fracao": 0.0197,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 10.5,
+      "amplitude_luminancia": 0.0261
+    },
+    {
+      "rgb": [
+        48,
+        135,
+        96
+      ],
+      "hex_imagem": "#308760",
+      "fracao": 0.0191,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 11.3,
+      "amplitude_luminancia": 0.0228
+    },
+    {
+      "rgb": [
+        95,
+        164,
+        127
+      ],
+      "hex_imagem": "#5FA47F",
+      "fracao": 0.0185,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 13.4,
+      "amplitude_luminancia": 0.0266
+    },
+    {
+      "rgb": [
+        30,
+        80,
+        58
+      ],
+      "hex_imagem": "#1E503A",
+      "fracao": 0.0176,
+      "token_mais_perto": "#125233",
+      "delta_e": 7.0,
+      "amplitude_luminancia": 0.0252
+    },
+    {
+      "rgb": [
+        14,
+        39,
+        28
+      ],
+      "hex_imagem": "#0E271C",
+      "fracao": 0.0149,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 13.2,
+      "amplitude_luminancia": 0.0226
+    },
+    {
+      "rgb": [
+        24,
+        67,
+        48
+      ],
+      "hex_imagem": "#184330",
+      "fracao": 0.0112,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 3.7,
+      "amplitude_luminancia": 0.028
+    }
+  ],
+  "fundo": {
+    "hex": "#1B1B1B",
+    "fracao": 0.3566
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "#F0F1F6 ocupa 2.3% do quadro e não é nenhuma cor da paleta dark (mais perto: #78C9A4, ΔE 41.5)"
+  ],
+  "avisos": [
+    "#2D2D2D (19.2%) está longe de #141414 (ΔE 12.2)",
+    "#7AAF91 (2.2%) está longe de #78C9A4 (ΔE 12.2)",
+    "#276147 varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão demais",
+    "#398461 (2.0%) está longe de #1B6A45 (ΔE 10.5)",
+    "#308760 (1.9%) está longe de #1B6A45 (ΔE 11.3)",
+    "#5FA47F (1.8%) está longe de #78C9A4 (ΔE 13.4)",
+    "#0E271C (1.5%) está longe de #0F3D27 (ΔE 13.2)",
+    "15 cores ≥1% do quadro; a marca pede entre 3 e 7",
+    "o fundo ocupa 36% do quadro; a marca pede ao menos 40%"
+  ]
+}
