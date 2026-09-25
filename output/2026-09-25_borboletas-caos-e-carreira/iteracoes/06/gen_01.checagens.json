@@ -1,0 +1,150 @@
+{
+  "imagem": "output/2026-09-25_borboletas-caos-e-carreira/iteracoes/06/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        223,
+        238,
+        233
+      ],
+      "hex_imagem": "#DFEEE9",
+      "fracao": 0.7791,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 2.2,
+      "amplitude_luminancia": 0.0138
+    },
+    {
+      "rgb": [
+        140,
+        198,
+        166
+      ],
+      "hex_imagem": "#8CC6A6",
+      "fracao": 0.0324,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 7.8,
+      "amplitude_luminancia": 0.0266
+    },
+    {
+      "rgb": [
+        69,
+        145,
+        106
+      ],
+      "hex_imagem": "#45916A",
+      "fracao": 0.0318,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 13.4,
+      "amplitude_luminancia": 0.0239
+    },
+    {
+      "rgb": [
+        58,
+        113,
+        83
+      ],
+      "hex_imagem": "#3A7153",
+      "fracao": 0.028,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 25.3,
+      "amplitude_luminancia": 0.0263
+    },
+    {
+      "rgb": [
+        111,
+        173,
+        141
+      ],
+      "hex_imagem": "#6FAD8D",
+      "fracao": 0.0233,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 11.0,
+      "amplitude_luminancia": 0.0322
+    },
+    {
+      "rgb": [
+        36,
+        88,
+        61
+      ],
+      "hex_imagem": "#24583D",
+      "fracao": 0.0229,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 33.1,
+      "amplitude_luminancia": 0.0255
+    },
+    {
+      "rgb": [
+        172,
+        198,
+        183
+      ],
+      "hex_imagem": "#ACC6B7",
+      "fracao": 0.0226,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 18.7,
+      "amplitude_luminancia": 0.031
+    },
+    {
+      "rgb": [
+        212,
+        230,
+        223
+      ],
+      "hex_imagem": "#D4E6DF",
+      "fracao": 0.0222,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0158
+    },
+    {
+      "rgb": [
+        94,
+        148,
+        119
+      ],
+      "hex_imagem": "#5E9477",
+      "fracao": 0.0192,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 20.1,
+      "amplitude_luminancia": 0.0269
+    },
+    {
+      "rgb": [
+        200,
+        222,
+        210
+      ],
+      "hex_imagem": "#C8DED2",
+      "fracao": 0.0167,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 9.5,
+      "amplitude_luminancia": 0.0285
+    }
+  ],
+  "fundo": {
+    "hex": "#DFEEE9",
+    "fracao": 0.7791
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "#3A7153 ocupa 2.8% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 25.3)",
+    "#24583D ocupa 2.3% do quadro e não é nenhuma cor da paleta light (mais perto: #2D9E67, ΔE 33.1)"
+  ],
+  "avisos": [
+    "#45916A (3.2%) está longe de #2D9E67 (ΔE 13.4)",
+    "#6FAD8D (2.3%) está longe de #78C9A4 (ΔE 11.0)",
+    "#6FAD8D varia de tom dentro da própria folha (amplitude 0.032 > 0.028): sombra, gradiente ou grão demais",
+    "#ACC6B7 (2.3%) está longe de #E6F4EE (ΔE 18.7)",
+    "#ACC6B7 varia de tom dentro da própria folha (amplitude 0.031 > 0.028): sombra, gradiente ou grão demais",
+    "#5E9477 (1.9%) está longe de #78C9A4 (ΔE 20.1)",
+    "#C8DED2 (1.7%) está longe de #E6F4EE (ΔE 9.5)",
+    "#C8DED2 varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão demais",
+    "10 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
