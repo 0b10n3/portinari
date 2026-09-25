@@ -236,4 +236,4 @@ Mas o atrator, esse você escolhe.
 No próximo Spoiler, quero puxar outro fio dessa conversa: o que Leonard Mlodinow, em O Andar do Bêbado, tem a dizer sobre como o acaso engana nossa percepção de talento e sucesso. Até lá.
 
 
- **REFERENCE IMAGES**: [encrypted-tbn0.gstatic.co…](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYGmKiV8ZpELvq-dBEAotdrVjLqAGtLmLWB_hPZLNVTQ&s=10)
+ **REFERENCE IMAGES**: pedidos/referencias/borboletas_caos_carreira_ref1.jpg
