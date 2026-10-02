@@ -167,3 +167,7 @@ por bisturi baixo e a mão livre estendida.
 **Bandeira vermelha:** médico + bisturi + caminhar em direção a algo é, nos três, a leitura mais
 fácil de escorregar para ameaça; em C2 (bisturi erguido + caixa em mesa de exame) ela é estrutural,
 não de execução. No escolhido, é o primeiro item que o crítico visual deve conferir.
+
+## Gate 1
+
+Escolhido pelo autor (2026-10-02): **C1 — A confluência**, sem ajuste. Aplicar as correções do crítico listadas acima.
