@@ -128,3 +128,42 @@ facho como forma, o conceito perde a diagonal e precisa ser redesenhado.
 2. Títulos repetem a pilha de folhas lisas com borda picotada da peça da LCA: **sim**.
 3. Facho da lanterna como forma (triângulo de papel chapado, corte a 45°): **pode**.
 4. Médico: **ainda caminhando, mão estendida, sem tocar a caixa**.
+
+## Crítica dos conceitos
+
+| # | Conceito | Nota | Por quê |
+| --- | --- | --- | --- |
+| 1º | C1 — A confluência | 4/5 | É o único que diz a frase inteira do pedido na ordem do pedido: as quatro camadas visíveis como protagonistas → desfiar (o gesto da LCA, que o pedido manda retomar) → feixe de um tom só (os direitos creditórios, a origem que some: "securitizar muda o endereço do risco") → **várias** caixas → o médico em passo, mão estendida, sem tocar, para pegar **uma dessas** caixas (resposta 4, literal). Uma ideia só, a transformação contínua. Usa só `pilha-1..3`, então cabe igual no modo light (que só tem três níveis). Perde ponto por ser o mais carregado (risco de mingau a 1K e de díptico, R13) e pouco original. |
+| 2º | C3 — O facho na prateleira | 3/5 | O mais forte em miniatura e o que melhor carrega a tese do texto (caixas iguais, dívidas diferentes: "qual caixa você tem na mão"). Mas responde com ressalva: rebaixa o fluxo em camadas — o que o pedido diz ser a novidade desta peça ("aqui vamos adicionar camadas ao fluxo") — a cenário de fundo, terceiro na hierarquia, e enfraquece o elo do desfiar com a LCA. É também o de maior risco no gerador: facho puxa glow/degradê, grade de 15–18 caixas puxa rótulo, preço e código de barras, e vira sopa a 1K. O facho em `pilha-4` não existe no modo light (paleta vinculante: lá a pilha tem três níveis); o médico em x 0.12–0.32 encosta no corte do 14:10 (x 0.106). |
+| 3º | C2 — O funil sobre a mesa | 2/5 | Responde em parte. Troca "caixas… pegar uma dessas caixas" por **uma** caixa só: some a escolha e some o "mesma sigla, produtos diferentes". Empilha duas metáforas (funil de convergência + paciente na mesa de exame). O médico fica pequeno, à margem, com bisturi erguido no peito — não é "caminha para pegar", é "vai operar" — e a caixa na mesa de exame tem leitura de caixão; somados, é o conceito mais perto de ameaça/autópsia. As fontes, de novo, viram faixa pequena no topo, a primeira coisa a sumir em miniatura. |
+
+**Recomendo C1**, porque é o único que entrega o pedido inteiro — camadas como protagonistas, o desfiar
+da LCA como elo de série e o médico caminhando para uma entre várias caixas — com uma transformação só
+e sem depender de nenhum elemento de alto risco no gerador (sem facho, sem grade grande, sem
+`pilha-4`). **Se o autor quiser outro caminho:** C3 serve se ele aceitar que a peça fale mais da
+tese do texto (escolher a caixa) do que do fluxo em camadas — e, nesse caso, as tiras têm de descer
+visíveis até a estante, a grade cai para duas prateleiras de quatro caixas, o facho vira
+`pilha-4` no dark e `pilha-3` no light (declarado por modo no prompt), e o médico entra até x ≥ 0.14.
+C2 só se o autor quiser deliberadamente o registro "mesa de cirurgia", e aí troca o bisturi erguido
+por bisturi baixo e a mão livre estendida.
+
+**O que corrigir no escolhido, seja qual for:**
+- **Mão e caixa não podem fundir.** Em C1 o médico e as caixas estão ambos em `figura-principal`
+  e o ponto focal é exatamente onde mão e caixa quase se encontram: deixe uma fresta de fundo
+  (`pilha-1`) visível entre a ponta dos dedos e a caixa — é também o que faz ler "ainda sem tocar".
+- **Médico dentro de mais cortes.** Em C1 a figura de maior hierarquia mora em x 0.66–0.85: dentro
+  da área universal do Substack, mas fora do 1:1 e do 4:5. Puxe para x 0.62–0.80 e encurte o passo,
+  se a peça puder ser reaproveitada em quadrado.
+- **Os títulos são folhas lisas.** A pilha com borda picotada da LCA puxa linhas de texto, cifras e
+  assinatura no gerador: negar nominalmente "lines of text, numbers, signatures, stamps" nas folhas,
+  como já se nega carimbo, seta e código de barras nas caixas.
+- **Quatro estratos, uma silhueta cada.** Renques de cana em colmos verticais, galpões em duas águas,
+  prédio como bloco com uma grua reta, folhas empilhadas — sem janela, porta ou detalhe interno.
+- **Fundo ≥ 40%** (teto sobreponível, mas aqui não há motivo para ceder): com estratos à esquerda,
+  feixe e caixas no centro e médico à direita, mantenha vazia toda a metade superior direita.
+- **Bisturi como instrumento, não arma:** baixo, lâmina para trás, na mão de trás; lâmpada da
+  lanterna como retângulo chapado sem brilho (C1 não precisa do facho, embora o autor o permita).
+
+**Bandeira vermelha:** médico + bisturi + caminhar em direção a algo é, nos três, a leitura mais
+fácil de escorregar para ameaça; em C2 (bisturi erguido + caixa em mesa de exame) ela é estrutural,
+não de execução. No escolhido, é o primeiro item que o crítico visual deve conferir.
