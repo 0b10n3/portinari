@@ -1,0 +1,58 @@
+{
+  "pedido": "pedidos/A anatomia e o verdadeiro risco do CRA.md",
+  "slug": "a-anatomia-e-o-verdadeiro-risco-do-cra",
+  "titulo": "A anatomia e o verdadeiro risco do CRA",
+  "uso": "substack",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    2560,
+    1440
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "flat",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "2.7.0",
+    "versao_design": "3.1",
+    "fingerprint": "723434af59c552f272e671805e7dd9eec6675230274f22fa26fbd4430c6576f6"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 3,
+      "geracao": "gen_02",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/dark_gen_02.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "41f2dddaa4263623fc5f45c1c4f8b88cc56e7fa8ddf54ba03ebb915d316020e0",
+      "gate2": "aprovado"
+    },
+    "light": {
+      "prompt": "final/prompt_light.md",
+      "iteracao": 5,
+      "geracao": "gen_02",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/light_gen_02.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "f255f7129917591fa9b952ab76254774785b1e21ea040b8b0b407bfda0445cbb",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "concluido",
+  "pedido_arquivado": "/home/saga/Projects/Syntaxis/pipelines/portinari/pedidos/_processados/A anatomia e o verdadeiro risco do CRA.md"
+}
