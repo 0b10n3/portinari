@@ -1,0 +1,104 @@
+{
+  "imagem": "output/2026-10-02_a-anatomia-e-o-verdadeiro-risco-do-cra/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        21,
+        21,
+        21
+      ],
+      "hex_imagem": "#151515",
+      "fracao": 0.647,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.5,
+      "amplitude_luminancia": 0.0048
+    },
+    {
+      "rgb": [
+        126,
+        192,
+        159
+      ],
+      "hex_imagem": "#7EC09F",
+      "fracao": 0.0828,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 5.6,
+      "amplitude_luminancia": 0.0139
+    },
+    {
+      "rgb": [
+        20,
+        69,
+        45
+      ],
+      "hex_imagem": "#14452D",
+      "fracao": 0.0715,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 3.6,
+      "amplitude_luminancia": 0.0112
+    },
+    {
+      "rgb": [
+        39,
+        125,
+        85
+      ],
+      "hex_imagem": "#277D55",
+      "fracao": 0.0554,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 7.6,
+      "amplitude_luminancia": 0.0221
+    },
+    {
+      "rgb": [
+        43,
+        140,
+        98
+      ],
+      "hex_imagem": "#2B8C62",
+      "fracao": 0.0442,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 10.1,
+      "amplitude_luminancia": 0.0199
+    },
+    {
+      "rgb": [
+        7,
+        15,
+        9
+      ],
+      "hex_imagem": "#070F09",
+      "fracao": 0.0267,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0074
+    },
+    {
+      "rgb": [
+        112,
+        178,
+        145
+      ],
+      "hex_imagem": "#70B291",
+      "fracao": 0.011,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 8.9,
+      "amplitude_luminancia": 0.0238
+    }
+  ],
+  "fundo": {
+    "hex": "#151515",
+    "fracao": 0.647
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#2B8C62 (4.4%) está longe de #2D9E67 (ΔE 10.1)",
+    "#70B291 (1.1%) está longe de #78C9A4 (ΔE 8.9)"
+  ]
+}
