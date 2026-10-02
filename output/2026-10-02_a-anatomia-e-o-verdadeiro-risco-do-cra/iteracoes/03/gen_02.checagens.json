@@ -1,0 +1,154 @@
+{
+  "imagem": "output/2026-10-02_a-anatomia-e-o-verdadeiro-risco-do-cra/iteracoes/03/gen_02.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        22,
+        22,
+        22
+      ],
+      "hex_imagem": "#161616",
+      "fracao": 0.6274,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0075
+    },
+    {
+      "rgb": [
+        21,
+        79,
+        49
+      ],
+      "hex_imagem": "#154F31",
+      "fracao": 0.0625,
+      "token_mais_perto": "#125233",
+      "delta_e": 1.8,
+      "amplitude_luminancia": 0.0149
+    },
+    {
+      "rgb": [
+        49,
+        129,
+        91
+      ],
+      "hex_imagem": "#31815B",
+      "fracao": 0.0498,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 8.9,
+      "amplitude_luminancia": 0.0195
+    },
+    {
+      "rgb": [
+        28,
+        28,
+        28
+      ],
+      "hex_imagem": "#1C1C1C",
+      "fracao": 0.0364,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.9,
+      "amplitude_luminancia": 0.0065
+    },
+    {
+      "rgb": [
+        125,
+        193,
+        160
+      ],
+      "hex_imagem": "#7DC1A0",
+      "fracao": 0.0347,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 5.0,
+      "amplitude_luminancia": 0.0149
+    },
+    {
+      "rgb": [
+        45,
+        144,
+        102
+      ],
+      "hex_imagem": "#2D9066",
+      "fracao": 0.033,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 9.2,
+      "amplitude_luminancia": 0.0195
+    },
+    {
+      "rgb": [
+        29,
+        104,
+        68
+      ],
+      "hex_imagem": "#1D6844",
+      "fracao": 0.0324,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 1.3,
+      "amplitude_luminancia": 0.0192
+    },
+    {
+      "rgb": [
+        18,
+        61,
+        41
+      ],
+      "hex_imagem": "#123D29",
+      "fracao": 0.0284,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.6,
+      "amplitude_luminancia": 0.0138
+    },
+    {
+      "rgb": [
+        9,
+        15,
+        10
+      ],
+      "hex_imagem": "#090F0A",
+      "fracao": 0.0203,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.9,
+      "amplitude_luminancia": 0.0072
+    },
+    {
+      "rgb": [
+        44,
+        98,
+        70
+      ],
+      "hex_imagem": "#2C6246",
+      "fracao": 0.0102,
+      "token_mais_perto": "#125233",
+      "delta_e": 7.8,
+      "amplitude_luminancia": 0.024
+    },
+    {
+      "rgb": [
+        42,
+        117,
+        80
+      ],
+      "hex_imagem": "#2A7550",
+      "fracao": 0.0101,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0419
+    }
+  ],
+  "fundo": {
+    "hex": "#161616",
+    "fracao": 0.6274
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#31815B (5.0%) está longe de #1B6A45 (ΔE 8.9)",
+    "#2D9066 (3.3%) está longe de #2D9E67 (ΔE 9.2)",
+    "#2A7550 varia de tom dentro da própria folha (amplitude 0.042 > 0.028): sombra, gradiente ou grão demais",
+    "11 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
