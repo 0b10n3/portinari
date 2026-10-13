@@ -152,3 +152,59 @@ mais contrastado, ele pode virar o herói da peça e inverter o pedido. É inten
 em "enxergar o meu coqueiro"), mas o autor precisa querer essa leitura; (d) os mesmos riscos do C1:
 marca de nota virando algarismo, fio colando na copa, folha lisa ganhando pauta ou quadrícula, cocos
 confundidos com cacaus.
+
+## Crítica dos conceitos
+
+O pedido fecha numa frase de duas metades: o fio **passa por cima do coqueiro sem tocá-lo** e **"a
+nota premiou a planta que dá trabalho"**. Os três conceitos acertam a primeira metade; o que os
+separa é a segunda. Os contrastes abaixo são razões WCAG calculadas com os hex do snapshot.
+
+| # | Conceito | Nota | Por quê |
+| --- | --- | --- | --- |
+| 1º | C2 | 4/5 | É o único que desenha as duas metades do pedido: o mesmo salto sem tocar do C1 e o "premiou", com o anel no tronco que rima com o anel da nota. É **uma ideia só**: a marca da nota passa para a planta, sem metáfora nova empilhada. O foco (0.70, 0.61) cai dentro da área segura universal e dos cortes 1:1. Perde um ponto por três motivos. No light, o acento `#5F7D1C` sobre o tronco `#2D9E67` dá **~1,4:1**, e o foco some. O fio cruza a copa. E "fita de prêmio" atrai roseta e medalha, além de acrescentar a leitura de posse (risco c). |
+| 2º | C1 | 4/5 | É o pedido ao pé da letra, com uma ideia só e o menor risco de composição. Fica atrás pelo critério 1: o "premiou" fica fraco. O fio só encosta numa folha do alto, e a 200 px isso se lê como "aponta para", não como "premia". O foco é um **vazio**: a fresta de ~100 px entre o fio e a copa é justamente o que o gerador mais tende a fechar. O "rasgado ao meio" vira só uma borda rasgada, porque a outra metade não aparece. |
+| 3º | C3 | 3/5 | É o mais original e o que mais conversa com o fechamento do texto ("enxergar o meu coqueiro"). Só que tira o impacto do lugar que o brief marcou: o impacto do pedido é o fio que premia o cacaueiro, e aqui o herói é o coqueiro no vão, com a miniatura lendo "planta no buraco" antes do fio. Também empilha **dois mecanismos** para "invisível": fora do registro e saltado pelo fio. A hierarquia depende de o coqueiro ser o maior contraste do quadro, e isso só vale no dark (~6:1). No light, `#78C9A4` sobre `#E2E8F0` dá **~1,6:1**, o elemento mais apagado da peça. É o de maior risco no gerador: vão exato, metades que se juntam, díptico (R13). |
+
+**Recomendo C2**, porque é o único em que a imagem diz "a nota premiou a planta que dá trabalho"
+sem precisar de legenda: o círculo que marca a nota é o mesmo que marca o cacaueiro, e o coqueiro
+fica fora dos dois. Mantém tudo o que o C1 tem de fiel ao pedido (o fio salta sem tocar) e
+acrescenta a metade que falta. **Se o autor quiser outro caminho:** C1 serve se ele preferir a
+fidelidade literal ao texto do pedido e o menor risco no gerador, aceitando que o "premiou" fique
+implícito. C3 serve se ele quiser que a capa fale do coqueiro (o fechamento do texto) e não do
+engano da nota. Nesse caso, o coqueiro precisa ir para `figura-principal` no light (~2,7:1 sobre
+`pilha-1`), senão a hierarquia dele não se sustenta.
+
+**O que corrigir no escolhido, seja qual for:**
+- **Contraste do acento por modo.** No light, `#5F7D1C` dá ~1,4:1 sobre `#2D9E67`, ~2,4:1 sobre
+  `#78C9A4` e ~4,4:1 sobre `pilha-3`. No dark, `#CDF163` dá ~2,6:1 sobre `#2D9E67` e só ~1,5:1 sobre
+  `#78C9A4`. Onde o fio encosta numa figura, a cor de baixo tem que ser escolhida por modo:
+  - No C2, o tronco fica em `figura-principal` no dark e em `figura-secundaria` no light, com os
+    frutos trocando no sentido inverso. As folhas da borda que o fio cruza ficam **só** em
+    `pilha-3`, e não em `figura-principal`, como o risco (b) do conceito admite.
+  - No C1 e no C3, a folha onde o fio pousa fica em `pilha-3`, que contrasta nos dois modos.
+- **Fresta medida.** Entre o fio e a ponta mais alta da copa do coqueiro, pelo menos 0,07 da altura
+  (~100 px no master). Isso vai no prompt em número e também como negação: "the strip never touches
+  or overlaps any leaf".
+- **Espessura constante de ~12 px** no fio inteiro, inclusive na volta do tronco (C2). O "melhor em
+  miniatura" do C2 precisa vir do nó e da volta, não de engrossar a tira. Engrossar quebra a
+  resposta 2 e empurra o acento para perto de 1%. Pela minha estimativa, o acento fica em ~0,7% do
+  quadro no C1 e ~0,8% no C2.
+- **45° em pixels, não em fração.** No C1, a descida (0.54, 0.09)→(0.66, 0.31) dá 307×317 px; é
+  preciso acertar as coordenadas. No C2, (0.42, 0.11)→(0.70, 0.61) fecha em 717×720 px e está certo.
+- **Vocabulário.** No C2, nunca escrever award, ribbon, prize, medal, rosette ou trophy no prompt.
+  Descrever só a forma: "the same strip wraps once around the trunk and ends in a knot with two
+  short tails cut at 45 degrees". Em todos, negar pelo nome algarismos, letras, assinatura, carimbo,
+  pauta e quadrícula.
+- **Borda da área segura.** No C2, a copa do cacaueiro vai até x 0.89, colada no limite 0.894 do
+  corte 14:10. Puxar para no máximo 0.87.
+- **Coqueiro no light.** `#78C9A4` sobre o histórico `#E6F4EE` dá ~1,7:1. Isso combina com o
+  "invisível" do C1 e do C2, mas o tronco fino pode sumir a 200 px. Conferir na validação light.
+- **O que cede, e cedeu por decisão do autor:** acento como linha e não como ponto; anel a compasso
+  e cocos e frutos com contorno curvo, contra o "reto ou a 45°". São padrões sobreponíveis e entram
+  como aviso, não como reprovação. A paleta, que é vinculante, é respeitada nos três: seis cores, só
+  `pilha-1..3`.
+
+**Bandeira vermelha:** no C2 com as cores do conceito, o foco fica com ~1,4:1 no light (acento
+`#5F7D1C` sobre o tronco `#2D9E67`). Se o prompter repetir nos dois modos a mesma atribuição de
+cores, o anel do tronco desaparece na variante light. A troca de cor do tronco por modo é
+obrigatória.
