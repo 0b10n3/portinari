@@ -103,6 +103,20 @@ Consequência: a "injeção determinística do bloco de marca" só é garantida 
 **verificar depois** o `Using prompt:` registrado no passo do transcript e recusar/retentar quando
 o bloco não estiver lá. Ver PLANO, risco R1.
 
+### 3.5.1 agy 1.3.4: a ferramenta foi para um subagente — ✅ medido em 13/10/2026
+
+- O agente principal não chama mais `generate_image`: cria um subagente `image-generator` (conversa
+  própria em `brain/<sub_id>/`, apontada por `brain/<conv>/.system_generated/subagents/*.json`). A
+  imagem continua caindo em `brain/<conv>/`, mas o passo de geração está no transcript do subagente.
+- O passo não traz mais `Using prompt:`; o prompt efetivo está nos `args.Prompt` da chamada
+  `generate_image` (`tool_calls` do `PLANNER_RESPONSE` anterior). `passos_imagem` lê os dois formatos
+  e desce nos subagentes.
+- O pai repassa o prompt, mas não a regra de literalidade: sem ela, o subagente reescreveu o prompt
+  inteiro (6,3 mil → ~2 mil caracteres) e iterou sozinho (2 imagens e uma edição numa chamada). A
+  instrução agora manda repassar a mensagem inteira com as regras; num teste curto e numa tentativa
+  real (6.325 caracteres), o prompt chegou literal. `--agent image-generator` não existe
+  (`unknown agent`). R1 continua aberto: vale a checagem de fidelidade.
+
 ### 3.6 Imagem de referência / edição — ✅ funciona (S2)
 
 `ImagePaths` é aceito em headless e edita de fato: a composição, os elementos e o enquadramento se
