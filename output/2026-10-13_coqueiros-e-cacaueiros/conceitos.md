@@ -208,3 +208,7 @@ engano da nota. Nesse caso, o coqueiro precisa ir para `figura-principal` no lig
 `#5F7D1C` sobre o tronco `#2D9E67`). Se o prompter repetir nos dois modos a mesma atribuição de
 cores, o anel do tronco desaparece na variante light. A troca de cor do tronco por modo é
 obrigatória.
+
+## Gate 1
+
+Escolhido pelo autor (2026-10-13): **C1 — O fio que salta**, sem ajuste, contra a recomendação do crítico (C2). Aplicar as correções do crítico que valem para qualquer escolha (fresta medida, fio de ~12 px constantes, 45° em pixels, cor sob o fio por modo, coqueiro no light).
