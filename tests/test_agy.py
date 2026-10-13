@@ -140,6 +140,24 @@ def test_passos_imagem_formato_real(tmp_path):
     assert agy.passos_imagem("nao-existe", tmp_path) == []
 
 
+def test_passos_imagem_subagente_agy_1_3_4(tmp_path):
+    """agy 1.3.4: a ferramenta roda num subagente; o prompt vem dos args da chamada, não do passo."""
+    pai, sub = tmp_path / "brain" / "pai" / ".system_generated", tmp_path / "brain" / "sub" / ".system_generated"
+    (pai / "logs").mkdir(parents=True)
+    (pai / "subagents").mkdir()
+    (sub / "logs").mkdir(parents=True)
+    (pai / "logs" / "transcript_full.jsonl").write_text(json.dumps({"type": "USER_INPUT", "status": "DONE", "content": "x"}))
+    (pai / "subagents" / "sub.json").write_text(json.dumps({"conversationId": "sub"}))
+    linhas = [
+        {"type": "PLANNER_RESPONSE", "status": "DONE",
+         "tool_calls": [{"name": "generate_image", "args": {"Prompt": "p com #0F3D27", "ImageName": "gen_01"}}]},
+        {"type": "GENERIC", "status": "DONE",
+         "content": "Created At: x\nCompleted At: y\nGenerated image is saved at /home/x/brain/pai/gen_01_1.jpg."},
+    ]
+    (sub / "logs" / "transcript_full.jsonl").write_text("\n".join(map(json.dumps, linhas)))
+    assert agy.passos_imagem("pai", tmp_path) == [{"prompt": "p com #0F3D27", "caminho": "/home/x/brain/pai/gen_01_1.jpg"}]
+
+
 @pytest.mark.parametrize(
     "tam,esperado",
     [((2560, 1440), "16:9"), ((1200, 627), "16:9"), ((1080, 1080), "1:1"), ((1080, 1920), "9:16"),

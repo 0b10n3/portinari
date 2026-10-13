@@ -3,7 +3,7 @@
 Fatos em que isto se apoia (docs/agy.md): não há comando de imagem — `agy -p` pede ao agente que
 chame a ferramenta `generate_image(Prompt, ImageName, AspectRatio, ImagePaths)`; um LLM de texto
 fica no meio e pode reescrever o prompt; `status` do JSON não é confiável (pode ser ERROR com
-exit 0). Por isso o resultado é lido do transcript (`GENERATE_IMAGE`), e o prompt que a ferramenta
+exit 0). Por isso o resultado é lido do transcript (o passo de geração), e o prompt que a ferramenta
 recebeu de fato é comparado com o pretendido.
 """
 
@@ -120,7 +120,13 @@ def _instrucao(prompt: str, proporcao: str, nome: str, refs: list[str], tentativ
     ]
     if refs:
         linhas.append(f"- ImagePaths: {json.dumps(refs)}")
-    linhas += ["Do not call any other tool. Do not describe the image. When the tool finishes, reply only: DONE"]
+    linhas += [
+        # agy 1.3.4 delega a ferramenta a um subagente que, sem esta regra, reescreve o prompt e itera
+        "If you delegate to an image generator subagent, forward this ENTIRE message to it unchanged, including "
+        "these rules: call generate_image exactly ONCE with the Prompt verbatim, never rewrite or improve it, "
+        "never generate a second image, never edit or refine the result, reply only DONE.",
+        "Do not call any other tool. Do not describe the image. When the tool finishes, reply only: DONE",
+    ]
     if tentativa > 1:
         linhas.append("WARNING: a previous attempt changed the prompt. Copy it EXACTLY, every line.")
     return "\n".join(linhas) + f"\n\n<<<PROMPT\n{prompt.strip()}\nPROMPT>>>\n"
@@ -129,21 +135,35 @@ def _instrucao(prompt: str, proporcao: str, nome: str, refs: list[str], tentativ
 def passos_imagem(conversation_id: str, home: Path | None = None) -> list[dict]:
     """Passos de geração do transcript: [{prompt, caminho}] (prompt = o que a ferramenta recebeu).
     Não filtra pelo `type` do passo: no agy 1.2.7 em headless ele vem como GENERIC (S1), nas sessões
-    antigas como GENERATE_IMAGE — o que identifica o passo é o conteúdo."""
-    p = (home or _home()) / "brain" / conversation_id / ".system_generated" / "logs" / "transcript_full.jsonl"
+    antigas como GENERATE_IMAGE — o que identifica o passo é o conteúdo. No agy 1.3.4 a ferramenta
+    roda num subagente (`.system_generated/subagents/*.json` aponta a conversa dele) e o passo não traz
+    mais `Using prompt:`: o prompt sai dos `args` da chamada `generate_image` que o precede."""
+    raiz = (home or _home()) / "brain" / conversation_id / ".system_generated"
+    p = raiz / "logs" / "transcript_full.jsonl"
     if not p.is_file():
         return []
-    passos = []
+    passos, chamado = [], ""
     for linha in p.read_text(encoding="utf-8").splitlines():
         try:
             r = json.loads(linha)
         except ValueError:
             continue
+        for t in r.get("tool_calls") or []:
+            if t.get("name") == "generate_image":
+                chamado = (t.get("args") or {}).get("Prompt", "")
         if r.get("status") != "DONE":
             continue
-        m = re.search(r"Using prompt: (.*?)\n\s*\nGenerated image is saved at (\S+?\.(?:jpe?g|png|webp))\.", r.get("content", ""), re.S)
+        conteudo = r.get("content") or ""
+        m = re.search(r"Using prompt: (.*?)\n\s*\nGenerated image is saved at (\S+?\.(?:jpe?g|png|webp))\.", conteudo, re.S)
         if m:
             passos.append({"prompt": m.group(1), "caminho": m.group(2)})
+        elif m := re.search(r"Generated image is saved at (\S+?\.(?:jpe?g|png|webp))\.", conteudo):
+            passos.append({"prompt": chamado, "caminho": m.group(1)})
+    for sub in sorted((raiz / "subagents").glob("*.json")):
+        try:
+            passos += passos_imagem(json.loads(sub.read_text(encoding="utf-8"))["conversationId"], home)
+        except (ValueError, KeyError):
+            continue
     return passos
 
 
@@ -234,7 +254,7 @@ def gerar(
                 if g.fiel:
                     return g
                 continue  # prompt reescrito: tenta de novo com modelo mais forte
-            g.erro = g.erro or "nenhuma imagem gerada (sem passo GENERATE_IMAGE no transcript)"
+            g.erro = g.erro or "nenhuma imagem gerada (sem passo de geração no transcript)"
             transitorio = True
         g.duracao_s = round(time.monotonic() - t0, 1)
         _registrar(saida, iteracao, g, pasta, prompt, "")
