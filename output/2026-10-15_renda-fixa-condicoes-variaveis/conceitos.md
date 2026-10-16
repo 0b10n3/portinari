@@ -163,3 +163,7 @@ descreve (caminhar sobre uma linha tensa) é de **equilibrista/funâmbulo**. Em 
 artist" faz o gerador desenhar barra de trapézio, cordas e voo, e puxa o circo inteiro. O prompt
 deve dizer "tightrope walker" e negar trapézio e circo nominalmente. Isso respeita o que o autor
 escolheu (a figura humana em vez da esfera) e muda só o termo dado ao modelo.
+
+## Gate 1
+
+O autor escolheu **C1 — A rede que vira escritura** (2026-10-15), seguindo as correções da crítica.
