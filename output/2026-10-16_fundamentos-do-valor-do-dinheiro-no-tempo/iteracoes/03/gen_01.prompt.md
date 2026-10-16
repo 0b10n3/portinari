@@ -1,0 +1,57 @@
+A cut-paper course cover: a tall narrow wooden time cabin, shaped like an upright machine cabinet, stands in the centre of the picture, and behind it one continuous ribbon of paper banknotes and coins runs along a sideways figure eight, the infinity sign drawn with straight 45 degree segments. The pieces are small and sparse on the left and large and dense on the right, as if money changes size by travelling through the cabinet. One cabinet, one ribbon, one idea. No person, no traveller, no hand anywhere in the frame.
+
+The background is two straight horizontal paper bands with clean cut edges, laid edge to edge across the full width. The upper band is the first, darkest stack level and fills the picture from the top down to about seven tenths of the height. The lower band is the second stack level, one step lighter, a low strip across the bottom only, and the cabinet stands directly on it.
+
+On the upper band lies the faceted figure-eight track, and it is drawn by following one single wide strip of paper. The strip leaves the cabinet's right edge climbing at 45 degrees up and to the right, runs flat to the right along the top, turns down through short 45 degree facets around the right end, runs flat back to the left along the bottom, and climbs back at 45 degrees up and to the left until it slides into the cabinet's right edge again, lower down. It crosses behind the cabinet, leaves the cabinet's left edge climbing at 45 degrees up and to the left, runs flat to the left along the top, turns down through short 45 degree facets around the left end, runs flat back to the right along the bottom, and climbs at 45 degrees up and to the right into the cabinet's left edge, closing the eight. So the two diagonal runs form one large X whose middle is hidden by the cabinet: on each side of the cabinet, two diagonal arms of the strip, one high and one low, touch the cabinet's side edge and spread apart away from it like an open V. All four diagonal ends are clearly visible where they meet the cabinet. Neither loop closes on itself; each loop is open on its inner side, where its two diagonals run into the cabinet. Each loop is stretched sideways, much wider than it is tall, and the whole eight spans most of the width but stays inside the upper band, never running over the lower one. Every turn is a straight 45 degree cut, never a curve. The track is the third stack level, the darkest mass in the picture after the two background bands, clearly darker than the cabinet and than every banknote, so it sits back quietly behind them. The inside of each loop is empty background, and the margins around the eight stay empty, so open ground fills well over half the picture.
+
+The cabinet is seen straight on, slender, about one unit wide to nearly three units tall, standing from near the top tenth of the height down to the lower band, and covering only the middle tenth or so of the width. It reads as a tall wardrobe-like cabinet, a piece of furniture or a machine housing, not a building. Its top is a flat, level lid with its two upper corners chamfered at 45 degrees, finished by one plain single-layer cornice strip, no slope, no point, no tiers. A flat cut-out lantern sits directly on that lid: a low, wide square box, wider than it is tall, with a level top edge and no point of any kind. The front is made of vertical planks cut one by one and laid side by side, running unbroken from the lid to the very bottom edge. A tall double door fills about three quarters of the front, from just under the cornice down to near the bottom. Each door leaf has one octagonal porthole placed high in its upper part, a flat cut-out shape pasted on. The cabinet has no base, no plinth and no steps; its bottom edge rests flat and straight on the lower band. The cornice and the door leaves are the primary figure tone; the planks alternate between the primary and the secondary figure tones, so the cabinet is the brightest, most present mass in the picture and stands clearly in front of the dark track. The lantern and the portholes are the secondary figure tone, unlit and matte. The cabinet is completely bare, with no sign, plate, panel grid or emblem.
+
+On the left loop, small sparse banknotes travel along the track with wide gaps between them, interleaved with small octagonal coins with cut rim. On the right loop, large dense banknotes at least twice the size of the left ones travel along the track; in fact each one is about two and a half times as long as any banknote on the left, and they touch and slightly overlap like roof tiles, interleaved with octagonal coins with cut rim at the same larger scale. Every piece lies along the strip and follows its direction: level on the flat runs, tilted at 45 degrees on the facets and on the diagonal arms. Both strands pass behind the cabin, and the size change happens only there, where it can be seen. On the low arm entering from the left, a small banknote slides into the cabinet's left edge, and on the high arm leaving to the right the first large banknote emerging from the cabinet's right edge continues up that arm. On the low arm entering from the right, a large banknote slides into the cabinet's right edge, and on the high arm leaving to the left a small banknote reappears at its left edge. There is no piece of in-between size anywhere. Every banknote and every coin is the secondary figure tone. Each coin is an octagonal disc with a smaller concentric octagon pasted on top in the primary figure tone, forming the cut rim. Each banknote is a generic rectangular sheet whose four corners are clearly chamfered at 45 degrees, with a cut inner frame pasted on top as a second thinner sheet in the primary figure tone, and a solid flat octagonal medallion in the primary figure tone at its centre, a filled shape with nothing inside it. Two or three of the large banknotes on the right loop, besides the focal one, have a folded corner: a straight crease at 45 degrees and a flat triangle turned down, showing the back of the sheet in the primary figure tone, crisp and never curled or rolled.
+
+The focal point is just right of the cabinet, in the upper middle of the picture: the first large banknote emerging from behind the cabinet's right edge on the high diagonal arm, tilted at 45 degrees and lying right on the track strip, its lower left end still tucked behind the cabinet, its whole medallion in view. It points up the arm, never sideways into the empty middle of the right loop. It is the largest and crispest piece of the whole ribbon, with a straight folded corner of its own. Its medallion is a flat octagonal accent medallion, a solid octagon of paper in the accent tone pasted on top. That medallion is the only accent in the entire picture: no other banknote, coin, edge, plank, lantern or porthole carries the accent tone. The cabinet, the focal banknote and the whole eight stay well inside the frame, far from all four edges, because the picture will be cropped towards the centre.
+
+Everything is cut paper: hard straight edges, 45 degree cuts, uniform flat tones, each shape one single tone, no volume and no texture inside a shape, every layer readable as one sheet laid on another. Every medallion and every banknote is entirely plain, with no portrait, animal, emblem, currency sign, letters or numerals of any kind.
+
+# Bloco de marca Syntaxis — modo dark (pilha escura)
+
+## Paleta — pilha escura (a única desta peça)
+
+Pinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,
+nunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,
+legendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.
+
+- Folhas da pilha escura: nível 1 #141414 (a mais escura), nível 2 #0F3D27, nível 3 #125233, nível 4 #1B6A45 (a mais clara).
+- Figura, sobre a pilha (nunca empilha): #2D9E67 e #78C9A4.
+- Acento único, só na virada/conquista/ação: #CDF163.
+
+## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)
+
+- Matizes de pilha por peça: 1, mais um neutro estrutural.
+- Cores ≥1% do quadro: no máximo 7.
+- Fundo mínimo do quadro: 40%.
+- Acento do quadro: até 1%.
+- Granulação (só no fundo), amplitude de luminância: abaixo de 0.028.
+
+## Borda e retícula
+- Corte a faca: **reto ou a 45°**, nunca curva livre.
+- Rasgo: vocabulário base em capa editorial; nas demais taxonomias, um por peça, na ruptura.
+- Retícula de meio-tom: até duas escalas de ponto na mesma peça, só quando codificam ordem de
+  camada (ponto maior = camada mais próxima, por exemplo) — nunca como textura decorativa sem
+  função.
+- Offset de registro tipo risograph: 2–4px, cor chapada, sem gradiente.
+
+## Escala pequena
+Abaixo de 96px não existe ilustração — existe símbolo. Não gere ilustração para favicon,
+avatar ou ícone pequeno; use `brand/LOGO/`. Thumbnail de YouTube: no máximo três camadas
+visíveis.
+
+## Sem texto renderizado
+Nenhuma imagem gerada carrega texto. Geradores erram tipografia; a marca tem tipografia
+própria (§4.2 do `DESIGN.md`). Quem carrega a informação verbal é o alt-text.
+
+Flat cut-paper sheets, each sheet one perfectly uniform solid color from edge to edge, the same
+tone in the middle and at the margin. Straight edges and 45-degree cuts only. No texture on any
+sheet. Lit like a flatbed-scanner image, identical light across the whole frame.
+
+## Technical
+Render at 2560x1440, or the largest size the generator supports; keep every edge crisp.

@@ -1,0 +1,158 @@
+{
+  "imagem": "output/2026-10-16_fundamentos-do-valor-do-dinheiro-no-tempo/iteracoes/03/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        23,
+        23,
+        23
+      ],
+      "hex_imagem": "#171717",
+      "fracao": 0.4008,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0056
+    },
+    {
+      "rgb": [
+        17,
+        59,
+        39
+      ],
+      "hex_imagem": "#113B27",
+      "fracao": 0.1485,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.9,
+      "amplitude_luminancia": 0.0068
+    },
+    {
+      "rgb": [
+        38,
+        91,
+        63
+      ],
+      "hex_imagem": "#265B3F",
+      "fracao": 0.1053,
+      "token_mais_perto": "#125233",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0114
+    },
+    {
+      "rgb": [
+        154,
+        209,
+        177
+      ],
+      "hex_imagem": "#9AD1B1",
+      "fracao": 0.0895,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 9.9,
+      "amplitude_luminancia": 0.0204
+    },
+    {
+      "rgb": [
+        126,
+        193,
+        158
+      ],
+      "hex_imagem": "#7EC19E",
+      "fracao": 0.0861,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.8,
+      "amplitude_luminancia": 0.0202
+    },
+    {
+      "rgb": [
+        42,
+        134,
+        96
+      ],
+      "hex_imagem": "#2A8660",
+      "fracao": 0.0621,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 11.0,
+      "amplitude_luminancia": 0.0186
+    },
+    {
+      "rgb": [
+        63,
+        149,
+        110
+      ],
+      "hex_imagem": "#3F956E",
+      "fracao": 0.015,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 11.5,
+      "amplitude_luminancia": 0.0355
+    },
+    {
+      "rgb": [
+        71,
+        157,
+        116
+      ],
+      "hex_imagem": "#479D74",
+      "fracao": 0.0139,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 10.5,
+      "amplitude_luminancia": 0.017
+    },
+    {
+      "rgb": [
+        136,
+        199,
+        166
+      ],
+      "hex_imagem": "#88C7A6",
+      "fracao": 0.0111,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.1,
+      "amplitude_luminancia": 0.0368
+    },
+    {
+      "rgb": [
+        13,
+        18,
+        15
+      ],
+      "hex_imagem": "#0D120F",
+      "fracao": 0.0111,
+      "token_mais_perto": "#141414",
+      "delta_e": 2.8,
+      "amplitude_luminancia": 0.007
+    },
+    {
+      "rgb": [
+        42,
+        112,
+        80
+      ],
+      "hex_imagem": "#2A7050",
+      "fracao": 0.0109,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 4.8,
+      "amplitude_luminancia": 0.0286
+    }
+  ],
+  "fundo": {
+    "hex": "#171717",
+    "fracao": 0.4008
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#9AD1B1 (8.9%) está longe de #78C9A4 (ΔE 9.9)",
+    "#2A8660 (6.2%) está longe de #1B6A45 (ΔE 11.0)",
+    "#3F956E (1.5%) está longe de #2D9E67 (ΔE 11.5)",
+    "#3F956E varia de tom dentro da própria folha (amplitude 0.035 > 0.028): sombra, gradiente ou grão demais",
+    "#479D74 (1.4%) está longe de #2D9E67 (ΔE 10.5)",
+    "#88C7A6 varia de tom dentro da própria folha (amplitude 0.037 > 0.028): sombra, gradiente ou grão demais",
+    "#2A7050 varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão demais",
+    "11 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
