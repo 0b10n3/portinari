@@ -1,0 +1,116 @@
+{
+  "imagem": "output/2026-10-15_renda-fixa-condicoes-variaveis/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        22,
+        22,
+        22
+      ],
+      "hex_imagem": "#161616",
+      "fracao": 0.6908,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0034
+    },
+    {
+      "rgb": [
+        17,
+        59,
+        39
+      ],
+      "hex_imagem": "#113B27",
+      "fracao": 0.0814,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.9,
+      "amplitude_luminancia": 0.0097
+    },
+    {
+      "rgb": [
+        124,
+        194,
+        159
+      ],
+      "hex_imagem": "#7CC29F",
+      "fracao": 0.0743,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.0,
+      "amplitude_luminancia": 0.0114
+    },
+    {
+      "rgb": [
+        51,
+        148,
+        104
+      ],
+      "hex_imagem": "#339468",
+      "fracao": 0.0339,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0154
+    },
+    {
+      "rgb": [
+        52,
+        155,
+        106
+      ],
+      "hex_imagem": "#349B6A",
+      "fracao": 0.0225,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0132
+    },
+    {
+      "rgb": [
+        73,
+        151,
+        114
+      ],
+      "hex_imagem": "#499772",
+      "fracao": 0.0145,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 13.7,
+      "amplitude_luminancia": 0.02
+    },
+    {
+      "rgb": [
+        3,
+        16,
+        7
+      ],
+      "hex_imagem": "#031007",
+      "fracao": 0.0143,
+      "token_mais_perto": "#141414",
+      "delta_e": 6.3,
+      "amplitude_luminancia": 0.0135
+    },
+    {
+      "rgb": [
+        16,
+        24,
+        20
+      ],
+      "hex_imagem": "#101814",
+      "fracao": 0.014,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.7,
+      "amplitude_luminancia": 0.006
+    }
+  ],
+  "fundo": {
+    "hex": "#161616",
+    "fracao": 0.6908
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#499772 (1.5%) está longe de #2D9E67 (ΔE 13.7)",
+    "8 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
