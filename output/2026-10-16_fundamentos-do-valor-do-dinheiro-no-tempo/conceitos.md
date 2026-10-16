@@ -158,3 +158,7 @@ conceitos e a capa passar a apresentar o MOD01 (diagrama de fluxos), e não o cu
 ao gerador, e "TARDIS", "Doctor Who", "police box" e "bigger on the inside" não podem aparecer no
 prompt. Se aparecerem, o gerador tende a trazer o letreiro "POLICE BOX" (texto na imagem, regra 8)
 e a cor real da cabine (fora da paleta, regra vinculante), seja qual for o conceito escolhido.
+
+## Gate 1
+
+O autor escolheu **C1 — O cruzamento que capitaliza** (2026-10-16), seguindo as correções da crítica.
