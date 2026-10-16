@@ -1,0 +1,446 @@
+{
+  "versao_tokens": "2.7.0",
+  "versao_design": "3.1",
+  "fingerprint": "723434af59c552f272e671805e7dd9eec6675230274f22fa26fbd4430c6576f6",
+  "arquivos": {
+    "tokens/syntaxis.tokens.json": "1dd904b1d4924f2fb15e11f943921d4b50610abddb4fd23a16b1d3ac43378bf1",
+    "DESIGN.md": "a6f2c6bf10348ae7eb49e61cd7969cd1fa6cfd92ea5d39b216d4e3983e475f4a",
+    "ILUSTRACOES/_bloco-marca.md": "df691901a5ea8d167b9b7d511be79ff75bf3d2d46eba62b1c50e75350bc83e1e",
+    "ILUSTRACOES/meta-prompt-collage-paper-cut.md": "3ebd539d8418bea20f24e9b8106f5a4fb4d7fbed6dcc22f0374761288615eea7",
+    "ILUSTRACOES/FORMATOS.md": "367d3f0e6f0dfbefbe910a83aadb963de9e8fa7285bba8fe14631e0fc0d0f7fa",
+    "ILUSTRACOES/estilos/README.md": "ac331604aad287ef7ae5a4ad5987c50a0b26943c0bfc81f5ce542e3a28f87478",
+    "ILUSTRACOES/estilos/abstract.md": "e848a5da02d43b6ac8aa70e578b86a95c35a0d42fb633232e16569966cc8ad33",
+    "ILUSTRACOES/estilos/flat.md": "ae6aee9051a35f0eb7e4700f7bc27a59180e22bbdc384d8bd5aa8ac206c4ad38",
+    "ILUSTRACOES/estilos/geometric.md": "bdb1341ac631c8cb33cc6050d7048593d68ff5ad7c976908d170e9bddff40742",
+    "ILUSTRACOES/estilos/grain-textured.md": "ed406c5a9497b5022150ce4737181bb5858a6fe53bd2362964e893c642c5ce23",
+    "ILUSTRACOES/estilos/isometric.md": "d826b792f51b6fe586461b4101595d49845d1302b3f53ce5ab0ea61c38a7cf30",
+    "ILUSTRACOES/estilos/minimal-vibrant.md": "c42c2251133fc1418fa3edb7c64a08b9e7ad7100ceb00df615f84714cb3b3fd8",
+    "ILUSTRACOES/estilos/nostalgic.md": "7005f231216c51ebc62a5404700f8ba48339e155d3c860163ecdd34d4fb694cc",
+    "ILUSTRACOES/estilos/risograph.md": "f1c87203d4522b3cca9bb97ec1d719993aeb9b9a1b7f19ba849ef089e9d932c4",
+    "ILUSTRACOES/estilos/surreal.md": "cec4ffb7bfbc3ad05e8f4e12f038f61e0156739ee10f72bff7c2e6829618e68b"
+  },
+  "vinculante": [
+    "paleta"
+  ],
+  "sobreponivel": [
+    "sombra",
+    "granulacao",
+    "frame",
+    "angulo de corte",
+    "tetos numericos",
+    "descritores proibidos"
+  ],
+  "paletas": {
+    "dark": {
+      "camadas": [
+        {
+          "token": "illustration.stack.dark.layer1",
+          "alias": "color.neutral.ink",
+          "hex": "#141414"
+        },
+        {
+          "token": "illustration.stack.dark.layer2",
+          "alias": "color.neutral.deepForest",
+          "hex": "#0F3D27"
+        },
+        {
+          "token": "illustration.stack.dark.layer3",
+          "alias": "color.forest.700",
+          "hex": "#125233"
+        },
+        {
+          "token": "illustration.stack.dark.layer4",
+          "alias": "color.forest.500",
+          "hex": "#1B6A45"
+        }
+      ],
+      "figura": [
+        {
+          "token": "illustration.figure.primary",
+          "alias": "color.grove.500",
+          "hex": "#2D9E67"
+        },
+        {
+          "token": "illustration.figure.secondary",
+          "alias": "color.grove.300",
+          "hex": "#78C9A4"
+        }
+      ],
+      "acento": {
+        "token": "illustration.accent",
+        "alias": "color.lime.500",
+        "hex": "#CDF163"
+      }
+    },
+    "light": {
+      "camadas": [
+        {
+          "token": "illustration.stack.light.layer1",
+          "alias": "color.neutral.mist",
+          "hex": "#E2E8F0"
+        },
+        {
+          "token": "illustration.stack.light.layer2",
+          "alias": "color.neutral.mint",
+          "hex": "#E6F4EE"
+        },
+        {
+          "token": "illustration.stack.light.layer3",
+          "alias": "color.neutral.chalk",
+          "hex": "#F7F7F5"
+        }
+      ],
+      "figura": [
+        {
+          "token": "illustration.figure.primary",
+          "alias": "color.grove.500",
+          "hex": "#2D9E67"
+        },
+        {
+          "token": "illustration.figure.secondary",
+          "alias": "color.grove.300",
+          "hex": "#78C9A4"
+        }
+      ],
+      "acento": {
+        "token": "color.lime.700",
+        "alias": "color.lime.700",
+        "hex": "#5F7D1C"
+      }
+    }
+  },
+  "tetos": {
+    "max_matizes": 1,
+    "max_cores": 7,
+    "fundo_minimo": 0.4,
+    "acento_max": 0.01,
+    "granulacao_max": 0.028,
+    "tamanho_minimo_px": 96
+  },
+  "descritores_proibidos": [
+    "drop shadow",
+    "soft shadow",
+    "blur",
+    "glow",
+    "rounded corners",
+    "organic curve",
+    "gradient",
+    "3D",
+    "bevel",
+    "emboss",
+    "handwritten",
+    "sketchy",
+    "text",
+    "lettering",
+    "typography",
+    "caricature",
+    "satirical"
+  ],
+  "formatos": {
+    "substack-capa": {
+      "uso": "Capa de post (também preview social)",
+      "proporcao": "16:9",
+      "entrega": [
+        1456,
+        816
+      ],
+      "master": [
+        2560,
+        1440
+      ],
+      "formato": [
+        "jpeg",
+        "png"
+      ],
+      "peso_max_mb": 2.0,
+      "observacoes": [],
+      "fonte": "herdada (hemingway, 09/2026 — [VERIFICAR] no editor); preview recorta 14:10 e 1,91:1, mín. 1200×630, recomendado ≥1456×1048: secundária"
+    },
+    "substack-email": {
+      "uso": "Cabeçalho de e-mail",
+      "proporcao": "5:1",
+      "entrega": [
+        1100,
+        220
+      ],
+      "master": [
+        2200,
+        440
+      ],
+      "formato": [
+        "png"
+      ],
+      "peso_max_mb": null,
+      "observacoes": [
+        "gerar em 5:1; não cortar de 16:9"
+      ],
+      "fonte": "secundária (blogs citando o artigo do Substack; \"pode ser mais alto\")"
+    },
+    "linkedin-destaque": {
+      "uso": "Imagem de link/artigo compartilhado",
+      "proporcao": "1.91:1",
+      "entrega": [
+        1200,
+        627
+      ],
+      "master": [
+        2560,
+        1340
+      ],
+      "formato": [
+        "jpeg",
+        "png"
+      ],
+      "peso_max_mb": 3.0,
+      "observacoes": [
+        "corte de 2560×1440"
+      ],
+      "fonte": "LinkedIn oficial"
+    },
+    "instagram-post": {
+      "uso": "Post de feed",
+      "proporcao": "4:5",
+      "entrega": [
+        1080,
+        1350
+      ],
+      "master": [
+        2160,
+        2880
+      ],
+      "formato": [
+        "jpeg"
+      ],
+      "peso_max_mb": null,
+      "observacoes": [
+        "1:1 = 1080×1080, ver D2 da spec",
+        "em 3:4, derivar 4:5 cortando 6,25% da altura"
+      ],
+      "fonte": "proporção 1,91:1–4:5 e largura 320–1080: oficial*; 3:4 aceito desde 11/11/2025: secundária"
+    },
+    "instagram-story": {
+      "uso": "Story · capa de Reels",
+      "proporcao": "9:16",
+      "entrega": [
+        1080,
+        1920
+      ],
+      "master": [
+        2160,
+        3840
+      ],
+      "formato": [
+        "jpeg",
+        "png"
+      ],
+      "peso_max_mb": null,
+      "observacoes": [],
+      "fonte": "tamanho secundária; zonas em \"Áreas seguras\""
+    },
+    "youtube-thumb": {
+      "uso": "Thumbnail",
+      "proporcao": "16:9",
+      "entrega": [
+        1920,
+        1080
+      ],
+      "master": [
+        2560,
+        1440
+      ],
+      "formato": [
+        "jpeg",
+        "png"
+      ],
+      "peso_max_mb": 2.0,
+      "observacoes": [
+        "mín. 1280×720; largura mín. 640"
+      ],
+      "fonte": "YouTube oficial (recomenda até 3840×2160 — ampliar não ganha detalhe)"
+    }
+  },
+  "areas_seguras": {
+    "master_referencia": [
+      2560,
+      1440
+    ],
+    "zonas": {
+      "16:9": {
+        "destino": "16:9",
+        "recorte": [
+          2560,
+          1440
+        ],
+        "fracao": [
+          1.0,
+          1.0
+        ],
+        "deslocamento": "—"
+      },
+      "14:10": {
+        "destino": "14:10 (preview do Substack)",
+        "recorte": [
+          2016,
+          1440
+        ],
+        "fracao": [
+          0.7875,
+          1.0
+        ],
+        "deslocamento": "x 272"
+      },
+      "1,91:1": {
+        "destino": "1,91:1 (LinkedIn, Facebook, OG)",
+        "recorte": [
+          2560,
+          1340
+        ],
+        "fracao": [
+          1.0,
+          0.930556
+        ],
+        "deslocamento": "y 50"
+      },
+      "1:1": {
+        "destino": "1:1",
+        "recorte": [
+          1440,
+          1440
+        ],
+        "fracao": [
+          0.5625,
+          1.0
+        ],
+        "deslocamento": "x 560"
+      },
+      "4:5": {
+        "destino": "4:5",
+        "recorte": [
+          1152,
+          1440
+        ],
+        "fracao": [
+          0.45,
+          1.0
+        ],
+        "deslocamento": "x 704"
+      },
+      "3:4": {
+        "destino": "3:4",
+        "recorte": [
+          1080,
+          1440
+        ],
+        "fracao": [
+          0.421875,
+          1.0
+        ],
+        "deslocamento": "x 740"
+      },
+      "universal": {
+        "destino": "Universal (16:9 ∩ 14:10 ∩ 1,91:1)",
+        "recorte": [
+          2016,
+          1340
+        ],
+        "fracao": [
+          0.7875,
+          0.930556
+        ],
+        "deslocamento": "x 272 · y 50"
+      }
+    }
+  },
+  "estilos": {
+    "abstract": {
+      "nome": "Abstract",
+      "papel": "modo",
+      "restrito": false,
+      "fragmento": "Non-representational arrangement of overlapping cut-paper sheets with straight edges. The area of\neach sheet is proportional to the value it stands for: [sheet A: 62%], [sheet B: 38%]. One sheet\ncarries the accent."
+    },
+    "flat": {
+      "nome": "Flat",
+      "papel": "base",
+      "restrito": false,
+      "fragmento": "Flat cut-paper sheets, each sheet one perfectly uniform solid color from edge to edge, the same\ntone in the middle and at the margin. Straight edges and 45-degree cuts only. No texture on any\nsheet. Lit like a flatbed-scanner image, identical light across the whole frame."
+    },
+    "geometric": {
+      "nome": "Geometric",
+      "papel": "base",
+      "restrito": false,
+      "fragmento": "Composition built only from straight-edged cut-paper sheets: rectangles, right triangles and\ntrapezoids, with every diagonal at exactly 45 degrees. Every edge is a straight line. Sheets are\nstacked and aligned to a regular grid."
+    },
+    "grain-textured": {
+      "nome": "Grain-Textured",
+      "papel": "base",
+      "restrito": false,
+      "fragmento": "Fine paper-fiber grain on the background sheet only, very low contrast, barely visible.\nWhere a halftone dot screen appears, use at most two dot sizes, the larger dots on the layer\nnearest the viewer. Figure and accent sheets are perfectly clean and uniform."
+    },
+    "isometric": {
+      "nome": "Isometric",
+      "papel": "modo",
+      "restrito": true,
+      "fragmento": "Oblique projection: front faces aligned to the horizontal and vertical axes, receding edges at\nexactly 45 degrees. Every face is a flat uniform tone, each face one step lighter or darker than\nits neighbor from the stated palette. No perspective convergence."
+    },
+    "minimal-vibrant": {
+      "nome": "Minimal Vibrant",
+      "papel": "modo",
+      "restrito": false,
+      "fragmento": "At most three cut-paper sheets and one figure, on a large empty background that fills more than\nhalf the frame. One small accent shape as the only warm point. Strong contrast between the dark\nsheets and the figure. Nothing else."
+    },
+    "nostalgic": {
+      "nome": "Nostalgic",
+      "papel": "modo",
+      "restrito": false,
+      "fragmento": "The subject is an object or scene from a past era, for example a typewriter, an abacus or a\ntelephone with a rotary dial, built from cut-paper sheets in the stated palette. Colors are\nexactly the palette hexes, unchanged. A torn paper edge may mark the transition between layers."
+    },
+    "risograph": {
+      "nome": "Risograph",
+      "papel": "base",
+      "restrito": false,
+      "fragmento": "Slight print-registration offset of 2 to 4 pixels on one flat sheet: the same solid color,\nshifted, with a hard edge. Where sheets overlap, the top sheet fully covers the one below. Every\ncolor is opaque and comes only from the stated palette."
+    },
+    "surreal": {
+      "nome": "Surreal",
+      "papel": "modo",
+      "restrito": false,
+      "fragmento": "One impossible juxtaposition of two ordinary objects at mismatched scale, built from cut-paper\nsheets, with a single clear focal point and a large calm background. Symbolic and quiet, not\ncomic."
+    }
+  },
+  "estilos_recusados": {
+    "psychedelic-retro": {
+      "nome": "Psychedelic Retro",
+      "motivo": "Paleta multimatiz e formas distorcidas: viola a paleta (vinculante) e a curva orgânica livre (DESIGN.md §4.4). Use _Surreal_ para o lado conceitual"
+    },
+    "pop-art": {
+      "nome": "Pop Art",
+      "motivo": "Contorno grosso e cores primárias: a paleta é fechada e paper cut não tem traço. O que se aproveita, o meio-tom, já está em [grain-textured.md](grain-textured.md) com a regra da marca"
+    },
+    "doodle-line-art": {
+      "nome": "Doodle & Line Art",
+      "motivo": "handwritten e sketchy são descritores proibidos (§7.5); paper cut é preenchimento, não traço. Traço fino existe na camada de sistema (hairline, growthLine, diagramas), nunca na ilustração"
+    },
+    "holographic": {
+      "nome": "Holographic",
+      "motivo": "Iridescência é gradiente + glow, proibidos. A exceção de gradiente (§4.5) é só ambiente de sistema, baixa opacidade — nunca ilustração"
+    },
+    "pixel-art": {
+      "nome": "Pixel Art",
+      "motivo": "O mais próximo dos recusados (geometria reta, paleta curta), mas quebra a matéria: papel não tem pixel, e retícula só é permitida quando codifica ordem de camada (§7.3). Adotar seria decidir um segundo estilo — pergunta ao founder (APLICACAO.md §11), não inferência"
+    }
+  },
+  "bloco": {
+    "dark": "# Bloco de marca Syntaxis — modo dark (pilha escura)\n\n## Paleta — pilha escura (a única desta peça)\n\nPinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,\nnunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,\nlegendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.\n\n- Folhas da pilha escura: nível 1 #141414 (a mais escura), nível 2 #0F3D27, nível 3 #125233, nível 4 #1B6A45 (a mais clara).\n- Figura, sobre a pilha (nunca empilha): #2D9E67 e #78C9A4.\n- Acento único, só na virada/conquista/ação: #CDF163.\n\n## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)\n\n- Matizes de pilha por peça: 1, mais um neutro estrutural.\n- Cores ≥1% do quadro: no máximo 7.\n- Fundo mínimo do quadro: 40%.\n- Acento do quadro: até 1%.\n- Granulação (só no fundo), amplitude de luminância: abaixo de 0.028.\n\n## Borda e retícula\n- Corte a faca: **reto ou a 45°**, nunca curva livre.\n- Rasgo: vocabulário base em capa editorial; nas demais taxonomias, um por peça, na ruptura.\n- Retícula de meio-tom: até duas escalas de ponto na mesma peça, só quando codificam ordem de\n  camada (ponto maior = camada mais próxima, por exemplo) — nunca como textura decorativa sem\n  função.\n- Offset de registro tipo risograph: 2–4px, cor chapada, sem gradiente.\n\n## Escala pequena\nAbaixo de 96px não existe ilustração — existe símbolo. Não gere ilustração para favicon,\navatar ou ícone pequeno; use `brand/LOGO/`. Thumbnail de YouTube: no máximo três camadas\nvisíveis.\n\n## Sem texto renderizado\nNenhuma imagem gerada carrega texto. Geradores erram tipografia; a marca tem tipografia\nprópria (§4.2 do `DESIGN.md`). Quem carrega a informação verbal é o alt-text.\n",
+    "light": "# Bloco de marca Syntaxis — modo light (pilha clara)\n\n## Paleta — pilha clara (a única desta peça)\n\nPinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,\nnunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,\nlegendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.\n\n- Folhas da pilha clara: nível 1 #E2E8F0 (a mais escura), nível 2 #E6F4EE, nível 3 #F7F7F5 (a mais clara).\n- Figura, sobre a pilha (nunca empilha): #2D9E67 e #78C9A4.\n- Acento único, só na virada/conquista/ação: #5F7D1C.\n\n## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)\n\n- Matizes de pilha por peça: 1, mais um neutro estrutural.\n- Cores ≥1% do quadro: no máximo 7.\n- Fundo mínimo do quadro: 40%.\n- Acento do quadro: até 1%.\n- Granulação (só no fundo), amplitude de luminância: abaixo de 0.028.\n\n## Borda e retícula\n- Corte a faca: **reto ou a 45°**, nunca curva livre.\n- Rasgo: vocabulário base em capa editorial; nas demais taxonomias, um por peça, na ruptura.\n- Retícula de meio-tom: até duas escalas de ponto na mesma peça, só quando codificam ordem de\n  camada (ponto maior = camada mais próxima, por exemplo) — nunca como textura decorativa sem\n  função.\n- Offset de registro tipo risograph: 2–4px, cor chapada, sem gradiente.\n\n## Escala pequena\nAbaixo de 96px não existe ilustração — existe símbolo. Não gere ilustração para favicon,\navatar ou ícone pequeno; use `brand/LOGO/`. Thumbnail de YouTube: no máximo três camadas\nvisíveis.\n\n## Sem texto renderizado\nNenhuma imagem gerada carrega texto. Geradores erram tipografia; a marca tem tipografia\nprópria (§4.2 do `DESIGN.md`). Quem carrega a informação verbal é o alt-text.\n"
+  },
+  "avisos": [],
+  "git": {
+    "repositorio": "/home/saga/Projects/Syntaxis/brand",
+    "remotos": [
+      "origin"
+    ],
+    "alteracoes_locais": [],
+    "atras": 0,
+    "avisos": []
+  }
+}
