@@ -1,0 +1,45 @@
+{
+  "titulo": "Fundamentos do Valor do Dinheiro no Tempo",
+  "slug": "fundamentos-do-valor-do-dinheiro-no-tempo",
+  "pedido": "pedidos/fundations_TVM.md",
+  "saida": "/home/saga/Projects/Syntaxis/pipelines/portinari/output/2026-10-16_fundamentos-do-valor-do-dinheiro-no-tempo",
+  "uso": "Capa de curso no hotmart",
+  "preset": null,
+  "descricao": "Estou criando um curso sobre matemática financeira aplicada a produtos de investimentos do mercado brasileiro\n\nA ideia central do curso é promover o conhecimento de conceitos fundamentais da matemática financeira para jovens profissionais do mercado financeiro.\n\nO curso irá apresentar os principais conceitos do Valor do Dinheiro no Tempo, de forma clara, prática. Integrado com IA.\n\nUma breve descrição do curso está anexa.\n\nAtuando como um especialista da criação de ilustrações e designe, com ampla experiencia na criação de capas belas e criativas. Crie a partir desse contexto e da ideia abaixo, 3 propostas de capa para o curso. \n\n\nA tardis, máquina de viagem do tempo do doctor who em tamanho grande e de destaque ao centro. \n\nO dinheiro, moedas e cedulas em fluxo que forma o padrao da leminiscata ao fundo",
+  "estilo": "papercut",
+  "estilo_padrao": false,
+  "estilo_base": "flat",
+  "estilo_modo": null,
+  "aspect_ratio": "16:9",
+  "resolucao": "2k",
+  "tamanho": [
+    2560,
+    1440
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "formato": [],
+  "peso_max_mb": null,
+  "area_segura": [
+    0.7875,
+    0.930556
+  ],
+  "observacoes_formato": [],
+  "contexto": "/home/saga/Projects/Syntaxis/education/FoundationsTVM/",
+  "contexto_arquivos": [],
+  "referencias": [
+    {
+      "origem": "pedidos/referencias/fundations_TVM_ref1.jpeg",
+      "caminho": "/home/saga/Projects/Syntaxis/pipelines/portinari/pedidos/referencias/fundations_TVM_ref1.jpeg",
+      "largura": 2752,
+      "altura": 1536,
+      "formato": "JPEG"
+    }
+  ],
+  "avisos": [
+    "SIZE '2560 x 1440' normalizado para 2560x1440."
+  ],
+  "perguntas": []
+}
