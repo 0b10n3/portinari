@@ -1,0 +1,129 @@
+{
+  "imagem": "output/2026-10-15_renda-fixa-condicoes-variaveis/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        22,
+        22,
+        22
+      ],
+      "hex_imagem": "#161616",
+      "fracao": 0.7082,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0043
+    },
+    {
+      "rgb": [
+        121,
+        191,
+        155
+      ],
+      "hex_imagem": "#79BF9B",
+      "fracao": 0.084,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.4,
+      "amplitude_luminancia": 0.0141
+    },
+    {
+      "rgb": [
+        17,
+        60,
+        40
+      ],
+      "hex_imagem": "#113C28",
+      "fracao": 0.0644,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.6,
+      "amplitude_luminancia": 0.0075
+    },
+    {
+      "rgb": [
+        4,
+        14,
+        7
+      ],
+      "hex_imagem": "#040E07",
+      "fracao": 0.0259,
+      "token_mais_perto": "#141414",
+      "delta_e": 5.2,
+      "amplitude_luminancia": 0.008
+    },
+    {
+      "rgb": [
+        16,
+        24,
+        19
+      ],
+      "hex_imagem": "#101813",
+      "fracao": 0.0229,
+      "token_mais_perto": "#141414",
+      "delta_e": 5.1,
+      "amplitude_luminancia": 0.0079
+    },
+    {
+      "rgb": [
+        139,
+        194,
+        167
+      ],
+      "hex_imagem": "#8BC2A7",
+      "fracao": 0.0168,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 10.1,
+      "amplitude_luminancia": 0.0233
+    },
+    {
+      "rgb": [
+        52,
+        146,
+        102
+      ],
+      "hex_imagem": "#349266",
+      "fracao": 0.0151,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 8.5,
+      "amplitude_luminancia": 0.0109
+    },
+    {
+      "rgb": [
+        124,
+        188,
+        156
+      ],
+      "hex_imagem": "#7CBC9C",
+      "fracao": 0.0141,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.9,
+      "amplitude_luminancia": 0.0156
+    },
+    {
+      "rgb": [
+        31,
+        76,
+        54
+      ],
+      "hex_imagem": "#1F4C36",
+      "fracao": 0.0115,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 6.5,
+      "amplitude_luminancia": 0.0226
+    }
+  ],
+  "fundo": {
+    "hex": "#161616",
+    "fracao": 0.7082
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#8BC2A7 (1.7%) está longe de #78C9A4 (ΔE 10.1)",
+    "#349266 (1.5%) está longe de #2D9E67 (ΔE 8.5)",
+    "9 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}
