@@ -271,3 +271,11 @@ da capa for corrigir o mito da caverna, e só se o velho for lido como velho mes
   Enriquecedor (primeiro item das correções).
 - **C3, a folha em acento com o pincel.** É o maior convite a texto do conjunto (regra 8), e a
   miniatura dele ilustra o mito que o texto desmente.
+
+## Gate 1
+
+O autor escolheu **C1 — Cinco sombras, uma névoa que se dissipa** (2026-10-28), seguindo as correções da crítica. Respostas às perguntas do C1:
+
+1. **Névoa:** opção (c) do crítico. O tom da figura vira o 5º degrau: a figura 4 sai da névoa, sobre `pilha-1` em `figura-principal`, e o velho fica em `figura-secundaria`. A névoa é degrau de fundo atrás das figuras, nunca folha translúcida por cima.
+2. **Acento:** opção (a). Acento só nos rolos; a luz cresce porque a névoa se dissipa.
+3. **Rolos:** feixe de cinco, um por anel, oferecido para a direita, na direção da fileira.
