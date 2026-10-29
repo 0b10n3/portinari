@@ -1,0 +1,106 @@
+{
+  "imagem": "output/2026-10-16_fundamentos-do-valor-do-dinheiro-no-tempo/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        21,
+        21,
+        21
+      ],
+      "hex_imagem": "#151515",
+      "fracao": 0.2719,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.5,
+      "amplitude_luminancia": 0.0035
+    },
+    {
+      "rgb": [
+        14,
+        59,
+        38
+      ],
+      "hex_imagem": "#0E3B26",
+      "fracao": 0.2578,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.1,
+      "amplitude_luminancia": 0.0053
+    },
+    {
+      "rgb": [
+        38,
+        124,
+        85
+      ],
+      "hex_imagem": "#267C55",
+      "fracao": 0.1709,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 7.1,
+      "amplitude_luminancia": 0.0132
+    },
+    {
+      "rgb": [
+        125,
+        198,
+        161
+      ],
+      "hex_imagem": "#7DC6A1",
+      "fracao": 0.1258,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 2.4,
+      "amplitude_luminancia": 0.0123
+    },
+    {
+      "rgb": [
+        49,
+        150,
+        102
+      ],
+      "hex_imagem": "#319666",
+      "fracao": 0.0939,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0069
+    },
+    {
+      "rgb": [
+        31,
+        108,
+        73
+      ],
+      "hex_imagem": "#1F6C49",
+      "fracao": 0.0181,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 1.6,
+      "amplitude_luminancia": 0.0297
+    },
+    {
+      "rgb": [
+        63,
+        143,
+        104
+      ],
+      "hex_imagem": "#3F8F68",
+      "fracao": 0.0104,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 12.9,
+      "amplitude_luminancia": 0.0296
+    }
+  ],
+  "fundo": {
+    "hex": "#151515",
+    "fracao": 0.2719
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#1F6C49 varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "#3F8F68 (1.0%) está longe de #2D9E67 (ΔE 12.9)",
+    "#3F8F68 varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "o fundo ocupa 27% do quadro; a marca pede ao menos 40%"
+  ]
+}

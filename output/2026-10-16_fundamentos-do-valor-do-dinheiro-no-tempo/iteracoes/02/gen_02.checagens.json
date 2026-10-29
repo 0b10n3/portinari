@@ -1,0 +1,204 @@
+{
+  "imagem": "output/2026-10-16_fundamentos-do-valor-do-dinheiro-no-tempo/iteracoes/02/gen_02.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        23,
+        23,
+        23
+      ],
+      "hex_imagem": "#171717",
+      "fracao": 0.323,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0162
+    },
+    {
+      "rgb": [
+        14,
+        61,
+        41
+      ],
+      "hex_imagem": "#0E3D29",
+      "fracao": 0.1366,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.3,
+      "amplitude_luminancia": 0.0136
+    },
+    {
+      "rgb": [
+        149,
+        202,
+        172
+      ],
+      "hex_imagem": "#95CAAC",
+      "fracao": 0.0815,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 10.1,
+      "amplitude_luminancia": 0.0232
+    },
+    {
+      "rgb": [
+        41,
+        130,
+        92
+      ],
+      "hex_imagem": "#29825C",
+      "fracao": 0.0694,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 9.5,
+      "amplitude_luminancia": 0.0247
+    },
+    {
+      "rgb": [
+        30,
+        91,
+        62
+      ],
+      "hex_imagem": "#1E5B3E",
+      "fracao": 0.0676,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0238
+    },
+    {
+      "rgb": [
+        137,
+        194,
+        161
+      ],
+      "hex_imagem": "#89C2A1",
+      "fracao": 0.065,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0212
+    },
+    {
+      "rgb": [
+        20,
+        20,
+        20
+      ],
+      "hex_imagem": "#141414",
+      "fracao": 0.0422,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.0,
+      "amplitude_luminancia": 0.0168
+    },
+    {
+      "rgb": [
+        31,
+        31,
+        31
+      ],
+      "hex_imagem": "#1F1F1F",
+      "fracao": 0.0401,
+      "token_mais_perto": "#141414",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0138
+    },
+    {
+      "rgb": [
+        52,
+        140,
+        102
+      ],
+      "hex_imagem": "#348C66",
+      "fracao": 0.0369,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 12.7,
+      "amplitude_luminancia": 0.0256
+    },
+    {
+      "rgb": [
+        22,
+        82,
+        54
+      ],
+      "hex_imagem": "#165236",
+      "fracao": 0.0362,
+      "token_mais_perto": "#125233",
+      "delta_e": 2.2,
+      "amplitude_luminancia": 0.0203
+    },
+    {
+      "rgb": [
+        8,
+        12,
+        9
+      ],
+      "hex_imagem": "#080C09",
+      "fracao": 0.0172,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.7,
+      "amplitude_luminancia": 0.014
+    },
+    {
+      "rgb": [
+        67,
+        142,
+        108
+      ],
+      "hex_imagem": "#438E6C",
+      "fracao": 0.0161,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 14.5,
+      "amplitude_luminancia": 0.0265
+    },
+    {
+      "rgb": [
+        9,
+        52,
+        32
+      ],
+      "hex_imagem": "#093420",
+      "fracao": 0.012,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 4.1,
+      "amplitude_luminancia": 0.0149
+    },
+    {
+      "rgb": [
+        48,
+        125,
+        89
+      ],
+      "hex_imagem": "#307D59",
+      "fracao": 0.0109,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 7.6,
+      "amplitude_luminancia": 0.0231
+    },
+    {
+      "rgb": [
+        40,
+        105,
+        74
+      ],
+      "hex_imagem": "#28694A",
+      "fracao": 0.0103,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 5.1,
+      "amplitude_luminancia": 0.0222
+    }
+  ],
+  "fundo": {
+    "hex": "#0E3D29",
+    "fracao": 0.1366
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#95CAAC (8.2%) está longe de #78C9A4 (ΔE 10.1)",
+    "#29825C (6.9%) está longe de #1B6A45 (ΔE 9.5)",
+    "#348C66 (3.7%) está longe de #2D9E67 (ΔE 12.7)",
+    "#438E6C (1.6%) está longe de #1B6A45 (ΔE 14.5)",
+    "15 cores ≥1% do quadro; a marca pede entre 3 e 7",
+    "o fundo ocupa 14% do quadro; a marca pede ao menos 40%"
+  ]
+}

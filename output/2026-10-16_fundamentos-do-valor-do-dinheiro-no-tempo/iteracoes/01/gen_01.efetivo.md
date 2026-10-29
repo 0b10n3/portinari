@@ -1,0 +1,55 @@
+A cut-paper course cover: a tall narrow wooden time cabin stands upright in the centre of the picture, and behind it a ribbon of paper banknotes and coins runs along a sideways figure eight, small and sparse on the left, large and dense on the right, as if money changes size by travelling through the cabin. One cabin, one loop, one idea. No person, no traveller, no hand anywhere in the frame.
+
+The background is two straight horizontal paper bands with clean cut edges, laid edge to edge across the full width. The upper band is the first, darkest stack level and runs from the top down to about seventy-two hundredths of the height. The lower band is the second stack level, one step lighter, and the cabin's base rests flat on it. Over both bands lies the faceted figure-eight track: one wide flat strip of paper shaped as two elongated octagons joined at a single X crossing, spanning from about twelve hundredths to eighty-eight hundredths of the width and nearly the full height. Every turn of the track is a straight 45 degree facet, never a curve. The track is the fourth, lightest stack level, clearly lighter than both bands it crosses. The inside of each loop is empty background, and the margins around the loop stay empty, so open ground fills well over half the picture.
+
+The cabin stands exactly on the X crossing and hides it completely, seen straight on, slender, roughly one unit wide to two and a half units tall, spanning from just above the top margin to just above the bottom margin and from forty to sixty hundredths of the width. It is built only from flat paper parts in the primary figure tone: a gable roof cut at 45 degrees like a sentry hut, a small square lantern perched on the ridge, walls made of vertical planks cut one by one and laid side by side, and a double door with one octagonal porthole in each leaf. The lantern and both portholes are a flat cut-out lantern and flat cut-out portholes in the secondary figure tone, pasted onto the cabin, unlit and matte. The roof is a single plain gable with no stepped tiers and no band across the top; the walls are plain planks with no grid of panels; the door has no windowpanes in a grid. The cabin is completely bare, with no sign, plate or emblem.
+
+On the left loop, small sparse banknotes travel along the track with wide gaps between them, interleaved with small octagonal coins with cut rim. On the right loop, large dense banknotes at least twice the size of the left ones travel along the track, touching and slightly overlapping like roof tiles, interleaved with octagonal coins with cut rim at the same larger scale. The two sizes are unmistakably different, and there is no piece of in-between size anywhere: both strands pass behind the cabin, and the size change happens only there, hidden by the cabin. The strand heading right vanishes small at the cabin's left edge and reappears large at its right edge; the strand heading back left vanishes large at the right edge and reappears small at the left edge. Every banknote and every coin is the secondary figure tone. Each coin is an octagonal disc with a smaller concentric octagon pasted on top in the primary figure tone, forming the cut rim. Each banknote is a generic rectangular sheet with corners chamfered at 45 degrees, a cut inner frame pasted on top as a second thinner sheet in the primary figure tone, and a solid flat octagonal medallion in the primary figure tone at its centre, a filled shape with nothing inside it. Two or three of the large banknotes on the right have a folded corner turned down at 45 degrees, showing the back of the sheet in the primary figure tone.
+
+The focal point is just right of centre, at about sixty-two hundredths of the width and half the height: the first large banknote emerging from behind the cabin's right edge, its left end still tucked behind the cabin, its whole medallion in view. It is the largest and crispest piece of the whole ribbon. Its medallion is a flat octagonal accent medallion, a solid octagon of paper in the accent tone pasted on top. That medallion is the only accent in the entire picture: no other banknote, coin, edge, lantern or porthole carries the accent tone. The cabin, the focal banknote and the whole loop stay well inside the frame, far from all four edges, because the picture will be cropped towards the centre.
+
+Everything is cut paper: hard straight edges, 45 degree cuts, uniform flat tones, each shape one single tone, no volume and no texture inside a shape. Every medallion and every banknote is entirely plain, with no portrait, animal, emblem, currency sign, letters or numerals of any kind, not even small or decorative.
+
+# Bloco de marca Syntaxis — modo dark (pilha escura)
+
+## Paleta — pilha escura (a única desta peça)
+
+Pinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,
+nunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,
+legendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.
+
+- Folhas da pilha escura: nível 1 #141414 (a mais escura), nível 2 #0F3D27, nível 3 #125233, nível 4 #1B6A45 (a mais clara).
+- Figura, sobre a pilha (nunca empilha): #2D9E67 e #78C9A4.
+- Acento único, só na virada/conquista/ação: #CDF163.
+
+## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)
+
+- Matizes de pilha por peça: 1, mais um neutro estrutural.
+- Cores ≥1% do quadro: no máximo 7.
+- Fundo mínimo do quadro: 40%.
+- Acento do quadro: até 1%.
+- Granulação (só no fundo), amplitude de luminância: abaixo de 0.028.
+
+## Borda e retícula
+- Corte a faca: **reto ou a 45°**, nunca curva livre.
+- Rasgo: vocabulário base em capa editorial; nas demais taxonomias, um por peça, na ruptura.
+- Retícula de meio-tom: até duas escalas de ponto na mesma peça, só quando codificam ordem de
+  camada (ponto maior = camada mais próxima, por exemplo) — nunca como textura decorativa sem
+  função.
+- Offset de registro tipo risograph: 2–4px, cor chapada, sem gradiente.
+
+## Escala pequena
+Abaixo de 96px não existe ilustração — existe símbolo. Não gere ilustração para favicon,
+avatar ou ícone pequeno; use `brand/LOGO/`. Thumbnail de YouTube: no máximo três camadas
+visíveis.
+
+## Sem texto renderizado
+Nenhuma imagem gerada carrega texto. Geradores erram tipografia; a marca tem tipografia
+própria (§4.2 do `DESIGN.md`). Quem carrega a informação verbal é o alt-text.
+
+Flat cut-paper sheets, each sheet one perfectly uniform solid color from edge to edge, the same
+tone in the middle and at the margin. Straight edges and 45-degree cuts only. No texture on any
+sheet. Lit like a flatbed-scanner image, identical light across the whole frame.
+
+## Technical
+Render at 2560x1440, or the largest size the generator supports; keep every edge crisp.
