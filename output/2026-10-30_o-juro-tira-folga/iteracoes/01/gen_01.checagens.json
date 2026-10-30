@@ -1,0 +1,269 @@
+{
+  "imagem": "output/2026-10-30_o-juro-tira-folga/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "cores": [
+    {
+      "rgb": [
+        23,
+        23,
+        23
+      ],
+      "hex_imagem": "#171717",
+      "fracao": 0.4645,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0083
+    },
+    {
+      "rgb": [
+        226,
+        237,
+        228
+      ],
+      "hex_imagem": "#E2EDE4",
+      "fracao": 0.1198,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 33.9,
+      "amplitude_luminancia": 0.0138
+    },
+    {
+      "rgb": [
+        121,
+        191,
+        152
+      ],
+      "hex_imagem": "#79BF98",
+      "fracao": 0.042,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0141
+    },
+    {
+      "rgb": [
+        204,
+        180,
+        139
+      ],
+      "hex_imagem": "#CCB48B",
+      "fracao": 0.0362,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 38.1,
+      "amplitude_luminancia": 0.0106
+    },
+    {
+      "rgb": [
+        25,
+        83,
+        57
+      ],
+      "hex_imagem": "#195339",
+      "fracao": 0.0316,
+      "token_mais_perto": "#125233",
+      "delta_e": 3.7,
+      "amplitude_luminancia": 0.0181
+    },
+    {
+      "rgb": [
+        17,
+        22,
+        19
+      ],
+      "hex_imagem": "#111613",
+      "fracao": 0.0291,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.0,
+      "amplitude_luminancia": 0.0108
+    },
+    {
+      "rgb": [
+        46,
+        146,
+        99
+      ],
+      "hex_imagem": "#2E9263",
+      "fracao": 0.0268,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 6.6,
+      "amplitude_luminancia": 0.0198
+    },
+    {
+      "rgb": [
+        28,
+        90,
+        62
+      ],
+      "hex_imagem": "#1C5A3E",
+      "fracao": 0.0251,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.1,
+      "amplitude_luminancia": 0.021
+    },
+    {
+      "rgb": [
+        91,
+        107,
+        95
+      ],
+      "hex_imagem": "#5B6B5F",
+      "fracao": 0.0251,
+      "token_mais_perto": "#125233",
+      "delta_e": 24.8,
+      "amplitude_luminancia": 0.014
+    },
+    {
+      "rgb": [
+        7,
+        12,
+        7
+      ],
+      "hex_imagem": "#070C07",
+      "fracao": 0.0217,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0112
+    },
+    {
+      "rgb": [
+        41,
+        134,
+        91
+      ],
+      "hex_imagem": "#29865B",
+      "fracao": 0.0184,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 11.4,
+      "amplitude_luminancia": 0.0247
+    },
+    {
+      "rgb": [
+        38,
+        119,
+        81
+      ],
+      "hex_imagem": "#267751",
+      "fracao": 0.0159,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 5.1,
+      "amplitude_luminancia": 0.0252
+    },
+    {
+      "rgb": [
+        11,
+        37,
+        24
+      ],
+      "hex_imagem": "#0B2518",
+      "fracao": 0.015,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 13.0,
+      "amplitude_luminancia": 0.0201
+    },
+    {
+      "rgb": [
+        60,
+        101,
+        80
+      ],
+      "hex_imagem": "#3C6550",
+      "fracao": 0.0149,
+      "token_mais_perto": "#125233",
+      "delta_e": 13.3,
+      "amplitude_luminancia": 0.0228
+    },
+    {
+      "rgb": [
+        240,
+        248,
+        241
+      ],
+      "hex_imagem": "#F0F8F1",
+      "fracao": 0.0127,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 37.4,
+      "amplitude_luminancia": 0.0181
+    },
+    {
+      "rgb": [
+        10,
+        24,
+        17
+      ],
+      "hex_imagem": "#0A1811",
+      "fracao": 0.0114,
+      "token_mais_perto": "#141414",
+      "delta_e": 7.3,
+      "amplitude_luminancia": 0.0178
+    },
+    {
+      "rgb": [
+        11,
+        28,
+        19
+      ],
+      "hex_imagem": "#0B1C13",
+      "fracao": 0.0106,
+      "token_mais_perto": "#141414",
+      "delta_e": 10.4,
+      "amplitude_luminancia": 0.0179
+    },
+    {
+      "rgb": [
+        33,
+        100,
+        68
+      ],
+      "hex_imagem": "#216444",
+      "fracao": 0.0105,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 4.6,
+      "amplitude_luminancia": 0.0249
+    },
+    {
+      "rgb": [
+        19,
+        68,
+        45
+      ],
+      "hex_imagem": "#13442D",
+      "fracao": 0.0105,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 3.1,
+      "amplitude_luminancia": 0.0241
+    },
+    {
+      "rgb": [
+        99,
+        115,
+        102
+      ],
+      "hex_imagem": "#637366",
+      "fracao": 0.0102,
+      "token_mais_perto": "#125233",
+      "delta_e": 26.4,
+      "amplitude_luminancia": 0.012
+    }
+  ],
+  "fundo": {
+    "hex": "#171717",
+    "fracao": 0.4645
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "#E2EDE4 ocupa 12.0% do quadro e não é nenhuma cor da paleta dark (mais perto: #78C9A4, ΔE 33.9)",
+    "#CCB48B ocupa 3.6% do quadro e não é nenhuma cor da paleta dark (mais perto: #78C9A4, ΔE 38.1)",
+    "#F0F8F1 ocupa 1.3% do quadro e não é nenhuma cor da paleta dark (mais perto: #78C9A4, ΔE 37.4)",
+    "#637366 ocupa 1.0% do quadro e não é nenhuma cor da paleta dark (mais perto: #125233, ΔE 26.4)"
+  ],
+  "avisos": [
+    "#5B6B5F (2.5%) está longe de #125233 (ΔE 24.8)",
+    "#29865B (1.8%) está longe de #1B6A45 (ΔE 11.4)",
+    "#0B2518 (1.5%) está longe de #0F3D27 (ΔE 13.0)",
+    "#3C6550 (1.5%) está longe de #125233 (ΔE 13.3)",
+    "#0B1C13 (1.1%) está longe de #141414 (ΔE 10.4)",
+    "20 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}

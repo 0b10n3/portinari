@@ -1,0 +1,144 @@
+{
+  "imagem": "output/2026-10-30_o-juro-tira-folga/iteracoes/04/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "cores": [
+    {
+      "rgb": [
+        228,
+        243,
+        238
+      ],
+      "hex_imagem": "#E4F3EE",
+      "fracao": 0.5598,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 0.7,
+      "amplitude_luminancia": 0.0127
+    },
+    {
+      "rgb": [
+        244,
+        245,
+        240
+      ],
+      "hex_imagem": "#F4F5F0",
+      "fracao": 0.1399,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 1.8,
+      "amplitude_luminancia": 0.0132
+    },
+    {
+      "rgb": [
+        40,
+        144,
+        100
+      ],
+      "hex_imagem": "#289064",
+      "fracao": 0.073,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 8.0,
+      "amplitude_luminancia": 0.0216
+    },
+    {
+      "rgb": [
+        233,
+        234,
+        228
+      ],
+      "hex_imagem": "#E9EAE4",
+      "fracao": 0.0574,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 5.2,
+      "amplitude_luminancia": 0.0145
+    },
+    {
+      "rgb": [
+        217,
+        225,
+        232
+      ],
+      "hex_imagem": "#D9E1E8",
+      "fracao": 0.0568,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 2.8,
+      "amplitude_luminancia": 0.0182
+    },
+    {
+      "rgb": [
+        130,
+        199,
+        162
+      ],
+      "hex_imagem": "#82C7A2",
+      "fracao": 0.0314,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 3.5,
+      "amplitude_luminancia": 0.0134
+    },
+    {
+      "rgb": [
+        208,
+        219,
+        218
+      ],
+      "hex_imagem": "#D0DBDA",
+      "fracao": 0.0145,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 7.2,
+      "amplitude_luminancia": 0.0224
+    },
+    {
+      "rgb": [
+        44,
+        125,
+        88
+      ],
+      "hex_imagem": "#2C7D58",
+      "fracao": 0.0142,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 16.8,
+      "amplitude_luminancia": 0.025
+    },
+    {
+      "rgb": [
+        200,
+        207,
+        207
+      ],
+      "hex_imagem": "#C8CFCF",
+      "fracao": 0.0109,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 10.1,
+      "amplitude_luminancia": 0.0302
+    },
+    {
+      "rgb": [
+        156,
+        184,
+        169
+      ],
+      "hex_imagem": "#9CB8A9",
+      "fracao": 0.0105,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 21.8,
+      "amplitude_luminancia": 0.0313
+    }
+  ],
+  "fundo": {
+    "hex": "#E4F3EE",
+    "fracao": 0.5598
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#2C7D58 (1.4%) está longe de #2D9E67 (ΔE 16.8)",
+    "#C8CFCF (1.1%) está longe de #E2E8F0 (ΔE 10.1)",
+    "#C8CFCF varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão demais",
+    "#9CB8A9 (1.1%) está longe de #78C9A4 (ΔE 21.8)",
+    "#9CB8A9 varia de tom dentro da própria folha (amplitude 0.031 > 0.028): sombra, gradiente ou grão demais",
+    "10 cores ≥1% do quadro; a marca pede entre 3 e 7"
+  ]
+}

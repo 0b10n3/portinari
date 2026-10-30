@@ -1,0 +1,57 @@
+{
+  "pedido": "pedidos/dias_uteis.md",
+  "slug": "o-juro-tira-folga",
+  "titulo": "O juro tira folga",
+  "uso": "Capa (thumbnail) do post \"Você está contando os dias errado (e isso está custando dinheiro)\", linha Notas de um Professor, Substack Syntaxis. Distribuição social depois: LinkedIn (1,91:1) com reenquadramento; Instagram (4:5) pede recomposição, não corte (ver CONTEXT).",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    2400,
+    1600
+  ],
+  "master": [
+    2400,
+    1600
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "risograph",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "2.7.0",
+    "versao_design": "3.1",
+    "fingerprint": "723434af59c552f272e671805e7dd9eec6675230274f22fa26fbd4430c6576f6"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 3,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/dark_gen_01.jpg",
+      "validacao_px": [
+        1264,
+        848
+      ],
+      "sha256_prompt": "90eb03cf2836feb35a9afa35cf3c103db7336e89c884bf27d3e586830d27ffee",
+      "gate2": "aprovado"
+    },
+    "light": {
+      "prompt": "final/prompt_light.md",
+      "iteracao": 4,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/light_gen_01.jpg",
+      "validacao_px": [
+        1264,
+        848
+      ],
+      "sha256_prompt": "00266ba07918d21e260b5f146c9b6c9128a26a4d087b670fb6b1e6de7ff3d9ac",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "entregue"
+}
