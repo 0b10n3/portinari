@@ -1,0 +1,69 @@
+A cut-paper picture of five men in profile, all facing right, each standing still in his own gesture. The man on the right is a stooped old man who holds a bundle of scrolls close to his chest, the one point of accent.
+
+Framing comes first. The five figures form one compact group in the middle of the picture. The whole group, from the boy and his raised sword on the left to the front end of the bundle on the right, fits inside the central three quarters of the width. The men stand closer together than people usually do, and each gap between them is narrower than a figure. On both sides of the group there is an empty strip of backdrop. The strip on the right is bare darkest background, and it is at least as wide as the old man himself. Nothing enters it: no hand, no scroll, no sword. The old man faces into that empty space.
+
+The focal point is a bundle of five closed scrolls, offered with both hands but held close. The old man's elbows are bent and tucked in, and the bundle rests against his chest, in front of his body. Its front end is no more than a hand's width ahead of his face. Both hands hold it from below, palms up, one under each end, and it points to the right. The bundle is clearly visible, about as long as his forearm. The five scrolls are long and slender, each many times longer than it is thick, stacked one above another in a neat block that is longer than it is tall, with thin gaps between them. Each scroll has protruding roller ends: a short rod sticks out past the rolled paper at both ends. One straight cord wraps flat around the middle like a ring, with no bow and no loose ends. Roller ends and cord are the secondary figure tone. The rolled paper is the accent, flat and solid, with no shading and no halo. It is the only accent in the picture.
+
+Every figure is a single solid paper silhouette. Head, hands and feet are cut from the same sheet as the clothes, in the same figure tone, with no skin colour and no facial features. Every head is a smooth, close-cropped profile with nothing on top, no topknot and no bun; only the armored man wears a helmet.
+
+The background is the first stack layer, the darkest sheet. Behind the three left-hand figures, and only behind them, stand exactly three opaque backdrop sheets. They are full-height vertical strips placed side by side, each running from the top edge to the bottom edge. The fourth stack layer, the lightest, starts at the left edge itself and ends in the gap between the boy and the armored man. The third stack layer ends in the gap between the armored man and the tallest man. The second stack layer ends in the gap between the tallest man and the man nearing fifty. There is no fourth sheet. From that last gap to the right edge the darkest background runs unbroken, and the man nearing fifty and the old man both stand against it. There is no floor and no ground band, and all feet stand on one common line a little above the bottom edge.
+
+All five stand at even intervals with both feet planted. No leg is in stride and no heel is lifted. All heads sit in the upper third. The four left-hand figures are the primary figure tone. The old man is the secondary figure tone, the lighter one, so against the darkest background he has the strongest contrast in the picture.
+
+The boy raising a wooden sword is the smallest figure, his head level with the old man's. He leans forward, feet together. Both arms reach straight up with the hands together on the grip, so the short practice sword stands upright above his head and points straight up, never back over his shoulder.
+
+The young man in armor is the broadest, heaviest silhouette, rigid, feet set wide, in a low helmet with a stepped neck guard. A stepped armor outline carries the armor: square shoulder guards and a skirt whose edges drop in straight steps. Inside the outline the armor is one solid block, with no plates drawn in.
+
+The tallest man holds an extra-long wooden sword in front of him. Both hands grip its lower end together at his waist, and the blade rises forward and up at 45 degrees. It is a thick, plain training sword: grip and blade are one continuous straight piece of the same width, with no guard, no disc and no step between them. Its tip is cut off at 45 degrees. The tip stops in the gap before the man nearing fifty, at the height of that man's chest, never over his head.
+
+The man nearing fifty stands upright, feet together. His two sheathed swords are thrust through his waist sash, hilts forward, scabbard ends back. His arms hang at his sides, hands open and empty.
+
+The old man's back bends in three straight facets. His head is low and pushed forward, his knees are slightly bent and both feet stand flat together. He is shorter than the upright man to his left. Nothing about him is triumphant.
+
+The tallest man, the man nearing fifty and the old man wear a trapezoid hakama: wide pleated trousers flaring from hips to feet, with two or three thin vertical slits rising from the hem and no pocket. Thin cut gaps with straight edges separate arms, hands and swords from each body and let the backdrop show through.
+
+Everything is cut paper: straight edges and 45 degree cuts, every sheet one even tone, nothing cast between sheets. Nothing in the image is readable. The scrolls are closed and bare, with no marks and no seal, and there are no letters, numerals or characters of any script anywhere. The background stays empty: no sun disc, no branches or blossoms, no mountains, no waves, no gates.
+
+# Bloco de marca Syntaxis — modo dark (pilha escura)
+
+## Paleta — pilha escura (a única desta peça)
+
+Pinte só com estes hex, um por folha de papel (âncora absoluta: nunca compare uma folha com outra,
+nunca aproxime uma cor). Nunca misture a pilha escura com a clara. Não desenhe amostras de cor,
+legendas, códigos hex nem nenhum texto na imagem: os hex abaixo são instrução, não conteúdo.
+
+- Folhas da pilha escura: nível 1 #141414 (a mais escura), nível 2 #0F3D27, nível 3 #125233, nível 4 #1B6A45 (a mais clara).
+- Figura, sobre a pilha (nunca empilha): #2D9E67 e #78C9A4.
+- Acento único, só na virada/conquista/ação: #CDF163.
+
+## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)
+
+- Matizes de pilha por peça: 1, mais um neutro estrutural.
+- Cores ≥1% do quadro: no máximo 7.
+- Fundo mínimo do quadro: 40%.
+- Acento do quadro: até 1%.
+- Granulação (só no fundo), amplitude de luminância: abaixo de 0.028.
+
+## Borda e retícula
+- Corte a faca: **reto ou a 45°**, nunca curva livre.
+- Rasgo: vocabulário base em capa editorial; nas demais taxonomias, um por peça, na ruptura.
+- Retícula de meio-tom: até duas escalas de ponto na mesma peça, só quando codificam ordem de
+  camada (ponto maior = camada mais próxima, por exemplo) — nunca como textura decorativa sem
+  função.
+- Offset de registro tipo risograph: 2–4px, cor chapada, sem gradiente.
+
+## Escala pequena
+Abaixo de 96px não existe ilustração — existe símbolo. Não gere ilustração para favicon,
+avatar ou ícone pequeno; use `brand/LOGO/`. Thumbnail de YouTube: no máximo três camadas
+visíveis.
+
+## Sem texto renderizado
+Nenhuma imagem gerada carrega texto. Geradores erram tipografia; a marca tem tipografia
+própria (§4.2 do `DESIGN.md`). Quem carrega a informação verbal é o alt-text.
+
+Flat cut-paper sheets, each sheet one perfectly uniform solid color from edge to edge, the same
+tone in the middle and at the margin. Straight edges and 45-degree cuts only. No texture on any
+sheet. Lit like a flatbed-scanner image, identical light across the whole frame.
+
+## Technical
+Render at 2560x1440, or the largest size the generator supports; keep every edge crisp.
