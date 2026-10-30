@@ -1,0 +1,128 @@
+{
+  "imagem": "output/2026-10-28_samurais-e-duelos-no-mercado-financeiro/iteracoes/03/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        19,
+        19,
+        19
+      ],
+      "hex_imagem": "#131313",
+      "fracao": 0.3098,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.4,
+      "amplitude_luminancia": 0.0043
+    },
+    {
+      "rgb": [
+        49,
+        154,
+        105
+      ],
+      "hex_imagem": "#319A69",
+      "fracao": 0.1985,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 4.0,
+      "amplitude_luminancia": 0.0079
+    },
+    {
+      "rgb": [
+        24,
+        99,
+        66
+      ],
+      "hex_imagem": "#186342",
+      "fracao": 0.1049,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 3.6,
+      "amplitude_luminancia": 0.0079
+    },
+    {
+      "rgb": [
+        18,
+        29,
+        24
+      ],
+      "hex_imagem": "#121D18",
+      "fracao": 0.0946,
+      "token_mais_perto": "#141414",
+      "delta_e": 7.4,
+      "amplitude_luminancia": 0.0094
+    },
+    {
+      "rgb": [
+        15,
+        57,
+        37
+      ],
+      "hex_imagem": "#0F3925",
+      "fracao": 0.0904,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 2.3,
+      "amplitude_luminancia": 0.0082
+    },
+    {
+      "rgb": [
+        20,
+        75,
+        48
+      ],
+      "hex_imagem": "#144B30",
+      "fracao": 0.0852,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0096
+    },
+    {
+      "rgb": [
+        124,
+        194,
+        160
+      ],
+      "hex_imagem": "#7CC2A0",
+      "fracao": 0.0497,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0072
+    },
+    {
+      "rgb": [
+        58,
+        151,
+        107
+      ],
+      "hex_imagem": "#3A976B",
+      "fracao": 0.0152,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 8.0,
+      "amplitude_luminancia": 0.0095
+    },
+    {
+      "rgb": [
+        12,
+        19,
+        14
+      ],
+      "hex_imagem": "#0C130E",
+      "fracao": 0.0131,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.0,
+      "amplitude_luminancia": 0.0123
+    }
+  ],
+  "fundo": {
+    "hex": "#131313",
+    "fracao": 0.3098
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "9 cores ≥1% do quadro; a marca pede entre 3 e 7",
+    "o fundo ocupa 31% do quadro; a marca pede ao menos 40%"
+  ]
+}
