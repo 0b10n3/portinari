@@ -1,0 +1,168 @@
+{
+  "imagem": "output/2026-10-30_o-juro-tira-folga/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "cores": [
+    {
+      "rgb": [
+        16,
+        60,
+        39
+      ],
+      "hex_imagem": "#103C27",
+      "fracao": 0.3938,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0136
+    },
+    {
+      "rgb": [
+        42,
+        128,
+        88
+      ],
+      "hex_imagem": "#2A8058",
+      "fracao": 0.1169,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 8.7,
+      "amplitude_luminancia": 0.0176
+    },
+    {
+      "rgb": [
+        18,
+        31,
+        24
+      ],
+      "hex_imagem": "#121F18",
+      "fracao": 0.0916,
+      "token_mais_perto": "#141414",
+      "delta_e": 9.2,
+      "amplitude_luminancia": 0.009
+    },
+    {
+      "rgb": [
+        41,
+        111,
+        76
+      ],
+      "hex_imagem": "#296F4C",
+      "fracao": 0.0853,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 3.3,
+      "amplitude_luminancia": 0.016
+    },
+    {
+      "rgb": [
+        45,
+        143,
+        98
+      ],
+      "hex_imagem": "#2D8F62",
+      "fracao": 0.0595,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 8.2,
+      "amplitude_luminancia": 0.0213
+    },
+    {
+      "rgb": [
+        34,
+        87,
+        59
+      ],
+      "hex_imagem": "#22573B",
+      "fracao": 0.0514,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0176
+    },
+    {
+      "rgb": [
+        23,
+        69,
+        47
+      ],
+      "hex_imagem": "#17452F",
+      "fracao": 0.0501,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 3.5,
+      "amplitude_luminancia": 0.0138
+    },
+    {
+      "rgb": [
+        131,
+        197,
+        162
+      ],
+      "hex_imagem": "#83C5A2",
+      "fracao": 0.0482,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 4.7,
+      "amplitude_luminancia": 0.0135
+    },
+    {
+      "rgb": [
+        16,
+        25,
+        19
+      ],
+      "hex_imagem": "#101913",
+      "fracao": 0.0174,
+      "token_mais_perto": "#141414",
+      "delta_e": 6.1,
+      "amplitude_luminancia": 0.0148
+    },
+    {
+      "rgb": [
+        7,
+        51,
+        29
+      ],
+      "hex_imagem": "#07331D",
+      "fracao": 0.0134,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 4.4,
+      "amplitude_luminancia": 0.0119
+    },
+    {
+      "rgb": [
+        12,
+        19,
+        14
+      ],
+      "hex_imagem": "#0C130E",
+      "fracao": 0.0105,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.0,
+      "amplitude_luminancia": 0.0179
+    },
+    {
+      "rgb": [
+        54,
+        142,
+        101
+      ],
+      "hex_imagem": "#368E65",
+      "fracao": 0.0101,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 11.1,
+      "amplitude_luminancia": 0.0229
+    }
+  ],
+  "fundo": {
+    "hex": "#103C27",
+    "fracao": 0.3938
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#2A8058 (11.7%) está longe de #1B6A45 (ΔE 8.7)",
+    "#121F18 (9.2%) está longe de #141414 (ΔE 9.2)",
+    "#2D8F62 (5.9%) está longe de #2D9E67 (ΔE 8.2)",
+    "#368E65 (1.0%) está longe de #2D9E67 (ΔE 11.1)",
+    "12 cores ≥1% do quadro; a marca pede entre 3 e 7",
+    "o fundo ocupa 39% do quadro; a marca pede ao menos 40%"
+  ]
+}
