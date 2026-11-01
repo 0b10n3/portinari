@@ -107,8 +107,10 @@ def _prompt(a: argparse.Namespace) -> int:
             for t in faltam:
                 print(f"  - {t}")
             return 2
-    for termo in brand.lint_descritores(criativo, s["descritores_proibidos"]):
-        print(f"aviso: descritor da marca no prompt criativo: '{termo}' (o pedido pode sobrepor)")
+    proibidos = brand.lint_descritores(criativo, s["descritores_proibidos"])
+    if proibidos:  # épico 14: a marca é vinculante (inclusive negado — a negação mora no bloco)
+        print(f"ERRO: descritor proibido no prompt criativo: {', '.join(proibidos)}. Reescreva a cena sem ele.")
+        return 2
     if not b.get("tamanho"):
         print("PERGUNTA AO AUTOR: brief.json sem tamanho; resolva as perguntas do ingest.")
         return 2
@@ -141,7 +143,7 @@ def _gerar(a: argparse.Namespace) -> int:
             return 3
         print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · orquestrador {g.modelo_orquestrador} · "
               f"prompt {'íntegro' if g.fiel else 'ALTERADO'}")
-        if g.hex_ausentes:  # a paleta é a única parte vinculante (A2)
+        if g.hex_ausentes:  # a paleta não chegou ao gerador: a marca é vinculante (épico 14)
             print(f"ERRO: a ferramenta não recebeu os hex da paleta: {', '.join(g.hex_ausentes)}")
             codigo = 4
         elif not g.fiel:

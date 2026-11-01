@@ -180,10 +180,12 @@ def test_cli_prompt_e_gerar_ponta_a_ponta(tmp_path, fake, capsys):
     assert main(["marca", str(run), "--brand", str(AQUI / "fixtures/brand"), "--sem-fetch"]) == 0
     it = run / "iteracoes" / "01"
     it.mkdir(parents=True)
+    # épico 14: descritor proibido na parte criativa bloqueia o prompt (a marca é vinculante)
     (it / "prompt_criativo.md").write_text("Coffee on the left, a drop shadow, LCA certificate on the right.")
+    assert main(["prompt", str(run), "--iteracao", "1", "--modo", "dark"]) == 2
+    assert "drop shadow" in capsys.readouterr().out
+    (it / "prompt_criativo.md").write_text("Coffee on the left, LCA certificate on the right.")
     assert main(["prompt", str(run), "--iteracao", "1", "--modo", "dark"]) == 0
-    out = capsys.readouterr().out
-    assert "drop shadow" in out  # lint avisa (não bloqueia)
     final = (it / "prompt_final.md").read_text()
     assert "#0F3D27" in final and "#E2E8F0" not in final and "2560x1440" in final
     assert main(["gerar", str(run), "--iteracao", "1", "--variacoes", "2"]) == 0

@@ -10,6 +10,7 @@ toda a camada de ilustração de `brand/`, e do `agy` (detalhe em [`agy.md`](./a
 | --- | --- | --- |
 | A1 | **Q1:** ampliação aceita, mas **sempre gerar na melhor resolução possível** | O wrapper tenta a maior resolução que a ferramenta permitir e só cai para a menor se falhar; S1 **sonda** resolução (parâmetro, se existir; instrução no prompt) em vez de assumir 1K. O manifesto registra dimensão nativa e fator de ampliação de cada imagem |
 | A2 | **Q2: o pedido vence a marca, exceto paleta de cores** | C1 resolvida a favor do pedido. **Bloqueante = só a paleta** (tokens do modo, uma pilha por modo). Sombras coerentes com uma única fonte de luz e textura de papel (rubrica do pedido) **valem**. As demais regras da marca (proibição de sombra, granulação < 0,028, frame/hairline, corte a 0°/45°, tetos de nº de cores/fundo/lime, descritores proibidos) viram **padrão sobreponível**: entram no prompt/rubrica como padrão, geram **aviso** (não reprovação) e cedem quando o pedido pedir o contrário |
+| A2-rev | **A2 revogada (30/10/2026)** pela rodada 5 da marca (`brand/REVOGACOES.md` §4.2, R-033/R-082): tudo em `_bloco-marca.md` é vinculante. Aplicado no épico 14 | `specs/epicos/epico-14-marca-vinculante.md` |
 | A3 | **Q4:** modo primário = **dark** | E8 deriva o light a partir do dark aprovado |
 | A4 | **Q5:** recomendação aceita — injeta só a pilha do modo; "descritores proibidos" só como lint (agora aviso, por A2) | E2 |
 | A5 | **Q3, Q6, Q7, Q9, Q11** nos defaults propostos (Q7: `capa de post para substack` = 16:9, 2560×1440) | — |

@@ -3,9 +3,9 @@
 Com A16 a imagem não é mais o produto: ela é a **prova de que o prompt funciona**. Por isso as
 checagens daqui servem ao crítico visual e ao Gate 2, não à entrega.
 
-Hierarquia de gravidade (decisão A2): a **paleta** é a única parte vinculante da marca — cor fora
-dela é ERRO. Os tetos numéricos (nº de cores, fundo, acento, granulação) são padrão sobreponível:
-viram AVISO, e o pedido do autor pode contrariá-los.
+Hierarquia de gravidade (épico 14 — a marca é vinculante, A2 revogada): cor fora da paleta e teto
+estourado (nº de cores, fundo, acento) são ERRO. A variação de tom dentro de uma folha continua AVISO:
+na imagem de validação (JPEG ~1K) ela mistura compressão com sombra, e o crítico visual decide pela B8.
 
 O que este módulo NÃO mede (fica com o crítico visual, e a rubrica diz isso): texto desenhado na
 imagem, ângulo de corte, ponto focal, fidelidade ao enriquecimento.
@@ -127,7 +127,7 @@ def _amplitude_luminancia(amostras: list[tuple[int, int, int]], cor: tuple[int, 
 
 
 def checar(caminho: Path, snapshot: dict, modo: str) -> dict:
-    """Mede a imagem contra a paleta e os tetos do modo. Erros só de paleta (A2)."""
+    """Mede a imagem contra a paleta e os tetos do modo. Paleta e tetos são erro (épico 14)."""
     with Image.open(caminho) as im:
         im.load()
         largura, altura = im.size
@@ -169,12 +169,12 @@ def checar(caminho: Path, snapshot: dict, modo: str) -> dict:
                 f"(amplitude {m['amplitude_luminancia']:.3f} > {t['granulacao_max']}): sombra, gradiente ou grão demais"
             )
     if not 3 <= len(medidas) <= t["max_cores"]:
-        avisos.append(f"{len(medidas)} cores ≥1% do quadro; a marca pede entre 3 e {t['max_cores']}")
+        erros.append(f"{len(medidas)} cores ≥1% do quadro; a marca pede entre 3 e {t['max_cores']}")
     if fundo and fundo[0] < t["fundo_minimo"]:
-        avisos.append(f"o fundo ocupa {fundo[0]:.0%} do quadro; a marca pede ao menos {t['fundo_minimo']:.0%}")
+        erros.append(f"o fundo ocupa {fundo[0]:.0%} do quadro; a marca pede ao menos {t['fundo_minimo']:.0%}")
     acento = next((m["fracao"] for m in medidas if m["token_mais_perto"] == acento_hex), 0.0)
     if acento > t["acento_max"]:
-        avisos.append(f"o acento {acento_hex} ocupa {acento:.1%} do quadro; o teto da marca é {t['acento_max']:.0%}")
+        erros.append(f"o acento {acento_hex} ocupa {acento:.1%} do quadro; o teto da marca é {t['acento_max']:.0%}")
 
     return {
         "imagem": str(caminho),

@@ -12,7 +12,7 @@ Você orquestra o pipeline. **O entregável é o prompt**, não a imagem (decis�
 Nano Banana Pro, colando `final/prompt_<modo>.md`.
 
 Leia `docs/PLANO.md` §6 antes de improvisar qualquer etapa. As decisões que mais mudam o
-comportamento: **A2** (o pedido vence a marca, exceto a paleta), **A3** (modo primário = dark),
+comportamento: **A2 revogada pelo épico 14** (tudo em `_bloco-marca.md` é vinculante), **A3** (modo primário = dark),
 **A16/A17** (entregável = prompt; o `agy` só valida), **D6** (limites e nunca aprovar sozinho).
 
 ## Regras invioláveis
@@ -65,8 +65,8 @@ versão nova ao agente (nunca edite o JSON você mesmo).
 **7. Prompt criativo.** Subagente `prompter-tecnico` → `iteracoes/NN/prompt_criativo.md`.
 
 **8. Prompt final.** `uv run portinari prompt <saida> --iteracao NN --modo <modo>`
-Exit 2 = termo do enriquecimento perdido: devolva a lista ao prompter. Avisos de descritor proibido
-não bloqueiam (A2) — registre.
+Exit 2 = termo do enriquecimento perdido: devolva a lista ao prompter. Descritor proibido também
+sai com 2 (épico 14): reescreva a cena sem ele.
 
 **9. Imagem de validação.** `uv run portinari gerar <saida> --iteracao NN --variacoes N`
 Exit 3 = falha do `agy`; exit 4 = os hex da paleta não chegaram ao gerador (aí **não** siga: o

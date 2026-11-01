@@ -75,20 +75,19 @@ def test_gradiente_dentro_da_folha_avisa(tmp_path):
     assert any("varia de tom dentro da própria folha" in a for a in r["avisos"])
 
 
-def test_acento_acima_do_teto_avisa(tmp_path):
+def test_acento_acima_do_teto_reprova(tmp_path):
     r = imaging.checar(peca(tmp_path, acento_px=260), SNAP, "dark")
     assert r["acento_fracao"] > SNAP["tetos"]["acento_max"]
-    assert any("o acento" in a and "teto da marca" in a for a in r["avisos"])
-    assert r["erros"] == []  # teto numérico é padrão sobreponível (A2), não reprovação
+    assert any("o acento" in e and "teto da marca" in e for e in r["erros"])  # épico 14: teto é vinculante
 
 
-def test_fundo_pequeno_avisa(tmp_path):
+def test_fundo_pequeno_reprova(tmp_path):
     im = Image.new("RGB", (800, 450), DARK[2])  # a folha toma o quadro
     ImageDraw.Draw(im).rectangle([0, 0, 799, 449], outline=DARK[0], width=12)  # fundo vira moldura
     p = tmp_path / "sem-fundo.png"
     im.save(p)
     r = imaging.checar(p, SNAP, "dark")
-    assert any("o fundo ocupa" in a for a in r["avisos"])
+    assert any("o fundo ocupa" in e for e in r["erros"])
 
 
 # --- recorte e derivação ------------------------------------------------------------------------

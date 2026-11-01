@@ -10,7 +10,7 @@ Este arquivo mora fora do código de propósito: mudar a régua não é mudar pr
 
 | # | Bloqueante | Por quê |
 | --- | --- | --- |
-| B1 | **Cor fora da paleta** do modo (erro em `checagens.json`, ΔE > 25) | A paleta é a única regra vinculante da marca (A2). Vale inclusive para objeto que "tem cor própria": a cereja vermelha do S1 é o caso de origem |
+| B1 | **Cor fora da paleta** do modo (erro em `checagens.json`, ΔE > 25) | A paleta é vinculante. Vale inclusive para objeto que "tem cor própria": a cereja vermelha do S1 é o caso de origem |
 | B2 | **Pilhas misturadas** — tons da pilha clara numa peça escura, ou o contrário | Uma pilha por peça; peça que mistura não deriva |
 | B3 | **Texto renderizado**: qualquer palavra, letra, número, sigla, legenda, código de barras, marca d'água ou logo desenhado na imagem | O gerador alucina texto com frequência e a marca proíbe. Inclui `$` onde deveria ser `R$`: numa peça sobre finanças brasileiras, o símbolo errado é erro factual |
 | B4 | **Elemento factualmente errado** no ofício retratado (ferramenta que não existe naquela cultura, gesto impossível, planta trocada) | Uma peça editorial que erra o mundo real desmente o texto que ela ilustra |
@@ -18,10 +18,13 @@ Este arquivo mora fora do código de propósito: mudar a régua não é mudar pr
 | B6 | **Duas ideias** — a peça não se resolve em uma leitura, ou virou díptico de duas metades | Uma ideia por peça (risco R13) |
 | B7 | **Elemento `foco` do enriquecimento ausente** da imagem, ou mais de um terço dos apoios sumidos | O enriquecimento é o que separa uma imagem rala de uma profissional |
 
-**Não são bloqueantes** (padrão sobreponível — A2; citar, nunca reprovar sozinho): sombra projetada,
-gradiente, granulação acima do teto, número de cores fora de 3–7, fundo abaixo de 40%, acento acima
-de 1%, descritor proibido, ângulo de corte fora de 0°/45°. Quando o pedido do autor pede o
-contrário, a marca cede — e o crítico registra que cedeu.
+| B8 | **Sombra ou rampa de luz**: sombra projetada, de contato ou chapada, parede de recorte escurecida, espessura de papel visível, desfoque, brilho, gradiente | Desde o épico 14 a marca é vinculante (A2 revogada): profundidade é degrau de tom, nunca sombra (`brand/DESIGN.md` §7.1–7.2) |
+| B9 | **Curva livre ou perspectiva**: objeto curvo que não virou polígono, folha entreaberta, vista em profundidade (o quarto de arco do símbolo é a única curva) | `brand/DESIGN.md` §7.3; o gerador ignora "sem curvas" genérico — o prompt precisa nomear o polígono |
+| B10 | **Teto estourado**: cores ≥1% fora de 3–7, fundo abaixo de 40%, acento acima de 1%, granulação acima de 0,028, mais de um matiz de pilha | `brand/DESIGN.md` §7.2 — medido em `checagens.json` |
+
+Nenhuma regra de marca é "padrão sobreponível" desde o épico 14: o pedido do autor não desliga
+sombra, tetos, frame, corte ou descritores. Uma exceção é pergunta ao founder e, se aprovada, vira
+exceção nomeada no `brand/DESIGN.md`.
 
 ## Notas — 1 a 5
 

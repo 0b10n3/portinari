@@ -41,7 +41,7 @@ repositório.
 6. **Pessoas** são figuras planas de papel, **sem rosto**, sem caricatura, na escala do trabalho.
 7. **Descritores proibidos da marca** (`drop shadow`, `3D`, `bevel`, `glow`, `handwritten`,
    `sketchy`, `blur`…) só entram se o pedido do autor pedir o contrário — e aí `portinari prompt`
-   vai avisar, o que é esperado, não erro (A2).
+   vai bloquear (épico 14): escreva a cena só com o que existe nela; as negações já vêm no bloco de marca.
 8. **Ponto focal e margem.** Diga onde está o foco e deixe o essencial longe das bordas: a peça vai
    ser recortada para outras proporções a partir do centro.
 9. **Não descreva tamanho, resolução, proporção nem formato de arquivo** — o bloco técnico cuida

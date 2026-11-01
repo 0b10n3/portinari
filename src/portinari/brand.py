@@ -1,8 +1,8 @@
 """Resolve a marca em runtime a partir de brand/ (nunca duplicada) → brand_snapshot.json.
 
 Autoridade (docs/PLANO.md §2.1): tokens (valor) > DESIGN.md (regra) > _bloco-marca.md (bloco
-operacional) > meta-prompt. Decisão do autor (A2): o pedido vence a marca, EXCETO a paleta — por
-isso a paleta é a única parte vinculante; o resto entra como padrão sobreponível.
+operacional) > meta-prompt. Desde o épico 14 (marca v4.0/v4.1, 30/10/2026): tudo o que _bloco-marca.md declara é vinculante — a
+decisão A2 ("o pedido vence a marca, exceto a paleta") foi revogada pela rodada 5 da marca.
 """
 
 from __future__ import annotations
@@ -30,10 +30,10 @@ FORMATOS = "ILUSTRACOES/FORMATOS.md"
 ESTILOS_DIR = "ILUSTRACOES/estilos"
 ESTILOS_README = f"{ESTILOS_DIR}/README.md"
 # Seções de _bloco-marca.md por prefixo de título (sem acento/caixa).
-INJETAR = ("borda e reticula", "escala pequena", "sem texto renderizado")  # verbatim
+INJETAR = ("a escada", "frame", "borda e reticula", "escala pequena", "sem texto renderizado")  # verbatim
 LINT = "descritores proibidos"  # não entra no prompt: só lint da parte criativa
-# "A escada" fica de fora: é a parte anti-sombra e o autor decidiu que o pedido vence (A2).
-DESCARTADAS = ("a escada",)
+# "A escada" (a parte anti-sombra) entra no prompt desde o épico 14: a marca é vinculante (A2 revogada).
+DESCARTADAS: tuple[str, ...] = ()
 GERADAS = ("paleta", "tetos numericos")  # regeneradas dos tokens (nunca hex do .md)
 NOMES_MODO = {"dark": "escura", "light": "clara"}
 
@@ -140,7 +140,7 @@ def _secao_paleta(p: dict, modo: str) -> str:
 def _secao_tetos(t: dict) -> str:
     return "\n".join(
         [
-            "## Tetos numéricos (diretrizes; o pedido do autor pode sobrepor)",
+            "## Tetos numéricos",
             "",
             f"- Matizes de pilha por peça: {t['max_matizes']}, mais um neutro estrutural.",
             f"- Cores ≥1% do quadro: no máximo {t['max_cores']}.",
@@ -177,7 +177,8 @@ def descritores_proibidos(bloco_md: str) -> list[str]:
 
 
 def lint_descritores(texto: str, proibidos: list[str]) -> list[str]:
-    """Descritores proibidos presentes no texto (palavra inteira, sem caixa). Aviso, não erro (A2)."""
+    """Descritores proibidos presentes no texto (palavra inteira, sem caixa). Bloqueia desde o épico 14 — inclusive
+    negado ("no glow"): as negações moram no bloco de marca, que não passa pelo lint."""
     return [d for d in proibidos if re.search(rf"(?<![\w-]){re.escape(d)}(?![\w-])", texto, re.I)]
 
 
@@ -397,8 +398,8 @@ def resolver(brand: Path = BRAND, verificar_git: bool = True, texto: bool = Fals
         "versao_design": m.group(1) if m else None,
         "fingerprint": _sha(json.dumps(hashes, sort_keys=True).encode()),
         "arquivos": hashes,
-        "vinculante": ["paleta"],
-        "sobreponivel": ["sombra", "granulacao", "frame", "angulo de corte", "tetos numericos", "descritores proibidos"],
+        "vinculante": ["paleta", "sombra", "granulacao", "frame", "angulo de corte", "tetos numericos", "descritores proibidos"],
+        "sobreponivel": [],
         "paletas": {m: paleta(tokens, m) for m in MODOS},
         "tetos": tetos(tokens),
         "descritores_proibidos": descritores_proibidos(bloco_md),

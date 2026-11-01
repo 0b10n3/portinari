@@ -104,7 +104,7 @@ def test_avisos_acento_e_descritor():
     r = enr.validar(enr.Enriquecimento.model_validate(d), SNAP)
     assert any("acento" in a for a in r.avisos)
     r = enr.validar(modelo(cena=BOM["cena"] + " Com drop shadow."), SNAP)
-    assert r.erros == [] and any("drop shadow" in a for a in r.avisos)
+    assert any("drop shadow" in e for e in r.erros)  # épico 14: bloqueia
 
 
 # --- cobertura do prompt -----------------------------------------------------------------------
