@@ -32,7 +32,7 @@ ninguém além de você garante o cumprimento (decisão D7 do plano).
    quais sumiram. Elemento de `papel: foco` ausente é bloqueante; apoios ausentes em quantidade
    (mais de um terço) também.
 5. **Os avisos das checagens não reprovam sozinhos** — tetos de nº de cores, fundo, acento e
-   granulação são padrão sobreponível (A2). Cite-os e diga se, na imagem, incomodam de verdade.
+   granulação são vinculantes desde o épico 14 (bloqueantes B8–B10 da rubrica): reprove quando aparecerem.
 6. **Miniatura:** descreva o que sobra a 200px de largura. É o teste de capa e de thumbnail.
 7. **Não peça o impossível ao gerador.** "Mais nítido", "mais detalhe", "melhor resolução" não são
    revisões de prompt: a imagem de validação é 1K por construção. Peça mudança de **conteúdo,

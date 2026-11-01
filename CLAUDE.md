@@ -11,9 +11,10 @@ Specs por épico: [`specs/epicos/`](specs/epicos/).
 
 1. **O entregável é o prompt, não a imagem** (decisão A16). A imagem que o `agy` gera é ~1K, JPEG,
    e serve para provar que o prompt funciona. Ela não é entregue a ninguém.
-2. **A paleta é a única regra vinculante da marca** (A2). Cor fora da paleta reprova. Sombra, grão,
-   frame, ângulo de corte e tetos numéricos são padrão sobreponível: viram aviso e cedem quando o
-   pedido do autor pede o contrário.
+2. **Tudo o que `brand/ILUSTRACOES/_bloco-marca.md` declara é vinculante** (épico 14; marca v4.0/v4.1,
+   `brand/DESIGN.md` §7). Paleta, escada anti-sombra, tetos, frame, corte, descritores e ausência de
+   texto reprovam; o pedido do autor não os desliga. Exceção só por exceção nomeada no `DESIGN.md`.
+   A antiga decisão A2 ("o pedido vence, exceto a paleta") foi revogada.
 3. **Nunca edite `brand/`.** A marca é lida em runtime, nunca duplicada e nunca escrita. Nenhum
    tamanho, proporção, formato ou fragmento de estilo mora em `.py`.
 4. **Nunca gere com a marca desatualizada** (A13). `portinari marca` sai com 1 se `brand/` está

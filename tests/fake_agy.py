@@ -12,7 +12,7 @@ import time
 import uuid
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 TAMANHOS = {"16:9": (1376, 768), "1:1": (1024, 1024), "9:16": (768, 1376), "3:4": (896, 1200), "4:3": (1200, 896)}
 
@@ -43,7 +43,12 @@ linhas = [{"step_index": 0, "type": "USER_INPUT", "status": "DONE", "content": i
 if modo in ("ok", "rewrite"):
     efetivo = prompt if modo == "ok" else prompt[: len(prompt) // 2]
     img = home / "brain" / conv / f"{nome}_1789000000000.jpg"
-    Image.new("RGB", TAMANHOS.get(ratio, (1024, 1024)), "#0F3D27").save(img)
+    w, h = TAMANHOS.get(ratio, (1024, 1024))
+    im = Image.new("RGB", (w, h), "#141414")  # uma peça dentro dos tetos da marca: fundo + duas folhas
+    d = ImageDraw.Draw(im)
+    d.rectangle([w // 10, h // 6, w * 4 // 10, h * 5 // 6], fill="#0F3D27")
+    d.rectangle([w // 2, h // 3, w * 8 // 10, h * 5 // 6], fill="#125233")
+    im.save(img)
     conteudo = (
         "Created At: 2026-09-18T13:04:35-03:00\nCompleted At: 2026-09-18T13:04:45-03:00\n"
         f"Using prompt: {efetivo}\n\nGenerated image is saved at {img}.\n\n Do not output the path of this image."

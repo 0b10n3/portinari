@@ -26,8 +26,8 @@ Você **não** vê imagem nenhuma: nesta etapa não existe imagem. Julgue o conc
 3. **Sobrevive à miniatura e ao recorte?** O foco cai dentro da área segura; a leitura a 200px
    ainda existe.
 4. **Cabe na marca sem forçar?** Paleta fechada, uma pilha por peça, acento em um ponto, sem texto,
-   profundidade por degrau de tom. Lembre: a paleta é a única regra **vinculante** (A2); as demais
-   são padrão sobreponível e cedem se o pedido pedir — quando ceder, diga que cedeu.
+   profundidade por degrau de tom. Desde o épico 14 toda regra de `_bloco-marca.md` é **vinculante**:
+   um conceito que dependa de sombra, curva livre ou perspectiva não serve — proponha outro.
 5. **Risco no gerador.** Qual conceito tem mais chance de o modelo desenhar texto, inventar cor
    fora da paleta, cair no clichê ou virar sopa de elementos.
 6. **Originalidade**, por último. Um conceito original que erra o pedido perde para um conceito

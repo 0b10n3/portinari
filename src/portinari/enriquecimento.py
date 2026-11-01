@@ -21,7 +21,7 @@ Zona = Literal["esquerda", "centro", "direita", "fundo", "primeiro-plano"]
 Papel = Literal["foco", "apoio", "textura"]
 Origem = Literal["pedido", "contexto", "dominio", "oficio"]
 
-# Palavras de cor fora da paleta (a paleta é a única regra vinculante da marca — A2).
+# Palavras de cor fora da paleta (a paleta é vinculante — épico 14).
 # Comparadas sem acento e em minúsculas.
 _COR_FORA = (
     r"vermelh\w*|rubr\w*|azul|azuis|amarel\w*|laranj\w*|rox\w*|violet\w*|lilas|rosa|rosas|marrom|marrons|"
@@ -145,7 +145,7 @@ def validar(
     if modo == "dark" and any(x.cor == "pilha-4" for x in e.elementos):
         r.avisos.append("'pilha-4' não existe no modo light: a derivação terá de mapear esses elementos.")
     for d in brand.lint_descritores(e.cena, snapshot.get("descritores_proibidos", [])):
-        r.avisos.append(f"descritor da marca na cena: '{d}' (o pedido pode sobrepor).")
+        r.erros.append(f"V9: descritor proibido na cena: '{d}' (a marca é vinculante — épico 14).")
     return r
 
 

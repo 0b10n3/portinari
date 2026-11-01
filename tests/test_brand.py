@@ -34,7 +34,8 @@ def test_snapshot_da_fixture():
     assert [c["hex"] for c in s["paletas"]["light"]["camadas"]] == ["#E2E8F0", "#E6F4EE", "#F7F7F5"]
     assert s["paletas"]["dark"]["acento"]["hex"] == "#CDF163"
     assert s["paletas"]["light"]["acento"]["hex"] == "#5F7D1C"  # lime.700 sobre pilha clara
-    assert s["tetos"]["max_cores"] == 7 and s["vinculante"] == ["paleta"]
+    assert s["tetos"]["max_cores"] == 7 and s["sobreponivel"] == []  # épico 14: tudo vinculante
+    assert {"paleta", "sombra", "tetos numericos", "descritores proibidos"} <= set(s["vinculante"])
     assert s["avisos"] == [] and s["git"] is None
     assert "drop shadow" in s["descritores_proibidos"]
 
@@ -45,7 +46,7 @@ def test_bloco_so_com_a_pilha_do_modo():
     assert "#0F3D27" in dark and "#E2E8F0" not in dark and "#5F7D1C" not in dark
     assert "#E2E8F0" in light and "#0F3D27" not in light and "#5F7D1C" in light
     assert "Borda e retícula" in dark and "Escala pequena" in dark and "Sem texto renderizado" in dark
-    assert "scanner" not in dark and "A escada" not in dark  # parte anti-sombra: o pedido vence
+    assert "scanner" in dark and "A escada" in dark and "Frame" in dark  # épico 14: a parte anti-sombra entra
     assert "Descritores proibidos" not in dark  # só lint
     # S2: a tabela com nomes de token virou legenda de amostras dentro da imagem
     for bloco in (dark, light):

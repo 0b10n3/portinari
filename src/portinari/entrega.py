@@ -61,7 +61,7 @@ def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path) -> l
     no_prompt = _hex(prompt)
 
     faltam = sorted(_hex_da_paleta(snap, modo) - no_prompt)
-    if faltam:  # T2 — a paleta é a única parte vinculante da marca (A2)
+    if faltam:  # T2 — a paleta é vinculante (épico 14)
         erros.append(f"o prompt não cita {len(faltam)} hex da paleta {modo}: {', '.join(faltam)}")
 
     outro = "light" if modo == "dark" else "dark"
