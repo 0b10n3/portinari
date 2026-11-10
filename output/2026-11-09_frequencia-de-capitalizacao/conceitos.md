@@ -1,0 +1,71 @@
+## Perguntas
+
+1. **O que sai do pedido.** "e", "2,71828..." e os números nos degraus não podem entrar (a marca proíbe texto, número e símbolo, e o pedido não desliga essa regra). O teto passa a ser mostrado pela forma: um limite que se vê e que nunca é tocado. Também cortei "árvores de dinheiro", engrenagens e constelações. Engrenagem é curva, árvore de dinheiro é clichê financeiro, e quanto mais elementos, menos o gerador converge. Quer manter algum deles? A opção mais segura seriam 3 a 5 estrelas pequenas recortadas em losango no céu do C1, em `figura-secundaria`.
+2. **Figuras humanas no C1.** O pedido põe "matemáticos e investidores" na base. Proponho duas figuras pequenas, geométricas e sem rosto, olhando para cima. Basta assim ou o autor quer uma alusão histórica a Bernoulli (peruca, casaca)? Essa alusão aumentaria o risco de caricatura, que é descritor proibido.
+3. **Céu.** No dark, o céu fica noturno por natureza (pilha escura). No light, "fim de tarde" vira só um céu claro da pilha clara, sem laranja e sem degradê. Isso serve?
+
+## C1 — A escada sob o teto (fiel ao pedido)
+
+**Metáfora:** uma escada de papel cujos degraus encolhem a cada lance e acabam colados num teto que ela nunca toca.
+**Composição:** a vista é de frente, como uma elevação de arquitetura, sem perspectiva. No alto, uma folha horizontal atravessa o quadro de borda a borda (y 0.00–0.20): é o teto, com a borda de baixo reta. Do canto inferior esquerdo (x 0.14, y 0.90) a escada sobe para a direita em **cinco degraus** cuja altura cai visivelmente: grande, médio, pequeno, menor, uma lasca. No **joelho** (x ~0.55), os degraus viram um bloco de lâminas finíssimas empilhadas, que corre quase na horizontal até a borda direita, logo abaixo do teto, separado dele por uma fresta fina e constante de fundo. No primeiro plano à esquerda, ao pé da escada, duas figuras pequenas de papel, geométricas, olham para cima. O resto é fundo vazio: a metade inferior direita, sob o platô.
+**Ponto focal:** x 0.56, y 0.24. É a fresta logo acima do joelho, onde a última lasca de degrau quase encosta no teto.
+**Hierarquia:** 1º o teto, com a marca do acento e a fresta logo abaixo; 2º o perfil da escada que achata; 3º as duas figuras na base.
+**Cor:** fundo/céu em `pilha-1` (dark) e `pilha-3` (light); teto em `pilha-2` (dark) e `pilha-1` (light). Faces dos degraus em `figura-principal`; as lâminas do bloco alternam `figura-principal` e `figura-secundaria`, para a densidade aparecer sem sombra; as figuras da base em `figura-secundaria`. **Acento:** um trecho curto e reto na borda inferior do teto, logo acima do joelho (cerca de 0,1 da largura e poucos pixels de espessura). É o "e" sem letra, o ponto que a escada persegue.
+**Em miniatura:** sobram uma faixa escura no alto, uma diagonal em degraus que vira linha horizontal sob ela e um risco de acento no encontro. O que se lê é algo que sobe e achata contra um limite. As figuras somem.
+**Riscos:**
+- **É o conceito mais arriscado no gerador, e de propósito**, porque é o que o autor pediu. Ele combina os dois padrões que já falharam no Nano Banana 2: uma sequência (que o gerador estica pela largura toda em 16:9) e geometria exata com muitos elementos (degraus que encolhem numa progressão), que não convergiu em 5 voltas em *A Corda e o Arco*. O provável é o gerador desenhar degraus iguais, sem encolher, ou uma escada que sobe até a borda direita e leva o foco para x > 0.89.
+- Para mitigar, o foco fica no joelho, no meio da sequência, e não na ponta: depois do joelho a escada continua como platô até a borda, então o fim da sequência não é o assunto. Também limitei a cinco degraus contados, com o resto virando um bloco sem contagem. Se mesmo assim estourar, a variante é um zigue-zague vertical e centrado (a escada sobe em lances que encurtam rumo ao teto, no eixo x 0.50), que tira a sequência da horizontal.
+- O gerador pode querer escrever os números nos degraus ou um "e" no teto, porque o tema puxa para isso. O prompt tem de proibir dígitos e letras de forma explícita.
+- Escada em perspectiva ou em espiral (o pedido sugere espiral) mostra espessura do papel e curva. Tem de ser elevação chapada e reta.
+
+## C2 — O copo americano até a boca
+
+**Metáfora:** um copo americano que enche gota após gota, cada gota menor que a anterior, até quase a boca, sem nunca transbordar.
+**Composição:** no centro, um único copo americano em vista frontal: um trapézio mais largo em cima, com os gomos verticais facetados no corpo e a faixa lisa da boca no alto (x 0.42–0.58, y 0.24–0.84). O líquido enche o corpo até logo abaixo da faixa da boca. Pela janela entre o nível e a borda vê-se o fundo, sem espessura de vidro. Acima do copo, no eixo, uma **única gota pequena** recortada em losango cai (x 0.50, y 0.15). No primeiro plano, uma faixa horizontal chapada de balcão de padaria atravessa a base (y 0.84–1.00). À esquerda e à direita, só parede vazia, com bem mais que 40% de fundo.
+**Ponto focal:** x 0.50, y 0.22. É a gota sobre a fresta entre o nível do líquido e a borda do copo.
+**Hierarquia:** 1º a gota de acento; 2º a fresta estreita entre o líquido e a boca; 3º o copo inteiro sobre o balcão.
+**Cor:** parede em `pilha-1` (dark) e `pilha-3` (light); balcão em `pilha-3` (dark) e `pilha-2` (light). Líquido em `figura-principal`, com os gomos marcados por tiras estreitas de `figura-secundaria`; contorno e faixa da boca em `figura-secundaria`. **Acento:** só a gota.
+**Em miniatura:** sobram um trapézio claro no centro, quase cheio, sobre uma faixa, e um ponto de acento logo acima. Lê-se "quase cheio, não transborda", que é o mesmo que "sobe e não passa do teto". É o mais forte dos três como thumbnail.
+**Riscos:**
+- É o conceito que cumpre o pedido do orquestrador: o teto sem geometria precisa e sem foco na ponta de uma sequência. Ele tem um objeto só, centrado, e o foco no eixo. Mesmo que o gerador erre a proporção do copo, a leitura sobrevive.
+- **Vidro puxa brilho, reflexo e degradê**, todos proibidos. O copo tem de ser descrito como folhas opacas de papel, e a parte vazia como uma janela que mostra a folha de trás, sem espessura nem aro escurecido.
+- Os gomos podem sair arredondados. O prompt tem de nomear os gomos como faixas verticais retas e a boca como uma faixa reta.
+- O conceito perde a escada e a referência histórica a Bernoulli: o "cada degrau sobe menos" fica condensado numa gota pequena. Há também o risco de ler como "estoque cheio" e não como "limite", e o título vai ter de ancorar isso.
+- O gerador pode desenhar várias gotas, ou uma poça de acento. É uma gota só, com acento ≤1%.
+
+## C3 — A jangada e o horizonte
+
+**Metáfora:** uma jangada navega para o horizonte. Cada faixa de mar até ele é mais estreita que a anterior, e ela nunca chega.
+**Composição:** a vista é de frente e chapada. O mar ocupa a metade de baixo em **faixas horizontais de papel** de borda a borda que estreitam de baixo para cima: larga no primeiro plano, cada vez mais finas, até o horizonte reto em y 0.42. Bastam 6 ou 7 faixas, e a proporção exata não importa, só que estreitem. O céu fica acima, vazio. Uma jangada nordestina de perfil, com casco trapezoidal de toras retas, mastro e vela triangular alta, está na segunda faixa (x 0.36–0.48, casco em y ~0.70, ponta da vela em y ~0.30), com um jangadeiro pequeno e geométrico, e aponta para a direita. No horizonte, à frente dela, um sol baixo recortado como **meio octógono**, pousado na linha (x 0.62).
+**Ponto focal:** x 0.62, y 0.40. É o meio octógono pousado no horizonte, o destino que a jangada persegue.
+**Hierarquia:** 1º o meio octógono de acento no horizonte; 2º a vela da jangada; 3º as faixas do mar se adensando para cima.
+**Cor:** céu em `pilha-1` (dark, noturno) e `pilha-3` (light). No dark, as faixas do mar alternam `pilha-2`, `pilha-3` e `pilha-4`; no light, que só tem três camadas, alternam `pilha-1` e `pilha-2`. Casco e jangadeiro em `figura-principal`, vela em `figura-secundaria`. **Acento:** só o meio octógono, pequeno.
+**Em miniatura:** sobram um triângulo claro (a vela) sobre faixas horizontais que se comprimem até uma linha, e um ponto de acento nessa linha. Lê-se como "rumo ao horizonte". A densidade das faixas finas some, mas a linha do horizonte segura a ideia.
+**Riscos:**
+- As faixas estreitando são a única progressão do conceito, e ela é vertical e tolerante: se o gerador errar a proporção, ainda se lê distância. Nada se estica na horizontal.
+- O sol baixo sobre o mar puxa postal genérico de banco de imagens, com degradê de pôr do sol, reflexo do sol na água e brilho, tudo proibido. Também puxa disco redondo, quando tem de ser meio octógono nomeado.
+- Faixas que estreitam podem virar perspectiva (ondas, ponto de fuga). Tem de ser papel empilhado e chapado.
+- A ligação com juros é a mais indireta dos três. Sem o título, lê-se "viagem/horizonte", não "limite da capitalização". O ganho é a poesia e o contexto brasileiro.
+- A vela pode sair curva (pano inflado). É um triângulo reto.
+
+## Crítica dos conceitos
+
+| # | Conceito | Nota | Por quê |
+| --- | --- | --- | --- |
+| 1º | C1 — A escada sob o teto | 4/5 | É o único que diz o que o pedido e o texto dizem: a "escada de Bernoulli", em que "cada degrau sobe menos que o anterior" e que "tem um topo", é a espinha do post (duas seções têm a escada no título). Mostra as duas metades da tese, o teto e o retorno decrescente, numa transformação só: o degrau que vira lâmina. Foco em x 0.56 / y 0.24, dentro da área segura universal (x 0.106–0.894, y 0.035–0.965). Não ganha 5 porque a ideia é do próprio autor, e porque é o conceito com mais risco no gerador: cai nos dois padrões que já reprovaram aqui, sequência esticada em 16:9 (samurais) e progressão geométrica com muitos elementos (A Corda e o Arco). |
+| 2º | C2 — O copo americano até a boca | 3/5 | Responde ao "teto" com folga e é o mais seguro: um objeto só, centrado, foco no eixo (sobrevive até ao recorte 1:1), a melhor leitura a 200 px. A ressalva vem pelo critério 1: troca a escada pedida por outra imagem e perde o "cada degrau sobe menos". "Cada gota menor que a anterior" está na metáfora, mas não está no quadro, que tem uma gota só. Sem o título, "copo quase cheio" se lê como estoque ou saturação, não como limite. No gerador, o vidro puxa brilho, reflexo e degradê, três descritores proibidos, e é exatamente o que o modelo associa a "copo". |
+| 3º | C3 — A jangada e o horizonte | 2/5 | Responde em parte: as faixas que estreitam mostram a aproximação de um limite, mas o laço com juros e com Bernoulli é o mais fraco dos três, e sem título vira "viagem". Também esbarra na marca: faixas que estreitam até o horizonte são uma convenção de perspectiva, e a marca pede elevação chapada, "nenhuma perspectiva". Sol baixo sobre o mar é o clichê de banco de imagem que mais puxa degradê, reflexo na água e disco redondo. Tem mais peças que os outros (mar, casco, mastro, vela, jangadeiro, sol). |
+
+**Recomendo C1**, porque é o único que responde ao pedido sem trocar a imagem central. O critério 1 desempata e, aqui, a distância é grande: C2 e C3 acertam o "limite", mas só C1 mostra o limite e a escada que leva a ele, que é a imagem pela qual o texto ensina. O risco no gerador é real e foi pesado, mas é o critério 5. Ele pede um plano de contenção, não a troca do conceito. Esse plano vai abaixo, em "O que corrigir".
+
+**Se o autor quiser outro caminho:** C2 serve se ele preferir garantir a convergência e a leitura em miniatura a manter a escada. Vale também como saída se o C1 não convergir nas duas primeiras voltas. Nesse caso, mostre o retorno decrescente no próprio quadro: três gotas no eixo vertical, cada uma menor, com só a última em acento. É uma sequência curta e centrada, fora do padrão que estica em 16:9. C3 só serve se o autor quiser deliberadamente uma capa poética, ancorada pelo título, e aceitar a ligação indireta com o tema.
+
+**O que corrigir no escolhido, seja qual for:**
+- **C1, as lâminas do bloco.** Lâminas alternando `figura-principal` e `figura-secundaria` empilham as cores de figura, e a marca diz que a figura fica "sobre a pilha (nunca empilha)". O arranjo ainda vira "dezenas de elementos", o padrão que não converge. Proposta: o platô é uma folha só de `figura-principal`, cortada por 2 ou 3 frestas horizontais finas de fundo, cada vez mais juntas perto do joelho. Dá densidade sem contagem, sem empilhar figura e sem sombra.
+- **C1, a posição.** O gerador ignora coordenadas em fileira. Descreva por metades, não por x: "os degraus ocupam só a metade esquerda do quadro; a metade direita é um platô reto e único". Deixe a variante do zigue-zague vertical e centrado pronta antes da volta 1. Se o foco sair da área segura ou os degraus saírem iguais em duas voltas, troque de variante em vez de gastar as 12 gerações refinando coordenadas.
+- **C1, o acento.** "Poucos pixels de espessura" desaparece a 200 px, e com ele o ponto da peça. Faça o acento um retângulo curto e legível na borda do teto, por exemplo 0,06 × 0,025 do quadro. Isso dá cerca de 0,15% de área, bem dentro do teto de 1%.
+- **C1, o teto no dark.** `pilha-2` sobre `pilha-1` é o menor degrau da pilha escura (0,029 de luminância). Em miniatura, a faixa do teto praticamente some. Não conte com ela para a leitura: o limite tem de ser lido pela linha do platô que achata e pelo acento.
+- **C1, as figuras.** Somem na miniatura, acrescentam elementos e abrem risco de caricatura. Fique com uma figura, ou nenhuma. Se o autor fizer questão das duas (pergunta 2), elas ficam sem rosto e sem alusão histórica.
+- **Qualquer conceito.** Proíba dígitos, letras e o símbolo "e" de forma explícita no prompt. O tema puxa o gerador a escrever "e", "2,718" ou "%". "A frequência só muda a etiqueta" não cabe na capa sem duas etiquetas, ou seja, sem texto, que é proibido. Fica para o título e o alt-text, e nenhum conceito deve tentar desenhá-la.
+
+**Bandeira vermelha:** o C1 recomendado cai exatamente nos dois padrões que já reprovaram neste pipeline: a sequência horizontal que estica (samurais, 4 voltas) e a progressão geométrica com muitos elementos (A Corda e o Arco, 5 voltas sem convergir). Só leve o C1 ao gerador com a troca de variante combinada antes: zigue-zague vertical, ou C2 com três gotas. Sem isso, ele tende a gastar as voltas.
