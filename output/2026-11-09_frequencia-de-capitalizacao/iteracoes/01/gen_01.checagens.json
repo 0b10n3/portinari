@@ -1,0 +1,93 @@
+{
+  "imagem": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        22,
+        22,
+        22
+      ],
+      "hex_imagem": "#161616",
+      "fracao": 0.5739,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.006
+    },
+    {
+      "rgb": [
+        19,
+        80,
+        50
+      ],
+      "hex_imagem": "#135032",
+      "fracao": 0.2622,
+      "token_mais_perto": "#125233",
+      "delta_e": 1.2,
+      "amplitude_luminancia": 0.0038
+    },
+    {
+      "rgb": [
+        27,
+        101,
+        68
+      ],
+      "hex_imagem": "#1B6544",
+      "fracao": 0.1173,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 3.2,
+      "amplitude_luminancia": 0.0035
+    },
+    {
+      "rgb": [
+        11,
+        17,
+        13
+      ],
+      "hex_imagem": "#0B110D",
+      "fracao": 0.0137,
+      "token_mais_perto": "#141414",
+      "delta_e": 3.5,
+      "amplitude_luminancia": 0.007
+    },
+    {
+      "rgb": [
+        89,
+        172,
+        112
+      ],
+      "hex_imagem": "#59AC70",
+      "fracao": 0.0106,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 8.9,
+      "amplitude_luminancia": 0.0
+    },
+    {
+      "rgb": [
+        27,
+        77,
+        52
+      ],
+      "hex_imagem": "#1B4D34",
+      "fracao": 0.0102,
+      "token_mais_perto": "#125233",
+      "delta_e": 5.5,
+      "amplitude_luminancia": 0.0041
+    }
+  ],
+  "fundo": {
+    "hex": "#135032",
+    "fracao": 0.2622
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "o fundo ocupa 26% do quadro; a marca pede ao menos 40%"
+  ],
+  "avisos": [
+    "#59AC70 (1.1%) está longe de #2D9E67 (ΔE 8.9)"
+  ]
+}
