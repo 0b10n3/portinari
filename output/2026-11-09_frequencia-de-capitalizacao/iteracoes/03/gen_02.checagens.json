@@ -1,0 +1,68 @@
+{
+  "imagem": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/03/gen_02.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        15,
+        24,
+        19
+      ],
+      "hex_imagem": "#0F1813",
+      "fracao": 0.7172,
+      "token_mais_perto": "#141414",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0083
+    },
+    {
+      "rgb": [
+        88,
+        187,
+        133
+      ],
+      "hex_imagem": "#58BB85",
+      "fracao": 0.1237,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 11.4,
+      "amplitude_luminancia": 0.0102
+    },
+    {
+      "rgb": [
+        15,
+        64,
+        41
+      ],
+      "hex_imagem": "#0F4029",
+      "fracao": 0.1167,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.6,
+      "amplitude_luminancia": 0.0084
+    },
+    {
+      "rgb": [
+        18,
+        28,
+        20
+      ],
+      "hex_imagem": "#121C14",
+      "fracao": 0.0117,
+      "token_mais_perto": "#141414",
+      "delta_e": 8.3,
+      "amplitude_luminancia": 0.0082
+    }
+  ],
+  "fundo": {
+    "hex": "#0F1813",
+    "fracao": 0.7172
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#58BB85 (12.4%) está longe de #2D9E67 (ΔE 11.4)",
+    "#121C14 (1.2%) está longe de #141414 (ΔE 8.3)"
+  ]
+}
