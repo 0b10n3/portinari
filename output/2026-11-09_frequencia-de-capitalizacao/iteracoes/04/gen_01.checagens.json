@@ -1,0 +1,68 @@
+{
+  "imagem": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/04/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        246,
+        248,
+        247
+      ],
+      "hex_imagem": "#F6F8F7",
+      "fracao": 0.7287,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 0.9,
+      "amplitude_luminancia": 0.0061
+    },
+    {
+      "rgb": [
+        211,
+        221,
+        231
+      ],
+      "hex_imagem": "#D3DDE7",
+      "fracao": 0.138,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0062
+    },
+    {
+      "rgb": [
+        34,
+        137,
+        100
+      ],
+      "hex_imagem": "#228964",
+      "fracao": 0.1018,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 12.6,
+      "amplitude_luminancia": 0.006
+    },
+    {
+      "rgb": [
+        93,
+        175,
+        142
+      ],
+      "hex_imagem": "#5DAF8E",
+      "fracao": 0.0102,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 9.5,
+      "amplitude_luminancia": 0.0
+    }
+  ],
+  "fundo": {
+    "hex": "#F6F8F7",
+    "fracao": 0.7287
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#228964 (10.2%) está longe de #2D9E67 (ΔE 12.6)",
+    "#5DAF8E (1.0%) está longe de #78C9A4 (ΔE 9.5)"
+  ]
+}
