@@ -69,3 +69,11 @@
 - **Qualquer conceito.** Proíba dígitos, letras e o símbolo "e" de forma explícita no prompt. O tema puxa o gerador a escrever "e", "2,718" ou "%". "A frequência só muda a etiqueta" não cabe na capa sem duas etiquetas, ou seja, sem texto, que é proibido. Fica para o título e o alt-text, e nenhum conceito deve tentar desenhá-la.
 
 **Bandeira vermelha:** o C1 recomendado cai exatamente nos dois padrões que já reprovaram neste pipeline: a sequência horizontal que estica (samurais, 4 voltas) e a progressão geométrica com muitos elementos (A Corda e o Arco, 5 voltas sem convergir). Só leve o C1 ao gerador com a troca de variante combinada antes: zigue-zague vertical, ou C2 com três gotas. Sem isso, ele tende a gastar as voltas.
+
+## Gate 1 — decisão do autor (2026-11-09)
+
+- **Conceito:** C1 — A escada sob o teto, com as correções do crítico.
+- **Ao redor:** 3–5 estrelas pequenas em losango no céu; sem árvores de dinheiro, engrenagens ou constelações.
+- **Figuras:** uma figura geométrica sem rosto na base, olhando para cima; sem alusão histórica.
+- **Céu:** noturno no dark; no light, céu claro da pilha, sem laranja nem degradê.
+- **Contenção:** se o foco estourar a área segura ou os degraus saírem iguais em 2 voltas, trocar para o zigue-zague vertical centrado ou para o C2.
