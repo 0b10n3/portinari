@@ -77,3 +77,7 @@
 - **Figuras:** uma figura geométrica sem rosto na base, olhando para cima; sem alusão histórica.
 - **Céu:** noturno no dark; no light, céu claro da pilha, sem laranja nem degradê.
 - **Contenção:** se o foco estourar a área segura ou os degraus saírem iguais em 2 voltas, trocar para o zigue-zague vertical centrado ou para o C2.
+
+## Contenção — decisão do autor (2026-11-09, após a iteração 02)
+
+C1 reprovou duas voltas com degraus quase iguais e fresta larga (gatilho combinado no Gate 1). O autor escolheu a **variante em zigue-zague vertical centrada do C1**, com enriquecimento novo. A volta 3 de 3 é a última antes de parar.
