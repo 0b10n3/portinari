@@ -1,0 +1,67 @@
+{
+  "imagem": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        14,
+        16,
+        15
+      ],
+      "hex_imagem": "#0E100F",
+      "fracao": 0.6707,
+      "token_mais_perto": "#141414",
+      "delta_e": 2.0,
+      "amplitude_luminancia": 0.0068
+    },
+    {
+      "rgb": [
+        50,
+        110,
+        76
+      ],
+      "hex_imagem": "#326E4C",
+      "fracao": 0.1608,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 5.5,
+      "amplitude_luminancia": 0.0103
+    },
+    {
+      "rgb": [
+        134,
+        206,
+        166
+      ],
+      "hex_imagem": "#86CEA6",
+      "fracao": 0.1449,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 3.6,
+      "amplitude_luminancia": 0.0081
+    },
+    {
+      "rgb": [
+        75,
+        157,
+        116
+      ],
+      "hex_imagem": "#4B9D74",
+      "fracao": 0.014,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 11.2,
+      "amplitude_luminancia": 0.0133
+    }
+  ],
+  "fundo": {
+    "hex": "#0E100F",
+    "fracao": 0.6707
+  },
+  "acento_fracao": 0.0,
+  "erros": [],
+  "avisos": [
+    "#4B9D74 (1.4%) está longe de #2D9E67 (ΔE 11.2)"
+  ]
+}

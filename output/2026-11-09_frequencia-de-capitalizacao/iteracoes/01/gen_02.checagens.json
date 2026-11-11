@@ -1,0 +1,107 @@
+{
+  "imagem": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/01/gen_02.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "cores": [
+    {
+      "rgb": [
+        10,
+        58,
+        36
+      ],
+      "hex_imagem": "#0A3A24",
+      "fracao": 0.5469,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0076
+    },
+    {
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "hex_imagem": "#FFFFFF",
+      "fracao": 0.1908,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 42.9,
+      "amplitude_luminancia": 0.0021
+    },
+    {
+      "rgb": [
+        20,
+        90,
+        54
+      ],
+      "hex_imagem": "#145A36",
+      "fracao": 0.1253,
+      "token_mais_perto": "#125233",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0044
+    },
+    {
+      "rgb": [
+        23,
+        23,
+        23
+      ],
+      "hex_imagem": "#171717",
+      "fracao": 0.0883,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.4,
+      "amplitude_luminancia": 0.0056
+    },
+    {
+      "rgb": [
+        168,
+        216,
+        174
+      ],
+      "hex_imagem": "#A8D8AE",
+      "fracao": 0.0134,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 12.7,
+      "amplitude_luminancia": 0.0
+    },
+    {
+      "rgb": [
+        8,
+        51,
+        31
+      ],
+      "hex_imagem": "#08331F",
+      "fracao": 0.0129,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0088
+    },
+    {
+      "rgb": [
+        7,
+        34,
+        19
+      ],
+      "hex_imagem": "#072213",
+      "fracao": 0.0126,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 13.5,
+      "amplitude_luminancia": 0.0215
+    }
+  ],
+  "fundo": {
+    "hex": "#FFFFFF",
+    "fracao": 0.1908
+  },
+  "acento_fracao": 0.0,
+  "erros": [
+    "#FFFFFF ocupa 19.1% do quadro e não é nenhuma cor da paleta dark (mais perto: #78C9A4, ΔE 42.9)",
+    "o fundo ocupa 19% do quadro; a marca pede ao menos 40%"
+  ],
+  "avisos": [
+    "#A8D8AE (1.3%) está longe de #78C9A4 (ΔE 12.7)",
+    "#072213 (1.3%) está longe de #0F3D27 (ΔE 13.5)"
+  ]
+}
