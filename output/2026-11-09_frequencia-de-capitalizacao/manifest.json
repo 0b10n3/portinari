@@ -1,0 +1,58 @@
+{
+  "pedido": "pedidos/frequencia_de_composicao.md",
+  "slug": "frequencia-de-capitalizacao",
+  "titulo": "Frequência de Capitalização",
+  "uso": "capa de post para substack",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    2560,
+    1440
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "flat",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "3.1.0",
+    "versao_design": "4.1",
+    "fingerprint": "c13b4ab7b3102cab0192ea83cfdb3a069a56939f9621190311df588deb9c2152"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 3,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/dark_gen_01.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "744e2a9db0dd08399afea0851442ba24491063b8fa65fe3aa98f6dfba38fe2ef",
+      "gate2": "aprovado"
+    },
+    "light": {
+      "prompt": "final/prompt_light.md",
+      "iteracao": 4,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image (agy)",
+      "validacao": "final/validacao/light_gen_01.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "a543c032c565048d3284fbf7545af64ad9d5b0578cd992fc594fbd410195ceab",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "concluido",
+  "pedido_arquivado": "/home/saga/Projects/Syntaxis/pipelines/portinari/pedidos/_processados/frequencia_de_composicao.md"
+}
