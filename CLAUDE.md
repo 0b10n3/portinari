@@ -21,9 +21,11 @@ Specs por épico: [`specs/epicos/`](specs/epicos/).
 4. **Nunca gere com a marca desatualizada** (A13). `portinari marca` sai com 1 se `brand/` está
    atrás do remoto. O pipeline nunca faz `git pull` sozinho.
 5. **Dois gates são humanos.** Gate 1 escolhe o conceito; Gate 2 aprova o prompt. `AskUserQuestion`,
-   sempre. `entregar` exige `--aprovado`.
-6. **Três voltas por etapa, teto de 12 gerações.** Estourou, o pipeline para e entrega o melhor
-   estado com diagnóstico — **nunca aprova sozinho para fechar**.
+   sempre. `entregar` exige `--aprovado`; `--concluir` exige a peça final de cada modo importada e
+   conferida por `checar` (`--sem-final` pula e registra).
+6. **Três voltas por etapa, teto de 12 gerações do `agy`.** Estourou, o pipeline para e entrega o
+   melhor estado com diagnóstico — **nunca aprova sozinho para fechar**. O mesmo bloqueante em duas
+   voltas volta ao Gate 1: é defeito de conceito.
 7. **O crítico visual não vê prompt** (D7). Controle por instrução, não por sandbox: ele só tem
    `Read` e o `SKILL.md` diz o que entregar a ele.
 8. **Nada de texto na imagem.** Nenhuma palavra, número, sigla, logo ou símbolo monetário.
@@ -36,7 +38,10 @@ Specs por épico: [`specs/epicos/`](specs/epicos/).
 .claude/agents/     diretor-de-arte · critico-conceito · enriquecedor-de-cena
                     prompter-tecnico · critico-visual
 .claude/skills/portinari/SKILL.md    o orquestrador (disable-model-invocation)
+.claude/hooks/      so_portinari.py — recusa Write/Edit fora do pipeline
 rubrica/rubrica.md  a régua do crítico visual (fora do código de propósito)
+scripts/avaliar.py  o validador em toda imagem de output/ (rodar de novo a avaliação)
+auditoria/          auditoria de 16/11/2026 e avaliação das correções
 src/portinari/      brief · brand · agy · imaging · enriquecimento · entrega · cli
 pedidos/            _TEMPLATE.md · <pedido>.md · _processados/
 specs/epicos/       uma spec por épico
@@ -95,6 +100,7 @@ histórico publicado, `clean -fd` ou deleção de branch remota.
 
 ## Ao rodar este repositório de novo
 
-`cd pipelines/portinari && claude` — agentes e skill só carregam abrindo o Claude Code **dentro do
-pipeline**. Depois, `uv run pytest` (deve ficar verde) e `uv run portinari estado <execução>` para
-saber onde uma execução parou.
+`cd pipelines/portinari && claude` — agentes, skill e hook só carregam abrindo o Claude Code
+**dentro do pipeline**. Depois, `uv run pytest` (deve ficar verde), `uv run portinari estado
+<execução>` para saber onde uma execução parou, e `uv run python scripts/avaliar.py` para medir o
+validador contra tudo o que já foi gerado.

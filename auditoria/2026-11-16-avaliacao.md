@@ -115,3 +115,12 @@ os seus gates, então o "depois" é estimativa.
    CLAUDE.md, como rodar o validador e esta avaliação de novo).
 3. **Uma execução real** no próximo pedido de capa, para medir gerações até a sua aprovação com
    o pipeline novo. É o único número do briefing que esta fase não conseguiu medir.
+
+## 7. Fechamento (Fase 4, 16/11/2026)
+
+- **Nota do autor:** 5. Dada de uma vez, sem separar critério nem par.
+- **Aprovação:** merge de `epico/15-auditoria` em `main` e push.
+- **Como medir de novo:** `uv run python scripts/avaliar.py` (README, "Como rodar o validador e a
+  avaliação de novo"). Na data do fechamento: 41 imagens, 24 sem erro (as 34 antigas + os 7 casos).
+- **Fica em aberto:** a execução real que mede gerações até a aprovação (item 3 acima) e tudo da §5,
+  que está fora deste repositório e é decisão do autor.
