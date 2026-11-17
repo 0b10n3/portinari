@@ -16,7 +16,7 @@ import shutil
 from datetime import date
 from pathlib import Path
 
-from . import enriquecimento, imaging
+from . import agy, enriquecimento, imaging
 
 NOMES_MODO = {"dark": "escura", "light": "clara"}
 # Nano Banana Pro (`gemini-3-pro-image`): proporções e tamanho 1K; 2K e 4K são ×2 e ×4.
@@ -253,17 +253,41 @@ def entregar(
     return m["entregas"][modo]
 
 
-def concluir(saida: Path, processados: Path) -> Path:
+def finais(saida: Path) -> dict[str, str]:
+    """Modo -> peça final conferida: geração importada à mão cuja checagem saiu sem erro."""
+    out: dict[str, str] = {}
+    for chk in sorted(Path(saida).glob("iteracoes/*/gen_*.checagens.json")):
+        meta = chk.with_name(chk.name.replace(".checagens.json", ".json"))
+        if not meta.is_file() or json.loads(meta.read_text(encoding="utf-8")).get("origem") != "manual":
+            continue
+        r = json.loads(chk.read_text(encoding="utf-8"))
+        if not r.get("erros"):
+            out[r["modo"]] = f"iteracoes/{chk.parent.name}/{meta.stem}"
+    return out
+
+
+def concluir(saida: Path, processados: Path, *, sem_final: bool = False) -> Path:
     """Arquiva o pedido: copia para a execução e MOVE o original para pedidos/_processados/.
 
     Só depois de `final/` ter pelo menos um prompt — o pedido é a única cópia do que o autor
-    escreveu, e um pedido arquivado sem entregável é trabalho perdido.
+    escreveu, e um pedido arquivado sem entregável é trabalho perdido. E só com a peça final de cada
+    modo entregue conferida por `checar` (auditoria M1: o gate de ilustração mede o que vai ao ar,
+    não só a validação do flash); `sem_final` pula isso e deixa registrado.
     """
     saida = Path(saida)
     prompts = sorted((saida / "final").glob("prompt_*.md"))
     if not prompts:
         raise EntregaErro("final/ não tem nenhum prompt: não arquivo o pedido antes de entregar")
     m = manifesto(saida)
+    conferidas = finais(saida)
+    faltam = sorted(set(m["entregas"]) - set(conferidas))
+    if faltam and not sem_final:
+        raise EntregaErro(
+            f"falta a peça final conferida do(s) modo(s) {', '.join(faltam)}: gere no Nano Banana Pro "
+            "(final/COMO-GERAR.md), traga com `importar` e passe `checar` sem erro — ou use --sem-final, "
+            "que fica registrado no manifest"
+        )
+    m["final_conferido"] = {modo: conferidas.get(modo) for modo in sorted(m["entregas"])}
     origem = Path(m.get("pedido") or "")
     if not origem.is_file():
         raise EntregaErro(f"o pedido original não está mais em {origem}")
@@ -283,23 +307,26 @@ def estado(saida: Path) -> dict:
     """Onde a execução parou e qual é a próxima ação — é o que permite retomar numa sessão nova."""
     saida = Path(saida)
     m = json.loads((saida / "manifest.json").read_text(encoding="utf-8")) if (saida / "manifest.json").is_file() else {}
-    log = saida / "geracoes.jsonl"
     feito = {
         "brief": (saida / "brief.json").is_file(),
         "marca": (saida / "brand_snapshot.json").is_file(),
         "conceitos": (saida / "conceitos.md").is_file(),
         "enriquecimento": sorted(p.name for p in (saida / "enriquecimento").glob("v*.json")),
         "iteracoes": iteracoes(saida) if (saida / "iteracoes").is_dir() else [],
-        "geracoes": len(log.read_text(encoding="utf-8").splitlines()) if log.is_file() else 0,
+        "geracoes": agy.contar(saida),
         "entregas": sorted(m.get("entregas", {})),
+        "finais": sorted(finais(saida)) if (saida / "iteracoes").is_dir() else [],
     }
     # de trás para a frente: o que já foi feito mais adiante manda, mesmo que uma etapa
     # intermediária não tenha deixado arquivo (o autor pode ter pulado o gate de conceito).
     if m.get("etapa_atual") == "concluido":
         proxima = "nada: execução concluída"
+    elif feito["entregas"] and set(feito["entregas"]) - set(feito["finais"]):
+        proxima = ("gerar a peça final de cada modo no Nano Banana Pro (final/COMO-GERAR.md), `importar` e "
+                   f"`checar` sem erro; depois `uv run portinari entregar {saida} ... --concluir`")
     elif feito["entregas"]:
         proxima = f"entregar o outro modo, ou `uv run portinari entregar {saida} ... --concluir`"
-    elif feito["geracoes"]:
+    elif any(Path(saida).glob("iteracoes/*/gen_*.json")):  # há imagem, do agy ou importada
         proxima = f"checar, crítica visual, Gate 2 e `uv run portinari entregar {saida} --modo dark --aprovado`"
     elif feito["iteracoes"]:
         proxima = f"uv run portinari gerar {saida} --iteracao {feito['iteracoes'][-1]}"

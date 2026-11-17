@@ -171,9 +171,20 @@ def _hex(s: str) -> set[str]:
     return {h.upper() for h in re.findall(r"#[0-9A-Fa-f]{6}\b", s)}
 
 
-def _contar(saida: Path) -> int:
-    log = saida / "geracoes.jsonl"
-    return len(log.read_text().splitlines()) if log.is_file() else 0
+def contar(saida: Path) -> int:
+    """Imagens que o `agy` gerou — o que o teto mede. Tentativa que falhou sem imagem não gastou
+    geração; peça importada à mão (`importar`) não é do `agy` e também fica fora."""
+    log = Path(saida) / "geracoes.jsonl"
+    if not log.is_file():
+        return 0
+    n = 0
+    for linha in log.read_text(encoding="utf-8").splitlines():
+        try:
+            j = json.loads(linha)
+        except ValueError:
+            continue
+        n += j.get("origem", "agy") == "agy" and bool(j.get("imagem"))
+    return n
 
 
 def _transitorio(cp: subprocess.CompletedProcess) -> bool:
@@ -213,7 +224,7 @@ def gerar(
     ultima: Geracao | None = None
     erros: list[str] = []
     for tentativa in range(1, tentativas + 1):
-        if _contar(saida) >= max_geracoes:
+        if contar(saida) >= max_geracoes:
             if ultima:  # já temos uma imagem (paga): devolve em vez de perdê-la
                 return ultima
             raise TetoDeGeracoes(f"teto de {max_geracoes} gerações atingido em {saida}")
@@ -300,11 +311,11 @@ def importar(
     iteracao: int,
     *,
     modelo: str | None = None,
-    max_geracoes: int = MAX_GERACOES,
 ) -> list[Geracao]:
-    """Traz para a execução imagens geradas à mão (ex.: no Nano Banana Pro colando `prompt_final.md`).
-    Cada imagem vira gen_KK.<ext> + prompt completo + gen_KK.json (origem "manual") e conta como
-    uma geração. Valida que é imagem antes de gravar qualquer coisa."""
+    """Traz para a execução imagens geradas à mão (ex.: a peça final no Nano Banana Pro, colando
+    `final/prompt_<modo>.md`). Cada imagem vira gen_KK.<ext> + prompt completo + gen_KK.json
+    (origem "manual"), registrada em geracoes.jsonl mas fora do teto do `agy`. Valida que é imagem
+    antes de gravar qualquer coisa."""
     saida = Path(saida)
     pasta = saida / "iteracoes" / f"{iteracao:02d}"
     validas = []
@@ -316,8 +327,6 @@ def importar(
                 validas.append((img, im.size))
         except Exception as e:
             raise AgyErro(f"{img} não é uma imagem válida") from e
-    if _contar(saida) + len(validas) > max_geracoes:
-        raise TetoDeGeracoes(f"importar {len(validas)} imagem(ns) passaria do teto de {max_geracoes} gerações")
     pasta.mkdir(parents=True, exist_ok=True)
     feitas = []
     for img, (w, h) in validas:

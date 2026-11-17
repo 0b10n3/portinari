@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from portinari import agy, brand, brief, entrega
 from portinari.cli import main
@@ -170,7 +170,7 @@ def test_estado_diz_a_proxima_acao(tmp_path, execucao):
     assert vazio["brief"] is False and vazio["proxima"].startswith("uv run portinari ingest")
 
     e = entrega.estado(execucao)
-    assert e["iteracoes"] == [1] and e["geracoes"] == 1 and e["entregas"] == []
+    assert e["iteracoes"] == [1] and e["geracoes"] == 0 and e["entregas"] == []  # importada: fora do teto
     assert "Gate 2" in e["proxima"]  # já há geração: a próxima é checar e aprovar
 
     entregar(execucao)
@@ -182,14 +182,52 @@ def test_concluir_arquiva_o_pedido(tmp_path, execucao):
     entregar(execucao)
     processados = tmp_path / "_processados"
     origem = Path(json.loads((execucao / "brief.json").read_text())["pedido"])
-    destino = entrega.concluir(execucao, processados)
+    destino = entrega.concluir(execucao, processados, sem_final=True)
 
     assert destino == processados / origem.name and destino.is_file()
     assert not origem.exists()  # movido, não copiado
     assert (execucao / "pedido.md").read_text(encoding="utf-8") == PEDIDO  # a execução guarda a cópia
     m = json.loads((execucao / "manifest.json").read_text())
     assert m["etapa_atual"] == "concluido" and m["pedido_arquivado"] == str(destino)
+    assert m["final_conferido"] == {"dark": None}  # pulado, e registrado
     assert entrega.estado(execucao)["proxima"] == "nada: execução concluída"
+
+
+def _peca_final(tmp_path, nome="pro.png", tamanho=(2752, 1536)):
+    """Uma peça no espírito da marca, no tamanho que o Pro devolve em 16:9 2K."""
+    snap = brand.resolver(FIXT, verificar_git=False)["paletas"]["dark"]
+    im = Image.new("RGB", tamanho, snap["camadas"][0]["hex"])
+    d = ImageDraw.Draw(im)
+    w, h = tamanho
+    d.rectangle([w // 10, h // 4, w // 3, h * 3 // 4], fill=snap["camadas"][1]["hex"])
+    d.rectangle([w // 2, h // 3, w * 2 // 3, h * 3 // 4], fill=snap["figura"][0]["hex"])
+    p = tmp_path / nome
+    im.save(p)
+    return p
+
+
+def test_concluir_exige_a_peca_final_conferida(tmp_path, execucao, capsys):
+    """Auditoria M1: o pedido só fecha quando a peça que vai ao ar passou pela mesma régua."""
+    entregar(execucao)
+    proc = tmp_path / "_processados"
+    with pytest.raises(entrega.EntregaErro, match="falta a peça final conferida do\\(s\\) modo\\(s\\) dark"):
+        entrega.concluir(execucao, proc)
+    assert "Nano Banana Pro" in entrega.estado(execucao)["proxima"]
+
+    agy.importar([_peca_final(tmp_path)], "prompt", execucao, 2, modelo="nano-banana-pro")
+    assert main(["checar", str(execucao), "--iteracao", "2", "--modo", "dark"]) == 0
+    assert entrega.estado(execucao)["finais"] == ["dark"]
+    entrega.concluir(execucao, proc)
+    m = json.loads((execucao / "manifest.json").read_text())
+    assert m["final_conferido"] == {"dark": "iteracoes/02/gen_01"}
+
+
+def test_peca_final_pequena_nao_conta(tmp_path, execucao, capsys):
+    entregar(execucao)
+    agy.importar([_peca_final(tmp_path, tamanho=(1024, 576))], "prompt", execucao, 2)  # menor que 1456×816
+    assert main(["checar", str(execucao), "--iteracao", "2", "--modo", "dark"]) == 2
+    assert "sai menor que a entrega" in capsys.readouterr().out
+    assert entrega.estado(execucao)["finais"] == []
 
 
 def test_nao_arquiva_pedido_sem_entregavel(tmp_path, execucao):
@@ -201,7 +239,7 @@ def test_nao_arquiva_pedido_sem_entregavel(tmp_path, execucao):
 def test_cli_entregar_com_concluir_e_estado(tmp_path, execucao, capsys):
     proc = tmp_path / "_processados"
     assert main(["entregar", str(execucao), "--modo", "dark", "--aprovado",
-                 "--concluir", "--processados", str(proc)]) == 0
+                 "--concluir", "--sem-final", "--processados", str(proc)]) == 0
     assert "pedido arquivado" in capsys.readouterr().out
     assert main(["estado", str(execucao)]) == 0
     assert "etapa: concluido" in capsys.readouterr().out

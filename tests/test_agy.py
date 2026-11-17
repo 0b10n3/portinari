@@ -106,9 +106,18 @@ def test_timeout_e_transitorio(tmp_path, fake):
 def test_teto_de_geracoes(tmp_path, fake):
     fake("ok")
     (tmp_path / "run").mkdir()
-    (tmp_path / "run" / "geracoes.jsonl").write_text('{"x":1}\n' * 2)
+    (tmp_path / "run" / "geracoes.jsonl").write_text('{"origem": "agy", "imagem": "x.jpg"}\n' * 2)
     with pytest.raises(agy.TetoDeGeracoes):
         gerar(tmp_path, max_geracoes=2)
+
+
+def test_teto_conta_so_imagem_do_agy(tmp_path):
+    """Falha sem imagem não gastou geração; peça importada à mão não é do agy (auditoria G5)."""
+    (tmp_path / "geracoes.jsonl").write_text(
+        '{"origem": "agy", "imagem": "a.jpg"}\n{"origem": "agy", "imagem": null, "erro": "x"}\n'
+        '{"origem": "manual", "imagem": "pro.png"}\nlixo\n'
+    )
+    assert agy.contar(tmp_path) == 1
 
 
 def test_teto_no_meio_devolve_a_imagem_ja_paga(tmp_path, fake):
@@ -216,10 +225,11 @@ def test_importar_imagens_manuais(tmp_path):
     assert (d / "gen_01.prompt.md").read_text() == PROMPT  # prompt completo, colável
     meta = json.loads((d / "gen_01.json").read_text())
     assert meta["origem"] == "manual" and meta["modelo_imagem"] == "nano-banana-pro" and meta["comando"] == []
-    assert [l["origem"] for l in linhas(tmp_path)] == ["manual", "manual"]  # contam como gerações
+    assert [l["origem"] for l in linhas(tmp_path)] == ["manual", "manual"]  # registradas…
+    assert agy.contar(tmp_path / "run") == 0  # …mas fora do teto do agy
 
 
-def test_importar_recusa_nao_imagem_e_respeita_teto(tmp_path):
+def test_importar_recusa_nao_imagem(tmp_path):
     ruim = tmp_path / "x.png"
     ruim.write_text("não sou imagem")
     ok = tmp_path / "ok.png"
@@ -227,8 +237,6 @@ def test_importar_recusa_nao_imagem_e_respeita_teto(tmp_path):
     with pytest.raises(agy.AgyErro, match="não é uma imagem"):
         agy.importar([ok, ruim], PROMPT, tmp_path / "run", 1)
     assert not (tmp_path / "run").exists()  # nada foi gravado
-    with pytest.raises(agy.TetoDeGeracoes):
-        agy.importar([ok, ok], PROMPT, tmp_path / "run", 1, max_geracoes=1)
 
 
 def test_cli_importar_usa_o_prompt_final(tmp_path, capsys):

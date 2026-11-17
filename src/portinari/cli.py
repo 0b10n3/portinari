@@ -74,7 +74,7 @@ def _importar(a: argparse.Namespace) -> int:
     arq = d / a.prompt if not Path(a.prompt).is_absolute() else Path(a.prompt)
     try:
         gs = agy.importar([Path(x) for x in a.imagens], arq.read_text(encoding="utf-8"), saida, a.iteracao,
-                          modelo=a.modelo, max_geracoes=a.max_geracoes)
+                          modelo=a.modelo)
     except (agy.AgyErro, OSError) as e:
         print(f"ERRO: {e}")
         return 3
@@ -219,7 +219,7 @@ def _entregar(a: argparse.Namespace) -> int:
     print(f"como gerar: {Path(a.saida) / 'final' / 'COMO-GERAR.md'}")
     if a.concluir:
         try:
-            destino = entrega.concluir(Path(a.saida), Path(a.processados))
+            destino = entrega.concluir(Path(a.saida), Path(a.processados), sem_final=a.sem_final)
         except (entrega.EntregaErro, OSError) as erro:
             print(f"ERRO: {erro}")
             return 2
@@ -237,8 +237,8 @@ def _estado(a: argparse.Namespace) -> int:
     print(f"execução: {e['saida']} · etapa: {e['etapa_atual']}")
     print(f"brief {'ok' if e['brief'] else '-'} · marca {'ok' if e['marca'] else '-'} · "
           f"conceitos {'ok' if e['conceitos'] else '-'} · enriquecimento {len(e['enriquecimento'])} versão(ões)")
-    print(f"iterações: {e['iteracoes'] or '-'} · gerações: {e['geracoes']} · "
-          f"entregues: {', '.join(e['entregas']) or '-'}")
+    print(f"iterações: {e['iteracoes'] or '-'} · gerações do agy: {e['geracoes']} · "
+          f"entregues: {', '.join(e['entregas']) or '-'} · peça final conferida: {', '.join(e['finais']) or '-'}")
     print(f"próxima: {e['proxima']}")
     return 0
 
@@ -278,7 +278,6 @@ def main(argv: list[str] | None = None) -> int:
     im.add_argument("--iteracao", type=int, required=True)
     im.add_argument("--prompt", default="prompt_final.md", help="o prompt colado no gerador (dentro de iteracoes/NN/ ou caminho absoluto)")
     im.add_argument("--modelo", help="modelo de imagem usado, só para registro (ex.: nano-banana-pro)")
-    im.add_argument("--max-geracoes", type=int, default=agy.MAX_GERACOES)
     im.set_defaults(fn=_importar)
     g = sub.add_parser("gerar", help="gera imagens via agy (exit 3 = falha, 4 = paleta não chegou ao gerador)")
     g.add_argument("saida")
@@ -311,6 +310,8 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--gen", help="geração que validou o prompt (padrão: a última da iteração)")
     e.add_argument("--aprovado", action="store_true", help="confirma que o Gate 2 aprovou este prompt")
     e.add_argument("--concluir", action="store_true", help="arquiva o pedido em pedidos/_processados/")
+    e.add_argument("--sem-final", action="store_true",
+                   help="conclui sem a peça final conferida por `checar` (fica registrado no manifest)")
     e.add_argument("--processados", default=str(brief.PIPELINE / "pedidos" / "_processados"))
     e.set_defaults(fn=_entregar)
     st = sub.add_parser("estado", help="onde a execução parou e qual é a próxima ação")
