@@ -60,7 +60,7 @@ class Geracao(BaseModel):
     proporcao: str
     nome: str
     origem: str = "agy"  # "agy" | "manual" (imagem gerada fora e importada)
-    modelo_imagem: str | None = None  # só declarado na importação manual (ex.: nano-banana-pro)
+    modelo_imagem: str | None = None  # agy: lido do banco da conversa; manual: o que o autor declarou
     referencias: list[str] = Field(default_factory=list)
     imagem: str | None = None
     largura: int | None = None
@@ -165,6 +165,33 @@ def passos_imagem(conversation_id: str, home: Path | None = None) -> list[dict]:
         except (ValueError, KeyError):
             continue
     return passos
+
+
+# Nome do modelo de imagem como aparece no banco da conversa (docs/agy.md §3.2): o agy não o expõe
+# no transcript nem na ferramenta. Ex.: gemini-3.1-flash-image, gemini-3-pro-image, gemini-nano-banana-2.1.
+_MODELO_IMG = re.compile(rb"gemini-[\d.]+-[a-z-]*?image(?:-preview)?|gemini-nano-banana-[\d.]*\d|nano-banana-pro(?:-preview)?")
+
+
+def _conversas(conversation_id: str, home: Path) -> list[str]:
+    """A conversa e as dos subagentes dela (agy 1.3.4+: a imagem é gerada num subagente)."""
+    out = [conversation_id]
+    for sub in sorted((home / "brain" / conversation_id / ".system_generated" / "subagents").glob("*.json")):
+        try:
+            out += _conversas(json.loads(sub.read_text(encoding="utf-8"))["conversationId"], home)
+        except (ValueError, KeyError):
+            continue
+    return out
+
+
+def modelo_imagem(conversation_id: str, home: Path | None = None) -> str | None:
+    """O modelo de imagem que a conversa usou, lido do banco SQLite dela (bytes, sem schema: o formato
+    interno do agy muda entre versões). Subagentes primeiro: é neles que o passo de imagem roda."""
+    home = home or _home()
+    for cid in reversed(_conversas(conversation_id, home)):
+        for arq in sorted((home / "conversations").glob(f"{cid}.db*")):
+            if m := _MODELO_IMG.search(arq.read_bytes()):
+                return m.group().decode()
+    return None
 
 
 def _hex(s: str) -> set[str]:
@@ -291,6 +318,7 @@ def coletar(g: Geracao, prompt: str, pasta: Path, home: Path) -> str | None:
     with Image.open(destino) as im:
         g.largura, g.altura = im.size
     g.imagem, g.sha256 = str(destino), hashlib.sha256(destino.read_bytes()).hexdigest()
+    g.modelo_imagem = modelo_imagem(g.conversation_id, home)
     g.fiel = _norm(passo["prompt"]) == _norm(prompt)
     g.hex_ausentes = sorted(_hex(prompt) - _hex(passo["prompt"]))
     g.erro = None if g.fiel else g.erro

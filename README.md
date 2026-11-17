@@ -116,7 +116,7 @@ A skill chama todos por você; estes são os que você usa à mão.
 | `derivar <execução> <imagem> --modo <modo>` | cortar e reduzir o master para o tamanho exato do canal |
 | `entregar <execução> --modo <modo> --aprovado [--concluir]` | gravar o entregável; `--concluir` arquiva o pedido |
 
-Limites: `--variacoes` (padrão 2, amostras por geração) e `--max-geracoes` (padrão 12, teto da
+Limites: `--variacoes` (padrão 1; peça 2 só para provar que o prompt aprovado é estável) e `--max-geracoes` (padrão 12, teto da
 execução inteira, contado em `geracoes.jsonl` e mantido entre sessões).
 
 ## Como retomar

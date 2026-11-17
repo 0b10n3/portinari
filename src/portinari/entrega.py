@@ -272,7 +272,7 @@ def entregar(
         "iteracao": it,
         "geracao": g["nome"],
         "origem": g.get("origem"),
-        "modelo_validacao": g.get("modelo_imagem") or "gemini-3.1-flash-image (agy)",
+        "modelo_validacao": g.get("modelo_imagem") or "não registrado",
         "validacao": str(val.relative_to(saida)),
         "validacao_px": [g.get("largura"), g.get("altura")],
         "sha256_prompt": hashlib.sha256(arq.read_bytes()).hexdigest(),

@@ -286,5 +286,14 @@ def test_cli_entregar_com_concluir_e_estado(tmp_path, execucao, capsys):
     assert main(["entregar", str(execucao), "--modo", "dark", "--aprovado",
                  "--concluir", "--sem-final", "--processados", str(proc)]) == 0
     assert "pedido arquivado" in capsys.readouterr().out
-    assert main(["estado", str(execucao)]) == 0
-    assert "etapa: concluido" in capsys.readouterr().out
+    assert main(["estado", str(execucao), "--brand", str(FIXT)]) == 0
+    out = capsys.readouterr().out
+    assert "etapa: concluido" in out and "aviso:" not in out
+
+
+def test_estado_avisa_marca_que_mudou(execucao, capsys):
+    """Auditoria M5: 4 de 5 execuções entregues rodaram na marca anterior à v4.0."""
+    snap = json.loads((execucao / "brand_snapshot.json").read_text())
+    (execucao / "brand_snapshot.json").write_text(json.dumps({**snap, "fingerprint": "antigo"}))
+    assert main(["estado", str(execucao), "--brand", str(FIXT)]) == 0
+    assert "Não reuse os prompts de final/" in capsys.readouterr().out

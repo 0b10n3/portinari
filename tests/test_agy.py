@@ -250,3 +250,17 @@ def test_cli_importar_usa_o_prompt_final(tmp_path, capsys):
     assert "manual · nano-banana-pro" in capsys.readouterr().out
     assert (it / "gen_01.prompt.md").read_text() == "prompt colado no Pro"
     assert main(["importar", str(run), str(tmp_path / "nao.png"), "--iteracao", "1"]) == 3
+
+
+def test_modelo_de_imagem_vem_do_banco_do_subagente(tmp_path):
+    """Auditoria G6: o modelo não é suposto — é lido de onde o agy o grava (docs/agy.md §3.2)."""
+    sub = tmp_path / "brain" / "pai" / ".system_generated" / "subagents"
+    sub.mkdir(parents=True)
+    (sub / "a.json").write_text(json.dumps({"conversationId": "filho"}))
+    (tmp_path / "conversations").mkdir()
+    (tmp_path / "conversations" / "pai.db").write_bytes(b"\x00orchestrator gemini-3.8-flash-low\x00")
+    (tmp_path / "conversations" / "filho.db").write_bytes(b"\x12\x16gemini-3.1-flash-imageB\x08")
+    assert agy.modelo_imagem("pai", tmp_path) == "gemini-3.1-flash-image"
+    (tmp_path / "conversations" / "filho.db").write_bytes(b"..gemini-3-pro-image\x01")
+    assert agy.modelo_imagem("pai", tmp_path) == "gemini-3-pro-image"
+    assert agy.modelo_imagem("sem-banco", tmp_path) is None

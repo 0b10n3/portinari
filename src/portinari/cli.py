@@ -141,8 +141,8 @@ def _gerar(a: argparse.Namespace) -> int:
         except agy.AgyErro as e:
             print(f"ERRO: {e}")
             return 3
-        print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · orquestrador {g.modelo_orquestrador} · "
-              f"prompt {'íntegro' if g.fiel else 'ALTERADO'}")
+        print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · imagem {g.modelo_imagem or 'modelo não identificado'} · "
+              f"orquestrador {g.modelo_orquestrador} · prompt {'íntegro' if g.fiel else 'ALTERADO'}")
         if g.hex_ausentes:  # a paleta não chegou ao gerador: a marca é vinculante (épico 14)
             print(f"ERRO: a ferramenta não recebeu os hex da paleta: {', '.join(g.hex_ausentes)}")
             codigo = 4
@@ -240,6 +240,15 @@ def _estado(a: argparse.Namespace) -> int:
     print(f"iterações: {e['iteracoes'] or '-'} · gerações do agy: {e['geracoes']} · "
           f"entregues: {', '.join(e['entregas']) or '-'} · peça final conferida: {', '.join(e['finais']) or '-'}")
     print(f"próxima: {e['proxima']}")
+    try:  # auditoria M5: prompt entregue com marca antiga continua colável — e pode violar regra nova
+        snap = json.loads((Path(a.saida) / "brand_snapshot.json").read_text(encoding="utf-8"))
+        atual = brand.resolver(Path(a.brand), verificar_git=False)
+    except (OSError, ValueError, KeyError, brand.BrandError):
+        return 0
+    if snap.get("fingerprint") != atual["fingerprint"]:
+        print(f"aviso: esta execução usou a marca tokens v{snap.get('versao_tokens')} · DESIGN v{snap.get('versao_design')}; "
+              f"a vigente é tokens v{atual['versao_tokens']} · DESIGN v{atual['versao_design']}. "
+              "Não reuse os prompts de final/ sem passar pelo pipeline de novo.")
     return 0
 
 
@@ -283,7 +292,7 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("saida")
     g.add_argument("--iteracao", type=int, required=True)
     g.add_argument("--prompt", default="prompt_final.md", help="arquivo dentro de iteracoes/NN/")
-    g.add_argument("--variacoes", type=int, default=2)
+    g.add_argument("--variacoes", type=int, default=1, help="amostras; a 2ª só para provar que o prompt aprovado é estável")
     g.add_argument("--proporcao", choices=list(agy.PROPORCOES), help="padrão: a mais próxima do tamanho do brief")
     g.add_argument("--ref", action="append", default=[], help="imagem de referência/edição (até 3)")
     g.add_argument("--max-geracoes", type=int, default=agy.MAX_GERACOES)
@@ -316,6 +325,7 @@ def main(argv: list[str] | None = None) -> int:
     e.set_defaults(fn=_entregar)
     st = sub.add_parser("estado", help="onde a execução parou e qual é a próxima ação")
     st.add_argument("saida")
+    st.add_argument("--brand", default=str(brand.BRAND))
     st.set_defaults(fn=_estado)
     a = p.parse_args(argv)
     return a.fn(a)
