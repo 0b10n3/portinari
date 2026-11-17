@@ -1,0 +1,67 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/freq-zero/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        247,
+        248,
+        242
+      ],
+      "hex_imagem": "#F7F8F2",
+      "fracao": 0.7391,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 2.1,
+      "amplitude_luminancia": 0.0053
+    },
+    {
+      "rgb": [
+        217,
+        227,
+        236
+      ],
+      "hex_imagem": "#D9E3EC",
+      "fracao": 0.1591,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 2.5,
+      "amplitude_luminancia": 0.0074
+    },
+    {
+      "rgb": [
+        50,
+        150,
+        104
+      ],
+      "hex_imagem": "#329668",
+      "fracao": 0.0763,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 6.4,
+      "amplitude_luminancia": 0.0153
+    }
+  ],
+  "tokens": {
+    "#F7F7F5": 0.7336,
+    "#E2E8F0": 0.1591,
+    "#2D9E67": 0.0793,
+    "#78C9A4": 0.013
+  },
+  "fundo": {
+    "hex": "#F7F8F2",
+    "fracao": 0.7391
+  },
+  "acento_fracao": 0.0077,
+  "par": {
+    "com": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/03/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.19
+  },
+  "erros": [
+    "o par com gen_01.jpg (dark) tem IoU de silhueta 0.19 (< 0.4): não é a mesma composição"
+  ],
+  "avisos": []
+}

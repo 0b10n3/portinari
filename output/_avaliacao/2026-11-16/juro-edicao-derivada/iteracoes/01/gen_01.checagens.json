@@ -1,0 +1,229 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/juro-edicao-derivada/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "proporcao_pedida": "3:2",
+  "cores": [
+    {
+      "rgb": [
+        230,
+        244,
+        237
+      ],
+      "hex_imagem": "#E6F4ED",
+      "fracao": 0.476,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 0.5,
+      "amplitude_luminancia": 0.0121
+    },
+    {
+      "rgb": [
+        245,
+        246,
+        242
+      ],
+      "hex_imagem": "#F5F6F2",
+      "fracao": 0.1519,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 1.2,
+      "amplitude_luminancia": 0.0115
+    },
+    {
+      "rgb": [
+        222,
+        230,
+        235
+      ],
+      "hex_imagem": "#DEE6EB",
+      "fracao": 0.1324,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 2.0,
+      "amplitude_luminancia": 0.0255
+    },
+    {
+      "rgb": [
+        128,
+        192,
+        157
+      ],
+      "hex_imagem": "#80C09D",
+      "fracao": 0.0357,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 5.7,
+      "amplitude_luminancia": 0.0128
+    },
+    {
+      "rgb": [
+        50,
+        143,
+        99
+      ],
+      "hex_imagem": "#328F63",
+      "fracao": 0.0309,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 9.1,
+      "amplitude_luminancia": 0.0181
+    },
+    {
+      "rgb": [
+        210,
+        218,
+        227
+      ],
+      "hex_imagem": "#D2DAE3",
+      "fracao": 0.0268,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 5.1,
+      "amplitude_luminancia": 0.0302
+    },
+    {
+      "rgb": [
+        45,
+        129,
+        88
+      ],
+      "hex_imagem": "#2D8158",
+      "fracao": 0.0245,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 14.2,
+      "amplitude_luminancia": 0.0251
+    },
+    {
+      "rgb": [
+        196,
+        207,
+        208
+      ],
+      "hex_imagem": "#C4CFD0",
+      "fracao": 0.0173,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 10.3,
+      "amplitude_luminancia": 0.0277
+    },
+    {
+      "rgb": [
+        45,
+        111,
+        79
+      ],
+      "hex_imagem": "#2D6F4F",
+      "fracao": 0.0161,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 23.6,
+      "amplitude_luminancia": 0.0246
+    },
+    {
+      "rgb": [
+        186,
+        194,
+        194
+      ],
+      "hex_imagem": "#BAC2C2",
+      "fracao": 0.014,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 14.6,
+      "amplitude_luminancia": 0.0352
+    },
+    {
+      "rgb": [
+        142,
+        155,
+        151
+      ],
+      "hex_imagem": "#8E9B97",
+      "fracao": 0.0136,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 29.7,
+      "amplitude_luminancia": 0.0289
+    },
+    {
+      "rgb": [
+        202,
+        214,
+        210
+      ],
+      "hex_imagem": "#CAD6D2",
+      "fracao": 0.0124,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 9.8,
+      "amplitude_luminancia": 0.03
+    },
+    {
+      "rgb": [
+        85,
+        151,
+        118
+      ],
+      "hex_imagem": "#559776",
+      "fracao": 0.0104,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 17.9,
+      "amplitude_luminancia": 0.0311
+    },
+    {
+      "rgb": [
+        142,
+        183,
+        161
+      ],
+      "hex_imagem": "#8EB7A1",
+      "fracao": 0.0102,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 16.0,
+      "amplitude_luminancia": 0.0255
+    },
+    {
+      "rgb": [
+        57,
+        130,
+        95
+      ],
+      "hex_imagem": "#39825F",
+      "fracao": 0.01,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 17.5,
+      "amplitude_luminancia": 0.0217
+    }
+  ],
+  "tokens": {
+    "#E6F4EE": 0.4978,
+    "#E2E8F0": 0.1974,
+    "#F7F7F5": 0.1533,
+    "#2D9E67": 0.074,
+    "#78C9A4": 0.0506
+  },
+  "fundo": {
+    "hex": "#E6F4ED",
+    "token": "#E6F4EE",
+    "fracao": 0.4978
+  },
+  "acento_fracao": 0.0003,
+  "par": {
+    "com": "output/2026-10-30_o-juro-tira-folga/iteracoes/03/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.54
+  },
+  "erros": [
+    "#8E9B97 ocupa 1.4% do quadro e não é nenhuma cor da paleta light (mais perto: #E2E8F0, ΔE 29.7)"
+  ],
+  "avisos": [
+    "#328F63 (3.1%) está longe de #2D9E67 (ΔE 9.1)",
+    "#D2DAE3 varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#2D8158 (2.5%) está longe de #2D9E67 (ΔE 14.2)",
+    "#C4CFD0 (1.7%) está longe de #E2E8F0 (ΔE 10.3)",
+    "#2D6F4F (1.6%) está longe de #2D9E67 (ΔE 23.6)",
+    "#BAC2C2 (1.4%) está longe de #E2E8F0 (ΔE 14.6)",
+    "#BAC2C2 varia de tom dentro da própria folha (amplitude 0.035 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#8E9B97 varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#CAD6D2 (1.2%) está longe de #E2E8F0 (ΔE 9.8)",
+    "#CAD6D2 varia de tom dentro da própria folha (amplitude 0.030 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#559776 (1.0%) está longe de #2D9E67 (ΔE 17.9)",
+    "#559776 varia de tom dentro da própria folha (amplitude 0.031 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#8EB7A1 (1.0%) está longe de #78C9A4 (ΔE 16.0)",
+    "#39825F (1.0%) está longe de #2D9E67 (ΔE 17.5)",
+    "o par com gen_01.jpg (dark) tem IoU de silhueta 0.54 (< 0.75): algo mudou de lugar ou de papel de cor — D1–D4 da rubrica"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "titulo": "O juro tira folga",
+  "slug": "o-juro-tira-folga",
+  "pedido": "pedidos/dias_uteis.md",
+  "saida": "/home/saga/Projects/Syntaxis/pipelines/portinari/output/2026-10-30_o-juro-tira-folga",
+  "uso": "Capa (thumbnail) do post \"Você está contando os dias errado (e isso está custando dinheiro)\", linha Notas de um Professor, Substack Syntaxis. Distribuição social depois: LinkedIn (1,91:1) com reenquadramento; Instagram (4:5) pede recomposição, não corte (ver CONTEXT).",
+  "preset": "substack-capa",
+  "descricao": "Ideia do autor: um calendário grande no centro, com o contraste entre um dia de negócios e um feriado. De um lado, o pregão viva voz de antigamente; do outro, uma pessoa numa cadeira de praia.\n\nLeitura da esquerda para a direita, como o tempo: dia útil → feriado.\n\n1. Centro — o calendário (a dobradiça da imagem)\n\nUma folha de calendário de parede, retrato, ocupando o terço central, com a borda superior rasgada (folha arrancada do bloco).\nGrade do mês: 7 colunas × 5 linhas de quadrados em branco, sem nenhum número.\nAs duas colunas da direita (sábado e domingo) são um degrau de tom mais escuro que as demais.\nNa linha do meio, um quadrado de dia de semana está recortado por inteiro, como uma janela que mostra o fundo atrás: é o feriado, um buraco no calendário.\nO acento lime: uma tira fina e reta de papel lime corre pela linha do meio, da borda esquerda da folha para a direita, passando sobre os dias úteis, e para exatamente na borda da janela do feriado. É o relógio do juro: corre em dia útil e para no feriado (\"Por que o relógio para no sábado\" é uma seção do post). É o único lime da peça.\n2. Esquerda — o dia útil: a roda de negociação\n\nUma \"roda\" do pregão viva voz, desenhada como um parapeito octogonal (cortes retos e a 45°). Contexto histórico: na antiga BM&F, as rodas mais fortes eram as de dólar, juros e índices, e o pregão viva voz acabou em 30/06/2009 (na Bovespa, em 30/09/2005).\nCinco ou seis operadores como silhuetas geométricas sem rosto, braços erguidos fazendo sinais de mão, de jaleco (o jaleco colorido que identificava a corretora).\nNo chão, boletas: pequenos retângulos de papel espalhados.\nAtrás deles, um painel de cotações feito só de pontos de retícula, sem nenhum dígito.\nÉ o lado denso da imagem: muita gente, pouco espaço.\n3. Direita — o feriado: a praia\n\nUma única figura deitada numa cadeira de praia de estrutura angular.\nGuarda-sol cortado como um trapézio facetado e chapado (nada de cúpula curva).\nRima visual: um jaleco de operador, da mesma cor dos jalecos da roda, pendurado na haste do guarda-sol. É o mesmo operador, no outro dia.\nFaixa de areia com a borda superior rasgada e o mar em duas faixas horizontais chapadas.\nÉ o lado vazio da imagem: uma figura só e muito céu livre acima.\nO contraste que conta a história: densidade (roda cheia) × vazio (uma pessoa), e a tira lime que para no buraco do calendário. Ninguém precisa ler o título para entender que algo para no feriado.",
+  "estilo": "papercut",
+  "estilo_padrao": false,
+  "estilo_base": "risograph",
+  "estilo_modo": null,
+  "aspect_ratio": "3:2",
+  "resolucao": "2k",
+  "tamanho": [
+    2400,
+    1600
+  ],
+  "master": [
+    2400,
+    1600
+  ],
+  "formato": [
+    "jpeg",
+    "png"
+  ],
+  "peso_max_mb": 2.0,
+  "area_segura": [
+    0.7875,
+    0.930556
+  ],
+  "observacoes_formato": [],
+  "contexto": "Post de Notas de um Professor sobre a convenção DU/252 da renda fixa brasileira. Tese: uma taxa é um número mais uma régua. No Brasil, o juro só corre em dia útil, porque o DI é um empréstimo de um dia útil para o seguinte; sábado, domingo e feriado não acumulam juros. Gancho: uma LTN a 12% a.a. rende 11,85% em 2026, porque o ano tem 249 dias úteis e a convenção usa 252. O post também separa o calendário ANBIMA (\"o juro correu hoje?\") do calendário B3 (\"a bolsa abriu hoje?\").\n\nPúblico: analistas juniores de renda fixa, candidatos a certificação, desenvolvedores que automatizam cálculos.\n\nInstagram (4:5): o tríptico horizontal não sobrevive ao corte 4:5 (os dois lados somem). Para o Instagram, pedir uma recomposição: calendário no centro, roda acima à esquerda, praia abaixo à direita, ou usar só o calendário com a tira lime no Chassis A.",
+  "contexto_arquivos": [],
+  "referencias": [],
+  "avisos": [
+    "Texto antes da primeira chave foi ignorado.",
+    "ASPECT RATIO '3:2 (paisagem). O Substack corta o thumbnail em 3:2.' lido como 3:2.",
+    "SIZE '≈ 2400 × 1600 px' normalizado para 2400x1600.",
+    "SIZE 2400x1600 do pedido vence a entrega da marca para 'Capa (thumbnail) do post \"Você está contando os dias errado (e isso está custando dinheiro)\", linha Notas de um Professor, Substack Syntaxis. Distribuição social depois: LinkedIn (1,91:1) com reenquadramento; Instagram (4:5) pede recomposição, não corte (ver CONTEXT).' (1456x816)."
+  ],
+  "perguntas": []
+}

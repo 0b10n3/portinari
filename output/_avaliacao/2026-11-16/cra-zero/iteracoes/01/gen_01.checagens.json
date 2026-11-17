@@ -1,0 +1,170 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/cra-zero/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        220,
+        230,
+        239
+      ],
+      "hex_imagem": "#DCE6EF",
+      "fracao": 0.6294,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 1.7,
+      "amplitude_luminancia": 0.0111
+    },
+    {
+      "rgb": [
+        237,
+        240,
+        235
+      ],
+      "hex_imagem": "#EDF0EB",
+      "fracao": 0.0958,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 3.3,
+      "amplitude_luminancia": 0.017
+    },
+    {
+      "rgb": [
+        221,
+        235,
+        232
+      ],
+      "hex_imagem": "#DDEBE8",
+      "fracao": 0.0707,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 3.4,
+      "amplitude_luminancia": 0.0185
+    },
+    {
+      "rgb": [
+        137,
+        200,
+        172
+      ],
+      "hex_imagem": "#89C8AC",
+      "fracao": 0.0572,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 7.8,
+      "amplitude_luminancia": 0.0167
+    },
+    {
+      "rgb": [
+        151,
+        203,
+        181
+      ],
+      "hex_imagem": "#97CBB5",
+      "fracao": 0.0388,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 13.1,
+      "amplitude_luminancia": 0.0181
+    },
+    {
+      "rgb": [
+        53,
+        148,
+        111
+      ],
+      "hex_imagem": "#35946F",
+      "fracao": 0.0194,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 11.6,
+      "amplitude_luminancia": 0.0272
+    },
+    {
+      "rgb": [
+        53,
+        141,
+        108
+      ],
+      "hex_imagem": "#358D6C",
+      "fracao": 0.0185,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 15.0,
+      "amplitude_luminancia": 0.0248
+    },
+    {
+      "rgb": [
+        225,
+        236,
+        239
+      ],
+      "hex_imagem": "#E1ECEF",
+      "fracao": 0.0172,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 3.3,
+      "amplitude_luminancia": 0.0151
+    },
+    {
+      "rgb": [
+        71,
+        152,
+        121
+      ],
+      "hex_imagem": "#479879",
+      "fracao": 0.0171,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 16.3,
+      "amplitude_luminancia": 0.0246
+    },
+    {
+      "rgb": [
+        209,
+        219,
+        226
+      ],
+      "hex_imagem": "#D1DBE2",
+      "fracao": 0.0129,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 5.1,
+      "amplitude_luminancia": 0.0121
+    },
+    {
+      "rgb": [
+        155,
+        182,
+        175
+      ],
+      "hex_imagem": "#9BB6AF",
+      "fracao": 0.0107,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 22.8,
+      "amplitude_luminancia": 0.0244
+    }
+  ],
+  "tokens": {
+    "#E2E8F0": 0.6508,
+    "#E6F4EE": 0.1117,
+    "#78C9A4": 0.0995,
+    "#F7F7F5": 0.0738,
+    "#2D9E67": 0.0528
+  },
+  "fundo": {
+    "hex": "#DCE6EF",
+    "fracao": 0.6294
+  },
+  "acento_fracao": 0.0036,
+  "par": {
+    "com": "output/2026-10-02_a-anatomia-e-o-verdadeiro-risco-do-cra/iteracoes/03/gen_02.jpg",
+    "modo": "dark",
+    "iou": 0.26
+  },
+  "erros": [
+    "o par com gen_02.jpg (dark) tem IoU de silhueta 0.26 (< 0.4): não é a mesma composição"
+  ],
+  "avisos": [
+    "#97CBB5 (3.9%) está longe de #78C9A4 (ΔE 13.1)",
+    "#35946F (1.9%) está longe de #2D9E67 (ΔE 11.6)",
+    "#358D6C (1.8%) está longe de #2D9E67 (ΔE 15.0)",
+    "#479879 (1.7%) está longe de #2D9E67 (ΔE 16.3)",
+    "#9BB6AF (1.1%) está longe de #E2E8F0 (ΔE 22.8)"
+  ]
+}

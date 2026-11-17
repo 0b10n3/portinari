@@ -1,0 +1,173 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/juro-edicao/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "proporcao_pedida": "3:2",
+  "cores": [
+    {
+      "rgb": [
+        227,
+        242,
+        236
+      ],
+      "hex_imagem": "#E3F2EC",
+      "fracao": 0.5174,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 0.8,
+      "amplitude_luminancia": 0.0118
+    },
+    {
+      "rgb": [
+        244,
+        245,
+        239
+      ],
+      "hex_imagem": "#F4F5EF",
+      "fracao": 0.1878,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 2.3,
+      "amplitude_luminancia": 0.012
+    },
+    {
+      "rgb": [
+        221,
+        229,
+        236
+      ],
+      "hex_imagem": "#DDE5EC",
+      "fracao": 0.0749,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 1.5,
+      "amplitude_luminancia": 0.0292
+    },
+    {
+      "rgb": [
+        130,
+        198,
+        169
+      ],
+      "hex_imagem": "#82C6A9",
+      "fracao": 0.0519,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.1,
+      "amplitude_luminancia": 0.0081
+    },
+    {
+      "rgb": [
+        44,
+        145,
+        104
+      ],
+      "hex_imagem": "#2C9168",
+      "fracao": 0.049,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 9.4,
+      "amplitude_luminancia": 0.0114
+    },
+    {
+      "rgb": [
+        203,
+        211,
+        221
+      ],
+      "hex_imagem": "#CBD3DD",
+      "fracao": 0.0336,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 7.6,
+      "amplitude_luminancia": 0.0241
+    },
+    {
+      "rgb": [
+        236,
+        240,
+        241
+      ],
+      "hex_imagem": "#ECF0F1",
+      "fracao": 0.0252,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 3.4,
+      "amplitude_luminancia": 0.0164
+    },
+    {
+      "rgb": [
+        188,
+        198,
+        202
+      ],
+      "hex_imagem": "#BCC6CA",
+      "fracao": 0.0142,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 12.8,
+      "amplitude_luminancia": 0.0308
+    },
+    {
+      "rgb": [
+        124,
+        157,
+        138
+      ],
+      "hex_imagem": "#7C9D8A",
+      "fracao": 0.0103,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 22.6,
+      "amplitude_luminancia": 0.0293
+    },
+    {
+      "rgb": [
+        206,
+        217,
+        220
+      ],
+      "hex_imagem": "#CED9DC",
+      "fracao": 0.0102,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 6.6,
+      "amplitude_luminancia": 0.0351
+    },
+    {
+      "rgb": [
+        53,
+        126,
+        96
+      ],
+      "hex_imagem": "#357E60",
+      "fracao": 0.01,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 20.3,
+      "amplitude_luminancia": 0.0239
+    }
+  ],
+  "tokens": {
+    "#E6F4EE": 0.5317,
+    "#F7F7F5": 0.204,
+    "#E2E8F0": 0.1306,
+    "#2D9E67": 0.0633,
+    "#78C9A4": 0.0548
+  },
+  "fundo": {
+    "hex": "#E3F2EC",
+    "fracao": 0.5174
+  },
+  "acento_fracao": 0.0011,
+  "par": {
+    "com": "output/2026-10-30_o-juro-tira-folga/iteracoes/03/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.29
+  },
+  "erros": [
+    "o par com gen_01.jpg (dark) tem IoU de silhueta 0.29 (< 0.4): não é a mesma composição"
+  ],
+  "avisos": [
+    "#DDE5EC varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#2C9168 (4.9%) está longe de #2D9E67 (ΔE 9.4)",
+    "#BCC6CA (1.4%) está longe de #E2E8F0 (ΔE 12.8)",
+    "#BCC6CA varia de tom dentro da própria folha (amplitude 0.031 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#7C9D8A (1.0%) está longe de #78C9A4 (ΔE 22.6)",
+    "#7C9D8A varia de tom dentro da própria folha (amplitude 0.029 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#CED9DC varia de tom dentro da própria folha (amplitude 0.035 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#357E60 (1.0%) está longe de #2D9E67 (ΔE 20.3)"
+  ]
+}
