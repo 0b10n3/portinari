@@ -39,6 +39,15 @@ PROPORCOES = {"1:1": 1.0, "2:3": 2 / 3, "3:2": 3 / 2, "3:4": 3 / 4, "4:3": 4 / 3
 # Escada de orquestradores: começa barato; se o prompt for reescrito/falhar, sobe (mitiga R1).
 ESCADA_MODELOS = ("gemini-3.8-flash-low", "gemini-3.8-flash-medium", "gemini-3.8-flash-high")
 MAX_GERACOES = 12
+# Abre o prompt da segunda variante do par (derivada por edição da primeira). É o padrão
+# "referência + relação + cena nova" da documentação do Gemini ("Using the provided image, change
+# only…"). Medido na Fase 3 da auditoria (16/11/2026): com o papel da referência declarado, o par
+# saiu com IoU 0,97 e 0,74; sem ele (juro), 0,29 — a edição seguiu a descrição, não a imagem.
+DERIVACAO = (
+    "Edit the attached image. Keep its composition exactly: every shape, silhouette, size and position "
+    "stays where it is, and nothing is added or removed. Change only the colours, moving every sheet to "
+    "the palette below; the description that follows says which tone each element takes."
+)
 
 
 class AgyErro(Exception):
@@ -84,6 +93,7 @@ def montar_prompt(
     entrega: tuple[int, int],
     master: tuple[int, int] | None = None,
     fragmentos: list[str] | tuple[str, ...] = (),
+    derivada: bool = False,
 ) -> str:
     """Parte criativa + bloco de marca + fragmento(s) de estilo + técnico.
 
@@ -103,6 +113,8 @@ def montar_prompt(
             "downscale: keep the focal point and everything that must survive well inside the frame."
         )
     partes = [criativo.strip(), bloco.strip(), *(f.strip() for f in fragmentos if f and f.strip()), "\n".join(tecnico)]
+    if derivada:  # a segunda variante do par é edição da primeira, não cena nova
+        partes.insert(0, DERIVACAO)
     return "\n\n".join(partes) + "\n"
 
 

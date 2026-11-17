@@ -156,6 +156,10 @@ def test_light_derivado_manda_anexar_a_peca_dark(execucao):
     g.write_text(json.dumps({**d, "referencias": ["/x/dark.jpg"]}))
     snap = json.loads((execucao / "brand_snapshot.json").read_text())
     _regravar_prompt(execucao, agy.montar_prompt(CRIATIVO, snap["bloco"]["light"], (1456, 816), (2560, 1440)))
+    with pytest.raises(entrega.EntregaErro, match="--derivada"):  # T8: editado sem dizer ao gerador
+        entregar(execucao, modo="light")
+    _regravar_prompt(execucao, agy.montar_prompt(CRIATIVO, snap["bloco"]["light"], (1456, 816), (2560, 1440),
+                                                 derivada=True))
     entregar(execucao, modo="light")
     cg = (execucao / "final" / "COMO-GERAR.md").read_text(encoding="utf-8")
     assert "**light:** gere o dark primeiro" in cg and "anexe a peça dark final" in cg

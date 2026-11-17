@@ -89,7 +89,8 @@ Ele devolve o texto da crítica; **você** grava `iteracoes/NN/critica.md`. `REV
 7 com a lista de mudanças, nova iteração, contando a volta.
 
 **12. Variante do outro modo.** Com o primário (dark, A3) aprovado: nova iteração, prompter escreve
-o criativo da outra pilha, `prompt --modo light`, e `gerar --ref <imagem aprovada>` para que a
+o criativo da outra pilha, `prompt --modo light --derivada` (abre o prompt mandando editar a imagem
+anexada: sem isso a edição segue o texto e o par diverge), e `gerar --ref <imagem aprovada>` para que a
 edição preserve a composição. Passos 10 e 11 de novo, no modo light, passando ao crítico a imagem
 dark aprovada.
 

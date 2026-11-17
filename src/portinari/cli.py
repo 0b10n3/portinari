@@ -121,7 +121,7 @@ def _prompt(a: argparse.Namespace) -> int:
     ]
     final = agy.montar_prompt(
         criativo, s["bloco"][a.modo], tuple(b["tamanho"]),
-        tuple(b["master"]) if b.get("master") else None, fragmentos,
+        tuple(b["master"]) if b.get("master") else None, fragmentos, derivada=a.derivada,
     )
     (d / "prompt_final.md").write_text(final, encoding="utf-8")
     print(f"prompt: {d / 'prompt_final.md'} ({len(final)} caracteres)")
@@ -280,6 +280,8 @@ def main(argv: list[str] | None = None) -> int:
     pr.add_argument("saida")
     pr.add_argument("--iteracao", type=int, required=True)
     pr.add_argument("--modo", choices=brand.MODOS, default="dark")
+    pr.add_argument("--derivada", action="store_true",
+                    help="segunda variante do par: abre o prompt mandando editar a imagem da primeira")
     pr.set_defaults(fn=_prompt)
     im = sub.add_parser("importar", help="importa imagens geradas à mão (ex.: Nano Banana Pro) para iteracoes/NN/")
     im.add_argument("saida")

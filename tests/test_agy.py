@@ -264,3 +264,9 @@ def test_modelo_de_imagem_vem_do_banco_do_subagente(tmp_path):
     (tmp_path / "conversations" / "filho.db").write_bytes(b"..gemini-3-pro-image\x01")
     assert agy.modelo_imagem("pai", tmp_path) == "gemini-3-pro-image"
     assert agy.modelo_imagem("sem-banco", tmp_path) is None
+
+
+def test_prompt_derivado_abre_com_a_instrucao_de_edicao():
+    p = agy.montar_prompt("Light version.", "# Bloco", (1456, 816), (2560, 1440), derivada=True)
+    assert p.startswith(agy.DERIVACAO) and "Light version." in p
+    assert agy.DERIVACAO not in agy.montar_prompt("Light version.", "# Bloco", (1456, 816))

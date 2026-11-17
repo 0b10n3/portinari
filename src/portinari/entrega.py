@@ -78,9 +78,12 @@ def geracao(saida: Path, iteracao: int, nome: str | None = None) -> dict:
     return json.loads(arqs[-1].read_text(encoding="utf-8"))
 
 
-def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path) -> list[str]:
-    """As recusas T1–T4 e T6 do épico 12. Só o que o código sabe conferir sem opinar."""
+def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path, derivado: bool = False) -> list[str]:
+    """As recusas T1–T4 e T6 do épico 12, mais T7 (alt) e T8 (derivação). Só o que o código confere sem opinar."""
     erros: list[str] = []
+    if derivado and agy.DERIVACAO not in prompt:  # T8 — o autor vai anexar a peça do outro modo no Pro
+        erros.append("o prompt foi validado como edição de outra imagem, mas não diz isso ao gerador: "
+                      "regere com `portinari prompt --derivada`")
     no_prompt = _hex(prompt)
 
     faltam = sorted(_hex_da_paleta(snap, modo) - no_prompt)
@@ -255,7 +258,7 @@ def entregar(
         raise EntregaErro(f"{g['nome']} não tem imagem: esse prompt nunca foi validado")
     prompt = (saida / "iteracoes" / f"{it:02d}" / f"{g['nome']}.prompt.md").read_text(encoding="utf-8")
 
-    erros = verificar(prompt, snap, modo, brief, saida)
+    erros = verificar(prompt, snap, modo, brief, saida, derivado=bool(g.get("referencias")))
     if erros:
         raise EntregaErro("o prompt não pode ser entregue:\n  - " + "\n  - ".join(erros))
 
