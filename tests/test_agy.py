@@ -106,9 +106,18 @@ def test_timeout_e_transitorio(tmp_path, fake):
 def test_teto_de_geracoes(tmp_path, fake):
     fake("ok")
     (tmp_path / "run").mkdir()
-    (tmp_path / "run" / "geracoes.jsonl").write_text('{"x":1}\n' * 2)
+    (tmp_path / "run" / "geracoes.jsonl").write_text('{"origem": "agy", "imagem": "x.jpg"}\n' * 2)
     with pytest.raises(agy.TetoDeGeracoes):
         gerar(tmp_path, max_geracoes=2)
+
+
+def test_teto_conta_so_imagem_do_agy(tmp_path):
+    """Falha sem imagem não gastou geração; peça importada à mão não é do agy (auditoria G5)."""
+    (tmp_path / "geracoes.jsonl").write_text(
+        '{"origem": "agy", "imagem": "a.jpg"}\n{"origem": "agy", "imagem": null, "erro": "x"}\n'
+        '{"origem": "manual", "imagem": "pro.png"}\nlixo\n'
+    )
+    assert agy.contar(tmp_path) == 1
 
 
 def test_teto_no_meio_devolve_a_imagem_ja_paga(tmp_path, fake):
@@ -216,10 +225,11 @@ def test_importar_imagens_manuais(tmp_path):
     assert (d / "gen_01.prompt.md").read_text() == PROMPT  # prompt completo, colável
     meta = json.loads((d / "gen_01.json").read_text())
     assert meta["origem"] == "manual" and meta["modelo_imagem"] == "nano-banana-pro" and meta["comando"] == []
-    assert [l["origem"] for l in linhas(tmp_path)] == ["manual", "manual"]  # contam como gerações
+    assert [l["origem"] for l in linhas(tmp_path)] == ["manual", "manual"]  # registradas…
+    assert agy.contar(tmp_path / "run") == 0  # …mas fora do teto do agy
 
 
-def test_importar_recusa_nao_imagem_e_respeita_teto(tmp_path):
+def test_importar_recusa_nao_imagem(tmp_path):
     ruim = tmp_path / "x.png"
     ruim.write_text("não sou imagem")
     ok = tmp_path / "ok.png"
@@ -227,8 +237,6 @@ def test_importar_recusa_nao_imagem_e_respeita_teto(tmp_path):
     with pytest.raises(agy.AgyErro, match="não é uma imagem"):
         agy.importar([ok, ruim], PROMPT, tmp_path / "run", 1)
     assert not (tmp_path / "run").exists()  # nada foi gravado
-    with pytest.raises(agy.TetoDeGeracoes):
-        agy.importar([ok, ok], PROMPT, tmp_path / "run", 1, max_geracoes=1)
 
 
 def test_cli_importar_usa_o_prompt_final(tmp_path, capsys):
@@ -242,3 +250,23 @@ def test_cli_importar_usa_o_prompt_final(tmp_path, capsys):
     assert "manual · nano-banana-pro" in capsys.readouterr().out
     assert (it / "gen_01.prompt.md").read_text() == "prompt colado no Pro"
     assert main(["importar", str(run), str(tmp_path / "nao.png"), "--iteracao", "1"]) == 3
+
+
+def test_modelo_de_imagem_vem_do_banco_do_subagente(tmp_path):
+    """Auditoria G6: o modelo não é suposto — é lido de onde o agy o grava (docs/agy.md §3.2)."""
+    sub = tmp_path / "brain" / "pai" / ".system_generated" / "subagents"
+    sub.mkdir(parents=True)
+    (sub / "a.json").write_text(json.dumps({"conversationId": "filho"}))
+    (tmp_path / "conversations").mkdir()
+    (tmp_path / "conversations" / "pai.db").write_bytes(b"\x00orchestrator gemini-3.8-flash-low\x00")
+    (tmp_path / "conversations" / "filho.db").write_bytes(b"\x12\x16gemini-3.1-flash-imageB\x08")
+    assert agy.modelo_imagem("pai", tmp_path) == "gemini-3.1-flash-image"
+    (tmp_path / "conversations" / "filho.db").write_bytes(b"..gemini-3-pro-image\x01")
+    assert agy.modelo_imagem("pai", tmp_path) == "gemini-3-pro-image"
+    assert agy.modelo_imagem("sem-banco", tmp_path) is None
+
+
+def test_prompt_derivado_abre_com_a_instrucao_de_edicao():
+    p = agy.montar_prompt("Light version.", "# Bloco", (1456, 816), (2560, 1440), derivada=True)
+    assert p.startswith(agy.DERIVACAO) and "Light version." in p
+    assert agy.DERIVACAO not in agy.montar_prompt("Light version.", "# Bloco", (1456, 816))

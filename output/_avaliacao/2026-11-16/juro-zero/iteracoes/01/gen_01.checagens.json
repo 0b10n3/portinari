@@ -1,0 +1,145 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/juro-zero/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1264,
+    848
+  ],
+  "proporcao_pedida": "3:2",
+  "cores": [
+    {
+      "rgb": [
+        228,
+        243,
+        238
+      ],
+      "hex_imagem": "#E4F3EE",
+      "fracao": 0.6021,
+      "token_mais_perto": "#E6F4EE",
+      "delta_e": 0.7,
+      "amplitude_luminancia": 0.0136
+    },
+    {
+      "rgb": [
+        245,
+        246,
+        242
+      ],
+      "hex_imagem": "#F5F6F2",
+      "fracao": 0.1749,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 1.2,
+      "amplitude_luminancia": 0.014
+    },
+    {
+      "rgb": [
+        213,
+        220,
+        229
+      ],
+      "hex_imagem": "#D5DCE5",
+      "fracao": 0.0547,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 4.3,
+      "amplitude_luminancia": 0.0164
+    },
+    {
+      "rgb": [
+        45,
+        148,
+        105
+      ],
+      "hex_imagem": "#2D9469",
+      "fracao": 0.0389,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 7.9,
+      "amplitude_luminancia": 0.0123
+    },
+    {
+      "rgb": [
+        132,
+        197,
+        162
+      ],
+      "hex_imagem": "#84C5A2",
+      "fracao": 0.0261,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 5.0,
+      "amplitude_luminancia": 0.0107
+    },
+    {
+      "rgb": [
+        39,
+        114,
+        83
+      ],
+      "hex_imagem": "#277253",
+      "fracao": 0.0246,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 22.3,
+      "amplitude_luminancia": 0.0192
+    },
+    {
+      "rgb": [
+        199,
+        208,
+        211
+      ],
+      "hex_imagem": "#C7D0D3",
+      "fracao": 0.0172,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 9.3,
+      "amplitude_luminancia": 0.0231
+    },
+    {
+      "rgb": [
+        214,
+        225,
+        227
+      ],
+      "hex_imagem": "#D6E1E3",
+      "fracao": 0.016,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 4.7,
+      "amplitude_luminancia": 0.0323
+    },
+    {
+      "rgb": [
+        145,
+        185,
+        166
+      ],
+      "hex_imagem": "#91B9A6",
+      "fracao": 0.0155,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 17.1,
+      "amplitude_luminancia": 0.0277
+    }
+  ],
+  "tokens": {
+    "#E6F4EE": 0.6216,
+    "#F7F7F5": 0.179,
+    "#E2E8F0": 0.0832,
+    "#2D9E67": 0.0664,
+    "#78C9A4": 0.0366
+  },
+  "fundo": {
+    "hex": "#E4F3EE",
+    "fracao": 0.6021
+  },
+  "acento_fracao": 0.0024,
+  "par": {
+    "com": "output/2026-10-30_o-juro-tira-folga/iteracoes/03/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.27
+  },
+  "erros": [
+    "o par com gen_01.jpg (dark) tem IoU de silhueta 0.27 (< 0.4): não é a mesma composição"
+  ],
+  "avisos": [
+    "#277253 (2.5%) está longe de #2D9E67 (ΔE 22.3)",
+    "#C7D0D3 (1.7%) está longe de #E2E8F0 (ΔE 9.3)",
+    "#D6E1E3 varia de tom dentro da própria folha (amplitude 0.032 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8",
+    "#91B9A6 (1.6%) está longe de #78C9A4 (ΔE 17.1)"
+  ]
+}

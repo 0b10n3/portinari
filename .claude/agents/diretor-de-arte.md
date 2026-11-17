@@ -53,6 +53,7 @@ Um arquivo, em pt-BR, com três seções `## C1`, `## C2`, `## C3`. Cada uma:
 **Ponto focal:** x 0.00–1.00, y 0.00–1.00 — o que está exatamente ali.
 **Hierarquia:** o que o olho vê em 1º, 2º e 3º lugar.
 **Cor:** que papel de cor cada massa recebe e onde cai o acento.
+**Fundo:** fração estimada do quadro que fica fundo vazio (a marca pede ao menos 40%).
 **Em miniatura:** o que sobra a 200px.
 **Riscos:** o que pode dar errado no gerador (ambiguidade, tentação de escrever texto, clichê).
 ```

@@ -38,7 +38,7 @@ def test_exemplo_com_ruido(tmp_path):
     assert b.perguntas == []
     assert b.titulo == "Transformação da Produção Agricola em Produto Financeiro"
     assert b.slug == "transformacao-da-producao-agricola-em-produto-financeiro"
-    assert (b.aspect_ratio, b.resolucao, b.tamanho) == ("16:9", "2k", (2560, 1440))
+    assert (b.aspect_ratio, b.resolucao, b.tamanho, b.master) == ("16:9", "2k", (1456, 816), (2560, 1440))
     assert (b.estilo, b.estilo_padrao) == ("papercut", False)
     assert b.contexto == "" and b.referencias == [] and b.preset == "substack-capa"
     assert b.descricao.endswith("(LCA) no lado direto da figura.")
@@ -111,8 +111,23 @@ def test_uso_sem_preset_pergunta(tmp_path):
 
 
 def test_uso_sem_preset_mas_com_size_ok(tmp_path):
-    b = carregar(tmp_path, "# TITLE: x\n**USO**: cartaz\n**DESCRIPTION**: y\n**SIZE**: 900x1200\n")
-    assert b.tamanho == (900, 1200) and b.aspect_ratio == "3:4" and b.perguntas == []
+    b = carregar(tmp_path, "# TITLE: x\n**USO**: cartaz\n**DESCRIPTION**: y\n**SIZE**: 900x1200\n**FORMATO**: png\n")
+    assert b.tamanho == (900, 1200) and b.aspect_ratio == "3:4" and b.perguntas == [] and b.formato == ["png"]
+
+
+def test_uso_sem_preset_sem_formato_pergunta_antes_de_gastar(tmp_path):
+    """Auditoria G3: a capa do Hotmart gastou 4 gerações e só foi recusada em `entregar`."""
+    b = carregar(tmp_path, "# TITLE: x\n**USO**: Capa de curso no hotmart\n**DESCRIPTION**: y\n**SIZE**: 2560 x 1440\n")
+    assert any("informe FORMATO" in p for p in b.perguntas)
+
+
+def test_size_igual_ao_master_vira_master(tmp_path):
+    """Auditoria G4: SIZE 2560x1440 numa capa do Substack é o master, não a entrega."""
+    b = carregar(tmp_path, BASE + "**ASPECT RATIO**: 16:9\n**RESOLUTION**: 2k\n**SIZE**: 2560 x 1440\n")
+    assert (b.tamanho, b.master, b.resolucao) == ((1456, 816), (2560, 1440), "2k") and b.perguntas == []
+    assert any("é o master" in a for a in b.avisos)
+    b = carregar(tmp_path, BASE + "**SIZE**: 1920x1080\n")  # outro tamanho: o pedido vence, como antes
+    assert b.tamanho == (1920, 1080)
 
 
 def test_usos_que_a_marca_passou_a_definir(tmp_path):

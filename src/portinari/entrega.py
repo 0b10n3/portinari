@@ -10,14 +10,37 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import shutil
 from datetime import date
 from pathlib import Path
 
-from . import enriquecimento
+from . import agy, enriquecimento, imaging
 
 NOMES_MODO = {"dark": "escura", "light": "clara"}
+# Nano Banana Pro (`gemini-3-pro-image`): proporções e tamanho 1K; 2K e 4K são ×2 e ×4.
+# Fonte: https://ai.google.dev/gemini-api/docs/image-generation, lida em 16/11/2026. Isto é
+# capacidade do gerador, não regra de marca — confira na doc antes de mexer.
+PRO_1K = {"1:1": (1024, 1024), "2:3": (848, 1264), "3:2": (1264, 848), "3:4": (896, 1200), "4:3": (1200, 896),
+          "4:5": (928, 1152), "5:4": (1152, 928), "9:16": (768, 1376), "16:9": (1376, 768), "21:9": (1584, 672)}
+
+
+def gerador_final(brief: dict) -> dict:
+    """Como pedir a peça final ao Nano Banana Pro: a proporção dele mais próxima da entrega e a menor
+    resolução cujo corte central ainda cobre o master (nunca ampliar)."""
+    alvo = tuple(brief["tamanho"])
+    master = tuple(brief.get("master") or alvo)
+    ln = lambda w, h: math.log(w / h)  # noqa: E731
+    prop = min(PRO_1K, key=lambda p: abs(ln(*PRO_1K[p]) - ln(*alvo)))
+    for k in (1, 2, 4):
+        tam = (PRO_1K[prop][0] * k, PRO_1K[prop][1] * k)
+        x0, y0, x1, y1 = imaging.recorte_central(tam, alvo)
+        if x1 - x0 >= master[0] and y1 - y0 >= master[1]:
+            break
+    w, h = PRO_1K[prop]
+    corta = abs(w / h / (alvo[0] / alvo[1]) - 1) > imaging.PROPORCAO_TOL
+    return {"proporcao": prop, "resolucao": f"{k}K", "tamanho": list(tam), "corta": corta}
 
 
 class EntregaErro(Exception):
@@ -55,9 +78,12 @@ def geracao(saida: Path, iteracao: int, nome: str | None = None) -> dict:
     return json.loads(arqs[-1].read_text(encoding="utf-8"))
 
 
-def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path) -> list[str]:
-    """As recusas T1–T4 e T6 do épico 12. Só o que o código sabe conferir sem opinar."""
+def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path, derivado: bool = False) -> list[str]:
+    """As recusas T1–T4 e T6 do épico 12, mais T7 (alt) e T8 (derivação). Só o que o código confere sem opinar."""
     erros: list[str] = []
+    if derivado and agy.DERIVACAO not in prompt:  # T8 — o autor vai anexar a peça do outro modo no Pro
+        erros.append("o prompt foi validado como edição de outra imagem, mas não diz isso ao gerador: "
+                      "regere com `portinari prompt --derivada`")
     no_prompt = _hex(prompt)
 
     faltam = sorted(_hex_da_paleta(snap, modo) - no_prompt)
@@ -74,9 +100,11 @@ def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path) -> l
 
     try:  # T3 — o mesmo teste que `portinari prompt` faz, agora sobre o que vai ser entregue
         enr, versao = enriquecimento.carregar(Path(saida))
-    except (FileNotFoundError, ValueError):
-        pass
+    except (FileNotFoundError, ValueError) as e:  # T7 — sem enriquecimento não há alt-text
+        erros.append(f"sem enriquecimento válido não há alt-text para entregar ({e})")
     else:
+        if not enr.alt.strip():  # T7 — a informação verbal vai no alt (DESIGN.md §4.4; SOCIAL.md §7)
+            erros.append(f"{versao.name} não tem `alt`: peça uma versão nova ao enriquecedor com o alt-text")
         ausentes = enriquecimento.termos_ausentes(enr, prompt)
         if ausentes:
             erros.append(
@@ -110,7 +138,7 @@ def cabecalho(brief: dict, modo: str, hoje: date | None = None) -> str:
 def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
     """Tudo o que o autor precisa saber ao colar o prompt — vindo de FORMATOS.md, nunca do código."""
     fmt = (snap.get("formatos") or {}).get(brief.get("preset") or "", {})
-    tam, master = brief.get("tamanho"), brief.get("master")
+    tam = brief.get("tamanho")
     area = brief.get("area_segura")
     universal = ((snap.get("areas_seguras") or {}).get("zonas", {}).get("universal") or {})
     linhas = [
@@ -124,16 +152,32 @@ def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
         "",
         "- **Modelo:** Nano Banana Pro (`gemini-3-pro-image`) — é o único que gera 2K/4K nativos.",
         f"- **Prompt:** {', '.join(f'`{a}`' for a in sorted(entregas))} (um arquivo por modo; use um de cada vez).",
+    ]
+    for modo, e in sorted(entregas.items()):
+        if e.get("derivado_por_edicao"):
+            outro = "light" if modo == "dark" else "dark"
+            linhas.append(
+                f"- **{modo}:** gere o {outro} primeiro. Depois anexe a peça {outro} final como imagem de "
+                f"referência e cole `prompt_{modo}.md`: ele foi validado como edição dela, e é assim que o par "
+                "sai com a mesma composição."
+            )
+    linhas += [
         "",
         "## Tamanho e formato",
         "",
     ]
-    if master:
-        linhas.append(f"- **Gere em {master[0]}×{master[1]}** (ou o maior que o gerador permitir).")
     if tam:
+        gf = gerador_final(brief)
+        linhas.append(
+            f"- **No gerador: proporção {gf['proporcao']}, resolução {gf['resolucao']}** "
+            f"(sai {gf['tamanho'][0]}×{gf['tamanho'][1]}). O Pro recebe proporção e 1K/2K/4K, não pixels."
+        )
+        if gf["corta"]:
+            linhas.append(f"- A proporção do uso ({brief.get('aspect_ratio')}) não existe no Pro: gere em "
+                          f"{gf['proporcao']} e o corte central faz o resto.")
         linhas.append(
             f"- **Entregue em {tam[0]}×{tam[1]}** ({brief.get('aspect_ratio')}), por corte central "
-            "e redução do que foi gerado — nunca gerando de novo num tamanho diferente."
+            "e redução do que foi gerado (`portinari derivar`) — nunca gerando de novo num tamanho diferente."
         )
     if brief.get("formato"):
         peso = f", até {brief['peso_max_mb']:g} MB" if brief.get("peso_max_mb") else ""
@@ -161,10 +205,23 @@ def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
         "- Só os hex listados no prompt; nenhuma cor fora deles.",
         "- O acento aparece em **um** ponto só (a virada), não espalhado.",
         "- O fundo ocupa a maior parte do quadro.",
-        "- Nenhuma sombra projetada nova que o prompt não tenha pedido.",
+        "- Nenhuma sombra, brilho, gradiente, parede de recorte escurecida ou curva livre.",
         "",
-        "Se algo estiver errado: `uv run portinari importar <execução> --iteracao N <imagem>` traz a "
-        "peça de volta para as checagens do pipeline.",
+        "## Depois de gerar — o pedido só fecha com isto",
+        "",
+        "1. `uv run portinari importar <execução> --iteracao N <peça> --modelo nano-banana-pro` "
+        "(N = uma iteração nova, uma por modo).",
+        "2. `uv run portinari checar <execução> --iteracao N --modo <modo>`; no segundo modo, "
+        "`--par <peça do primeiro>`. Tem de sair sem `ERRO`.",
+        "3. `uv run portinari derivar <execução> <peça> --modo <modo>` → o arquivo do tamanho exato.",
+        "4. `uv run portinari entregar <execução> --modo <modo> --aprovado --concluir`.",
+        "",
+        "## Alt-text (o mesmo para as duas variantes)",
+        "",
+        f"> {next((e['alt'] for e in entregas.values() if e.get('alt')), '(falta)')}",
+        "",
+        "Cole no campo de texto alternativo da plataforma. A imagem não carrega texto: quem carrega a "
+        "informação verbal é o alt.",
         "",
         "## Marca desta entrega",
         "",
@@ -201,7 +258,7 @@ def entregar(
         raise EntregaErro(f"{g['nome']} não tem imagem: esse prompt nunca foi validado")
     prompt = (saida / "iteracoes" / f"{it:02d}" / f"{g['nome']}.prompt.md").read_text(encoding="utf-8")
 
-    erros = verificar(prompt, snap, modo, brief, saida)
+    erros = verificar(prompt, snap, modo, brief, saida, derivado=bool(g.get("referencias")))
     if erros:
         raise EntregaErro("o prompt não pode ser entregue:\n  - " + "\n  - ".join(erros))
 
@@ -218,10 +275,12 @@ def entregar(
         "iteracao": it,
         "geracao": g["nome"],
         "origem": g.get("origem"),
-        "modelo_validacao": g.get("modelo_imagem") or "gemini-3.1-flash-image (agy)",
+        "modelo_validacao": g.get("modelo_imagem") or "não registrado",
         "validacao": str(val.relative_to(saida)),
         "validacao_px": [g.get("largura"), g.get("altura")],
         "sha256_prompt": hashlib.sha256(arq.read_bytes()).hexdigest(),
+        "derivado_por_edicao": bool(g.get("referencias")),
+        "alt": enriquecimento.carregar(saida)[0].alt.strip(),  # verificar() já garantiu que existe
         "gate2": "aprovado",
     }
     (final / "COMO-GERAR.md").write_text(como_gerar(brief, snap, m["entregas"]), encoding="utf-8")
@@ -230,17 +289,41 @@ def entregar(
     return m["entregas"][modo]
 
 
-def concluir(saida: Path, processados: Path) -> Path:
+def finais(saida: Path) -> dict[str, str]:
+    """Modo -> peça final conferida: geração importada à mão cuja checagem saiu sem erro."""
+    out: dict[str, str] = {}
+    for chk in sorted(Path(saida).glob("iteracoes/*/gen_*.checagens.json")):
+        meta = chk.with_name(chk.name.replace(".checagens.json", ".json"))
+        if not meta.is_file() or json.loads(meta.read_text(encoding="utf-8")).get("origem") != "manual":
+            continue
+        r = json.loads(chk.read_text(encoding="utf-8"))
+        if not r.get("erros"):
+            out[r["modo"]] = f"iteracoes/{chk.parent.name}/{meta.stem}"
+    return out
+
+
+def concluir(saida: Path, processados: Path, *, sem_final: bool = False) -> Path:
     """Arquiva o pedido: copia para a execução e MOVE o original para pedidos/_processados/.
 
     Só depois de `final/` ter pelo menos um prompt — o pedido é a única cópia do que o autor
-    escreveu, e um pedido arquivado sem entregável é trabalho perdido.
+    escreveu, e um pedido arquivado sem entregável é trabalho perdido. E só com a peça final de cada
+    modo entregue conferida por `checar` (auditoria M1: o gate de ilustração mede o que vai ao ar,
+    não só a validação do flash); `sem_final` pula isso e deixa registrado.
     """
     saida = Path(saida)
     prompts = sorted((saida / "final").glob("prompt_*.md"))
     if not prompts:
         raise EntregaErro("final/ não tem nenhum prompt: não arquivo o pedido antes de entregar")
     m = manifesto(saida)
+    conferidas = finais(saida)
+    faltam = sorted(set(m["entregas"]) - set(conferidas))
+    if faltam and not sem_final:
+        raise EntregaErro(
+            f"falta a peça final conferida do(s) modo(s) {', '.join(faltam)}: gere no Nano Banana Pro "
+            "(final/COMO-GERAR.md), traga com `importar` e passe `checar` sem erro — ou use --sem-final, "
+            "que fica registrado no manifest"
+        )
+    m["final_conferido"] = {modo: conferidas.get(modo) for modo in sorted(m["entregas"])}
     origem = Path(m.get("pedido") or "")
     if not origem.is_file():
         raise EntregaErro(f"o pedido original não está mais em {origem}")
@@ -260,23 +343,26 @@ def estado(saida: Path) -> dict:
     """Onde a execução parou e qual é a próxima ação — é o que permite retomar numa sessão nova."""
     saida = Path(saida)
     m = json.loads((saida / "manifest.json").read_text(encoding="utf-8")) if (saida / "manifest.json").is_file() else {}
-    log = saida / "geracoes.jsonl"
     feito = {
         "brief": (saida / "brief.json").is_file(),
         "marca": (saida / "brand_snapshot.json").is_file(),
         "conceitos": (saida / "conceitos.md").is_file(),
         "enriquecimento": sorted(p.name for p in (saida / "enriquecimento").glob("v*.json")),
         "iteracoes": iteracoes(saida) if (saida / "iteracoes").is_dir() else [],
-        "geracoes": len(log.read_text(encoding="utf-8").splitlines()) if log.is_file() else 0,
+        "geracoes": agy.contar(saida),
         "entregas": sorted(m.get("entregas", {})),
+        "finais": sorted(finais(saida)) if (saida / "iteracoes").is_dir() else [],
     }
     # de trás para a frente: o que já foi feito mais adiante manda, mesmo que uma etapa
     # intermediária não tenha deixado arquivo (o autor pode ter pulado o gate de conceito).
     if m.get("etapa_atual") == "concluido":
         proxima = "nada: execução concluída"
+    elif feito["entregas"] and set(feito["entregas"]) - set(feito["finais"]):
+        proxima = ("gerar a peça final de cada modo no Nano Banana Pro (final/COMO-GERAR.md), `importar` e "
+                   f"`checar` sem erro; depois `uv run portinari entregar {saida} ... --concluir`")
     elif feito["entregas"]:
         proxima = f"entregar o outro modo, ou `uv run portinari entregar {saida} ... --concluir`"
-    elif feito["geracoes"]:
+    elif any(Path(saida).glob("iteracoes/*/gen_*.json")):  # há imagem, do agy ou importada
         proxima = f"checar, crítica visual, Gate 2 e `uv run portinari entregar {saida} --modo dark --aprovado`"
     elif feito["iteracoes"]:
         proxima = f"uv run portinari gerar {saida} --iteracao {feito['iteracoes'][-1]}"

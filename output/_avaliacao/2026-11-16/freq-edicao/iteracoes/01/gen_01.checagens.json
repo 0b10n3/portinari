@@ -1,0 +1,81 @@
+{
+  "imagem": "output/_avaliacao/2026-11-16/freq-edicao/iteracoes/01/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        248,
+        248,
+        246
+      ],
+      "hex_imagem": "#F8F8F6",
+      "fracao": 0.7284,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 0.3,
+      "amplitude_luminancia": 0.0065
+    },
+    {
+      "rgb": [
+        222,
+        229,
+        239
+      ],
+      "hex_imagem": "#DEE5EF",
+      "fracao": 0.1371,
+      "token_mais_perto": "#E2E8F0",
+      "delta_e": 1.5,
+      "amplitude_luminancia": 0.0044
+    },
+    {
+      "rgb": [
+        42,
+        148,
+        102
+      ],
+      "hex_imagem": "#2A9466",
+      "fracao": 0.1036,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 6.2,
+      "amplitude_luminancia": 0.0056
+    },
+    {
+      "rgb": [
+        160,
+        203,
+        180
+      ],
+      "hex_imagem": "#A0CBB4",
+      "fracao": 0.0121,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 15.2,
+      "amplitude_luminancia": 0.0347
+    }
+  ],
+  "tokens": {
+    "#F7F7F5": 0.7261,
+    "#E2E8F0": 0.1382,
+    "#2D9E67": 0.1042,
+    "#E6F4EE": 0.0134,
+    "#78C9A4": 0.0127
+  },
+  "fundo": {
+    "hex": "#F8F8F6",
+    "fracao": 0.7284
+  },
+  "acento_fracao": 0.005,
+  "par": {
+    "com": "output/2026-11-09_frequencia-de-capitalizacao/iteracoes/03/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.97
+  },
+  "erros": [],
+  "avisos": [
+    "#A0CBB4 (1.2%) está longe de #78C9A4 (ΔE 15.2)",
+    "#A0CBB4 varia de tom dentro da própria folha (amplitude 0.035 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8"
+  ]
+}

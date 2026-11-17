@@ -74,7 +74,7 @@ def _importar(a: argparse.Namespace) -> int:
     arq = d / a.prompt if not Path(a.prompt).is_absolute() else Path(a.prompt)
     try:
         gs = agy.importar([Path(x) for x in a.imagens], arq.read_text(encoding="utf-8"), saida, a.iteracao,
-                          modelo=a.modelo, max_geracoes=a.max_geracoes)
+                          modelo=a.modelo)
     except (agy.AgyErro, OSError) as e:
         print(f"ERRO: {e}")
         return 3
@@ -121,7 +121,7 @@ def _prompt(a: argparse.Namespace) -> int:
     ]
     final = agy.montar_prompt(
         criativo, s["bloco"][a.modo], tuple(b["tamanho"]),
-        tuple(b["master"]) if b.get("master") else None, fragmentos,
+        tuple(b["master"]) if b.get("master") else None, fragmentos, derivada=a.derivada,
     )
     (d / "prompt_final.md").write_text(final, encoding="utf-8")
     print(f"prompt: {d / 'prompt_final.md'} ({len(final)} caracteres)")
@@ -141,8 +141,8 @@ def _gerar(a: argparse.Namespace) -> int:
         except agy.AgyErro as e:
             print(f"ERRO: {e}")
             return 3
-        print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · orquestrador {g.modelo_orquestrador} · "
-              f"prompt {'íntegro' if g.fiel else 'ALTERADO'}")
+        print(f"{g.nome}: {g.imagem} {g.largura}x{g.altura} · imagem {g.modelo_imagem or 'modelo não identificado'} · "
+              f"orquestrador {g.modelo_orquestrador} · prompt {'íntegro' if g.fiel else 'ALTERADO'}")
         if g.hex_ausentes:  # a paleta não chegou ao gerador: a marca é vinculante (épico 14)
             print(f"ERRO: a ferramenta não recebeu os hex da paleta: {', '.join(g.hex_ausentes)}")
             codigo = 4
@@ -163,11 +163,20 @@ def _checar(a: argparse.Namespace) -> int:
     if not g.get("imagem") or not Path(g["imagem"]).is_file():
         print(f"ERRO: {g['nome']} não tem imagem para checar")
         return 2
-    r = imaging.checar(Path(g["imagem"]), snap, a.modo)
+    b = json.loads((saida / "brief.json").read_text())
+    final = g.get("origem") == "manual" and b.get("tamanho")  # a peça que vai ao ar
+    proporcao = entrega.gerador_final(b)["proporcao"] if final else g.get("proporcao")
+    ref = a.par or next(iter(g.get("referencias") or []), None)  # derivação: a imagem de que partiu
+    outro = "light" if a.modo == "dark" else "dark"
+    r = imaging.checar(Path(g["imagem"]), snap, a.modo, proporcao=proporcao,
+                       entrega=tuple(b["tamanho"]) if final else None,
+                       par_com=(Path(ref), outro) if ref else None)
     destino = imaging.gravar(r, saida, a.iteracao, g["nome"])
-    resumo = f"{len(r['cores'])} cores ≥1% · acento {r['acento_fracao']:.1%}"
+    resumo = f"{len(r['tokens'])} cores de token ≥1% · acento {r['acento_fracao']:.1%}"
     if r["fundo"]:
         resumo += f" · fundo {r['fundo']['hex']} em {r['fundo']['fracao']:.0%}"
+    if r["par"]:
+        resumo += f" · par {r['par']['iou']:.2f}"
     print(f"checagens: {destino} · {resumo}")
     for m in r["erros"]:
         print(f"ERRO: {m}")
@@ -210,7 +219,7 @@ def _entregar(a: argparse.Namespace) -> int:
     print(f"como gerar: {Path(a.saida) / 'final' / 'COMO-GERAR.md'}")
     if a.concluir:
         try:
-            destino = entrega.concluir(Path(a.saida), Path(a.processados))
+            destino = entrega.concluir(Path(a.saida), Path(a.processados), sem_final=a.sem_final)
         except (entrega.EntregaErro, OSError) as erro:
             print(f"ERRO: {erro}")
             return 2
@@ -228,9 +237,18 @@ def _estado(a: argparse.Namespace) -> int:
     print(f"execução: {e['saida']} · etapa: {e['etapa_atual']}")
     print(f"brief {'ok' if e['brief'] else '-'} · marca {'ok' if e['marca'] else '-'} · "
           f"conceitos {'ok' if e['conceitos'] else '-'} · enriquecimento {len(e['enriquecimento'])} versão(ões)")
-    print(f"iterações: {e['iteracoes'] or '-'} · gerações: {e['geracoes']} · "
-          f"entregues: {', '.join(e['entregas']) or '-'}")
+    print(f"iterações: {e['iteracoes'] or '-'} · gerações do agy: {e['geracoes']} · "
+          f"entregues: {', '.join(e['entregas']) or '-'} · peça final conferida: {', '.join(e['finais']) or '-'}")
     print(f"próxima: {e['proxima']}")
+    try:  # auditoria M5: prompt entregue com marca antiga continua colável — e pode violar regra nova
+        snap = json.loads((Path(a.saida) / "brand_snapshot.json").read_text(encoding="utf-8"))
+        atual = brand.resolver(Path(a.brand), verificar_git=False)
+    except (OSError, ValueError, KeyError, brand.BrandError):
+        return 0
+    if snap.get("fingerprint") != atual["fingerprint"]:
+        print(f"aviso: esta execução usou a marca tokens v{snap.get('versao_tokens')} · DESIGN v{snap.get('versao_design')}; "
+              f"a vigente é tokens v{atual['versao_tokens']} · DESIGN v{atual['versao_design']}. "
+              "Não reuse os prompts de final/ sem passar pelo pipeline de novo.")
     return 0
 
 
@@ -262,6 +280,8 @@ def main(argv: list[str] | None = None) -> int:
     pr.add_argument("saida")
     pr.add_argument("--iteracao", type=int, required=True)
     pr.add_argument("--modo", choices=brand.MODOS, default="dark")
+    pr.add_argument("--derivada", action="store_true",
+                    help="segunda variante do par: abre o prompt mandando editar a imagem da primeira")
     pr.set_defaults(fn=_prompt)
     im = sub.add_parser("importar", help="importa imagens geradas à mão (ex.: Nano Banana Pro) para iteracoes/NN/")
     im.add_argument("saida")
@@ -269,13 +289,12 @@ def main(argv: list[str] | None = None) -> int:
     im.add_argument("--iteracao", type=int, required=True)
     im.add_argument("--prompt", default="prompt_final.md", help="o prompt colado no gerador (dentro de iteracoes/NN/ ou caminho absoluto)")
     im.add_argument("--modelo", help="modelo de imagem usado, só para registro (ex.: nano-banana-pro)")
-    im.add_argument("--max-geracoes", type=int, default=agy.MAX_GERACOES)
     im.set_defaults(fn=_importar)
     g = sub.add_parser("gerar", help="gera imagens via agy (exit 3 = falha, 4 = paleta não chegou ao gerador)")
     g.add_argument("saida")
     g.add_argument("--iteracao", type=int, required=True)
     g.add_argument("--prompt", default="prompt_final.md", help="arquivo dentro de iteracoes/NN/")
-    g.add_argument("--variacoes", type=int, default=2)
+    g.add_argument("--variacoes", type=int, default=1, help="amostras; a 2ª só para provar que o prompt aprovado é estável")
     g.add_argument("--proporcao", choices=list(agy.PROPORCOES), help="padrão: a mais próxima do tamanho do brief")
     g.add_argument("--ref", action="append", default=[], help="imagem de referência/edição (até 3)")
     g.add_argument("--max-geracoes", type=int, default=agy.MAX_GERACOES)
@@ -287,6 +306,7 @@ def main(argv: list[str] | None = None) -> int:
     ch.add_argument("--iteracao", type=int, required=True)
     ch.add_argument("--gen", help="padrão: a última geração da iteração")
     ch.add_argument("--modo", choices=brand.MODOS, default="dark")
+    ch.add_argument("--par", help="a outra variante do par (padrão: a referência da edição, se houver)")
     ch.set_defaults(fn=_checar)
     dv = sub.add_parser("derivar", help="master gerado à mão -> entrega exata do uso (corte + redução)")
     dv.add_argument("saida")
@@ -301,10 +321,13 @@ def main(argv: list[str] | None = None) -> int:
     e.add_argument("--gen", help="geração que validou o prompt (padrão: a última da iteração)")
     e.add_argument("--aprovado", action="store_true", help="confirma que o Gate 2 aprovou este prompt")
     e.add_argument("--concluir", action="store_true", help="arquiva o pedido em pedidos/_processados/")
+    e.add_argument("--sem-final", action="store_true",
+                   help="conclui sem a peça final conferida por `checar` (fica registrado no manifest)")
     e.add_argument("--processados", default=str(brief.PIPELINE / "pedidos" / "_processados"))
     e.set_defaults(fn=_entregar)
     st = sub.add_parser("estado", help="onde a execução parou e qual é a próxima ação")
     st.add_argument("saida")
+    st.add_argument("--brand", default=str(brand.BRAND))
     st.set_defaults(fn=_estado)
     a = p.parse_args(argv)
     return a.fn(a)

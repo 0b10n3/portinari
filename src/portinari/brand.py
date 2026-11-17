@@ -209,7 +209,7 @@ def _sobra(celula: str, m: re.Match | None) -> str:
     return _limpo(celula[: m.start()] + " " + celula[m.end() :]).strip(" (),;")
 
 
-def _tipos_arquivo(celula: str) -> list[str]:
+def tipos_arquivo(celula: str) -> list[str]:
     """Extensões aceitas, na ordem em que a marca as cita (a primeira é a preferida)."""
     vistos: list[str] = []
     for m in re.finditer(r"\b(JPE?G|PNG)\b", celula, re.I):
@@ -235,7 +235,7 @@ def formatos(md: str) -> dict[str, dict]:
         prop = _PROP.search(linha["Proporção"])
         if not (entrega and prop):
             raise BrandError(f"FORMATOS.md: o uso '{chave}' não traz entrega e proporção legíveis")
-        tipos = _tipos_arquivo(linha["Formato / peso"])
+        tipos = tipos_arquivo(linha["Formato / peso"])
         if not tipos:
             raise BrandError(f"FORMATOS.md: o uso '{chave}' não diz o formato do arquivo")
         out[chave] = {

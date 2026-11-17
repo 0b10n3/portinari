@@ -11,9 +11,11 @@ Você orquestra o pipeline. **O entregável é o prompt**, não a imagem (decis�
 `agy` gera existe para provar que o prompt funciona; a peça final é gerada pelo autor, à mão, no
 Nano Banana Pro, colando `final/prompt_<modo>.md`.
 
-Leia `docs/PLANO.md` §6 antes de improvisar qualquer etapa. As decisões que mais mudam o
-comportamento: **A2 revogada pelo épico 14** (tudo em `_bloco-marca.md` é vinculante), **A3** (modo primário = dark),
-**A16/A17** (entregável = prompt; o `agy` só valida), **D6** (limites e nunca aprovar sozinho).
+As decisões que valem estão aqui; `docs/PLANO.md` é histórico (o topo dele tem decisões
+revogadas) e só se consulta para uma etapa que este arquivo não cobre. As que mais mudam o
+comportamento: **A2 revogada pelo épico 14** (tudo em `_bloco-marca.md` é vinculante), **A3** (modo
+primário = dark), **A16/A17** (entregável = prompt; o `agy` só valida), **D6** (limites e nunca
+aprovar sozinho), **auditoria de 16/11/2026** (o pedido só fecha com a peça final conferida).
 
 ## Regras invioláveis
 
@@ -25,7 +27,11 @@ comportamento: **A2 revogada pelo épico 14** (tudo em `_bloco-marca.md` é vinc
 4. **Nunca gere com a marca desatualizada.** `portinari marca` bloqueia; resolva antes.
 5. **Nunca edite `brand/`.** A marca é lida, nunca escrita.
 6. **O crítico visual não vê prompt.** Ao acioná-lo, passe só imagem, `brief.json`,
-   `brand_snapshot.json`, `checagens.json`, `enriquecimento/vNN.json` e a rubrica.
+   `brand_snapshot.json`, `checagens.json`, `enriquecimento/vNN.json` e a rubrica — e, em
+   derivação, **a imagem primária aprovada** (sem ela, D1–D4 ficam sem conferência).
+8. **Mesmo bloqueante duas voltas seguidas é defeito de conceito**, não de prompt (fundo abaixo
+   de 40%, sopa de elementos, foco que o gerador não desenha). Volte ao Gate 1 com o diagnóstico,
+   em vez de mandar uma terceira volta ao prompter.
 7. **Git:** branch `arte/<slug>`, um commit por etapa, merge em `main` só depois do Gate 2, push,
    e o repositório termina na `main`. Nunca `push --force`, `reset --hard` ou `clean -fd`.
 
@@ -59,8 +65,8 @@ novos (volta ao passo 3, conta uma volta) · abortar. Com `--sem-gate-conceito`,
 do crítico e **diga ao autor que pulou o gate**.
 
 **6. Enriquecimento.** Subagente `enriquecedor-de-cena` → `enriquecimento/vNN.json`, autovalidado.
-Mostre ao autor a lista de acréscimos e os itens `VERIFICAR:`; se ele corrigir algum fato, peça uma
-versão nova ao agente (nunca edite o JSON você mesmo).
+Mostre ao autor a lista de acréscimos, o alt-text e os itens `VERIFICAR:`; se ele corrigir algum
+fato, peça uma versão nova ao agente (nunca edite o JSON você mesmo).
 
 **7. Prompt criativo.** Subagente `prompter-tecnico` → `iteracoes/NN/prompt_criativo.md`.
 
@@ -68,21 +74,25 @@ versão nova ao agente (nunca edite o JSON você mesmo).
 Exit 2 = termo do enriquecimento perdido: devolva a lista ao prompter. Descritor proibido também
 sai com 2 (épico 14): reescreva a cena sem ele.
 
-**9. Imagem de validação.** `uv run portinari gerar <saida> --iteracao NN --variacoes N`
+**9. Imagem de validação.** `uv run portinari gerar <saida> --iteracao NN` (uma amostra; `--variacoes 2`
+só na volta que vai ao Gate 2, para provar que o prompt é estável)
 Exit 3 = falha do `agy`; exit 4 = os hex da paleta não chegaram ao gerador (aí **não** siga: o
 prompt precisa ser regerado). `aviso: o agy reescreveu o prompt` não bloqueia se a paleta chegou,
 mas anote — é o risco R1.
 
 **10. Checagens.** `uv run portinari checar <saida> --iteracao NN --modo <modo>`
-Exit 2 = cor fora da paleta. Não pule para o crítico: isso já é `REVISAR`.
+Exit 2 = regra da marca violada (paleta, tetos, proporção, par). Não pule para o crítico: isso já é
+`REVISAR`. Na variante do outro modo, o `checar` compara com a imagem de referência sozinho.
 
 **11. Crítica visual.** Subagente `critico-visual` (só imagem + os arquivos do item 6 das regras).
 Ele devolve o texto da crítica; **você** grava `iteracoes/NN/critica.md`. `REVISAR` → volte ao passo
 7 com a lista de mudanças, nova iteração, contando a volta.
 
 **12. Variante do outro modo.** Com o primário (dark, A3) aprovado: nova iteração, prompter escreve
-o criativo da outra pilha, `prompt --modo light`, e `gerar --ref <imagem aprovada>` para que a
-edição preserve a composição. Passos 10 e 11 de novo, no modo light.
+o criativo da outra pilha, `prompt --modo light --derivada` (abre o prompt mandando editar a imagem
+anexada: sem isso a edição segue o texto e o par diverge), e `gerar --ref <imagem aprovada>` para que a
+edição preserve a composição. Passos 10 e 11 de novo, no modo light, passando ao crítico a imagem
+dark aprovada.
 
 **13. GATE 2 — o autor aprova o PROMPT.** `AskUserQuestion`, mostrando: o caminho da imagem de
 validação, o veredito e as notas do crítico, os avisos que sobraram e o tamanho de entrega do uso.
@@ -93,10 +103,13 @@ que vai colar no Nano Banana Pro**, não a imagem que está vendo.
 (uma vez por modo aprovado). Exit 2 = recusa: leia a lista, corrija, repita. Depois mostre ao autor
 `final/COMO-GERAR.md` e o caminho dos prompts.
 
-**15. Depois, se o autor quiser.** Ele gera a peça no Nano Banana Pro e pode trazê-la de volta:
-`uv run portinari importar <saida> --iteracao NN <imagem> --modelo nano-banana-pro` (checagens sobre
-a final) e `uv run portinari derivar <saida> <imagem> --modo <modo>` (corte e redução para o tamanho
-exato do uso).
+**15. A peça final — o pedido só fecha com ela.** O autor gera cada modo no Nano Banana Pro
+(`final/COMO-GERAR.md` diz proporção, resolução e, no light, que anexe a peça dark). Para cada uma:
+`uv run portinari importar <saida> --iteracao NN <imagem> --modelo nano-banana-pro` (NN nova),
+`uv run portinari checar <saida> --iteracao NN --modo <modo>` (no segundo modo, `--par <peça do
+primeiro>`) sem `ERRO`, e `uv run portinari derivar <saida> <imagem> --modo <modo>`. Depois
+`entregar ... --concluir`. `--sem-final` existe para quando o autor decidir publicar sem conferir:
+fica registrado no manifest.
 
 ## Como você fala com o autor
 

@@ -16,9 +16,11 @@ FIGURA = [c["hex"] for c in SNAP["paletas"]["dark"]["figura"]]
 ACENTO = SNAP["paletas"]["dark"]["acento"]["hex"]
 
 
-def peca(tmp_path, nome="peca.png", acento_px=0, intruso=None, gradiente=False):
+def peca(tmp_path, nome="peca.png", acento_px=0, intruso=None, gradiente=False, tamanho=(800, 450), pilha=DARK,
+         figura=FIGURA):
     """Uma peça sintética no espírito da marca: fundo dominante + três folhas + acento."""
-    im = Image.new("RGB", (800, 450), DARK[0])
+    DARK, FIGURA = pilha, figura  # noqa: N806 — a mesma composição pode sair na pilha clara
+    im = Image.new("RGB", tamanho, DARK[0])
     d = ImageDraw.Draw(im)
     d.rectangle([40, 60, 260, 390], fill=DARK[1])
     d.rectangle([300, 140, 460, 390], fill=DARK[2])
@@ -138,7 +140,7 @@ def execucao(tmp_path):
     b = brief.carregar(p, saida=saida, raiz=tmp_path, marca=brand.marca_leve(FIXT))
     brief.gravar(b)
     brand.gravar(SNAP, saida)
-    agy.importar([peca(tmp_path)], "prompt", saida, 1)
+    agy.importar([peca(tmp_path, tamanho=(1456, 816))], "prompt", saida, 1)
     return saida
 
 
@@ -147,7 +149,7 @@ def test_cli_checar(execucao, capsys, tmp_path):
     assert "checagens:" in capsys.readouterr().out
     r = json.loads((execucao / "iteracoes" / "01" / "gen_01.checagens.json").read_text())
     assert r["modo"] == "dark" and r["erros"] == []
-    agy.importar([peca(tmp_path, "ruim.png", intruso="#C81E1E")], "prompt", execucao, 1)
+    agy.importar([peca(tmp_path, "ruim.png", intruso="#C81E1E", tamanho=(1456, 816))], "prompt", execucao, 1)
     assert main(["checar", str(execucao), "--iteracao", "1", "--gen", "gen_02"]) == 2
     assert "ERRO" in capsys.readouterr().out
 
@@ -160,3 +162,99 @@ def test_cli_derivar(execucao, capsys, tmp_path):
     assert "1456x816" in capsys.readouterr().out
     with Image.open(saidas[0]) as im:
         assert im.size == (1456, 816)
+
+
+# --- auditoria de 16/11/2026: contagem por token, acento por pixel, grão, proporção, tamanho, par ---
+LIGHT = [c["hex"] for c in SNAP["paletas"]["light"]["camadas"]]
+FIG_LIGHT = [c["hex"] for c in SNAP["paletas"]["light"]["figura"]]
+
+
+def _mistura(a, b):
+    ra, rb = imaging._hex_rgb(a), imaging._hex_rgb(b)
+    return "#%02X%02X%02X" % tuple((x + y) // 2 for x, y in zip(ra, rb))
+
+
+def test_mistura_de_borda_nao_vira_cor_nova(tmp_path):
+    """Faixas de antialias entre folhas viram clusters próprios, mas a marca conta por token (M2)."""
+    im = Image.open(peca(tmp_path)).convert("RGB")
+    d = ImageDraw.Draw(im)
+    pares = [(DARK[0], DARK[1]), (DARK[1], DARK[2]), (DARK[2], FIGURA[0]), (DARK[0], FIGURA[0])]
+    for i, (a, b) in enumerate(pares):  # quatro faixas de 2% do quadro cada
+        d.rectangle([i * 200, 400, i * 200 + 179, 449], fill=_mistura(a, b))
+    p = tmp_path / "bordas.png"
+    im.save(p)
+    with Image.open(p) as aberta:
+        assert len(imaging.cores_dominantes(aberta)) > SNAP["tetos"]["max_cores"]  # o jeito antigo reprovava
+    r = imaging.checar(p, SNAP, "dark")
+    assert 3 <= len(r["tokens"]) <= SNAP["tetos"]["max_cores"]
+    assert not any("cores de token" in e for e in r["erros"])
+
+
+def test_poucas_cores_reprova(tmp_path):
+    im = Image.new("RGB", (800, 450), DARK[0])
+    ImageDraw.Draw(im).rectangle([300, 100, 500, 350], fill=FIGURA[0])
+    p = tmp_path / "duas.png"
+    im.save(p)
+    assert any("2 cores de token" in e for e in imaging.checar(p, SNAP, "dark")["erros"])
+
+
+def test_acento_pequeno_e_medido(tmp_path):
+    """Abaixo de 1% o acento não forma cluster; antes o checador dizia 0,0% em toda peça."""
+    r = imaging.checar(peca(tmp_path, acento_px=40), SNAP, "dark")  # 41×41 = 0,47% do quadro
+    assert r["acento_fracao"] == pytest.approx(41 * 41 / (800 * 450), abs=0.001)
+    assert not any("o acento" in e for e in r["erros"])
+
+
+def test_grao_no_fundo_reprova_e_nas_folhas_avisa(tmp_path, monkeypatch):
+    monkeypatch.setattr(imaging, "_amplitude_luminancia", lambda amostras, cor: 0.05)
+    r = imaging.checar(peca(tmp_path), SNAP, "dark")
+    assert sum("grão acima do teto no fundo" in e for e in r["erros"]) == 1
+    assert sum("o crítico decide pela B8" in a for a in r["avisos"]) == 3
+
+
+def test_proporcao_diferente_da_pedida_reprova(tmp_path):
+    p = peca(tmp_path, tamanho=(800, 600))
+    assert any("não é 16:9" in e for e in imaging.checar(p, SNAP, "dark", proporcao="16:9")["erros"])
+    assert not any("não é" in e for e in imaging.checar(p, SNAP, "dark", proporcao="4:3")["erros"])
+
+
+def test_abaixo_de_96_px_nao_e_ilustracao(tmp_path):
+    im = Image.open(peca(tmp_path)).resize((160, 90))
+    p = tmp_path / "mini.png"
+    im.save(p)
+    assert any("é símbolo, não ilustração" in e for e in imaging.checar(p, SNAP, "dark")["erros"])
+
+
+def test_peca_final_menor_que_a_entrega_reprova(tmp_path):
+    r = imaging.checar(peca(tmp_path), SNAP, "dark", entrega=(1456, 816))
+    assert any("sai menor que a entrega" in e for e in r["erros"])
+    r = imaging.checar(peca(tmp_path, tamanho=(1600, 900)), SNAP, "dark", entrega=(1456, 816))
+    assert not any("entrega" in e for e in r["erros"])
+
+
+def test_par_light_dark(tmp_path):
+    dark = peca(tmp_path, "d.png")
+    light = peca(tmp_path, "l.png", pilha=LIGHT[::-1] + [LIGHT[0]], figura=FIG_LIGHT)
+    assert imaging.par(dark, "dark", light, "light", SNAP) > imaging.PAR_AVISO
+    r = imaging.checar(light, SNAP, "light", par_com=(dark, "dark"))
+    assert r["par"]["iou"] > imaging.PAR_AVISO and not any("par" in e for e in r["erros"])
+    outra = Image.new("RGB", (800, 450), LIGHT[2])
+    ImageDraw.Draw(outra).rectangle([20, 20, 200, 120], fill=FIG_LIGHT[0])  # outra composição
+    o = tmp_path / "o.png"
+    outra.save(o)
+    assert any("não é a mesma composição" in e
+               for e in imaging.checar(o, SNAP, "light", par_com=(dark, "dark"))["erros"])
+
+
+def test_fundo_com_vinheta_conta_inteiro(tmp_path):
+    """O fundo é contado por token: uma vinheta suave não o parte em pedaços (borboletas, Fase 3)."""
+    im = Image.open(peca(tmp_path)).convert("RGB")
+    d = ImageDraw.Draw(im)
+    base = imaging._hex_rgb(DARK[0])
+    for i in range(6):  # seis anéis de borda, cada um um pouco mais claro: vinheta
+        c = tuple(min(255, v + 2 * (6 - i)) for v in base)
+        d.rectangle([i * 6, i * 6, 799 - i * 6, 449 - i * 6], outline=c, width=6)
+    p = tmp_path / "vinheta.png"
+    im.save(p)
+    r = imaging.checar(p, SNAP, "dark")
+    assert r["fundo"]["token"] == DARK[0] and r["fundo"]["fracao"] > 0.5

@@ -32,6 +32,7 @@ CHAVES = {
     "estilo": ("STYLE", "ESTILO"),
     "contexto": ("CONTEXT", "CONTEXTO"),
     "referencias": ("REFERENCE IMAGES", "IMAGENS DE REFERENCIA", "REFERENCIAS"),
+    "formato": ("FORMAT", "FILE FORMAT", "FORMATO", "FORMATO DE ARQUIVO"),  # só vale para USO sem preset
 }
 APELIDO = {a: k for k, v in CHAVES.items() for a in v}
 OBRIGATORIOS = ("titulo", "uso", "descricao")
@@ -293,6 +294,7 @@ def carregar(
 
     # --- proporção, resolução, tamanho (o que o autor escreveu vence o preset do USO)
     ratio = tam = None
+    size_e_master = False
     if "aspect_ratio" in campos:
         m = re.search(r"(\d+(?:[.,]\d+)?)\s*[:/xX×]\s*(\d+(?:[.,]\d+)?)", campos["aspect_ratio"])
         if m:
@@ -335,7 +337,19 @@ def carregar(
             b.observacoes_formato = list(fmt["observacoes"])
             b.master = tuple(fmt["master"]) if fmt["master"] else None
             entrega = tuple(fmt["entrega"])
-            if tam is None:
+            # auditoria G4: quem escreve o master no SIZE (6 de 8 pedidos reais) quer gerar nesse
+            # tamanho, não entregar nele. Só quando nada mais no pedido contradiz a proporção do uso.
+            size_e_master = bool(
+                tam and fmt["master"] and tuple(tam) == tuple(fmt["master"])
+                and (ratio is None or abs(_num(ratio) - entrega[0] / entrega[1]) <= 0.01 * _num(ratio))
+            )
+            if size_e_master:
+                b.avisos.append(
+                    f"SIZE {tam[0]}x{tam[1]} é o master que a marca define para '{b.uso}': gerado nesse "
+                    f"tamanho e entregue em {entrega[0]}x{entrega[1]} (FORMATOS.md)."
+                )
+                tam, ratio = entrega, ratio or fmt["proporcao"]
+            elif tam is None:
                 if ratio and abs(_num(ratio) - entrega[0] / entrega[1]) > 0.01 * _num(ratio):
                     b.perguntas.append(
                         f"ASPECT RATIO {ratio} difere do que a marca define para '{b.uso}' "
@@ -362,12 +376,21 @@ def carregar(
         ratio = _razao_str(*tam)
     if tam and ratio and abs(tam[0] / tam[1] - _num(ratio)) > 0.01 * _num(ratio):
         b.perguntas.append(f"SIZE {tam[0]}x{tam[1]} não bate com ASPECT RATIO {ratio}. Qual vale?")
-    if tam and res and res != _faixa(*tam):
-        b.perguntas.append(f"SIZE {tam[0]}x{tam[1]} é {_faixa(*tam)}, mas RESOLUTION diz {res}. Qual vale?")
+    medida = tuple(b.master) if size_e_master else tam  # com SIZE = master, RESOLUTION fala do master
+    if medida and res and res != _faixa(*medida):
+        b.perguntas.append(f"SIZE {medida[0]}x{medida[1]} é {_faixa(*medida)}, mas RESOLUTION diz {res}. Qual vale?")
     b.aspect_ratio, b.tamanho = ratio, tam
     b.resolucao = res or (_faixa(*tam) if tam else None)
     if tam and (b.master is None or b.master[0] * b.master[1] < tam[0] * tam[1]):
         b.master = tam  # nunca gerar menor do que se entrega
+    if tam and not b.formato:  # auditoria G3: sem formato, `entregar` recusaria só no fim, com gerações gastas
+        from . import brand  # tardio: brand importa RAIZ deste módulo
+
+        b.formato = brand.tipos_arquivo(campos.get("formato", ""))
+        if not b.formato:
+            b.perguntas.append(
+                f"USO '{b.uso}' não tem formato de arquivo em FORMATOS.md: informe FORMATO (JPEG ou PNG)."
+            )
     b.area_segura = ((marca.get("areas_seguras") or {}).get("zonas", {}).get("universal") or {}).get("fracao")
 
     # --- contexto e referências

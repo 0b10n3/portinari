@@ -20,7 +20,7 @@ Este arquivo mora fora do código de propósito: mudar a régua não é mudar pr
 
 | B8 | **Sombra ou rampa de luz**: sombra projetada, de contato ou chapada, parede de recorte escurecida, espessura de papel visível, desfoque, brilho, gradiente | Desde o épico 14 a marca é vinculante (A2 revogada): profundidade é degrau de tom, nunca sombra (`brand/DESIGN.md` §7.1–7.2) |
 | B9 | **Curva livre ou perspectiva**: objeto curvo que não virou polígono, folha entreaberta, vista em profundidade (o quarto de arco do símbolo é a única curva) | `brand/DESIGN.md` §7.3; o gerador ignora "sem curvas" genérico — o prompt precisa nomear o polígono |
-| B10 | **Teto estourado**: cores ≥1% fora de 3–7, fundo abaixo de 40%, acento acima de 1%, granulação acima de 0,028, mais de um matiz de pilha | `brand/DESIGN.md` §7.2 — medido em `checagens.json` |
+| B10 | **Teto estourado**: cores de token ≥1% fora de 3–7, fundo abaixo de 40%, acento acima de 1%, grão no fundo acima de 0,028 | `brand/DESIGN.md` §7.2 — medido em `checagens.json` (o matiz único de pilha é a B2: a paleta é fechada) |
 
 Nenhuma regra de marca é "padrão sobreponível" desde o épico 14: o pedido do autor não desliga
 sombra, tetos, frame, corte ou descritores. Uma exceção é pergunta ao founder e, se aprovada, vira
@@ -51,7 +51,9 @@ explícita de parar e levar ao autor. O pipeline nunca aprova sozinho para "fech
 ## Quando a peça é uma derivação (light a partir de dark, ou o contrário)
 
 A derivação existe para mudar **só a pilha de cor**. Além de tudo acima, medido contra a imagem
-aprovada do modo primário:
+aprovada do modo primário — que o crítico **precisa** receber. Sem ela, D1–D4 não se conferem e o
+veredito é REVISAR. `checagens.json` traz `par.iou` (silhueta figura+acento): abaixo de 0,40 já é
+erro; entre 0,40 e 0,75, olhe com cuidado.
 
 | # | O que conferir | Veredito |
 | --- | --- | --- |

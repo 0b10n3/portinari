@@ -39,6 +39,15 @@ PROPORCOES = {"1:1": 1.0, "2:3": 2 / 3, "3:2": 3 / 2, "3:4": 3 / 4, "4:3": 4 / 3
 # Escada de orquestradores: começa barato; se o prompt for reescrito/falhar, sobe (mitiga R1).
 ESCADA_MODELOS = ("gemini-3.8-flash-low", "gemini-3.8-flash-medium", "gemini-3.8-flash-high")
 MAX_GERACOES = 12
+# Abre o prompt da segunda variante do par (derivada por edição da primeira). É o padrão
+# "referência + relação + cena nova" da documentação do Gemini ("Using the provided image, change
+# only…"). Medido na Fase 3 da auditoria (16/11/2026): com o papel da referência declarado, o par
+# saiu com IoU 0,97 e 0,74; sem ele (juro), 0,29 — a edição seguiu a descrição, não a imagem.
+DERIVACAO = (
+    "Edit the attached image. Keep its composition exactly: every shape, silhouette, size and position "
+    "stays where it is, and nothing is added or removed. Change only the colours, moving every sheet to "
+    "the palette below; the description that follows says which tone each element takes."
+)
 
 
 class AgyErro(Exception):
@@ -60,7 +69,7 @@ class Geracao(BaseModel):
     proporcao: str
     nome: str
     origem: str = "agy"  # "agy" | "manual" (imagem gerada fora e importada)
-    modelo_imagem: str | None = None  # só declarado na importação manual (ex.: nano-banana-pro)
+    modelo_imagem: str | None = None  # agy: lido do banco da conversa; manual: o que o autor declarou
     referencias: list[str] = Field(default_factory=list)
     imagem: str | None = None
     largura: int | None = None
@@ -84,6 +93,7 @@ def montar_prompt(
     entrega: tuple[int, int],
     master: tuple[int, int] | None = None,
     fragmentos: list[str] | tuple[str, ...] = (),
+    derivada: bool = False,
 ) -> str:
     """Parte criativa + bloco de marca + fragmento(s) de estilo + técnico.
 
@@ -103,6 +113,8 @@ def montar_prompt(
             "downscale: keep the focal point and everything that must survive well inside the frame."
         )
     partes = [criativo.strip(), bloco.strip(), *(f.strip() for f in fragmentos if f and f.strip()), "\n".join(tecnico)]
+    if derivada:  # a segunda variante do par é edição da primeira, não cena nova
+        partes.insert(0, DERIVACAO)
     return "\n\n".join(partes) + "\n"
 
 
@@ -167,13 +179,51 @@ def passos_imagem(conversation_id: str, home: Path | None = None) -> list[dict]:
     return passos
 
 
+# Nome do modelo de imagem como aparece no banco da conversa (docs/agy.md §3.2): o agy não o expõe
+# no transcript nem na ferramenta. Ex.: gemini-3.1-flash-image, gemini-3-pro-image, gemini-nano-banana-2.1.
+_MODELO_IMG = re.compile(rb"gemini-[\d.]+-[a-z-]*?image(?:-preview)?|gemini-nano-banana-[\d.]*\d|nano-banana-pro(?:-preview)?")
+
+
+def _conversas(conversation_id: str, home: Path) -> list[str]:
+    """A conversa e as dos subagentes dela (agy 1.3.4+: a imagem é gerada num subagente)."""
+    out = [conversation_id]
+    for sub in sorted((home / "brain" / conversation_id / ".system_generated" / "subagents").glob("*.json")):
+        try:
+            out += _conversas(json.loads(sub.read_text(encoding="utf-8"))["conversationId"], home)
+        except (ValueError, KeyError):
+            continue
+    return out
+
+
+def modelo_imagem(conversation_id: str, home: Path | None = None) -> str | None:
+    """O modelo de imagem que a conversa usou, lido do banco SQLite dela (bytes, sem schema: o formato
+    interno do agy muda entre versões). Subagentes primeiro: é neles que o passo de imagem roda."""
+    home = home or _home()
+    for cid in reversed(_conversas(conversation_id, home)):
+        for arq in sorted((home / "conversations").glob(f"{cid}.db*")):
+            if m := _MODELO_IMG.search(arq.read_bytes()):
+                return m.group().decode()
+    return None
+
+
 def _hex(s: str) -> set[str]:
     return {h.upper() for h in re.findall(r"#[0-9A-Fa-f]{6}\b", s)}
 
 
-def _contar(saida: Path) -> int:
-    log = saida / "geracoes.jsonl"
-    return len(log.read_text().splitlines()) if log.is_file() else 0
+def contar(saida: Path) -> int:
+    """Imagens que o `agy` gerou — o que o teto mede. Tentativa que falhou sem imagem não gastou
+    geração; peça importada à mão (`importar`) não é do `agy` e também fica fora."""
+    log = Path(saida) / "geracoes.jsonl"
+    if not log.is_file():
+        return 0
+    n = 0
+    for linha in log.read_text(encoding="utf-8").splitlines():
+        try:
+            j = json.loads(linha)
+        except ValueError:
+            continue
+        n += j.get("origem", "agy") == "agy" and bool(j.get("imagem"))
+    return n
 
 
 def _transitorio(cp: subprocess.CompletedProcess) -> bool:
@@ -213,7 +263,7 @@ def gerar(
     ultima: Geracao | None = None
     erros: list[str] = []
     for tentativa in range(1, tentativas + 1):
-        if _contar(saida) >= max_geracoes:
+        if contar(saida) >= max_geracoes:
             if ultima:  # já temos uma imagem (paga): devolve em vez de perdê-la
                 return ultima
             raise TetoDeGeracoes(f"teto de {max_geracoes} gerações atingido em {saida}")
@@ -280,6 +330,7 @@ def coletar(g: Geracao, prompt: str, pasta: Path, home: Path) -> str | None:
     with Image.open(destino) as im:
         g.largura, g.altura = im.size
     g.imagem, g.sha256 = str(destino), hashlib.sha256(destino.read_bytes()).hexdigest()
+    g.modelo_imagem = modelo_imagem(g.conversation_id, home)
     g.fiel = _norm(passo["prompt"]) == _norm(prompt)
     g.hex_ausentes = sorted(_hex(prompt) - _hex(passo["prompt"]))
     g.erro = None if g.fiel else g.erro
@@ -300,11 +351,11 @@ def importar(
     iteracao: int,
     *,
     modelo: str | None = None,
-    max_geracoes: int = MAX_GERACOES,
 ) -> list[Geracao]:
-    """Traz para a execução imagens geradas à mão (ex.: no Nano Banana Pro colando `prompt_final.md`).
-    Cada imagem vira gen_KK.<ext> + prompt completo + gen_KK.json (origem "manual") e conta como
-    uma geração. Valida que é imagem antes de gravar qualquer coisa."""
+    """Traz para a execução imagens geradas à mão (ex.: a peça final no Nano Banana Pro, colando
+    `final/prompt_<modo>.md`). Cada imagem vira gen_KK.<ext> + prompt completo + gen_KK.json
+    (origem "manual"), registrada em geracoes.jsonl mas fora do teto do `agy`. Valida que é imagem
+    antes de gravar qualquer coisa."""
     saida = Path(saida)
     pasta = saida / "iteracoes" / f"{iteracao:02d}"
     validas = []
@@ -316,8 +367,6 @@ def importar(
                 validas.append((img, im.size))
         except Exception as e:
             raise AgyErro(f"{img} não é uma imagem válida") from e
-    if _contar(saida) + len(validas) > max_geracoes:
-        raise TetoDeGeracoes(f"importar {len(validas)} imagem(ns) passaria do teto de {max_geracoes} gerações")
     pasta.mkdir(parents=True, exist_ok=True)
     feitas = []
     for img, (w, h) in validas:

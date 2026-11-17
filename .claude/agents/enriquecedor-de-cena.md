@@ -59,6 +59,11 @@ Grave `<saida>/enriquecimento/vNN.json` (NN = versão seguinte, 2 dígitos, **nu
 versão existente) no schema da spec §2. `cena` é um parágrafo corrido em pt-BR, sem cor real e sem
 texto na imagem.
 
+`alt` é o alt-text da peça, em pt-BR, até 125 caracteres. A imagem não carrega texto, então quem
+carrega a informação verbal é ele (`brand/DESIGN.md` §4.4): diga o que se vê e a ideia, nessa ordem —
+"Colagem de papel: escada em zigue-zague que encolhe a cada lance e para logo abaixo de um teto."
+Sem cor, sem "imagem de". O mesmo alt serve às duas variantes; `entregar` recusa sem ele.
+
 ## Autovalidação (obrigatória)
 
 Rode `uv run portinari enriquecer <saida> --versao NN`. Se sair com `ERRO:` (exit 2), corrija o JSON
