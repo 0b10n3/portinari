@@ -4,13 +4,18 @@
 
 # TITLE: <título da peça>
 **USO**: <onde a imagem vai ser usada — ex.: capa de post para substack>
-**ASPECT RATIO**: <ex.: 16:9 — vazio = padrão do USO>
-**RESOLUTION**: <1k | 2k | 4k — vazio = padrão do USO>
-**SIZE**: <ex.: 2560 x 1440 — vazio = padrão do USO>
 
 **DESCRIPTION**: <o que a imagem deve mostrar, com a disposição dos elementos>
 
-**STYLE**: <papercut — vazio = linguagem padrão de brand/ILUSTRACOES/>
+**STYLE**: <uma base (flat, grain-textured, risograph, geometric) e até um modo (nostalgic, surreal, minimal-vibrant, abstract) — vazio = flat>
 
-**CONTEXT**: <texto de apoio (pode ser o post inteiro, com Markdown) ou @caminho/do/arquivo.md a partir da raiz do monorepo>
+**CONTEXT**: <@caminho/do/post.md a partir da raiz do monorepo (preferível), ou o texto de apoio colado>
 **REFERENCE IMAGES**: <caminhos locais ou URLs, um por linha ou separados por vírgula>
+
+<!-- Só para USO que a marca não conhece (brand/ILUSTRACOES/FORMATOS.md): sem preset, informe
+     tamanho de entrega e formato. Com preset, deixe de fora — a marca decide master e entrega.
+**SIZE**: <ex.: 2560 x 1440>
+**ASPECT RATIO**: <ex.: 16:9>
+**RESOLUTION**: <1k | 2k | 4k>
+**FORMATO**: <JPEG | PNG>
+-->

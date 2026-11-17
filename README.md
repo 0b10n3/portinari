@@ -97,12 +97,11 @@ Copie `pedidos/_TEMPLATE.md`. Obrigatórios: `TITLE`, `USO`, `DESCRIPTION`.
   psicodélico e doodle a marca recusa — e o pipeline diz por quê.
 - **CONTEXT** aceita `@caminho/arquivo.md` (relativo à raiz do monorepo): o texto entra inteiro.
 - Chaves em pt-BR funcionam (`TÍTULO`, `DESCRIÇÃO`, `ESTILO`, `PROPORÇÃO`, `TAMANHO`).
-- Você pode escrever `SIZE`, `ASPECT RATIO` e `RESOLUTION`: **o que você escreve vence o preset**.
-  Cuidado com o efeito colateral — escrever `SIZE: 2560x1440` numa capa de Substack faz o pipeline
-  entender 2560×1440 como a **entrega**, e você perde a distinção entre o que se gera e o que se
-  publica. Omita `SIZE` para a marca decidir os dois (gerar 2560×1440, entregar 1456×816).
-  `pedidos/exemplo-cafe-lca.md` traz o caso, de propósito: é a cópia byte a byte de uma fixture de
-  teste e não deve ser editado; `pedidos/capa-cafe-lca.md` é a versão que deixa a marca decidir.
+- `SIZE`, `ASPECT RATIO`, `RESOLUTION` e `FORMATO` servem ao USO sem preset (o template os deixa
+  num comentário). Com preset, omita: a marca decide master e entrega. Se você escrever o **master**
+  do uso no `SIZE` (ex.: `2560x1440` numa capa de Substack), o pipeline entende que é o tamanho de
+  gerar e entrega no da marca (1456×816), com um aviso. Qualquer outro `SIZE` vence o preset.
+  `pedidos/exemplo-cafe-lca.md` é a cópia byte a byte de uma fixture de teste e não deve ser editado.
 - Escreveu algo ambíguo? O pipeline **pergunta**, não chuta.
 
 ## Os comandos
