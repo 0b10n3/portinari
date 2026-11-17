@@ -171,3 +171,30 @@ def test_prompt_que_perdeu_termo_do_enriquecimento_nao_passa(tmp_path, agy_falso
     (it / "prompt_criativo.md").write_text(CRIATIVO, encoding="utf-8")
     assert main(["prompt", str(saida), "--iteracao", "1", "--modo", "dark"]) == 2
     assert "perdeu" in capsys.readouterr().out
+
+
+# --- auditoria P5: "nunca edite brand/" em hook, não só em texto -------------------------------
+HOOK = RAIZ / ".claude" / "hooks" / "so_portinari.py"
+
+
+@pytest.mark.parametrize("alvo,cwd,codigo", [
+    ("output/x/conceitos.md", str(RAIZ), 0),
+    (str(RAIZ / "rubrica" / "rubrica.md"), "/", 0),
+    ("../../brand/DESIGN.md", str(RAIZ), 2),
+    (str(RAIZ.parent / "hemingway" / "CLAUDE.md"), str(RAIZ), 2),
+    (str(RAIZ / ".." / "portinari-falso" / "x.md"), str(RAIZ), 2),
+])
+def test_hook_bloqueia_escrita_fora_do_pipeline(alvo, cwd, codigo):
+    import subprocess
+    evento = json.dumps({"tool_name": "Write", "tool_input": {"file_path": alvo}, "cwd": cwd})
+    r = subprocess.run([sys.executable, str(HOOK)], input=evento, capture_output=True, text=True)
+    assert r.returncode == codigo
+    if codigo:
+        assert "só leitura" in r.stderr
+
+
+def test_hook_esta_registrado():
+    cfg = json.loads((RAIZ / ".claude" / "settings.json").read_text())
+    (regra,) = cfg["hooks"]["PreToolUse"]
+    assert "Write" in regra["matcher"] and "Edit" in regra["matcher"]
+    assert "so_portinari.py" in regra["hooks"][0]["command"]

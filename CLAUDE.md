@@ -16,7 +16,8 @@ Specs por épico: [`specs/epicos/`](specs/epicos/).
    texto reprovam; o pedido do autor não os desliga. Exceção só por exceção nomeada no `DESIGN.md`.
    A antiga decisão A2 ("o pedido vence, exceto a paleta") foi revogada.
 3. **Nunca edite `brand/`.** A marca é lida em runtime, nunca duplicada e nunca escrita. Nenhum
-   tamanho, proporção, formato ou fragmento de estilo mora em `.py`.
+   tamanho, proporção, formato ou fragmento de estilo mora em `.py`. O hook
+   `.claude/hooks/so_portinari.py` recusa Write/Edit fora deste pipeline (Bash não passa por ele).
 4. **Nunca gere com a marca desatualizada** (A13). `portinari marca` sai com 1 se `brand/` está
    atrás do remoto. O pipeline nunca faz `git pull` sozinho.
 5. **Dois gates são humanos.** Gate 1 escolhe o conceito; Gate 2 aprova o prompt. `AskUserQuestion`,
