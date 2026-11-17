@@ -163,11 +163,20 @@ def _checar(a: argparse.Namespace) -> int:
     if not g.get("imagem") or not Path(g["imagem"]).is_file():
         print(f"ERRO: {g['nome']} não tem imagem para checar")
         return 2
-    r = imaging.checar(Path(g["imagem"]), snap, a.modo)
+    b = json.loads((saida / "brief.json").read_text())
+    final = g.get("origem") == "manual" and b.get("tamanho")  # a peça que vai ao ar
+    proporcao = entrega.gerador_final(b)["proporcao"] if final else g.get("proporcao")
+    ref = a.par or next(iter(g.get("referencias") or []), None)  # derivação: a imagem de que partiu
+    outro = "light" if a.modo == "dark" else "dark"
+    r = imaging.checar(Path(g["imagem"]), snap, a.modo, proporcao=proporcao,
+                       entrega=tuple(b["tamanho"]) if final else None,
+                       par_com=(Path(ref), outro) if ref else None)
     destino = imaging.gravar(r, saida, a.iteracao, g["nome"])
-    resumo = f"{len(r['cores'])} cores ≥1% · acento {r['acento_fracao']:.1%}"
+    resumo = f"{len(r['tokens'])} cores de token ≥1% · acento {r['acento_fracao']:.1%}"
     if r["fundo"]:
         resumo += f" · fundo {r['fundo']['hex']} em {r['fundo']['fracao']:.0%}"
+    if r["par"]:
+        resumo += f" · par {r['par']['iou']:.2f}"
     print(f"checagens: {destino} · {resumo}")
     for m in r["erros"]:
         print(f"ERRO: {m}")
@@ -287,6 +296,7 @@ def main(argv: list[str] | None = None) -> int:
     ch.add_argument("--iteracao", type=int, required=True)
     ch.add_argument("--gen", help="padrão: a última geração da iteração")
     ch.add_argument("--modo", choices=brand.MODOS, default="dark")
+    ch.add_argument("--par", help="a outra variante do par (padrão: a referência da edição, se houver)")
     ch.set_defaults(fn=_checar)
     dv = sub.add_parser("derivar", help="master gerado à mão -> entrega exata do uso (corte + redução)")
     dv.add_argument("saida")

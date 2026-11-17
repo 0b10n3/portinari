@@ -10,14 +10,37 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import shutil
 from datetime import date
 from pathlib import Path
 
-from . import enriquecimento
+from . import enriquecimento, imaging
 
 NOMES_MODO = {"dark": "escura", "light": "clara"}
+# Nano Banana Pro (`gemini-3-pro-image`): proporções e tamanho 1K; 2K e 4K são ×2 e ×4.
+# Fonte: https://ai.google.dev/gemini-api/docs/image-generation, lida em 16/11/2026. Isto é
+# capacidade do gerador, não regra de marca — confira na doc antes de mexer.
+PRO_1K = {"1:1": (1024, 1024), "2:3": (848, 1264), "3:2": (1264, 848), "3:4": (896, 1200), "4:3": (1200, 896),
+          "4:5": (928, 1152), "5:4": (1152, 928), "9:16": (768, 1376), "16:9": (1376, 768), "21:9": (1584, 672)}
+
+
+def gerador_final(brief: dict) -> dict:
+    """Como pedir a peça final ao Nano Banana Pro: a proporção dele mais próxima da entrega e a menor
+    resolução cujo corte central ainda cobre o master (nunca ampliar)."""
+    alvo = tuple(brief["tamanho"])
+    master = tuple(brief.get("master") or alvo)
+    ln = lambda w, h: math.log(w / h)  # noqa: E731
+    prop = min(PRO_1K, key=lambda p: abs(ln(*PRO_1K[p]) - ln(*alvo)))
+    for k in (1, 2, 4):
+        tam = (PRO_1K[prop][0] * k, PRO_1K[prop][1] * k)
+        x0, y0, x1, y1 = imaging.recorte_central(tam, alvo)
+        if x1 - x0 >= master[0] and y1 - y0 >= master[1]:
+            break
+    w, h = PRO_1K[prop]
+    corta = abs(w / h / (alvo[0] / alvo[1]) - 1) > imaging.PROPORCAO_TOL
+    return {"proporcao": prop, "resolucao": f"{k}K", "tamanho": list(tam), "corta": corta}
 
 
 class EntregaErro(Exception):
