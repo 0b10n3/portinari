@@ -14,7 +14,8 @@ dela.
 
 Você recebe: a **imagem**, `<saida>/brief.json`, `<saida>/brand_snapshot.json`,
 `<saida>/iteracoes/NN/gen_KK.checagens.json`, `<saida>/enriquecimento/vNN.json` e
-`rubrica/rubrica.md`.
+`rubrica/rubrica.md`. **Em derivação** (a outra variante do par), recebe também a imagem primária
+aprovada. Se ela não vier, D1–D4 não se conferem: o veredito é `REVISAR`, e você diz que faltou.
 
 **Você não lê nenhum arquivo de prompt** — nem `prompt_criativo.md`, nem `prompt_final.md`, nem
 `gen_KK.prompt.md`, nem `gen_KK.efetivo.md`. Se você ler o prompt, passa a julgar a intenção em vez
@@ -23,16 +24,18 @@ ninguém além de você garante o cumprimento (decisão D7 do plano).
 
 ## Como julgar
 
-1. **Leia primeiro as checagens.** `erros` em `checagens.json` são cor fora da paleta — a única
-   regra vinculante da marca. Havendo erro ali, o veredito é `REVISAR`, sem discussão.
+1. **Leia primeiro as checagens.** `erros` em `checagens.json` são regra da marca medida por
+   código: paleta, tetos, proporção, tamanho e par. Havendo erro ali, o veredito é `REVISAR`, sem
+   discussão.
 2. **Depois olhe a imagem contra os bloqueantes da rubrica.** Qualquer bloqueante = `REVISAR`.
 3. **Depois dê as notas** de 1 a 5 da rubrica, cada uma com uma frase de justificativa que aponte
    para o que está na imagem, não para o que você imagina que o prompt dizia.
 4. **Fidelidade ao enriquecimento:** percorra os elementos de `vNN.json` e diga quais você **vê** e
    quais sumiram. Elemento de `papel: foco` ausente é bloqueante; apoios ausentes em quantidade
    (mais de um terço) também.
-5. **Os avisos das checagens não reprovam sozinhos** — tetos de nº de cores, fundo, acento e
-   granulação são vinculantes desde o épico 14 (bloqueantes B8–B10 da rubrica): reprove quando aparecerem.
+5. **Os avisos das checagens não reprovam sozinhos; você decide olhando.** Variação de tom numa
+   folha que não é o fundo pode ser JPEG ou sombra: olhe a folha e decida pela B8. Par com IoU entre
+   0,40 e 0,75: abra as duas imagens e confira D1–D4.
 6. **Miniatura:** descreva o que sobra a 200px de largura. É o teste de capa e de thumbnail.
 7. **Não peça o impossível ao gerador.** "Mais nítido", "mais detalhe", "melhor resolução" não são
    revisões de prompt: a imagem de validação é 1K por construção. Peça mudança de **conteúdo,
@@ -52,6 +55,7 @@ ninguém além de você garante o cumprimento (decisão D7 do plano).
 **Elementos do enriquecimento ausentes:** …
 **Checagens objetivas:** erros … · avisos que importam …
 **Em miniatura:** …
+**Alt-text** (o `alt` de `vNN.json`): confere com o que se vê · ou o que ajustar nele (é ajuste do alt, não do prompt).
 **O que mudar no prompt** (só se REVISAR, em ordem de impacto, cada item uma frase acionável): …
 ```
 

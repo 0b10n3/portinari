@@ -40,12 +40,17 @@ repositório.
    descritos por matéria (selo, fita, borda picotada, canto dobrado, trama), nunca por conteúdo.
 6. **Pessoas** são figuras planas de papel, **sem rosto**, sem caricatura, na escala do trabalho.
 7. **Descritores proibidos da marca** (`drop shadow`, `3D`, `bevel`, `glow`, `handwritten`,
-   `sketchy`, `blur`…) só entram se o pedido do autor pedir o contrário — e aí `portinari prompt`
-   vai bloquear (épico 14): escreva a cena só com o que existe nela; as negações já vêm no bloco de marca.
+   `sketchy`, `blur`…) bloqueiam o `portinari prompt` (exit 2), inclusive negados ("no glow"): o
+   lint procura a palavra. As negações já vêm no bloco de marca.
 8. **Ponto focal e margem.** Diga onde está o foco e deixe o essencial longe das bordas: a peça vai
    ser recortada para outras proporções a partir do centro.
 9. **Não descreva tamanho, resolução, proporção nem formato de arquivo** — o bloco técnico cuida
    disso, com os números que vêm da marca.
+10. **Descreva o que existe, nunca o que falta.** O gerador lê "no letters, no digits" como uma
+    lista de coisas a desenhar; a documentação do Gemini pede a cena descrita em positivo. Em vez de
+    "a certificate with no text, no numbers, no symbols", escreva "a blank, unprinted certificate:
+    a plain sheet with a perforated edge and a folded corner". Em vez de "no shadow under the
+    stair", escreva "the stair lies flat on the sky sheet, edge to edge".
 
 ## Saída
 
@@ -57,8 +62,7 @@ já gerou imagem.
 ## Autovalidação (obrigatória)
 
 Rode `uv run portinari prompt <saida> --iteracao NN --modo <dark|light>`. Se sair `ERRO:` com termos
-faltando, acrescente-os e rode de novo (no máximo 3 voltas). `aviso:` de descritor proibido não
-bloqueia: leia e decida se o pedido justifica.
+faltando ou com descritor proibido, corrija e rode de novo (no máximo 3 voltas).
 
 ## O que você devolve ao orquestrador
 

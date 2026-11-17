@@ -25,6 +25,10 @@ Você **não** vê imagem nenhuma: nesta etapa não existe imagem. Julgue o conc
    transformação, é defeito — não sofisticação.
 3. **Sobrevive à miniatura e ao recorte?** O foco cai dentro da área segura; a leitura a 200px
    ainda existe.
+3a. **Sobra fundo?** Estime a fração do quadro que fica fundo vazio. Abaixo de `tetos.fundo_minimo`
+   (40%) o conceito não serve, por melhor que seja o prompt: samurais e TVM gastaram 7 gerações
+   tentando esvaziar no prompt um conceito denso. Conte as massas com área própria: mais de seis
+   costuma virar sopa. Dê o número na tabela.
 4. **Cabe na marca sem forçar?** Paleta fechada, uma pilha por peça, acento em um ponto, sem texto,
    profundidade por degrau de tom. Desde o épico 14 toda regra de `_bloco-marca.md` é **vinculante**:
    um conceito que dependa de sombra, curva livre ou perspectiva não serve — proponha outro.
@@ -40,9 +44,9 @@ Você **não** vê imagem nenhuma: nesta etapa não existe imagem. Julgue o conc
 ```markdown
 ## Crítica dos conceitos
 
-| # | Conceito | Nota | Por quê |
-| --- | --- | --- | --- |
-| 1º | C2 | 4/5 | … |
+| # | Conceito | Nota | Fundo estimado | Por quê |
+| --- | --- | --- | --- | --- |
+| 1º | C2 | 4/5 | ~60% | … |
 
 **Recomendo C2**, porque … . **Se o autor quiser outro caminho:** C1 serve se … .
 **O que corrigir no escolhido, seja qual for:** … .
