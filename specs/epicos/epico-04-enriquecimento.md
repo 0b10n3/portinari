@@ -49,7 +49,8 @@ O código gera `vNN.md` (visão para o autor).
     "nota_verificacao": ""
   }],
   "descartados": [{"elemento": "...", "motivo": "..."}],
-  "cena": "parágrafo corrido em pt-BR descrevendo a cena enriquecida"
+  "cena": "parágrafo corrido em pt-BR descrevendo a cena enriquecida",
+  "alt": "alt-text da peça, pt-BR, ≤125 caracteres: o que a imagem mostra (auditoria M4, 16/11/2026)"
 }
 ```
 
@@ -92,10 +93,11 @@ construção do papel/composição (camadas, recortes, selo, dobra).
 | V6 | `cor` ∈ papéis válidos **do modo** (`pilha-1..N` conforme a pilha do snapshot) |
 | V7 | Nenhuma **palavra de cor fora da paleta** (vermelho/red, azul/blue, amarelo, laranja, roxo, rosa, marrom/brown, dourado/gold, prata…) em `elemento`, `termo_en` ou `cena` |
 | V8 | Nenhuma referência a **texto na imagem** (texto, letra, número, legenda, rótulo, logo, código de barras, R$/$…), salvo `--texto` (o pedido exige texto). Negações ("sem texto", "no text") não contam |
+| V9 | Nenhum descritor proibido da marca na `cena` (épico 14: erro, não aviso) |
+| V10 | `alt` presente e com até 125 caracteres (`DESIGN.md` §4.4; `SOCIAL.md` §7) |
 
 **Avisos (não bloqueiam):** mais de 2 elementos `acento`; `pilha-4` no modo dark (não existe no
-light: a derivação terá de mapear); descritores proibidos da marca na `cena` (aviso por A2);
-elementos com `verificar: true` (listados com `VERIFICAR:` para o autor).
+light: a derivação terá de mapear); elementos com `verificar: true` (listados com `VERIFICAR:` para o autor).
 
 ## 5. Integração com o Prompter
 

@@ -97,9 +97,11 @@ def verificar(prompt: str, snap: dict, modo: str, brief: dict, saida: Path) -> l
 
     try:  # T3 — o mesmo teste que `portinari prompt` faz, agora sobre o que vai ser entregue
         enr, versao = enriquecimento.carregar(Path(saida))
-    except (FileNotFoundError, ValueError):
-        pass
+    except (FileNotFoundError, ValueError) as e:  # T7 — sem enriquecimento não há alt-text
+        erros.append(f"sem enriquecimento válido não há alt-text para entregar ({e})")
     else:
+        if not enr.alt.strip():  # T7 — a informação verbal vai no alt (DESIGN.md §4.4; SOCIAL.md §7)
+            erros.append(f"{versao.name} não tem `alt`: peça uma versão nova ao enriquecedor com o alt-text")
         ausentes = enriquecimento.termos_ausentes(enr, prompt)
         if ausentes:
             erros.append(
@@ -133,7 +135,7 @@ def cabecalho(brief: dict, modo: str, hoje: date | None = None) -> str:
 def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
     """Tudo o que o autor precisa saber ao colar o prompt — vindo de FORMATOS.md, nunca do código."""
     fmt = (snap.get("formatos") or {}).get(brief.get("preset") or "", {})
-    tam, master = brief.get("tamanho"), brief.get("master")
+    tam = brief.get("tamanho")
     area = brief.get("area_segura")
     universal = ((snap.get("areas_seguras") or {}).get("zonas", {}).get("universal") or {})
     linhas = [
@@ -147,16 +149,32 @@ def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
         "",
         "- **Modelo:** Nano Banana Pro (`gemini-3-pro-image`) — é o único que gera 2K/4K nativos.",
         f"- **Prompt:** {', '.join(f'`{a}`' for a in sorted(entregas))} (um arquivo por modo; use um de cada vez).",
+    ]
+    for modo, e in sorted(entregas.items()):
+        if e.get("derivado_por_edicao"):
+            outro = "light" if modo == "dark" else "dark"
+            linhas.append(
+                f"- **{modo}:** gere o {outro} primeiro. Depois anexe a peça {outro} final como imagem de "
+                f"referência e cole `prompt_{modo}.md`: ele foi validado como edição dela, e é assim que o par "
+                "sai com a mesma composição."
+            )
+    linhas += [
         "",
         "## Tamanho e formato",
         "",
     ]
-    if master:
-        linhas.append(f"- **Gere em {master[0]}×{master[1]}** (ou o maior que o gerador permitir).")
     if tam:
+        gf = gerador_final(brief)
+        linhas.append(
+            f"- **No gerador: proporção {gf['proporcao']}, resolução {gf['resolucao']}** "
+            f"(sai {gf['tamanho'][0]}×{gf['tamanho'][1]}). O Pro recebe proporção e 1K/2K/4K, não pixels."
+        )
+        if gf["corta"]:
+            linhas.append(f"- A proporção do uso ({brief.get('aspect_ratio')}) não existe no Pro: gere em "
+                          f"{gf['proporcao']} e o corte central faz o resto.")
         linhas.append(
             f"- **Entregue em {tam[0]}×{tam[1]}** ({brief.get('aspect_ratio')}), por corte central "
-            "e redução do que foi gerado — nunca gerando de novo num tamanho diferente."
+            "e redução do que foi gerado (`portinari derivar`) — nunca gerando de novo num tamanho diferente."
         )
     if brief.get("formato"):
         peso = f", até {brief['peso_max_mb']:g} MB" if brief.get("peso_max_mb") else ""
@@ -184,10 +202,23 @@ def como_gerar(brief: dict, snap: dict, entregas: dict) -> str:
         "- Só os hex listados no prompt; nenhuma cor fora deles.",
         "- O acento aparece em **um** ponto só (a virada), não espalhado.",
         "- O fundo ocupa a maior parte do quadro.",
-        "- Nenhuma sombra projetada nova que o prompt não tenha pedido.",
+        "- Nenhuma sombra, brilho, gradiente, parede de recorte escurecida ou curva livre.",
         "",
-        "Se algo estiver errado: `uv run portinari importar <execução> --iteracao N <imagem>` traz a "
-        "peça de volta para as checagens do pipeline.",
+        "## Depois de gerar — o pedido só fecha com isto",
+        "",
+        "1. `uv run portinari importar <execução> --iteracao N <peça> --modelo nano-banana-pro` "
+        "(N = uma iteração nova, uma por modo).",
+        "2. `uv run portinari checar <execução> --iteracao N --modo <modo>`; no segundo modo, "
+        "`--par <peça do primeiro>`. Tem de sair sem `ERRO`.",
+        "3. `uv run portinari derivar <execução> <peça> --modo <modo>` → o arquivo do tamanho exato.",
+        "4. `uv run portinari entregar <execução> --modo <modo> --aprovado --concluir`.",
+        "",
+        "## Alt-text (o mesmo para as duas variantes)",
+        "",
+        f"> {next((e['alt'] for e in entregas.values() if e.get('alt')), '(falta)')}",
+        "",
+        "Cole no campo de texto alternativo da plataforma. A imagem não carrega texto: quem carrega a "
+        "informação verbal é o alt.",
         "",
         "## Marca desta entrega",
         "",
@@ -245,6 +276,8 @@ def entregar(
         "validacao": str(val.relative_to(saida)),
         "validacao_px": [g.get("largura"), g.get("altura")],
         "sha256_prompt": hashlib.sha256(arq.read_bytes()).hexdigest(),
+        "derivado_por_edicao": bool(g.get("referencias")),
+        "alt": enriquecimento.carregar(saida)[0].alt.strip(),  # verificar() já garantiu que existe
         "gate2": "aprovado",
     }
     (final / "COMO-GERAR.md").write_text(como_gerar(brief, snap, m["entregas"]), encoding="utf-8")

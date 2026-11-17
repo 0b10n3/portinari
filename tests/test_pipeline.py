@@ -27,6 +27,25 @@ CRIATIVO = (
 )
 
 
+ENRIQUECIMENTO = {  # o enriquecedor-de-cena faria isto; cada termo_en está no CRIATIVO
+    "conceito": "C1", "pedido_preservado": ["lavoura de café à esquerda", "título financeiro à direita"],
+    "cena": "Encosta de café em terraços à esquerda dobra-se num certificado à direita; dois colhedores nas fileiras.",
+    "alt": "Colagem de papel: encosta de café com dois colhedores dobra-se num certificado à direita.",
+    "elementos": [
+        {"id": "e1", "zona": "direita", "papel": "foco", "origem": "pedido", "elemento": "certificado",
+         "termo_en": "certificate", "cor": "figura-principal"},
+        {"id": "e2", "zona": "esquerda", "papel": "apoio", "origem": "pedido", "elemento": "encosta em terraços",
+         "termo_en": "terraced coffee slope", "cor": "pilha-3"},
+        {"id": "e3", "zona": "esquerda", "papel": "apoio", "origem": "dominio", "elemento": "dois colhedores",
+         "termo_en": "two faceless harvesters", "cor": "figura-secundaria"},
+        {"id": "e4", "zona": "esquerda", "papel": "textura", "origem": "dominio", "elemento": "fileiras",
+         "termo_en": "the rows", "cor": "pilha-2"},
+        {"id": "e5", "zona": "centro", "papel": "apoio", "origem": "oficio", "elemento": "a dobra",
+         "termo_en": "the fold", "cor": "acento"},
+    ],
+}
+
+
 def _frontmatter(p: Path) -> dict:
     m = re.match(r"---\n(.*?)\n---\n", p.read_text(encoding="utf-8"), re.S)
     assert m, f"{p.name} não tem frontmatter"
@@ -98,6 +117,9 @@ def test_pipeline_de_ponta_a_ponta_sem_agy_real(tmp_path, agy_falso, capsys):
     assert (b["tamanho"], b["master"], b["estilo_base"], b["estilo_modo"]) == ([1456, 816], [2560, 1440],
                                                                               "grain-textured", "nostalgic")
 
+    (saida / "enriquecimento").mkdir()
+    (saida / "enriquecimento" / "v01.json").write_text(json.dumps(ENRIQUECIMENTO, ensure_ascii=False), encoding="utf-8")
+    assert main(["enriquecer", str(saida)]) == 0
     it = saida / "iteracoes" / "01"
     it.mkdir(parents=True)
     (it / "prompt_criativo.md").write_text(CRIATIVO, encoding="utf-8")  # o prompter-tecnico faria isto
@@ -113,7 +135,7 @@ def test_pipeline_de_ponta_a_ponta_sem_agy_real(tmp_path, agy_falso, capsys):
 
     entregue = (saida / "final" / "prompt_dark.md").read_text(encoding="utf-8")
     assert CRIATIVO.strip() in entregue and "Transformação do café em LCA" in entregue
-    assert (saida / "final" / "COMO-GERAR.md").is_file()
+    assert ENRIQUECIMENTO["alt"] in (saida / "final" / "COMO-GERAR.md").read_text(encoding="utf-8")
     m = json.loads((saida / "manifest.json").read_text())
     assert m["entregas"]["dark"]["gate2"] == "aprovado" and m["estilo"]["modo"] == "nostalgic"
     assert len((saida / "geracoes.jsonl").read_text().splitlines()) == 1

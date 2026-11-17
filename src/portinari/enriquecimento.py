@@ -35,6 +35,9 @@ _TEXTO = (
     r"tipografia|letter|letters|word|words|number|numbers|digit|digits|label|labels|caption|captions|"
     r"writing|written|inscription|inscriptions|typography"
 )
+# Teto do alt-text: o mesmo que o hemingway aplica às figuras do post (scripts/checar_post.py) —
+# o que leitor de tela lê de uma vez. A marca exige o alt (DESIGN.md §4.4, SOCIAL.md §7), não o tamanho.
+ALT_MAX = 125
 _NEGACAO = re.compile(r"\b(sem|nenhum|nenhuma|nada de|nao|no|without|not|nor|zero|nunca)\b")
 _SIMBOLOS = re.compile(r"R\$|\$")
 
@@ -63,6 +66,7 @@ class Enriquecimento(BaseModel):
     elementos: list[Elemento]
     descartados: list[Descartado] = Field(default_factory=list)
     cena: str
+    alt: str = ""  # alt-text da peça, pt-BR: a informação verbal que a imagem não carrega
 
 
 class Relatorio(BaseModel):
@@ -146,6 +150,11 @@ def validar(
         r.avisos.append("'pilha-4' não existe no modo light: a derivação terá de mapear esses elementos.")
     for d in brand.lint_descritores(e.cena, snapshot.get("descritores_proibidos", [])):
         r.erros.append(f"V9: descritor proibido na cena: '{d}' (a marca é vinculante — épico 14).")
+    if not e.alt.strip():
+        r.erros.append("V10: falta `alt`: o alt-text da peça, em pt-BR, dizendo o que a imagem mostra "
+                       "(a marca proíbe texto na imagem; a informação verbal vai no alt — DESIGN.md §4.4).")
+    elif len(e.alt.strip()) > ALT_MAX:
+        r.erros.append(f"V10: `alt` tem {len(e.alt.strip())} caracteres; o teto é {ALT_MAX}.")
     return r
 
 
@@ -182,7 +191,7 @@ def renderizar(e: Enriquecimento, snapshot: dict, modo: str, r: Relatorio) -> st
         hexa = papeis.get(x.cor)
         cor = f"{x.cor} ({hexa})" if hexa else f"{x.cor} (?)"
         L.append(f"| {x.id} | {x.zona} | {x.papel} | {x.elemento} | {cor} | {x.origem} | {'⚠ verificar' if x.verificar else ''} |")
-    L += ["", "## Cena", "", e.cena.strip()]
+    L += ["", "## Cena", "", e.cena.strip(), "", "## Alt-text", "", e.alt.strip() or "(falta)"]
     if e.descartados:
         L += ["", "## Descartados", ""] + [f"- **{d.elemento}** — {d.motivo}" for d in e.descartados]
     if r.verificar:

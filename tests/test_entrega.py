@@ -19,6 +19,16 @@ PEDIDO = (
     "**DESCRIPTION**: lavoura de café à esquerda, título à direita\n"
 )
 CRIATIVO = "Cut-paper collage: a coffee slope on the left becomes a certificate on the right."
+ALT = "Colagem de papel: uma encosta de café à esquerda vira um certificado à direita."
+ENR = {
+    "conceito": "C1", "pedido_preservado": ["café à esquerda, título à direita"], "cena": "…", "alt": ALT,
+    "elementos": [
+        {"id": "e1", "zona": "esquerda", "papel": "apoio", "origem": "pedido", "elemento": "encosta",
+         "termo_en": "coffee slope", "cor": "pilha-3"},
+        {"id": "e2", "zona": "direita", "papel": "foco", "origem": "pedido", "elemento": "certificado",
+         "termo_en": "certificate", "cor": "figura-principal"},
+    ],
+}
 
 
 @pytest.fixture
@@ -36,6 +46,8 @@ def execucao(tmp_path):
     img = tmp_path / "val.jpg"
     Image.new("RGB", (1376, 768), "#0F3D27").save(img)
     agy.importar([img], prompt, saida, 1, modelo="gemini-3.1-flash-image")
+    (saida / "enriquecimento").mkdir()
+    (saida / "enriquecimento" / "v01.json").write_text(json.dumps(ENR, ensure_ascii=False), encoding="utf-8")
     return saida
 
 
@@ -58,7 +70,8 @@ def test_entrega_grava_prompt_validacao_como_gerar_e_manifesto(execucao):
     assert (execucao / e["validacao"]).is_file() and e["validacao_px"] == [1376, 768]
 
     cg = (execucao / "final" / "COMO-GERAR.md").read_text(encoding="utf-8")
-    assert "gemini-3-pro-image" in cg and "Gere em 2560×1440" in cg and "Entregue em 1456×816" in cg
+    assert "gemini-3-pro-image" in cg and "proporção 16:9, resolução 2K" in cg and "Entregue em 1456×816" in cg
+    assert ALT in cg and e["alt"] == ALT and e["derivado_por_edicao"] is False
     assert "JPEG ou PNG, até 2 MB" in cg and "78,75% × 93,06%" in cg
     assert "não** é a entrega" in cg  # a validação não é o produto
 
@@ -121,10 +134,42 @@ def test_prompt_sem_bloco_de_marca_recusa(execucao):
 
 def test_termo_do_enriquecimento_ausente_recusa(execucao):
     d = execucao / "enriquecimento"
-    d.mkdir()
-    shutil.copy(AQUI / "fixtures" / "enriquecimento" / "cafe-lca-v01.json", d / "v01.json")
+    shutil.copy(AQUI / "fixtures" / "enriquecimento" / "cafe-lca-v01.json", d / "v02.json")
     with pytest.raises(entrega.EntregaErro, match="termo\\(s\\) do enriquecimento"):
         entregar(execucao)
+
+
+def test_sem_alt_text_recusa(execucao):
+    """Auditoria M4: a imagem não carrega texto; sem alt, a informação verbal some."""
+    (execucao / "enriquecimento" / "v01.json").write_text(json.dumps({**ENR, "alt": ""}), encoding="utf-8")
+    with pytest.raises(entrega.EntregaErro, match="não tem `alt`"):
+        entregar(execucao)
+    shutil.rmtree(execucao / "enriquecimento")
+    with pytest.raises(entrega.EntregaErro, match="não há alt-text"):
+        entregar(execucao)
+
+
+def test_light_derivado_manda_anexar_a_peca_dark(execucao):
+    entregar(execucao)
+    g = execucao / "iteracoes" / "01" / "gen_01.json"
+    d = json.loads(g.read_text())
+    g.write_text(json.dumps({**d, "referencias": ["/x/dark.jpg"]}))
+    snap = json.loads((execucao / "brand_snapshot.json").read_text())
+    _regravar_prompt(execucao, agy.montar_prompt(CRIATIVO, snap["bloco"]["light"], (1456, 816), (2560, 1440)))
+    entregar(execucao, modo="light")
+    cg = (execucao / "final" / "COMO-GERAR.md").read_text(encoding="utf-8")
+    assert "**light:** gere o dark primeiro" in cg and "anexe a peça dark final" in cg
+
+
+@pytest.mark.parametrize("tamanho,master,esperado", [
+    ((1456, 816), (2560, 1440), ("16:9", "2K", False)),   # capa do Substack
+    ((1100, 220), (2200, 440), ("21:9", "2K", True)),     # e-mail 5:1: o Pro não tem
+    ((1080, 1350), (2160, 2880), ("4:5", "4K", False)),   # post do Instagram
+    ((1200, 627), (2560, 1340), ("16:9", "2K", True)),    # LinkedIn 1,91:1
+])
+def test_gerador_final(tamanho, master, esperado):
+    gf = entrega.gerador_final({"tamanho": tamanho, "master": master})
+    assert (gf["proporcao"], gf["resolucao"], gf["corta"]) == esperado
 
 
 def test_uso_sem_formato_na_marca_recusa(execucao):
