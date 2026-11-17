@@ -249,8 +249,14 @@ def checar(
     tokens = sorted((h for h, f in por_token.items() if f >= FRACAO_MINIMA), key=lambda h: -por_token[h])
     if not 3 <= len(tokens) <= t["max_cores"]:
         erros.append(f"{len(tokens)} cores de token ≥1% do quadro; a marca pede entre 3 e {t['max_cores']}")
-    if fundo and fundo[0] < t["fundo_minimo"]:
-        erros.append(f"o fundo ocupa {fundo[0]:.0%} do quadro; a marca pede ao menos {t['fundo_minimo']:.0%}")
+    # O fundo é a cor que ocupa a borda. Dois jeitos de contar, e cada um só erra para menos:
+    # o cluster parte um fundo com vinheta (borboletas dark: 22% medidos, ~80% à vista); o token
+    # parte um fundo claro que oscila entre mint e chalk, a ΔE 5,8 um do outro (borboletas light: 35%).
+    # ponytail: máximo dos dois. Se um fundo for superestimado, trocar por região conexa à borda.
+    fundo_token = min(alvos, key=lambda h: delta_e(fundo[1], alvos[h])) if fundo else None
+    fundo_fracao = max(fundo[0], por_token.get(fundo_token, 0.0)) if fundo else None
+    if fundo and fundo_fracao < t["fundo_minimo"]:
+        erros.append(f"o fundo ocupa {fundo_fracao:.0%} do quadro; a marca pede ao menos {t['fundo_minimo']:.0%}")
     acento = por_token.get(acento_hex, 0.0)
     if acento > t["acento_max"]:
         erros.append(f"o acento {acento_hex} ocupa {acento:.1%} do quadro; o teto da marca é {t['acento_max']:.0%}")
@@ -278,7 +284,7 @@ def checar(
         "proporcao_pedida": proporcao,
         "cores": medidas,
         "tokens": {h: round(por_token[h], 4) for h in tokens},
-        "fundo": {"hex": "#%02X%02X%02X" % fundo[1], "fracao": round(fundo[0], 4)} if fundo else None,
+        "fundo": {"hex": "#%02X%02X%02X" % fundo[1], "token": fundo_token, "fracao": round(fundo_fracao, 4)} if fundo else None,
         "acento_fracao": round(acento, 4),
         "par": {"com": str(par_com[0]), "modo": par_com[1], "iou": iou} if par_com else None,
         "erros": erros,

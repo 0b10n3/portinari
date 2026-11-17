@@ -117,6 +117,17 @@ o bloco não estiver lá. Ver PLANO, risco R1.
   real (6.325 caracteres), o prompt chegou literal. `--agent image-generator` não existe
   (`unknown agent`). R1 continua aberto: vale a checagem de fidelidade.
 
+### 3.5.2 agy 1.5.9 — ✅ medido em 16/11/2026 (6 gerações da avaliação da auditoria)
+
+- O agente principal não vê `generate_image`: só `invoke_subagent` com `TypeName: image-generator`
+  (declaração lida por uma pergunta de texto). O subagente chama `generate_image` com `Prompt`,
+  `ImageName`, `AspectRatio` e `ImagePaths`, como antes.
+- Modelo de imagem: **`gemini-3.1-flash-image`** nas 6, lido do banco do subagente
+  (`agy.modelo_imagem`, que agora grava isso em `gen_KK.json`). O binário também contém
+  `gemini-nano-banana-2.1` e `nano-banana-pro-preview`: a troca é do servidor, não nossa.
+- Prompt literal nas 6 (8,2–9,5 mil caracteres), orquestrador `gemini-3.8-flash-low`, ~30 s cada,
+  1376×768 (16:9) e 1264×848 (3:2). Nenhuma retentativa.
+
 ### 3.6 Imagem de referência / edição — ✅ funciona (S2)
 
 `ImagePaths` é aceito em headless e edita de fato: a composição, os elementos e o enquadramento se

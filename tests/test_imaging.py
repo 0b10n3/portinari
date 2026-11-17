@@ -244,3 +244,17 @@ def test_par_light_dark(tmp_path):
     outra.save(o)
     assert any("não é a mesma composição" in e
                for e in imaging.checar(o, SNAP, "light", par_com=(dark, "dark"))["erros"])
+
+
+def test_fundo_com_vinheta_conta_inteiro(tmp_path):
+    """O fundo é contado por token: uma vinheta suave não o parte em pedaços (borboletas, Fase 3)."""
+    im = Image.open(peca(tmp_path)).convert("RGB")
+    d = ImageDraw.Draw(im)
+    base = imaging._hex_rgb(DARK[0])
+    for i in range(6):  # seis anéis de borda, cada um um pouco mais claro: vinheta
+        c = tuple(min(255, v + 2 * (6 - i)) for v in base)
+        d.rectangle([i * 6, i * 6, 799 - i * 6, 449 - i * 6], outline=c, width=6)
+    p = tmp_path / "vinheta.png"
+    im.save(p)
+    r = imaging.checar(p, SNAP, "dark")
+    assert r["fundo"]["token"] == DARK[0] and r["fundo"]["fracao"] > 0.5
