@@ -101,3 +101,13 @@
   troca pela mão aberta, palma para cima, dedos juntos, sem nova pergunta (autorizado).
 - Valem as correções da crítica para o escolhido (contraste da pilha clara: trocar as cores do anel e
   da face; vãos de ~0,025 entre os vazados).
+
+## Contenção — decisão do autor (2026-11-18, após a iteração 03)
+
+O C1 esgotou as três voltas sem aprovar (médias 3,50 / 3,83 / 2,67; a 03 com B6). Diagnóstico da
+crítica 03: defeito de conceito, porque a leitura depende de uma razão de tamanho precisa entre peças
+distantes (a moeda no alto, os vazados no chão), e o gerador de validação não a manteve em nenhuma
+formulação. Melhor estado: iteração 02.
+
+**Decisão do autor:** pesquisar e tentar um conceito novo, **ainda usando moedas**. Volta ao passo 3
+(diretor de arte), contando uma volta do Gate 1.
