@@ -89,3 +89,15 @@
 **Sobre as perguntas do diretor (recomendação; quem decide é o autor):**
 1. (a) **Pequeno, pequeno, grande, da esquerda para a direita: sim.** É a ordem dos fluxos (126, 252 e 378 dias úteis) e leva o olho da mão ao chão. Com o grande entre os pequenos, o conjunto fica simétrico, vira ornamento e perde a ordem do tempo. (b) **Um terço do grande: sim.** É o mínimo para chegar a 9 px a 200 px, e a soma das áreas fecha. Basta abrir os vãos, como acima. (c) **Faceta de cima à direita, a 45°: sim.** Fica do lado do céu vazio, longe da mão, e é o lado de cima do lance. Na pilha clara, vale com a inversão de cor acima.
 2. **Polegar a 45°: sim, com esta pose.** O que faz o "joinha" é o punho em pé com o polegar na vertical. O punho deitado, com os nós dos dedos voltados para a moeda e o polegar estendido na diagonal para cima e para a direita, é a pose do peteleco, não a do emoji, e 45° é um ângulo de corte da marca. Deixe a troca pela mão aberta (palma para cima, dedos juntos) **pré-autorizada no Gate 1**, para um "joinha" na primeira geração não custar uma volta de pergunta. A 200 px a mão é uma cunha no canto nos dois casos, e a troca não muda a leitura da capa.
+
+## Gate 1 — decisão do autor (2026-11-18)
+
+**C1 — A moeda que já tem molde**, como recomendado pelo crítico.
+
+- Vazados na ordem pequeno, pequeno, grande (da esquerda para a direita), o grande exatamente sob a
+  moeda, os pequenos com cerca de 1/3 da largura do grande; acento na faceta de cima à direita, a 45°.
+  Confirmado.
+- Mão: polegar a 45°, para o lado da moeda, com o punho deitado. Se o gerador insistir no "joinha",
+  troca pela mão aberta, palma para cima, dedos juntos, sem nova pergunta (autorizado).
+- Valem as correções da crítica para o escolhido (contraste da pilha clara: trocar as cores do anel e
+  da face; vãos de ~0,025 entre os vazados).
