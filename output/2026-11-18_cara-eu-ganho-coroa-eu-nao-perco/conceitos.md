@@ -351,3 +351,70 @@ formas idênticas e vizinhas, a comparação que o gerador segura. Nada cai, nad
   em `figura-principal`.
 - **Grade.** Um bloco 2×2 pode puxar a leitura de tabela ou bento, que é camada de sistema. As faces
   octogonais e o losango afastam essa leitura.
+
+## Crítica da rodada 2
+
+Crítico de conceito, 2026-11-19. Julgo C4, C5 e C6 contra o pedido e a marca, e cada risco no
+gerador contra a seção "Pesquisa (rodada 2)", as três críticas e as três imagens do C1. Nenhum dos
+três pede sombra, curva livre ou perspectiva, e nenhum depende de uma razão de tamanho entre peças
+distantes: os três corrigem o defeito do C1.
+
+| # | Conceito | Nota | Fundo estimado | Maior risco | Por quê |
+| --- | --- | --- | --- | --- | --- |
+| 1º | C4 — A gêmea de três peças | 4/5 | ~83% (~67% se as moedas inflarem 40%); 4 massas: fundo, moeda inteira, réplica em três peças, fita | **A fita lida como risco.** A 200 px os cortes (~2 px) somem, e sobra "duas moedas iguais, uma atravessada por uma linha lime que passa das bordas". É o sinal de riscado, e octógono com barra horizontal lembra placa de proibição. Diz "esta foi cancelada", o contrário de "custa o mesmo". | É o único que guarda o que o pedido define como a leitura da capa ("uma moeda e um encaixe feito de três peças") e a frase que ele ilustra: o preço é o custo de montar a mesma coisa com peças que já têm preço. É o C1 com a comparação trazida para perto, a saída (b) da crítica 03, e usa o que o gerador provou que segura: forma idêntica lado a lado e vão igual entre vizinhos. A divisão em três fica dentro de um contorno só (Bolyai). Uma ideia, mostrada por um par compacto, não um díptico. Perde a aposta, que fica com o título. Não leva 5 porque a fita, que diz "montado", é também o que pode dizer "riscado". |
+| 2º | C5 — A lasca do lado que ganha | 3/5 | ~93% (~86% inflada); 3 massas | **O vão entre a lasca e o entalhe**, que carrega a ideia inteira, tem ~3 px a 200 px: é o limiar em que os vazados do C1 se fundiam (crítica da rodada 1). Sem vão, volta a ser a moeda do C1, com a faceta lime e sem ideia. | É o mais seguro no gerador: a moeda e o trapézio de acento são os dois elementos mais estáveis da execução, e a única mudança é um vão. A miniatura é a melhor dos três. Mas responde a outra pergunta. A "lasca de quem cotou errado" é leitura do diretor, não do pedido, e a réplica, que o pedido pôs como leitura da capa, some. E a leitura é dupla: o lado aceso saindo pode ser o ganho tirado ou o ganho perdido, além de moeda quebrada e de cerceio, que é fraude (pesquisa, item 6). O título desempata a favor do ganho; a imagem sozinha, não. |
+| 3º | C6 — O piso sem folga | 2/5 | ~91% se parar em quatro moedas; abaixo de 40% se virar ladrilho; 6 massas | **Papel de parede.** Octógono com losango é um padrão de piso infinito que o gerador conhece, e ele já espalhou fileira pela largura em quatro voltas (*Samurais*). | Responde só ao "não dura", e de modo abstrato: sem o título, é um ladrilho, e o próprio diretor o ancora no piso de taquinho. O losango lime marca uma conquista no meio, o que diz "há um ganho" mais do que "ele não dura". Perde a aposta e a réplica. É também o que mais depende de precisão: o losango só existe se as quatro moedas se tocarem exatamente, e o gerador já pôs fenda onde não foi pedida (volta 3). A 200 px são oito octógonos (moedas e faces), um losango e oito entalhes num bloco de 48 px. |
+
+**Recomendo C4**, porque o critério 1 decide: é o único dos três que diz o que o autor pediu que a
+capa dissesse, a moeda e a réplica dela em três peças, e o faz com as duas coisas que o gerador
+provou que segura. O C5 gera mais fácil, mas troca a tese do pedido por uma leitura nova e ambígua. O
+C6 vira ornamento.
+**Se o autor quiser outro caminho:** C5 serve se ele preferir a geração mais segura e a melhor
+miniatura, aceitando trocar a réplica pelo "lado que ganha", que já estava no pedido. Nesse caso, o
+vão entre a lasca e o entalhe tem de ser de uma largura inteira do anel, e não de metade (~7 px a
+200 px, e não ~3), e o modo vai para `minimal-vibrant` (pergunta 1). C6 não serve para esta capa:
+precisa de legenda para virar arbitragem.
+**O que corrigir no escolhido (C4):**
+- **Sem modo.** `grain-textured` sem `surreal` (bandeira vermelha e pergunta 1). Nada no C4 usa o
+  modo.
+- **Os cortes viram vãos medidos pelo vizinho.** Cada corte com a largura das pontes que o gerador
+  já respeitou (~0,025 do quadro, ~0,1 da moeda): ~5 px a 200 px, contra ~2 px hoje. As três peças
+  aparecem na miniatura, e a fita passa a ler como cinta de três peças soltas, não como risco. O vão
+  entre as duas moedas fica com pelo menos o dobro de um corte, para a fileira não ler como quatro
+  peças. O par segue dentro da área segura mesmo inflado; o recorte 1:1 é que fica justo.
+- **Não brigar pelo 1/8.** Escrever "duas tiras estreitas iguais e uma peça larga" e aceitar tiras
+  com perto de metade da peça larga, que é o que o gerador entrega (0,50 a 0,63 nas três voltas). Na
+  volta 2, com 0,58, a miniatura ainda lia "pequeno, pequeno, grande".
+- **Uma moeda inteira e uma em três peças, contadas.** O gerador segura forma idêntica repetida, mas
+  a pesquisa não prova que ele mude um atributo de só uma das duas: o risco é cortar as duas, ou
+  nenhuma, ou multiplicar as fendas (volta 3). O prompt diz mesmo tamanho e mesmo contorno, e depois
+  descreve cada uma: exatamente dois vãos, só na da esquerda; a da direita é uma peça só, sem corte.
+- **Saída para a fita, se a primeira validação ler "riscado":** terminar a fita rente às bordas da
+  moeda, sem as pontas de fora. Com os vãos abertos, ela continua visível dentro deles (14:1 no
+  escuro, 4,4:1 no claro) e sobre a face (2,6:1 e 2,4:1).
+**Bandeira vermelha:** o fragmento do modo `surreal` entra no prompt palavra por palavra (estava no
+`prompt_final.md` das três voltas) e pede "one impossible juxtaposition of two ordinary objects at
+mismatched scale". O C4 e o C6 dependem de moedas do mesmo tamanho, e o C5, de uma moeda só no vazio.
+Escrever "same scale" na parte criativa põe duas ordens contrárias no mesmo prompt. Como o STYLE foi
+escolha do autor, a troca se decide no Gate 1, antes do enriquecedor.
+
+**Sobre as perguntas do diretor (recomendação; quem decide é o autor):**
+1. **Nem surreal com "same scale", nem `geometric` como a pergunta o põe.** `geometric` é base, não
+   modo (`estilos/README.md`: uma base e no máximo um modo). Trocar por ele tira o `grain-textured`
+   que o autor escolheu e traz outro conflito: o fragmento diz "only ... rectangles, right triangles
+   and trapezoids", e o octógono da face não é nenhum deles; e "aligned to a regular grid" empurra o
+   C6 para o ladrilho. O `surreal` pede uma justaposição de dois objetos em escala trocada, que nenhum
+   dos três tem. A moeda inflada de 20% a 47% e o disco extra da volta 3 são compatíveis com esse
+   fragmento; não há geração sem o modo para provar a causa, mas tirá-lo não custa nada.
+   **Recomendo:** C4 com `grain-textured` e sem modo; C5, se for o escolhido, com `minimal-vibrant`,
+   cujo fragmento é a própria composição do C5 e cujo "Nothing else" segura o risco de o gerador
+   completar o vazio. Discordo de que o C5 funcione com o surreal: com uma moeda só e 93% de fundo,
+   um fragmento que pede um segundo objeto em outra escala é o convite para completar a cena. Na
+   variante clara, o "dark sheets" do `minimal-vibrant` pede conferência de B2.
+2. **Sim, perder a mão e o lance.** A mão nunca foi o bloqueante, mas custou uma correção por volta
+   (joinha, dois tons, tamanho, 1,7:1 contra o chão, punho de manga) e, a 200 px, virou uma cunha no
+   canto. O lance só se conta com distância entre a mão e a moeda, que é o que o gerador não segura.
+   O título, que acompanha a capa, já diz cara e coroa: a aposta está no texto, e a imagem deve
+   carregar o que o título não diz, a réplica. No C4, a moeda nem precisa estar no ar. Não conte com
+   "no alto do lance" no C5: sem a mão, é uma moeda parada no vazio, o que basta para a capa, mas não
+   conta o lance.
