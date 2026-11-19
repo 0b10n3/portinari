@@ -1,0 +1,114 @@
+{
+  "imagem": "output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/01/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        25,
+        26,
+        30
+      ],
+      "hex_imagem": "#191A1E",
+      "fracao": 0.5642,
+      "token_mais_perto": "#141414",
+      "delta_e": 4.2,
+      "amplitude_luminancia": 0.0104
+    },
+    {
+      "rgb": [
+        26,
+        68,
+        48
+      ],
+      "hex_imagem": "#1A4430",
+      "fracao": 0.2242,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 3.8,
+      "amplitude_luminancia": 0.015
+    },
+    {
+      "rgb": [
+        20,
+        62,
+        42
+      ],
+      "hex_imagem": "#143E2A",
+      "fracao": 0.074,
+      "token_mais_perto": "#0F3D27",
+      "delta_e": 1.9,
+      "amplitude_luminancia": 0.0148
+    },
+    {
+      "rgb": [
+        50,
+        128,
+        89
+      ],
+      "hex_imagem": "#328059",
+      "fracao": 0.0563,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 8.5,
+      "amplitude_luminancia": 0.0166
+    },
+    {
+      "rgb": [
+        144,
+        196,
+        148
+      ],
+      "hex_imagem": "#90C494",
+      "fracao": 0.0291,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 10.4,
+      "amplitude_luminancia": 0.0135
+    },
+    {
+      "rgb": [
+        41,
+        117,
+        81
+      ],
+      "hex_imagem": "#297551",
+      "fracao": 0.0244,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 4.5,
+      "amplitude_luminancia": 0.0344
+    },
+    {
+      "rgb": [
+        15,
+        17,
+        19
+      ],
+      "hex_imagem": "#0F1113",
+      "fracao": 0.0101,
+      "token_mais_perto": "#141414",
+      "delta_e": 2.0,
+      "amplitude_luminancia": 0.0106
+    }
+  ],
+  "tokens": {
+    "#141414": 0.5792,
+    "#0F3D27": 0.3054,
+    "#1B6A45": 0.0844,
+    "#78C9A4": 0.0258
+  },
+  "fundo": {
+    "hex": "#191A1E",
+    "token": "#141414",
+    "fracao": 0.5792
+  },
+  "acento_fracao": 0.0035,
+  "par": null,
+  "erros": [],
+  "avisos": [
+    "#328059 (5.6%) está longe de #1B6A45 (ΔE 8.5)",
+    "#90C494 (2.9%) está longe de #78C9A4 (ΔE 10.4)",
+    "#297551 varia de tom dentro da própria folha (amplitude 0.034 > 0.028): sombra, gradiente ou grão fora do fundo — o crítico decide pela B8"
+  ]
+}
