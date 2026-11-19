@@ -111,3 +111,243 @@ formulação. Melhor estado: iteração 02.
 
 **Decisão do autor:** pesquisar e tentar um conceito novo, **ainda usando moedas**. Volta ao passo 3
 (diretor de arte), contando uma volta do Gate 1.
+
+## Rodada 2 — conceitos novos com moedas
+
+Diretor de arte, 2026-11-18, depois da contenção. São três conceitos novos, todos com moedas
+octogonais de faces lisas, e nenhum depende de uma razão de tamanho entre peças distantes. Cada um
+responde a uma pergunta diferente do texto:
+- **C4** responde por que o preço é esse: é o preço da réplica.
+- **C5** responde o que é a arbitragem: uma lasca tirada de quem cotou errado.
+- **C6** responde por que ela não dura: entre promessas iguais, só sobra um vão pequeno e à vista.
+
+Nenhum dos três tem mão. O polegar virou "joinha" na volta 1, a mão saiu em facetas de dois tons
+nas voltas 1 e 3, e o lance só se conta com a mão longe da moeda, que é a distância que o gerador não
+segura.
+
+### Perguntas (rodada 2)
+
+1. **O modo surreal pede "mismatched scale".** A moeda pedida com 0,15 da largura saiu com 0,18,
+   0,22 e 0,21 nas três voltas, e o fragmento do modo pode ter puxado esse aumento. No C4 e no C6, a
+   leitura depende de moedas do mesmo tamanho. Duas saídas: manter o surreal, com "same scale" escrito
+   no prompt, ou trocar o modo para `geometric` nesta peça. O C5 tem uma moeda só e funciona com o
+   surreal.
+2. **A mão e o gesto do lance saem dos três.** Aceita perder o lance? No C5, a moeda sozinha, parada
+   e de frente no céu vazio, ainda se lê como "no alto do lance", sem a mão.
+
+## Pesquisa (rodada 2)
+
+### Dentro do pipeline
+
+Fontes: as três críticas desta execução e as de *Frequência de Capitalização* (03 e 04, aprovadas),
+*A Anatomia e o Verdadeiro Risco do CRA* (03 e 05, aprovadas) e *Fundamentos do Valor do Dinheiro no
+Tempo* (03, que mediu cédulas sobrepostas).
+
+**O que o gerador segura:**
+- **Forma idêntica repetida lado a lado.** Os dois vazados pequenos saíram iguais entre si nas
+  voltas 2 e 3 (0,078 e 0,078; depois 0,084 cada). As três caixas idênticas do CRA aprovaram.
+- **Vãos iguais.** As pontes da volta 2 saíram com 0,025 e 0,027 do quadro.
+- **O trapézio de acento no anel.** É o elemento mais estável da execução: um trapézio só, o de cima à
+  direita, nas três voltas (0,35%, 0,53% e 0,49% do quadro).
+- **Octógono regular de topo reto em elevação frontal, e a pilha escura.** B8 e B9 ficaram limpos nas
+  três voltas.
+- **Um objeto no eixo.** *Frequência* só aprovou quando a escada virou um zigue-zague vertical e
+  centrado. Lá, o crítico de conceito chamou o copo, um objeto só e centrado, de o mais robusto.
+- **Comparação de perto.** Em *Fundamentos*, as cédulas sobrepostas saíram com razão de 1,7–1,9:1
+  contra os 2:1 pedidos. De perto, a razão erra pouco. À distância, a razão entre o vazado e a moeda
+  foi de 0,91 para 0,62.
+
+**O que o gerador erra:**
+- **Tamanho absoluto dado em número.** A moeda pedida com 0,15 saiu com 0,18, 0,22 e 0,21: o foco
+  infla de 20% a 47%.
+- **Contraste de tamanho.** "Pequeno" nunca ficou abaixo da metade do "grande" (0,50–0,60, depois
+  0,58, depois 0,63), nem com os três vazados lado a lado. Logo, nenhum conceito pode depender de um
+  contraste forte de tamanho, nem de perto.
+- **Razão e eixo entre peças distantes.** O vazado grande teve 0,91, 0,62 e 0,63 da largura da moeda.
+  O eixo vertical comum só se manteve em uma das três voltas.
+- **Duplicação quando o prompt fala em cair ou preencher.** Na volta 3 apareceram um segundo disco
+  atrás da moeda e uma fenda em cada ponte, com cinco aberturas em vez de três.
+- **Mão.** O polegar vira "joinha" (volta 1), e a mão sai em facetas de dois tons (voltas 1 e 3).
+- **Fileira e moldura.** A fileira se espalha pela largura (*Samurais*, quatro voltas), e uma moldura
+  aparece sem ter sido pedida (volta 2 aqui; gen_01 da volta 1 de *Frequência*).
+- **Mesmo prompt, formas diferentes.** Em *Frequência*, ele "acerta, mas não sempre".
+
+### Fora do pipeline
+
+Não achei ilustração editorial que represente arbitragem ou a Lei do Preço Único com moedas: as
+buscas devolvem explicadores de cripto. Os achados úteis são de procedimento:
+
+1. **Matisse, papel recortado.** "He used not only the shapes that he cut out (positive shapes), but
+   the paper from which they were cut (negative pieces)"
+   ([Carnegie Museum of Art](https://carnegieart.org/classroom/drawing-with-scissors/);
+   [MoMA, *The Cut-Outs*](https://www.moma.org/audio/playlist/6/307)). **O movimento:** a peça e o
+   buraco nascem do mesmo corte, e a comparação dispensa medida. É a base do C5.
+2. **Congruência por tesoura** (teorema de Wallace–Bolyai–Gerwien): dois polígonos de mesma área se
+   cortam nas mesmas peças ([cut-the-knot](https://www.cut-the-knot.org/do_you_know/Bolyai.shtml);
+   Epstein e Smirnov, [*Visualizing Scissors Congruence*](https://core.ac.uk/download/62921482.pdf)).
+   **O movimento:** mostrar a equivalência pelos cortes dentro de um mesmo contorno, e não por
+   tamanhos comparados de longe. É a base do C4.
+3. **Índice Big Mac** ([The Economist](https://www.economist.com/big-mac-index)), o dispositivo
+   editorial clássico da Lei do Preço Único. **O movimento:** repetir o mesmo objeto, idêntico. Quem
+   carrega a lei é a identidade do objeto, e só um atributo muda. É a base do C4 e do C6.
+4. **Noma Bar:** espaço negativo, cor chapada, detalhe mínimo e duplo sentido
+   ([Wikipedia](https://en.wikipedia.org/wiki/Noma_Bar)). **O movimento:** o sentido mora na forma
+   que sobra entre as figuras. É a base do C6, em que o acento é o vão desenhado por quatro moedas.
+5. **Eiko Ojala:** colagem de papel digital em que cada peça é um ato de redução, até sobrar a ideia
+   central ([Design and Paper](https://www.designandpaper.com/eiko-ojala-masters-paper-cut-art/)).
+   **O movimento:** uma metáfora e poucos objetos. **O que não levar:** a profundidade dele vem de
+   sombra projetada, que a marca proíbe.
+6. **Cerceio de moeda:** tiravam-se lascas da borda das moedas de prata, e a serrilha passou a
+   denunciar o corte ([Reader's Digest](https://www.rd.com/article/why-coins-have-ridged-edges/)).
+   **O alerta:** uma lasca na borda de uma moeda já tem uma leitura histórica, a de fraude. Entra
+   como risco do C5.
+
+## C4 — A gêmea de três peças
+
+**Metáfora:** ao lado da moeda, a mesma moeda montada com três peças e cintada: o preço do pacote é o
+preço das peças.
+**Composição:** vista de frente, chapada, num quadro só de fundo liso, sem chão. No centro, um par
+compacto de moedas iguais, do mesmo tamanho (~0,24 da largura do quadro cada) e na mesma linha de
+centro (y 0.48). Entre elas, um vão de ~0,15 da largura de uma moeda (x 0.24–0.48 e 0.52–0.76). As
+duas são o mesmo octógono regular de topo reto, com um octógono concêntrico de ~0,6 da largura colado
+por cima da face.
+- **À direita, a moeda inteira:** a NTN-F.
+- **À esquerda, a réplica:** o mesmo contorno, com dois cortes verticais retos que atravessam a moeda
+  de cima a baixo e mostram o fundo. Os cortes deixam duas tiras estreitas junto à borda esquerda
+  (~1/8 da largura cada) e uma peça larga com o resto, e os dois têm a mesma largura (~0,04 da moeda).
+  Da esquerda para a direita, as peças seguem a ordem dos fluxos do texto: cupom, cupom, principal.
+- **A fita de acento:** uma fita fina (~0,04 da altura da moeda) atravessa a réplica na horizontal,
+  na altura do centro e por cima das três peças. Ela passa um pouco das duas bordas, com as pontas
+  cortadas retas.
+
+Em volta do par, só fundo.
+**Ponto focal:** x 0.36, y 0.48 — o meio da fita de acento sobre a réplica. Cai dentro da área segura
+(x 0.106–0.894, y 0.035–0.965), e o par inteiro cabe no recorte 1:1 (x 0.22–0.78).
+**Hierarquia:** 1º a fita de acento cintando a moeda da esquerda; 2º os dois contornos idênticos lado
+a lado; 3º os dois cortes que fazem da moeda da esquerda três peças.
+**Cor:**
+- **Escuro:** fundo `pilha-1`; octógono de fora em `figura-secundaria` e face em `figura-principal`,
+  o par da volta 2, que teve nota 5 em paleta; fita em `acento`.
+- **Claro:** fundo `pilha-3`, a folha mais clara, porque agora o contraste que conta é o de figura
+  contra fundo. Octógono de fora em `figura-principal` (3,2:1 sobre Chalk), face em
+  `figura-secundaria`, fita em `acento` (lime 700).
+- **Acento:** só a fita, ~0,45% do quadro (~0,9% se as moedas inflarem 40%). Grão só no fundo.
+
+**Fundo:** ~83%.
+**Em miniatura:** dois octógonos claros de ~48 px, a ~7 px um do outro, e um traço de acento que
+atravessa o da esquerda e passa das bordas dele. Os cortes ficam com ~2 px e podem sumir. O que sobra
+é "duas moedas iguais, uma delas cintada".
+**Contra o defeito do C1:** a comparação é entre dois contornos idênticos, vizinhos e na mesma
+altura, que é o que o gerador segura (os vazados pequenos saíram iguais nas voltas 2 e 3). A divisão
+em três fica dentro de um contorno só. Se as peças saírem com um terço cada, a leitura "a mesma moeda
+em três peças" continua, e só se perde a proporção entre cupom e principal. Nada cai, nada preenche,
+e não há mão.
+**Riscos:**
+- **Moedas de tamanhos diferentes.** O gerador infla o que entende como foco. O prompt diz "the same
+  coin twice" e não trata nenhuma das duas como principal: o foco é a fita.
+- **Cortes que viram gravura ou se multiplicam.** O gerador pode desenhar linhas na face ou fazer mais
+  de dois cortes, como as fendas extras da volta 3. São exatamente dois cortes, que atravessam a moeda
+  e mostram o fundo.
+- **Sinal de igual.** Uma segunda fita, ou a fita repetida na moeda inteira, forma um "=", que é
+  símbolo (B3). É uma fita só, e só na réplica.
+- **Moeda quebrada.** Três peças podem ler como rachadura e perda. Os cortes retos e de largura
+  igual, mais a fita, que diz "montado", seguram a leitura de pacote.
+- **Díptico (R13).** Uma moeda em cada metade do quadro vira dois painéis. O par fica compacto e
+  centrado, com vão estreito, e cabe inteiro no recorte 1:1.
+- **Contraste da fita no claro.** Lime 700 sobre `figura-principal` dá 1,4:1, e a fita some sobre o
+  anel. Por isso as pontas passam das bordas: sobre Chalk, o contraste é de 4,4:1.
+- **Perde o título.** Não há aposta nem lance. O conceito mostra a tese (o preço é o da réplica) e o
+  exemplo da NTN-F, e a aposta fica por conta do título.
+
+## C5 — A lasca do lado que ganha
+
+**Metáfora:** o lado que ganha se solta da moeda: a arbitragem é uma lasca, pequena e à vista,
+tirada de quem cotou errado.
+**Composição:** vista de frente, chapada, num fundo liso, sem chão e sem mão. Uma moeda só, parada no
+ar, um pouco à esquerda e abaixo do centro (centro em x 0.45, y 0.56; ~0,22 da largura do quadro). É
+a mesma moeda que o gerador desenhou nas três voltas: o octógono regular de topo reto, com o anel de
+oito trapézios e o octógono da face (~0,7 da largura). Sete trapézios estão no lugar. O oitavo, o de
+cima à direita, no lado a 45°, está fora. Ele está inteiro, na mesma orientação, afastado para fora
+na mesma diagonal por um vão de cerca de metade da largura do anel. No lugar dele, o entalhe mostra o
+fundo liso, e a face continua inteira. Acima e à direita, o céu fica vazio, e é para lá que a lasca
+aponta.
+**Ponto focal:** x 0.53, y 0.42 — a lasca de acento, fora do anel. Cai dentro da área segura e do
+recorte 1:1.
+**Hierarquia:** 1º a lasca de acento; 2º o entalhe vazio no anel, do formato dela; 3º a moeda, inteira
+no resto.
+**Cor:**
+- **Escuro:** fundo `pilha-1`; os sete trapézios em `figura-secundaria`; face em `figura-principal`;
+  lasca em `acento` (14:1 sobre Ink).
+- **Claro:** fundo `pilha-3`; trapézios em `figura-principal`; face em `figura-secundaria`; lasca em
+  `acento` (lime 700, 4,4:1 sobre Chalk).
+- **Acento:** só a lasca, ~0,46% do quadro (~0,9% se a moeda inflar 40%). Grão só no fundo.
+
+**Fundo:** ~93%.
+**Em miniatura:** um octógono claro de ~44 px com um dente no canto de cima à direita e, logo fora
+dele, um traço de acento de ~18×7 px, separado por ~3 px de fundo. Lê-se "um pedaço da moeda saiu, e
+é o pedaço aceso".
+**Contra o defeito do C1:** não há tamanho para comparar. A lasca e o entalhe vêm do mesmo corte (o
+movimento de Matisse), por isso têm a mesma forma por construção, e ficam vizinhos. A lasca é o
+trapézio que o gerador acertou nas três voltas, e a moeda é a mesma delas: o que muda é um vão. Se a
+moeda inflar, a leitura não muda. Só o teto do acento limita o tamanho, até ~0,32 da largura.
+**Riscos:**
+- **A lasca fica no lugar.** Sem o vão, a moeda volta a ser a do C1, com a faceta lime e sem ideia. O
+  entalhe tem de mostrar o fundo, com um vão visível entre a lasca e o anel.
+- **Duplicação.** O gerador pode pôr um trapézio lime no lugar e outro fora. O prompt conta as peças:
+  sete trapézios claros, um vazio e uma lasca de acento, só uma, do lado de fora.
+- **Movimento.** Rastro, arco de trajetória ou lasca girada em profundidade, com a espessura à
+  mostra. A lasca fica parada, chapada, na mesma orientação do vão de onde saiu.
+- **Gráfico de pizza.** Disco com uma fatia tirada é gráfico de pizza, que é camada de sistema. Aqui a
+  face continua inteira, e o que sai é um segmento do anel, não uma fatia até o centro.
+- **Perda ou fraude.** Moeda lascada pode ler como moeda quebrada, ou como cerceio (pesquisa, item 6).
+  O acento diz que a lasca é o ganho, e o título ancora a leitura: "Cara, eu ganho".
+- **Moeda inflada.** Acima de ~0,32 da largura, a lasca passa de 1% do quadro.
+- **Muito vazio.** Com ~93% de fundo, o gerador pode "completar" a cena com chão, mão ou outra moeda.
+  O prompt diz que não há mais nada.
+
+## C6 — O piso sem folga
+
+**Metáfora:** moedas iguais se encostam como ladrilhos e só sobra um losango: o único ganho possível
+é pequeno, cercado e à vista de todos.
+**Composição:** vista de frente, chapada, num fundo liso. No centro do quadro, um bloco de quatro
+moedas iguais, duas em cima e duas embaixo, encostadas borda com borda pelos lados verticais e
+horizontais, sem vão. Cada moeda tem ~0,12 da largura do quadro, e o bloco, ~0,24 da largura e ~0,43
+da altura, com centro em x 0.50, y 0.50. Cada moeda é o octógono regular de topo reto com o octógono
+da face (~0,6 da largura). Os quatro lados a 45° voltados para o centro desenham, por geometria, um
+losango no meio do bloco, e esse losango é o acento. Na borda do bloco, os oito entalhes formados
+pelos lados a 45° de fora mostram o fundo, e o resto do quadro é fundo vazio. O bloco lembra os pisos
+de octógono com taquinho das casas antigas, mas sem chão e sem perspectiva: são quatro peças numa
+parede lisa.
+**Ponto focal:** x 0.50, y 0.50 — o losango de acento. Cai dentro da área segura e do recorte 1:1.
+**Hierarquia:** 1º o losango de acento; 2º as quatro moedas iguais que o cercam; 3º os entalhes de
+fundo na borda do bloco.
+**Cor:**
+- **Escuro:** fundo `pilha-1`; octógono de fora em `figura-principal` e face em `figura-secundaria`.
+  As cores ficam invertidas em relação ao C4 e ao C5 para que o losango encoste em
+  `figura-principal` (2,6:1), e não em `figura-secundaria` (1,5:1).
+- **Claro:** fundo `pilha-3`; octógono de fora em `figura-secundaria`, contra o qual o losango em
+  lime 700 fica com 2,4:1 (contra `figura-principal`, ficaria com 1,4:1). A face fica em
+  `figura-principal` e segura a silhueta do bloco.
+- **Acento:** só o losango, ~0,44% do quadro (~0,9% se as moedas inflarem 40%). Grão só no fundo.
+
+**Fundo:** ~91%.
+**Em miniatura:** um bloco claro de ~48 px, com quatro octógonos de ~24 px e um losango de acento de
+~10 px no meio. Lê-se "quatro moedas encostadas e uma sobra acesa no meio".
+**Contra o defeito do C1:** o losango nasce da geometria. Quatro octógonos iguais e encostados o
+desenham, e o tamanho dele acompanha o das moedas sem que nenhuma razão precise ser mantida. São
+formas idênticas e vizinhas, a comparação que o gerador segura. Nada cai, nada preenche, e não há mão.
+**Riscos:**
+- **Papel de parede.** Ladrilho convida a repetir até as bordas, o que deixa o fundo abaixo de 40% e
+  perde o foco. São exatamente quatro moedas, num bloco no meio, e o resto é fundo.
+- **Moedas com vão.** Se as quatro saírem separadas por pontes, o losango vira um canal em cruz, e o
+  acento pode escorrer por ele. As moedas se tocam pelos lados retos.
+- **Acento em vários pontos.** O gerador pode pintar também os oito entalhes de fora. Só o losango do
+  meio é acento.
+- **Ornamento.** Quatro octógonos e um losango podem ler como ladrilho decorativo, janela de quatro
+  folhas ou flor. É o conceito que mais depende do título para virar "arbitragem", e o mais distante
+  da aposta.
+- **Moedas infladas.** Acima de ~0,18 da largura cada, o losango passa de 1% do quadro.
+- **Silhueta fraca no claro.** `figura-secundaria` sobre Chalk dá 1,8:1. Quem desenha o bloco é a face
+  em `figura-principal`.
+- **Grade.** Um bloco 2×2 pode puxar a leitura de tabela ou bento, que é camada de sistema. As faces
+  octogonais e o losango afastam essa leitura.
