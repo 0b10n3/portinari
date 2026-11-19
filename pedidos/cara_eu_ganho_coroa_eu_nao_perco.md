@@ -11,6 +11,6 @@
 
 A leitura que a peça precisa ter em tamanho de preview: uma moeda no ar e, embaixo dela, um encaixe feito de três peças.
 
-**STYLE**: grain-textured, surreal
+**STYLE**: grain-textured
 
 **CONTEXT**: @pipelines/hemingway/posts/2026-11-18-cara-eu-ganho-coroa-eu-nao-perco/post.md

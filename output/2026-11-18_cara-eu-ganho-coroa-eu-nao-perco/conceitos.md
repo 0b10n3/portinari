@@ -418,3 +418,12 @@ escolha do autor, a troca se decide no Gate 1, antes do enriquecedor.
    carregar o que o título não diz, a réplica. No C4, a moeda nem precisa estar no ar. Não conte com
    "no alto do lance" no C5: sem a mão, é uma moeda parada no vazio, o que basta para a capa, mas não
    conta o lance.
+
+## Gate 1, rodada 2 — decisão do autor (2026-11-19)
+
+**C4 — A gêmea de três peças**, como recomendado pelo crítico, com as correções da crítica da
+rodada 2 (cortes de ~0,025 do quadro para não sumirem a 200 px).
+
+- **Estilo:** sai o modo surreal. Fica só a base `grain-textured`, sem modo (pedido e brief
+  atualizados).
+- **Sem mão:** a peça fica só com as moedas; a aposta fica no título.
