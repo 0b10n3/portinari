@@ -1,0 +1,160 @@
+{
+  "conceito": "C4",
+  "pedido_preservado": [
+    "moeda de papel recortada como octógono regular de topo reto (nunca redonda), vista de frente, chapada",
+    "na face, só um octógono menor concêntrico; face lisa, sem símbolo, sem letra e sem número",
+    "a réplica da moeda feita de três peças, duas estreitas e uma larga (C4: ao lado da moeda, a mesma moeda montada com três peças e cintada)",
+    "par compacto no centro, do mesmo tamanho e na mesma linha de centro: à direita a moeda inteira, à esquerda a réplica",
+    "exatamente dois cortes verticais retos só na réplica, com ~0,025 do quadro cada (Gate 1, rodada 2)",
+    "um único acento: a fita que cinta a réplica; nada mais em acento",
+    "fundo liso e muito espaço vazio, sem chão; sem mão (Gate 1, rodada 2)",
+    "estilo grain-textured, sem modo (Gate 1, rodada 2)",
+    "leitura em miniatura: duas moedas iguais, uma delas feita de três peças e cintada"
+  ],
+  "elementos": [
+    {
+      "id": "e1",
+      "zona": "esquerda",
+      "papel": "foco",
+      "origem": "pedido",
+      "elemento": "a fita: uma tira fina de papel colada por cima da moeda da esquerda, na horizontal, à altura do centro dela (y 0,48), com o meio em x ~0,355; passa sobre as três peças e atravessa os dois vãos sem se interromper; a espessura é um pouco menos da metade da largura de um corte; cada ponta sai da borda da moeda por cerca de meio corte, cortada reta, e a da direita nunca chega perto da moeda inteira; é a única fita e o único acento da imagem",
+      "termo_en": "single thin accent band",
+      "cor": "acento",
+      "justificativa": "é o ponto focal do C4 e diz 'montado': a cinta que segura as três peças. A espessura vem amarrada ao corte, e não em número, porque o gerador infla o que lê como foco. ~0,45% do quadro, dentro do teto de 1%. Uma fita só e só na réplica: uma segunda fita, ou a mesma fita na moeda inteira, forma um sinal de igual (B3). Dentro dos vãos ela fica sobre o fundo (14:1 no escuro; 4,4:1 sobre a folha mais clara no claro), e é ali que se lê. Se a primeira validação ler 'riscado', a saída da crítica é terminar as pontas rentes às bordas da moeda",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e2",
+      "zona": "direita",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "a moeda inteira (a NTN-F): octógono regular de papel, de topo reto, com lados horizontais, verticais e a 45°, largura de ~0,24 do quadro, centro em x ~0,645 e y 0,48; uma peça só, sem corte, sem vão e sem fita",
+      "termo_en": "whole octagonal paper token",
+      "cor": "figura-secundaria",
+      "justificativa": "metade do par. 'Token' e não 'coin', como na v01/v02: a palavra moeda puxa metal, reflexo e símbolo na face. É a mesma forma da réplica, descrita como peça inteira para o gerador não cortar as duas. Na pilha clara, figura-principal (3,2:1 sobre a folha mais clara)",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e3",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "a réplica: o mesmo octógono da moeda inteira, do mesmo tamanho, na mesma orientação e na mesma linha de centro, centro em x ~0,355; feita de três peças: junto à borda esquerda, duas tiras estreitas e iguais entre si, e à direita delas uma peça larga com o resto; da esquerda para a direita, tira, tira, peça larga",
+      "termo_en": "same token in three pieces",
+      "cor": "figura-secundaria",
+      "justificativa": "a carteira replicante: cupom, cupom, principal, na ordem dos fluxos do texto. Sem fração para as tiras (crítica da rodada 2: não brigar pelo 1/8); tiras com até ~metade da peça larga ainda leem 'estreito, estreito, largo'. Nenhuma das duas moedas é maior: o foco é a fita. Na pilha clara, figura-principal",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e4",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "exatamente dois vãos verticais retos que atravessam a réplica de cima a baixo, paralelos e iguais entre si, cada um com ~0,025 do quadro (cerca de um décimo da largura da moeda); por eles aparece só a folha do fundo, lisa, sem parede e sem borda escurecida; a moeda inteira não tem nenhum",
+      "termo_en": "exactly two vertical gaps",
+      "cor": "pilha-1",
+      "justificativa": "correção do Gate 1: com ~0,025 (a largura das pontes que o gerador já respeitou na volta 2), cada vão fica com ~5 px a 200 px e as três peças aparecem na miniatura. 'Exatamente dois' e 'só na réplica' contra as fendas extras da volta 3 e contra cortar as duas moedas",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e5",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "na face de cada moeda, um octógono menor concêntrico, com ~0,6 da largura dela e a mesma orientação, recortado como uma segunda folha chapada colada por cima; nas duas, o mesmo desenho e nada mais",
+      "termo_en": "smaller concentric octagon",
+      "cor": "figura-principal",
+      "justificativa": "o relevo da moeda em folha sobre folha, termo que o gerador segurou nas três voltas do C1. É o mesmo desenho nas duas, o que faz delas gêmeas. Na pilha clara inverte com o anel: face em figura-secundaria",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e6",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "as três peças da réplica em registro: nenhuma se desloca, gira, sobe ou desce; o topo e a base de cada peça acompanham o topo e a base da moeda inteira ao lado, sem nenhuma linha desenhada entre elas; os cortes passam pelo anel e pela face do mesmo jeito, e o octógono da face continua de uma peça para a outra, interrompido só pelos vãos",
+      "termo_en": "pieces kept in register",
+      "cor": "figura-secundaria",
+      "justificativa": "acréscimo de ofício que segura a leitura 'a mesma moeda, montada' contra 'moeda quebrada' (risco do C4): peças alinhadas e o desenho da face contínuo dizem que é um corte limpo de uma moeda igual à vizinha. Não acrescenta massa nem toca o fundo",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e7",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "entre as duas moedas, um vão de fundo liso com cerca do dobro da largura de um corte (~0,05 do quadro), bem mais estreito que uma moeda: a da esquerda vai de x ~0,235 a ~0,475 e a da direita de x ~0,525 a ~0,765",
+      "termo_en": "clear gap between the twins",
+      "cor": "pilha-1",
+      "justificativa": "correção da crítica da rodada 2: com o vão entre as moedas igual a um corte, a fileira lê como quatro peças; com o dobro, lê como duas moedas. Estreito o bastante para o par não virar díptico (R13) e caber no recorte 1:1 (x 0,22–0,78)",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e8",
+      "zona": "fundo",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "o fundo: uma única folha lisa e chapada de borda a borda do quadro, sem chão, sem faixa e sem margem; vazia em volta do par, acima, abaixo e dos dois lados",
+      "termo_en": "single flat background sheet",
+      "cor": "pilha-1",
+      "justificativa": "~83% do quadro (~67% se as moedas inflarem 40%), bem acima do mínimo de 40%. 'De borda a borda, sem margem' contra a moldura não pedida da volta 2. Na pilha clara, pilha-3, a folha mais clara: o contraste que conta é o da figura contra o fundo",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e9",
+      "zona": "fundo",
+      "papel": "textura",
+      "origem": "oficio",
+      "elemento": "fibra de papel muito tênue só na folha do fundo, abaixo do teto de granulação da marca; moedas e fita ficam limpas",
+      "termo_en": "faint paper fibre grain",
+      "cor": "pilha-1",
+      "justificativa": "o grão da base grain-textured, só no fundo, como a marca exige; materialidade sem objeto novo e sem baixar o fundo",
+      "verificar": false,
+      "nota_verificacao": ""
+    }
+  ],
+  "descartados": [
+    {
+      "elemento": "anel de oito trapézios recortados um a um (v01/v02)",
+      "motivo": "as juntas leriam como cortes a mais na réplica, e o gerador já multiplicou fendas (volta 3); a réplica tem de ter exatamente dois vãos"
+    },
+    {
+      "elemento": "trapézio de acento numa faceta do anel, o elemento mais estável do C1",
+      "motivo": "seria um segundo ponto de acento; no C4 o acento é só a fita"
+    },
+    {
+      "elemento": "cinta de banco, como a de maço de cédulas, com valor ou selo impresso",
+      "motivo": "puxa algarismo, palavra e símbolo monetário para a fita"
+    },
+    {
+      "elemento": "linhas-guia horizontais ligando os topos e as bases das duas moedas",
+      "motivo": "duas retas paralelas formam um sinal de igual (símbolo, B3) e somam peça; o alinhamento das peças basta"
+    },
+    {
+      "elemento": "peças da réplica levemente afastadas, em vista explodida, para mostrar a montagem",
+      "motivo": "quebra o registro e lê como moeda quebrada ou como diagrama"
+    },
+    {
+      "elemento": "grampo, clipe ou costura prendendo as três peças",
+      "motivo": "segundo foco e material de outra cor; a fita já diz 'montado'"
+    },
+    {
+      "elemento": "chão, faixa de base ou margem em volta do fundo",
+      "motivo": "o C4 não tem chão, e a moldura não pedida apareceu na volta 2"
+    },
+    {
+      "elemento": "moeda do real ou outro elemento brasileiro",
+      "motivo": "a moeda do real é redonda e tem efígie e algarismos; não há acréscimo brasileiro que reforce a leitura sem símbolo"
+    }
+  ],
+  "cena": "Colagem de papel recortado em elevação frontal chapada, sem perspectiva, sob luz uniforme de scanner de mesa. Uma única folha lisa cobre o quadro de borda a borda, sem chão, sem faixa e sem margem, com uma fibra de papel muito tênue. No centro, um par compacto de moedas de papel iguais: o mesmo octógono regular de topo reto, do mesmo tamanho, cerca de um quarto da largura do quadro cada, na mesma linha de centro, separadas por um vão de fundo liso com cerca do dobro da largura de um corte. Cada uma tem na face um octógono menor concêntrico, colado por cima como uma segunda folha, e nada mais. A da direita é uma peça só, sem corte. A da esquerda é a mesma moeda feita de três peças: exatamente dois vãos verticais retos, paralelos e iguais, atravessam-na de cima a baixo e mostram o fundo, deixando junto à borda esquerda duas tiras estreitas e iguais e, à direita delas, uma peça larga com o resto. As três peças ficam em registro: nenhuma se desloca, gira ou desce, o topo e a base de cada uma acompanham os da moeda inteira, e o octógono da face continua de uma peça para a outra, interrompido só pelos vãos. Uma fita fina de acento, uma tira de papel colada por cima, cinta a moeda da esquerda na horizontal, à altura do centro: passa sobre as três peças, atravessa os dois vãos sem se interromper e sai um pouco das duas bordas, com as pontas cortadas retas, sem chegar perto da moeda da direita. É o único acento da imagem. Dentro dos vãos aparece só a folha do fundo, lisa, sem parede e sem borda escurecida. Em volta do par, só fundo vazio. Sem texto.",
+  "alt": "Colagem de papel: duas moedas octogonais iguais; a da esquerda é a mesma moeda feita de três peças e presa por uma cinta."
+}
