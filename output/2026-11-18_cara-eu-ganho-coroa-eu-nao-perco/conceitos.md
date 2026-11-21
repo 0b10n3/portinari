@@ -440,3 +440,273 @@ que diferencie a cara da coroa. Volta ao passo 3 (rodada 3), contando uma volta 
 Tradução para a marca (vinculante): nada de texto, número, sigla, valor ou símbolo monetário nas
 faces; a iconografia entra em papel recortado, facetada (o bloco de marca já prevê "a faceted
 hexagonal head"); inspiração, não reprodução de uma moeda real; nenhum rosto identificável.
+
+## Rodada 3 — as duas faces da moeda
+
+Diretor de arte, 2026-11-20, depois da contenção do C4. São três conceitos novos, e os três mostram
+as duas faces de uma mesma moeda, como um catálogo mostra: a cara com um perfil facetado e a coroa
+com uma coroa facetada, do mesmo tamanho e na mesma linha de centro. É a base que o gerador provou
+que segura: as gêmeas do C4 saíram iguais nas três voltas. Muda o que liga as duas faces, e cada
+conceito põe o ganho num lugar diferente:
+- **C7** põe o ganho **numa face**. É a aposta do título: a cara ganha, a coroa não perde.
+- **C8** põe o ganho **entre as faces**. É a arbitragem: quem tem as duas faces ganha seja qual for a
+  que cair.
+- **C9** põe o ganho **na virada**, a moeda vista de lado entre as duas faces. É o motivo de a aposta
+  não durar: ela vive o tempo de a moeda virar.
+
+Valem para os três:
+- **Anatomia da moeda.** Octógono regular de topo reto, com orla lisa (o anel que o gerador já
+  desenha estável) e campo com ~0,75 da largura. O perfil e a coroa são vazados no campo: dentro
+  deles aparece só a folha do fundo. Sem legenda, data, valor nem símbolo.
+- **Estilo.** Só a base `grain-textured`, sem modo (Gate 1 da rodada 2).
+- **Orçamento.** Restam 5 das 12 gerações (o `geracoes.jsonl` registra 7, uma delas falha do `agy`,
+  que conta no teto). Por isso nenhum dos três depende de uma forma que o gerador ainda não mostrou
+  que segura.
+
+### Perguntas (rodada 3)
+
+1. **Só a coroa, sem o escudo.** Nas moedas pesquisadas, a "coroa" é o escudo das armas sob a coroa.
+   Proponho tirar o escudo: vazio, ele lê como distintivo; com esfera armilar, cruz e estrelas, é
+   detalhe que some a 200 px e traz símbolos. A coroa fica aberta, com três pontas, porque a coroa
+   imperial fechada, com arcos, vira capacete ou sino quando é facetada. Confirma?
+2. **Uma variante fora do pedido, só se o autor quiser.** É "a coroa trocou de lado": na cara, o
+   perfil usa a coroa, em acento; o verso fica liso. A ideia é uma moeda com tudo de um lado e nada
+   do outro, o "ganha-ganha de uma pessoa só". Pode ser a metáfora mais forte da aposta, mas desfaz o
+   que o pedido quer: cara e coroa diferentes. Por isso ela não entrou como conceito. Quer que entre?
+
+## Pesquisa (rodada 3)
+
+### A expressão e as moedas
+
+- **"Cara ou coroa"** vem, na explicação corrente, das antigas moedas portuguesas: numa face, "a
+  imagem de um rosto (cara)"; na outra, "um brasão ou as armas da coroa". Nas moedas do Real, a
+  coroa é o lado do valor, "mesmo sem coroa": o nome ficou depois que a coroa saiu. Outras línguas
+  dão nomes diferentes às faces: o espanhol diz *cara o cruz*, o latim dizia *navia aut caput*
+  (Jano e um navio) e o inglês diz *heads or tails*
+  ([Wikipédia, "Cara ou coroa"](https://pt.wikipedia.org/wiki/Cara_ou_coroa)). Ressalva: a fonte é
+  enciclopédica. Não achei verbete etimológico (Houaiss, Ciberdúvidas) aberto na rede.
+- **Peça de 6.400 réis de D. João V** (ouro, desde 1727, cunhada na Bahia, no Rio e em Vila Rica).
+  No anverso, o busto do rei virado para a direita; no reverso, o escudo das armas sob a coroa real
+  ([Heritage, 6.400 réis 1727-B](https://coins.ha.com/itm/brazil/brazil-joao-v-gold-6400-reis-peca-1727-b-au55-ngc-/a/3125-30052.s)).
+  É a moeda colonial em que as duas faces se distinguem só pelo desenho: rosto de um lado, coroa do
+  outro.
+- **Peça da Coroação** (6.400 réis, 1822, D. Pedro I). No anverso, o busto laureado virado para a
+  esquerda; no reverso, as armas coroadas dentro de uma grinalda. Foram 64 cunhadas
+  ([Christie's](https://www.christies.com.cn/lot/lot-211967)). Pedro I mandou suspender a
+  cunhagem, entre outros motivos, porque o busto saiu nu, "à feição dos imperadores romanos", e
+  porque a coroa do reverso era a real, e não a imperial
+  ([Jornal Opção](https://www.jornalopcao.com.br/colunas-e-blogs/bolha/uma-moeda-rejeitada-pelo-imperador-um-tesouro-guardado-pela-historia-867220/)).
+  Cada face teve o seu gravador: Zepherin Ferrez fez o anverso e Thomé Joaquim da Silva Veiga, o
+  reverso ([Itaú Cultural](https://artsandculture.google.com/asset/moeda-de-ouro-6-400-réis-peça-da-coroação-zepherin-ferrez-anverso-thomé-joaquim-da-silva-veiga-reverso/AAHMYe14MkL72Q)).
+- **As armas do Império** têm esfera armilar, cruz da Ordem de Cristo, orla de 19 estrelas, coroa e
+  dois ramos, um de café e um de tabaco
+  ([Revista de História, USP](https://revhistoria2.webhostusp.sti.usp.br/wp-content/uploads/revistas/041/A012N041op.pdf)).
+  Não confirmei que os ramos apareçam nas moedas.
+
+**O movimento:** a cara é uma pessoa, e a coroa é a instituição. A diferença entre as faces está na
+silhueta, rosto contra coroa, e não no detalhe. Na Peça da Coroação, uma coroa trocada bastou para
+recolher a moeda.
+
+### Como o catálogo mostra as faces
+
+- A convenção é o anverso à esquerda (ou em cima) e o reverso à direita (ou embaixo), "not
+  invariably observed"; o anverso é *heads* porque costuma levar a cabeça de alguém
+  ([Wikipedia, "Obverse and reverse"](https://en.wikipedia.org/wiki/Obverse_and_reverse)).
+- A BnF pede duas imagens por moeda, uma de cada face, em tamanho natural (1/1) e sempre com a mesma
+  luz. Para moedas com borda inscrita, pede mais imagens: a borda é a terceira vista
+  ([BnF](https://bnf.fr/en/how-catalogue-digitise-and-move-collection-coins-simple-tips)).
+
+**O movimento:** duas faces na mesma escala, lado a lado, num eixo. É a comparação de perto que o
+gerador segura, e "a mesma luz" é a luz de scanner da marca. A borda como terceira vista é a base do
+C9.
+
+### O que sobrevive à marca
+
+| Na moeda | Na peça |
+| --- | --- |
+| Busto de perfil | Perfil facetado: cabeça hexagonal vista de lado, com testa, nariz, boca e queixo em cortes retos e a 45°, nuca reta e pescoço cortado reto. Sem olho, orelha, cabelo nem barba, para nenhum rosto ser identificável. Virado para a direita, para dentro do quadro: não segue nenhuma das duas moedas. |
+| Louros do busto laureado | Uma fileira curta de folhas em losango (C7). |
+| Armas coroadas | Só a coroa, facetada: faixa retangular e três pontas triangulares, cada uma com um losango pequeno no topo (as pérolas). Sem escudo (pergunta 1). |
+| Orla com legenda | Orla lisa. |
+| Sai | Legenda, data, letra monetária, assinatura do gravador, valor, lema, estrelas, cruz no topo da coroa (lê como "+"), esfera armilar (curva), ramos (detalhe), metal e brilho. |
+
+É inspiração, e não reprodução: nenhuma das peças copia a composição, a legenda ou o busto de uma
+moeda real.
+
+## C7 — Anverso e reverso
+
+**Metáfora:** a moeda da aposta mostrada como no catálogo: na cara, o louro de quem ganha; na coroa,
+nada se perde.
+**Composição:** vista de frente, chapada, num fundo liso, sem chão e sem mão. No centro, as duas
+faces da mesma moeda, do mesmo tamanho (~0,22 da largura do quadro cada) e na mesma linha de centro
+(y 0.50), separadas por um vão de ~0,04 da largura. O anverso fica à esquerda (x 0.26–0.48) e o
+reverso à direita (x 0.52–0.74).
+- **Esquerda, a cara:** o perfil facetado, vazado no campo do pescoço ao alto da cabeça (~0,7 da
+  altura do campo), virado para a direita, para a outra face. No alto e atrás da cabeça, os louros:
+  uma fileira curta de quatro folhas em losango, apontadas para trás.
+- **Direita, a coroa:** a coroa facetada de três pontas, vazada no centro do campo (~0,6 da largura
+  dele), e nada mais.
+
+À esquerda e à direita do par, só fundo.
+**Ponto focal:** x 0.35, y 0.41 — os louros, no alto e atrás da cabeça. Cai dentro da área segura
+(x 0.106–0.894, y 0.035–0.965), e o par inteiro cabe no recorte 1:1 (x 0.22–0.78).
+**Hierarquia:** 1º os louros em acento sobre a cabeça; 2º as duas faces iguais em contorno, lado a
+lado; 3º a troca de rosto por coroa entre uma face e a outra.
+**Cor:**
+- **Escuro:** fundo `pilha-1`; orla em `figura-secundaria` (9,4:1 sobre o fundo); campo em
+  `figura-principal`; os vazados mostram `pilha-1` (5,4:1 contra o campo).
+- **Claro:** fundo `pilha-3`; orla em `figura-secundaria`; campo em `figura-principal` (3,2:1
+  sobre Chalk, que desenha a silhueta da moeda); os vazados mostram `pilha-3`.
+- **Acento:** só os louros, ~0,2% do quadro. Eles caem sobre o vazado da cabeça: 14:1 no escuro e
+  4,4:1 no claro. **A virada:** o louro é o sinal de vitória e diz "cara, eu ganho". A coroa, inteira
+  e sem acento, diz "coroa, eu não perco".
+- Grão só no fundo.
+
+**Fundo:** ~86% (~72% se as moedas inflarem 40%, como o foco inflou no C1).
+**Em miniatura:** dois octógonos de ~44 px, a ~8 px um do outro. No da esquerda, uma cabeça escura
+de perfil olhando para a direita, com um traço de acento no alto; no da direita, uma coroa escura.
+Lê-se "cara e coroa, e a cara acesa".
+**Contra o C1 e o C4:**
+- Não há razão de tamanho entre peças distantes (o C1): as faces são vizinhas, do mesmo contorno e
+  do mesmo tamanho, como as gêmeas do C4.
+- Não há divisão dentro de um contorno nem fita sobre cortes (o C4): o perfil e a coroa são vazados
+  inteiros, e o acento é uma peça pequena por cima de um vazado, como o trapézio do C1, o elemento
+  mais estável da execução.
+- Nada cai, nada preenche, e não há mão.
+- Ressalva: conta a aposta e não diz por que ela não dura; isso fica com o título.
+
+**Riscos:**
+- **Louro de mais.** O gerador pode desenhar uma grinalda inteira em volta da cabeça, com folhas
+  curvas e fita, ou pintar o cabelo de acento. São quatro folhas em losango, retas, numa fileira
+  curta, só no alto e atrás. Se não segurar, a saída é o acento num trapézio da orla da cara: segura
+  melhor, mas perde o sentido de vitória.
+- **Retrato.** "Moeda com busto" puxa um imperador romano ou um rei realista, com olho, barba e
+  coroa de louros detalhada. O perfil é silhueta facetada, sem traço interno, e a palavra "rei" fica
+  fora do prompt.
+- **Texto.** A convenção da moeda puxa legenda na orla, data e valor no exergo. A orla é lisa, e o
+  prompt não fala em legenda.
+- **Metal e brilho.** Ouro, prata, reflexo e relevo estão fora; é papel chapado.
+- **Díptico (R13).** Duas moedas em duas metades viram dois painéis. O par fica compacto e centrado,
+  com vão estreito.
+- **Tamanhos diferentes.** O prompt diz "a mesma moeda, as duas faces, do mesmo tamanho", e nenhuma
+  das duas é o foco.
+- **Cruz ou símbolo no topo da coroa.** As pontas terminam em losangos, sem cruz.
+
+## C8 — O ganho entre as faces
+
+**Metáfora:** a moeda aberta, com as duas faces presas pela borda, e o ganho no vão entre elas: cai
+cara ou cai coroa, quem tem as duas faces ganha.
+**Composição:** vista de frente, chapada, num fundo liso, sem chão e sem mão. No centro, as duas
+faces da mesma moeda, do mesmo tamanho (~0,22 da largura cada) e na mesma linha de centro (y 0.50),
+encostadas pelos lados verticais, sem vão e sem sobreposição. Ficam como um recorte de papel dobrado
+e aberto, um bloco só, de x 0.28 a x 0.72.
+- **Esquerda, a cara (x 0.28–0.50):** o perfil facetado vazado, virado para a direita, para a
+  junta.
+- **Direita, a coroa (x 0.50–0.72):** a coroa facetada vazada.
+- **O losango:** acima da junta, os dois lados a 45° das faces abrem, por geometria, um vão em V em
+  ângulo reto. No fundo desse V, encaixado, fica um losango de acento (um quadrado girado a 45°), com
+  ~1/3 do lado de uma faceta. Os dois lados de baixo dele se apoiam nas duas faces. O V de baixo
+  fica vazio, mostrando o fundo.
+
+À esquerda e à direita do bloco, só fundo.
+**Ponto focal:** x 0.50, y 0.38 — o losango, no V de cima, sobre a junta. Cai dentro da área
+segura e do recorte 1:1.
+**Hierarquia:** 1º o losango de acento entre as duas faces; 2º o bloco das duas faces encostadas; 3º
+o perfil virado para a junta e a coroa do outro lado.
+**Cor:** a mesma anatomia do C7. Escuro: fundo `pilha-1`, orla em `figura-secundaria`, campo em
+`figura-principal`, vazados em `pilha-1`. Claro: fundo `pilha-3`, a mesma orla e o mesmo campo,
+vazados em `pilha-3`.
+- **Acento:** só o losango, ~0,16% do quadro (~0,32% com as moedas infladas 40%). Ele cai sobre o
+  fundo: 14:1 no escuro e 4,4:1 no claro.
+- **A virada:** o ganho não está em nenhuma das faces, está entre elas. Esse é o "cara, eu ganho;
+  coroa, eu não perco" do texto: a mesa compra uma ponta e vende a outra, as duas se anulam no
+  vencimento, e sobra o pouco recebido hoje. O losango é pequeno e fica preso entre duas faces que se
+  encostam: a diferença que a operação fecha.
+- Grão só no fundo.
+
+**Fundo:** ~86% (~72% com as moedas infladas 40%).
+**Em miniatura:** um bloco de ~88 × 44 px, com uma cabeça escura e uma coroa escura, e um losango de
+acento de ~6 px no entalhe de cima, no meio. Lê-se "cara e coroa presas, e um ponto aceso entre
+elas".
+**Contra o C1 e o C4:**
+- O losango nasce da geometria. Dois octógonos regulares encostados abrem um V de 90°, e um quadrado
+  a 45° encaixa nele, seja qual for o tamanho das moedas. Não há razão nem distância para manter.
+- As faces são do mesmo contorno, como as gêmeas do C4. Não há divisão dentro de um contorno nem
+  fita sobre cortes: o losango é uma peça solta num vão aberto, não uma faixa que atravessa uma
+  abertura.
+- Se as moedas saírem com uma fresta entre elas (o gerador desenhou frestas de ~0,011 no C4), o
+  losango continua no alto da fresta e a leitura fica.
+- Nada cai, nada preenche, e não há mão.
+
+**Riscos:**
+- **"∞" ou óculos.** Dois octógonos encostados lembram o sinal de infinito ou uma armação de
+  óculos, e o primeiro é símbolo. O perfil, a coroa e o losango quebram essa leitura, mas é a
+  primeira coisa a conferir na miniatura.
+- **O losango sai do lugar.** Pode ir flutuar acima do bloco, aparecer também no V de baixo ou
+  virar joia na coroa. O prompt conta: um losango só, no V de cima, apoiado nas duas faces.
+- **Uma moeda sobre a outra.** Sobreposição esconde parte de uma face. Elas se tocam pelos lados
+  verticais, borda com borda.
+- **Dobra desenhada.** A ideia do papel dobrado fica fora do prompt, porque "dobra" puxa vinco
+  sombreado e folha em perspectiva.
+- **Depende do título.** Sem ele, são duas medalhas e um losango. Com ele, a aposta tem as duas
+  faces na mão. É o mais abstrato dos três, e o mais preciso sobre o que é arbitragem.
+- **Ornamento.** O losango entre dois octógonos foi o C6. Aqui são só duas peças, de conteúdos
+  diferentes, sem repetição até as bordas.
+
+## C9 — Frente, borda e verso
+
+**Metáfora:** a mesma moeda em três vistas, cara, borda e coroa: a aposta é a moeda de lado, e só
+existe no instante em que ela vira.
+**Composição:** vista de frente, chapada, num fundo liso, sem chão e sem mão. É uma prancha de
+catálogo com a borda como terceira vista (BnF), ou as três elevações de um desenho de arquitetura.
+No centro, três peças na mesma linha de centro (y 0.50), com vãos iguais de ~0,04 da largura:
+- **Esquerda, a cara (x 0.25–0.45):** a moeda com ~0,20 da largura, com o perfil facetado vazado,
+  virado para a direita, para a borda.
+- **Centro, a borda (x 0.494–0.506):** um retângulo estreito e em pé, da altura exata das moedas
+  (y 0.32–0.68), com ~1/16 da largura de uma delas e pontas cortadas retas. É a moeda vista de lado,
+  e ela é o acento.
+- **Direita, a coroa (x 0.55–0.75):** a mesma moeda, do mesmo tamanho, com a coroa facetada vazada.
+
+À esquerda e à direita do trio, só fundo.
+**Ponto focal:** x 0.50, y 0.50 — o meio da borda. Cai dentro da área segura e do recorte 1:1.
+**Hierarquia:** 1º a borda de acento, em pé entre as duas faces; 2º as duas faces iguais em
+contorno; 3º o rosto de um lado e a coroa do outro.
+**Cor:** a mesma anatomia do C7 e do C8. Escuro: fundo `pilha-1`, orla em `figura-secundaria`,
+campo em `figura-principal`, vazados em `pilha-1`. Claro: fundo `pilha-3`, a mesma orla e o mesmo
+campo, vazados em `pilha-3`.
+- **Acento:** só a borda, ~0,44% do quadro. Fica em ~0,62% se as moedas inflarem 40% só na altura, e
+  em ~0,87% se a espessura inflar junto. Ela fica sobre o fundo: 14:1 no escuro e 4,4:1 no claro.
+- **A virada:** a borda é, literalmente, a virada da moeda. Entre "cara, eu ganho" e "coroa, eu não
+  perco", a aposta é a moeda de lado. É o capítulo final do texto: "dura só o tempo de alguém
+  notar", na moeda que ninguém lança duas vezes.
+- Grão só no fundo.
+
+**Fundo:** ~88% (~76% com as moedas infladas 40%).
+**Em miniatura:** dois octógonos de ~40 px, com uma cabeça escura num e uma coroa escura no outro, e
+entre eles um traço de acento em pé, de ~2,5 × 40 px, da altura das moedas. Lê-se "cara, a borda
+acesa, coroa".
+**Contra o C1 e o C4:**
+- A única medida que importa é a altura da borda igual à das moedas, e ela é comparada de perto,
+  entre vizinhas, como o topo e a base das peças do C4, que saíram em registro.
+- Não há divisão dentro de um contorno. A borda é uma peça sozinha num vão vazio, e não uma fita
+  por cima de cortes: o gerador desenhou bem os retângulos soltos, e o que falhou foi pintar por
+  cima de uma abertura.
+- Nada cai, nada preenche, e não há mão.
+- É uma transformação (frente, lado, verso), e não um díptico.
+
+**Riscos:**
+- **"O | O" lido como algarismos.** Octógono, barra e octógono podem ler como "0 1 0" ou como um
+  divisor de catálogo. O perfil e a coroa dentro dos octógonos tiram a leitura de zero, e a altura
+  igual à das moedas diz "é a mesma peça". Se a miniatura ler barra solta, a saída é cortar os dois
+  lados longos da borda num zigue-zague fino a 45°: é a serrilha, que diz "borda de moeda".
+- **Moeda girando em perspectiva.** "Virar" puxa moeda inclinada, elipse e espessura à mostra nas
+  faces, que é perspectiva e parede de papel. O prompt descreve três vistas chapadas e não fala em
+  girar nem em lançar.
+- **Teto do acento.** É o acento de maior área dos três. A espessura tem de ficar fina e ser medida
+  pela moeda (~1/16 da largura).
+- **Rastro.** Arco, traço de movimento ou eco da moeda entre as peças estão fora: são só três peças.
+- **Fileira de três.** O gerador estica fileiras pela largura (*Samurais*). O trio fica entre x 0.25
+  e x 0.75, com vãos iguais.
+- **Depende de reconhecer a vista de lado.** Quem não lê a borda vê duas moedas e um traço. As faces
+  iguais em contorno e a altura comum seguram a leitura, mas é o conceito em que essa leitura mais
+  pesa.
