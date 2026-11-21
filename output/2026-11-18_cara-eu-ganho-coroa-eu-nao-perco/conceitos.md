@@ -817,3 +817,15 @@ decisão volta ao autor antes da segunda.
      uma coroa lime é ícone de "VIP", que é símbolo.
    - O verso liso traz de volta a moeda em branco do C1 e do C4.
    - Com 5 gerações, não cabe um quarto conceito. Se a ideia agradar, é para outra peça.
+
+## Gate 1, rodada 3 — decisão do autor (2026-11-20)
+
+**C7 — Anverso e reverso**, como recomendado pelo crítico.
+
+- **Acento:** o autor mantém **os louros na cabeça** (quatro folhas em losango, no alto e atrás da
+  cabeça), contra a sugestão do crítico de trocar por um trapézio da orla. O risco que o crítico
+  apontou (louros sobre o vazado, leitura de grinalda ou legenda) fica para o enriquecimento e o
+  prompt mitigarem: folhas chapadas e poligonais, coladas por cima, sem letra nem fita.
+- **Coroa:** só a coroa aberta de três pontas, facetada, sem escudo nem símbolos, nunca em lime.
+- A variante "a coroa trocou de lado" (verso liso) fica fora.
+- Gerações: 7 de 12 gastas (uma falhou no `agy`).
