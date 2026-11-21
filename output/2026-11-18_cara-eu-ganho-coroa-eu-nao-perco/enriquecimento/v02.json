@@ -1,0 +1,183 @@
+{
+  "conceito": "C1",
+  "pedido_preservado": [
+    "moeda de papel recortada como octógono (nunca redonda), no terço superior, um pouco à direita do centro, parada no alto do lance, vista de frente e chapada",
+    "na face, só um octógono menor concêntrico; face lisa, sem símbolo, sem letra e sem número",
+    "mão facetada (polígonos retos) no canto inferior esquerdo, de quem acabou de lançar a moeda (plano B pré-autorizado no Gate 1 e aplicado na v02, depois do joinha da gen_01: mão aberta, palma para cima, dedos juntos)",
+    "a faixa de baixo é o chão, uma folha da pilha; exatamente sob a moeda, um vazado através dela que mostra a camada de baixo",
+    "o vazado são três octógonos lado a lado, dois pequenos e um grande quase do tamanho da moeda (ordem pequeno, pequeno, grande, da esquerda para a direita; pequenos com ~1/3 da largura do grande — Gate 1)",
+    "um único acento numa faceta da borda da moeda (a de cima à direita, a 45° — Gate 1); nada mais em acento",
+    "muito espaço vazio em volta da moeda; o céu é uma folha lisa da pilha",
+    "leitura em preview: uma moeda no ar e, embaixo dela, um encaixe feito de três peças"
+  ],
+  "elementos": [
+    {
+      "id": "e1",
+      "zona": "centro",
+      "papel": "foco",
+      "origem": "pedido",
+      "elemento": "a moeda: octógono regular de papel, de topo reto, com lados horizontais, verticais e a 45°, largura de ~0,15 do quadro, centro em x 0,60 e y 0,24, no mesmo eixo vertical do vazado grande do chão (centro dele também em x 0,60), de modo que o grande, e não um pequeno, fica exatamente sob ela; parada no alto do lance, de frente, como elevação, sem espessura à mostra e sem inclinação; face lisa, sem nenhum desenho além do octógono de dentro",
+      "termo_en": "flat octagonal paper token",
+      "cor": "figura-secundaria",
+      "justificativa": "é o ponto focal do C1 e carrega o título (a aposta). 'Token' e não 'coin' segue o diretor: a palavra moeda puxa metal, reflexo, perfil e símbolo na face. A largura vai em número para o modo surreal não inflar a moeda. Cor do anel: figura-secundaria na pilha escura; na clara, figura-principal (correção do crítico: 1,59:1 contra 2,75:1 sobre o céu). v02: o eixo comum com o vazado grande vem nomeado também aqui, porque na gen_01 a moeda saiu em x 0,50, sobre um pequeno",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e2",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "na face da moeda, um octógono menor concêntrico, com ~0,6 da largura dela e a mesma orientação, recortado como uma segunda folha chapada colada por cima, sem volume",
+      "termo_en": "smaller concentric octagon",
+      "cor": "figura-principal",
+      "justificativa": "é o 'relevo' do pedido traduzido em folha sobre folha, sem volume. Na pilha clara inverte com o anel: face em figura-secundaria",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e3",
+      "zona": "centro",
+      "papel": "textura",
+      "origem": "oficio",
+      "elemento": "o anel entre o octógono de fora e o de dentro é montado com oito trapézios de papel recortados um a um, encostados por juntas finas e retas que vão de cada quina de dentro à quina de fora correspondente; os oito no mesmo tom chapado, nenhum mais claro ou mais escuro que o vizinho",
+      "termo_en": "ring of eight trapezoid pieces",
+      "cor": "figura-secundaria",
+      "justificativa": "detalhe de ofício que reforça a ideia em vez de somar outra: a própria moeda é montada de peças, como o molde no chão. Dá ao gerador a forma exata da faceta de acento (um dos oito trapézios), o que segura o acento num ponto só. Some a 200 px e não toca o fundo. Risco: trapézios em tons diferentes viram moldura chanfrada em volume; por isso 'todos no mesmo tom' tem de ir ao prompt. Na pilha clara, figura-principal, como o anel",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e4",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "um único trapézio do anel, o de cima à direita, no lado a 45°, em acento; encosta no céu pela borda de fora; nenhuma outra peça da imagem em acento, e o contorno da moeda não recebe acento",
+      "termo_en": "single accent trapezoid",
+      "cor": "acento",
+      "justificativa": "o lado que ganha, decisão do Gate 1: fica do lado do céu vazio, longe da mão, no alto do lance. ~0,27% do quadro, dentro do teto de 1%. O gerador tende a contornar a moeda inteira com o acento; nomear um trapézio só, entre oito, é a contenção",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e5",
+      "zona": "primeiro-plano",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "o chão: faixa horizontal chapada de borda a borda, de y 0,64 a 1,00, vista de frente como o céu, sem ponto de fuga, com a borda de cima cortada perfeitamente reta; na pilha escura é a folha do nível 4, a mais clara da pilha, nunca a do nível 2, que cola no tom do céu",
+      "termo_en": "flat floor band",
+      "cor": "pilha-4",
+      "justificativa": "a única folha recortada da peça; alta o bastante para o vazado grande caber inteiro, com folga em cima e embaixo. Na pilha clara é pilha-3 (o aviso de pilha-4 é esperado). v02: na gen_01 o chão caiu no nível 2 e o contraste dos vazados (céu sobre chão) baixou para ~1,7:1, contra ~2,8:1 no nível 4",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e6",
+      "zona": "primeiro-plano",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "vazado octogonal grande cortado através do chão, com ~0,9 da largura da moeda e a mesma orientação dela, centro em x 0,60 e y 0,82, no mesmo eixo vertical da moeda: exatamente sob ela, sem deslocamento para a direita; é o grande, e só ele, que fica sob a moeda; dentro dele só aparece a folha do céu, lisa, sem espessura de papel, sem parede e sem borda escurecida",
+      "termo_en": "large octagonal cut-out",
+      "cor": "pilha-1",
+      "justificativa": "o lote do principal: quase cabe a moeda, e o que falta são os pequenos (0,9 e não 1,0, correção do crítico). Mostrar a folha do céu dá o maior degrau de tom possível contra o chão nas duas pilhas. v02: na gen_01 saiu em x 0,69, na diagonal da moeda, e a leitura 'é ali que ela cai' não se formou",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e7",
+      "zona": "primeiro-plano",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "dois vazados octogonais pequenos à esquerda do grande, na mesma linha de centro (y 0,82), idênticos entre si (mesma largura, mesma altura, mesmo recorte), cada um com exatamente 1/3 da largura do grande (~0,045 do quadro) e a mesma orientação, centros em x ~0,415 e ~0,485; nenhum dos dois é maior que o outro, sem degrau crescente entre eles; a ordem da esquerda para a direita é pequeno, pequeno, grande; dentro deles, só a folha do céu",
+      "termo_en": "two small octagonal cut-outs",
+      "cor": "pilha-1",
+      "justificativa": "os dois lotes de cupom; a ordem segue os fluxos da NTN-F do texto (126, 252 e 378 dias úteis) e leva o olho da mão ao grande. Um terço é o mínimo para ~9 px a 200 px, e as áreas somam a da moeda (0,81 + 0,09 + 0,09). v02: na gen_01 saíram com ~0,50 e ~0,60 da largura do grande, diferentes entre si, e a fileira leu como escada de crescimento, não como dois cupons iguais e um principal",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e8",
+      "zona": "primeiro-plano",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "entre os três vazados, duas pontes estreitas da própria folha do chão, iguais entre si, cada uma com ~0,025 do quadro (cerca de metade da largura de um vazado pequeno), retas, deixando os três octógonos separados e inteiros; as duas com a mesma largura, nenhuma mais larga que a outra",
+      "termo_en": "narrow bridges of floor paper",
+      "cor": "pilha-4",
+      "justificativa": "correção do crítico: com vãos de 0,015–0,02 os vazados se fundem em miniatura e a leitura de 'três peças' some. Nomear a ponte como uma peça visível dá ao gerador uma régua concreta, em vez de um número de espaçamento. Na pilha clara, pilha-3, como o chão. v02: na gen_01 saíram com ~0,047 e ~0,059 do quadro, largas demais e diferentes entre si",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e9",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "mão de papel facetada no canto inferior esquerdo, no instante seguinte ao lance, entrando pela borda esquerda do quadro com o pulso cortado por ela: mão aberta, palma para cima, dedos juntos e estendidos, polegar incluído, num só polígono, apontando para o lado da moeda, ponta dos dedos em x ~0,24 e y ~0,60; uma única folha lisa e chapada, de um tom só, com as facetas só no recorte do contorno, em cortes retos; nenhuma faceta em outro tom e nenhum polegar erguido",
+      "termo_en": "faceted paper hand",
+      "cor": "figura-principal",
+      "justificativa": "o lance e a escala humana da peça; terceiro na hierarquia, a 200 px é uma cunha no canto. Plano B pré-autorizado no Gate 1, aplicado porque a gen_01 entregou o joinha em pé, que em miniatura lê 'curtir'. Dedos num só polígono evitam dedos a mais e o polegar erguido. Uma folha só, com facetas apenas no contorno, corrige os dois tons da gen_01 (leitura de low-poly, não de papel recortado). O termo_en continua o mesmo. Sem tom de pele (bloqueante em execução anterior)",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e10",
+      "zona": "fundo",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "o céu: folha lisa e chapada de y 0,00 a 0,64, a mais funda da pilha, a mesma que aparece pelos três vazados; vazia entre a mão e a moeda e à direita da moeda",
+      "termo_en": "flat sky sheet",
+      "cor": "pilha-1",
+      "justificativa": "o fundo de ~59% do quadro e o lance contado só pelo vazio, sem arco de trajetória. Na pilha clara também é pilha-1: o preço de o encaixe aparecer (bandeira vermelha do crítico)",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e11",
+      "zona": "fundo",
+      "papel": "textura",
+      "origem": "oficio",
+      "elemento": "fibra de papel muito tênue só nas folhas do céu e do chão, abaixo do teto de granulação da marca; moeda, mão e acento ficam limpos",
+      "termo_en": "faint paper fibre grain",
+      "cor": "pilha-1",
+      "justificativa": "materialidade de papel no grande vazio sem acrescentar objeto e sem baixar o fundo; a marca só admite granulação no fundo",
+      "verificar": false,
+      "nota_verificacao": ""
+    }
+  ],
+  "descartados": [
+    {
+      "elemento": "sombra da moeda no chão, marcando onde ela vai cair",
+      "motivo": "sombra reprova na marca; o vazado grande, exatamente sob a moeda, já é o lugar da queda"
+    },
+    {
+      "elemento": "arco de trajetória ou traços de movimento entre a mão e a moeda",
+      "motivo": "curva livre e mais uma massa; o céu vazio entre as duas já conta o lance (diretor)"
+    },
+    {
+      "elemento": "linha de prumo tracejada ligando a moeda ao vazado grande",
+      "motivo": "vira esquema técnico e soma uma peça; o alinhamento vertical já faz a ligação"
+    },
+    {
+      "elemento": "coroa, efígie ou valor de face na moeda (o 'cara ou coroa' do título)",
+      "motivo": "o pedido proíbe símbolo nas faces; puxa rosto e algarismo para a imagem"
+    },
+    {
+      "elemento": "três peças cheias (moedas deitadas) dentro do encaixe",
+      "motivo": "o vazado viraria objeto e a peça leria como pilha de moedas, clichê financeiro; o molde é abertura, não peça"
+    },
+    {
+      "elemento": "manga ou punho de camisa no pulso",
+      "motivo": "massa e cor a mais no canto, sem ganho de leitura; o corte do pulso pela borda já ancora a mão"
+    },
+    {
+      "elemento": "moeda do real ou outro elemento brasileiro",
+      "motivo": "a moeda do real é redonda e tem efígie e algarismos; não há acréscimo brasileiro que reforce a leitura sem símbolo"
+    },
+    {
+      "elemento": "moeda girando de perfil, com a espessura à mostra",
+      "motivo": "perspectiva e parede de papel; a marca exige elevação frontal chapada"
+    }
+  ],
+  "cena": "Colagem de papel recortado em elevação frontal chapada, sem perspectiva, sob luz uniforme de scanner de mesa. O céu é uma folha lisa que ocupa os dois terços de cima do quadro; a faixa de baixo, de borda a borda, é o chão, outra folha chapada, a mais clara da pilha, com a borda de cima cortada perfeitamente reta. No terço superior, um pouco à direita do centro (x 0,60), uma moeda de papel recortada como octógono regular de topo reto para no alto do lance, vista de frente. O anel da borda é montado com oito trapézios recortados um a um, todos do mesmo tom, e no meio fica um octógono menor concêntrico, colado por cima como uma segunda folha; a face não tem nenhum desenho além dele. Um único trapézio do anel, o de cima à direita, no lado a 45°, é de acento, e nada mais na imagem é. Exatamente embaixo da moeda, cortados através da folha do chão numa mesma linha, ficam três vazados octogonais com a mesma orientação dela: o grande, com quase a largura da moeda, bem sob ela, no mesmo eixo vertical, e à esquerda dele dois pequenos idênticos entre si, cada um com um terço da largura do grande, separados por duas pontes estreitas e iguais da própria folha do chão. Pelos três aparece só a folha do céu, lisa, sem parede e sem borda escurecida. No canto inferior esquerdo, no instante seguinte ao lance, uma mão facetada de papel entra pela borda do quadro: aberta, palma para cima, dedos juntos e estendidos num só polígono, apontando para o lado da moeda; é uma única folha lisa de um tom só, com as facetas só nos cortes retos do contorno e nenhuma faceta em outro tom. Entre a mão e a moeda há só céu vazio; à direita da moeda e do vazado grande, céu e chão ficam vazios. Fibra de papel muito tênue só no céu e no chão. Sem texto.",
+  "alt": "Colagem: mão lança moeda octogonal; no chão, o molde dela vazado em três peças, duas pequenas e uma grande, logo abaixo dela."
+}

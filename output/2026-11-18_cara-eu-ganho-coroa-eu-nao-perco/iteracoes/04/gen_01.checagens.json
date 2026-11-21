@@ -1,0 +1,76 @@
+{
+  "imagem": "output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/04/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        20,
+        20,
+        18
+      ],
+      "hex_imagem": "#141412",
+      "fracao": 0.6281,
+      "token_mais_perto": "#141414",
+      "delta_e": 1.3,
+      "amplitude_luminancia": 0.0035
+    },
+    {
+      "rgb": [
+        47,
+        153,
+        106
+      ],
+      "hex_imagem": "#2F996A",
+      "fracao": 0.1799,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 5.0,
+      "amplitude_luminancia": 0.0094
+    },
+    {
+      "rgb": [
+        141,
+        202,
+        169
+      ],
+      "hex_imagem": "#8DCAA9",
+      "fracao": 0.1673,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.9,
+      "amplitude_luminancia": 0.0079
+    },
+    {
+      "rgb": [
+        209,
+        242,
+        117
+      ],
+      "hex_imagem": "#D1F275",
+      "fracao": 0.0152,
+      "token_mais_perto": "#CDF163",
+      "delta_e": 7.5,
+      "amplitude_luminancia": 0.0056
+    }
+  ],
+  "tokens": {
+    "#141414": 0.6308,
+    "#2D9E67": 0.1789,
+    "#78C9A4": 0.1702,
+    "#CDF163": 0.0155
+  },
+  "fundo": {
+    "hex": "#141412",
+    "token": "#141414",
+    "fracao": 0.6308
+  },
+  "acento_fracao": 0.0155,
+  "par": null,
+  "erros": [
+    "o acento #CDF163 ocupa 1.5% do quadro; o teto da marca é 1%"
+  ],
+  "avisos": []
+}

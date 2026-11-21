@@ -1,0 +1,61 @@
+{
+  "imagem": "output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/05/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        19,
+        19,
+        19
+      ],
+      "hex_imagem": "#131313",
+      "fracao": 0.7412,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.4,
+      "amplitude_luminancia": 0.0071
+    },
+    {
+      "rgb": [
+        142,
+        204,
+        171
+      ],
+      "hex_imagem": "#8ECCAB",
+      "fracao": 0.129,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 6.8,
+      "amplitude_luminancia": 0.0091
+    },
+    {
+      "rgb": [
+        43,
+        150,
+        103
+      ],
+      "hex_imagem": "#2B9667",
+      "fracao": 0.1142,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 5.4,
+      "amplitude_luminancia": 0.0118
+    }
+  ],
+  "tokens": {
+    "#141414": 0.7413,
+    "#78C9A4": 0.1298,
+    "#2D9E67": 0.1131
+  },
+  "fundo": {
+    "hex": "#131313",
+    "token": "#141414",
+    "fracao": 0.7413
+  },
+  "acento_fracao": 0.0087,
+  "par": null,
+  "erros": [],
+  "avisos": []
+}

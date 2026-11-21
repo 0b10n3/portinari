@@ -1,0 +1,61 @@
+{
+  "pedido": "pedidos/cara_eu_ganho_coroa_eu_nao_perco.md",
+  "slug": "cara-eu-ganho-coroa-eu-nao-perco",
+  "titulo": "Cara, eu ganho. Coroa, eu não perco.",
+  "uso": "capa de post para substack",
+  "preset": "substack-capa",
+  "entregavel": "prompt",
+  "tamanho_entrega": [
+    1456,
+    816
+  ],
+  "master": [
+    2560,
+    1440
+  ],
+  "estilo": {
+    "tecnica": "papercut",
+    "base": "grain-textured",
+    "modo": null
+  },
+  "marca": {
+    "versao_tokens": "3.1.0",
+    "versao_design": "4.1",
+    "fingerprint": "c13b4ab7b3102cab0192ea83cfdb3a069a56939f9621190311df588deb9c2152"
+  },
+  "entregas": {
+    "dark": {
+      "prompt": "final/prompt_dark.md",
+      "iteracao": 8,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image",
+      "validacao": "final/validacao/dark_gen_01.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "d447b1a6ffa47da980d2232d94b1c12c1ac02706a01b0e866f634341d2372dfa",
+      "derivado_por_edicao": false,
+      "alt": "Colagem de papel: as duas faces da mesma moeda octogonal; a cara, um perfil facetado, leva louros, e a coroa fica intacta.",
+      "gate2": "aprovado"
+    },
+    "light": {
+      "prompt": "final/prompt_light.md",
+      "iteracao": 9,
+      "geracao": "gen_01",
+      "origem": "agy",
+      "modelo_validacao": "gemini-3.1-flash-image",
+      "validacao": "final/validacao/light_gen_01.jpg",
+      "validacao_px": [
+        1376,
+        768
+      ],
+      "sha256_prompt": "08c648850d8fcc92d99e3db26a3fe2b4946a080654aba16072503aab529daabd",
+      "derivado_por_edicao": true,
+      "alt": "Colagem de papel: as duas faces da mesma moeda octogonal; a cara, um perfil facetado, leva louros, e a coroa fica intacta.",
+      "gate2": "aprovado"
+    }
+  },
+  "etapa_atual": "entregue"
+}

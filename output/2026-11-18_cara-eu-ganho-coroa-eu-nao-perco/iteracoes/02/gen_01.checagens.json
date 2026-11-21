@@ -1,0 +1,74 @@
+{
+  "imagem": "output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/02/gen_01.jpg",
+  "modo": "dark",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        19,
+        19,
+        19
+      ],
+      "hex_imagem": "#131313",
+      "fracao": 0.6107,
+      "token_mais_perto": "#141414",
+      "delta_e": 0.4,
+      "amplitude_luminancia": 0.0089
+    },
+    {
+      "rgb": [
+        34,
+        104,
+        70
+      ],
+      "hex_imagem": "#226846",
+      "fracao": 0.2289,
+      "token_mais_perto": "#1B6A45",
+      "delta_e": 2.8,
+      "amplitude_luminancia": 0.0084
+    },
+    {
+      "rgb": [
+        48,
+        146,
+        101
+      ],
+      "hex_imagem": "#309265",
+      "fracao": 0.0896,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 7.6,
+      "amplitude_luminancia": 0.01
+    },
+    {
+      "rgb": [
+        134,
+        198,
+        163
+      ],
+      "hex_imagem": "#86C6A3",
+      "fracao": 0.0366,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 5.3,
+      "amplitude_luminancia": 0.0109
+    }
+  ],
+  "tokens": {
+    "#141414": 0.6224,
+    "#1B6A45": 0.2357,
+    "#2D9E67": 0.0908,
+    "#78C9A4": 0.0379
+  },
+  "fundo": {
+    "hex": "#131313",
+    "token": "#141414",
+    "fracao": 0.6224
+  },
+  "acento_fracao": 0.0053,
+  "par": null,
+  "erros": [],
+  "avisos": []
+}
