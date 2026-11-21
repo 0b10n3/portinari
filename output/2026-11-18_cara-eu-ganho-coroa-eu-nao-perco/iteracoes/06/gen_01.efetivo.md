@@ -1,0 +1,1 @@
+(a ferramenta não recebeu prompt)
