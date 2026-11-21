@@ -427,3 +427,16 @@ rodada 2 (cortes de ~0,025 do quadro para não sumirem a 200 px).
 - **Estilo:** sai o modo surreal. Fica só a base `grain-textured`, sem modo (pedido e brief
   atualizados).
 - **Sem mão:** a peça fica só com as moedas; a aposta fica no título.
+
+## Contenção — decisão do autor (2026-11-20, após a iteração 06)
+
+O C4 esgotou as três voltas sem aprovar (iteração 04 com erro de checagem; 05 e 06 com média 3,7).
+As gêmeas iguais funcionaram; a fita não "cinta" (o gerador a corta junto com as peças, mesmo com a
+instrução da ponte chegando íntegra), e a divisão cupom, cupom, principal não cabe no octógono.
+Melhor estado do C4: iteração 06.
+
+**Decisão do autor:** trabalhar **as duas faces da moeda**, mostrando detalhes de uma moeda famosa
+que diferencie a cara da coroa. Volta ao passo 3 (rodada 3), contando uma volta do Gate 1.
+Tradução para a marca (vinculante): nada de texto, número, sigla, valor ou símbolo monetário nas
+faces; a iconografia entra em papel recortado, facetada (o bloco de marca já prevê "a faceted
+hexagonal head"); inspiração, não reprodução de uma moeda real; nenhum rosto identificável.
