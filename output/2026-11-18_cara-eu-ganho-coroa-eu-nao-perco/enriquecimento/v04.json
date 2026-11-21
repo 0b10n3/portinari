@@ -1,0 +1,184 @@
+{
+  "conceito": "C7",
+  "pedido_preservado": [
+    "as duas faces da mesma moeda, lado a lado, do mesmo tamanho e na mesma linha de centro: a cara à esquerda, a coroa à direita (C7)",
+    "moeda de papel recortada como octógono regular de topo reto (nunca redonda), vista de frente, chapada, com orla lisa e campo com ~0,75 da largura",
+    "na cara, um perfil facetado vazado no campo, virado para a direita, sem rosto identificável",
+    "na coroa, só a coroa aberta de três pontas, facetada, vazada, sem escudo nem símbolos, nunca em acento (Gate 1, rodada 3)",
+    "acento único: os louros na cabeça, quatro folhas em losango no alto e atrás da cabeça (Gate 1, rodada 3: o autor manteve os louros)",
+    "fundo liso e muito espaço vazio, sem chão e sem mão",
+    "sem texto, número, data, valor ou símbolo monetário nas faces",
+    "estilo grain-textured, sem modo",
+    "leitura em dois segundos: as duas faces da mesma moeda; a cara tem os louros"
+  ],
+  "elementos": [
+    {
+      "id": "e1",
+      "zona": "esquerda",
+      "papel": "foco",
+      "origem": "pedido",
+      "elemento": "os louros: quatro folhas chapadas em losango, iguais, coladas por cima do campo da cara, rente ao alto e atrás da cabeça; a base de cada folha encosta no contorno do crânio sem entrar no vazado, e elas se abrem num leque curto com as pontas para trás e um pouco para cima, sem chegar à orla; cada folha tem cerca de um quarto da altura da cabeça; inteiras, sem haste, sem fita e sem nervura; quatro, nem mais; o único acento da imagem",
+      "termo_en": "four flat rhombus leaves",
+      "cor": "acento",
+      "justificativa": "o ponto focal do C7 e a decisão do autor: o louro diz 'cara, eu ganho'. Sobre o campo, e não no vazado, porque o C4 provou que acento sobre abertura sai recortado junto (voltas 2 e 3). Leque e não fileira: quatro losangos paralelos numa linha leem como risquinhos de contagem. Sem haste e sem fita para não virar grinalda nem faixa de legenda. ~0,12% do quadro com moedas a 0,20; ~0,3% se inflarem a 0,30; ~0,45% se o gerador engrossar 1,5 vez, como fez com a fita. Contraste sobre o campo: 2,6:1 no escuro. No claro, sobre figura-principal, cairia a 1,4:1: por isso no claro o campo e a orla invertem (ver e4 e e5) e as folhas ficam a 2,4:1",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e2",
+      "zona": "esquerda",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "o perfil, vazado no campo da moeda da esquerda, do pescoço ao alto da cabeça (~0,65 da altura do campo), virado para a direita, para a outra moeda: crânio hexagonal, nariz em cunha a 45° apontando para a direita, queixo reto e pescoço retangular cortado reto; silhueta inteira, sem olho, sem orelha, sem cabelo, sem boca e sem nenhum traço interno",
+      "termo_en": "faceted hexagonal head in profile",
+      "cor": "pilha-1",
+      "justificativa": "a cara: uma pessoa, contra a instituição do outro lado (pesquisa da rodada 3). Polígono nomeado como o bloco de marca pede ('a faceted hexagonal head'), porque 'sem curva' genérico não segura. Sem entalhe de boca (menos de 1 px a 200 px e porta para o lábio curvo) e sem traço de retrato, para nenhum rosto ser identificável. ~0,65 e não 0,7 da altura do campo para sobrar campo atrás do crânio, onde ficam as folhas. O vazado mostra o fundo: pilha-3 no claro. A direção do nariz é o que o gerador já ignorou em Frequência: conferir na primeira imagem",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e3",
+      "zona": "direita",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "a coroa, vazada no centro do campo da moeda da direita, com ~0,6 da largura dele: uma faixa retangular e, sobre ela, três pontas triangulares, cada uma com um losango pequeno no topo; aberta, sem arco, sem escudo, sem cruz e sem nada mais no campo; no mesmo tom do fundo, nunca em acento",
+      "termo_en": "open three-point faceted crown",
+      "cor": "pilha-1",
+      "justificativa": "a coroa: inteira e sem acento, diz 'coroa, eu não perco'. Os losangos no topo (as pérolas) impedem que três triângulos sobre uma faixa leiam como 'W' ou serra; sem cruz, que leria '+'. Aberta porque a fechada tem arcos (curva) e facetada vira capacete. Nunca lime: coroa em acento é o selo 'premium' (crítica da rodada 3). O vazado mostra o fundo: pilha-3 no claro",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e4",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "as duas moedas: o mesmo octógono regular de papel, de topo reto, com lados horizontais, verticais e a 45°, do mesmo tamanho (~0,20 da largura do quadro cada) e na mesma orientação; topo e base no mesmo y, centro em y 0,50; a da esquerda vai de x ~0,28 a ~0,48 e a da direita de x ~0,52 a ~0,72; exatamente duas, nenhuma maior, nenhuma terceira peça",
+      "termo_en": "two identical octagonal paper tokens",
+      "cor": "figura-secundaria",
+      "justificativa": "a base que o gerador segurou nas três voltas do C4: gêmeas do mesmo tamanho, em registro, com o conteúdo mudado só numa. 'Token' e não 'coin' (v03): moeda puxa metal, reflexo e inscrição. ~0,20 e não 0,22, porque o C4 inflou de 0,24 para 0,30–0,36; contando com ~0,26–0,30. A cor é a da orla, que desenha o contorno. No claro, figura-principal (3,2:1 sobre a folha mais clara), invertendo com o campo",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e5",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "em cada moeda, o campo: um octógono menor concêntrico, com ~0,75 da largura dela e a mesma orientação, colado por cima como uma segunda folha chapada; é nele que o perfil e a coroa são vazados e é sobre ele que as folhas se colam",
+      "termo_en": "smaller concentric octagon",
+      "cor": "figura-principal",
+      "justificativa": "o termo que o gerador segurou no C1 e no C4 (saiu a 0,69–0,75). O perfil contra o campo dá 5,4:1 no escuro. No claro o campo vai a figura-secundaria: as folhas sobem de 1,4:1 para 2,4:1, e o perfil e a coroa ficam a 1,8:1 contra o campo, legíveis pela silhueta",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e6",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "a orla de cada moeda: uma faixa lisa e contínua em volta do campo, da mesma largura nos oito lados, com a borda externa reta, sem entalhe, sem serrilha e sem nenhuma marca; o campo abaixo do pescoço e em volta da coroa fica liso",
+      "termo_en": "plain unbroken rim",
+      "cor": "figura-secundaria",
+      "justificativa": "é onde a convenção da moeda põe legenda (orla), data (abaixo do pescoço) e valor (campo da coroa), os três lugares que a crítica manda conferir. Descrever a orla pelo que ela é, lisa e igual nos oito lados, tira o espaço do texto sem nomeá-lo. Sem serrilha: a 200 px o dente vira zigue-zague que lê como caractere. No claro, figura-principal, como e4",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e7",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "dentro do perfil e da coroa aparece só a folha do fundo, lisa, sem parede, sem espessura de papel e sem borda escurecida; as folhas de acento ficam por cima de tudo, e nenhum corte passa por elas",
+      "termo_en": "flat background inside openings",
+      "cor": "pilha-1",
+      "justificativa": "a parede do recorte é a segunda fonte de rampa (bloco de marca), e os vazados do C4 saíram limpos com essa frase. A ordem das folhas (fundo, orla, campo vazado, folhas por cima) é o contrário do defeito do C4, em que o acento foi cortado com a peça. No claro, pilha-3",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e8",
+      "zona": "centro",
+      "papel": "apoio",
+      "origem": "oficio",
+      "elemento": "entre as duas moedas, um vão estreito de fundo liso, com ~0,04 da largura do quadro; de cada lado do par sobra fundo vazio pelo menos da largura de uma moeda",
+      "termo_en": "clear gap between the twins",
+      "cor": "pilha-1",
+      "justificativa": "a relação contra a inflação (crítica da rodada 3): número absoluto o gerador ignorou, e o fundo vazio dos lados maior que uma moeda segura o par pequeno e compacto. Vão estreito contra o díptico (R13); o C4 abriu 0,05 para 0,06–0,08, então pedir 0,04 deixa em ~0,06. No claro, pilha-3",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e9",
+      "zona": "fundo",
+      "papel": "apoio",
+      "origem": "pedido",
+      "elemento": "o fundo: uma única folha lisa e chapada de borda a borda do quadro, sem chão, sem faixa e sem margem; vazia em volta do par",
+      "termo_en": "single flat background sheet",
+      "cor": "pilha-1",
+      "justificativa": "~88% do quadro com moedas a 0,20 (os vazados devolvem fundo); ~74% se inflarem a 0,30, bem acima do mínimo de 40%. 'De borda a borda, sem margem' contra a moldura não pedida da volta 2. No claro, pilha-3, a folha mais clara",
+      "verificar": false,
+      "nota_verificacao": ""
+    },
+    {
+      "id": "e10",
+      "zona": "fundo",
+      "papel": "textura",
+      "origem": "oficio",
+      "elemento": "fibra de papel muito tênue só na folha do fundo, abaixo do teto de granulação da marca; moedas e folhas de acento ficam limpas",
+      "termo_en": "faint paper fibre grain",
+      "cor": "pilha-1",
+      "justificativa": "o grão da base grain-textured, só no fundo, como a marca exige; materialidade sem objeto novo e sem baixar o fundo",
+      "verificar": false,
+      "nota_verificacao": ""
+    }
+  ],
+  "descartados": [
+    {
+      "elemento": "louros dentro do vazado da cabeça (C7 original; crítica da rodada 3)",
+      "motivo": "acento sobre abertura sai recortado junto com ela (C4, voltas 2 e 3); sobre o campo ele é a última folha, inteira"
+    },
+    {
+      "elemento": "trapézio de acento na orla da cara, no lugar dos louros (crítica da rodada 3)",
+      "motivo": "o autor manteve os louros (Gate 1, rodada 3)"
+    },
+    {
+      "elemento": "fileira reta de quatro folhas paralelas",
+      "motivo": "quatro losangos inclinados em linha leem como risquinhos de contagem; o leque curto lê como ramo"
+    },
+    {
+      "elemento": "grinalda em volta da cabeça, ramo com haste, laço ou fita prendendo os louros",
+      "motivo": "vira grinalda, a fita vira faixa de legenda e acrescenta acento; quatro folhas soltas bastam"
+    },
+    {
+      "elemento": "olho, orelha, cabelo, barba ou entalhe de boca no perfil",
+      "motivo": "rosto identificável e porta para curva livre; a boca some a 200 px"
+    },
+    {
+      "elemento": "escudo, esfera armilar, estrelas e cruz no topo da coroa",
+      "motivo": "distintivo ou logo, símbolos e curva (Gate 1, rodada 3)"
+    },
+    {
+      "elemento": "coroa fechada com arcos",
+      "motivo": "arco é curva livre; facetada, vira capacete ou sino"
+    },
+    {
+      "elemento": "serrilha ou cordão na borda das moedas",
+      "motivo": "a 200 px vira zigue-zague que lê como caractere; serrilha também puxa a leitura de cerceio da rodada 2"
+    },
+    {
+      "elemento": "inscrição na orla, data abaixo do pescoço, valor no campo da coroa",
+      "motivo": "a marca proíbe texto na imagem; a orla e o campo ficam lisos"
+    },
+    {
+      "elemento": "relevo cunhado, metal e brilho",
+      "motivo": "é papel chapado; reflexo e relevo são sombra e rampa"
+    },
+    {
+      "elemento": "reprodução das faces da peça de 6.400 réis ou da Peça da Coroação",
+      "motivo": "é inspiração, não reprodução; o busto real traria rosto identificável e legenda"
+    }
+  ],
+  "cena": "Colagem de papel recortado em elevação frontal chapada, sem perspectiva, sob luz uniforme de scanner de mesa. Uma única folha lisa cobre o quadro de borda a borda, sem chão e sem margem, com uma fibra de papel muito tênue. No centro, as duas faces da mesma moeda de papel, lado a lado: o mesmo octógono regular de topo reto, do mesmo tamanho, cerca de um quinto da largura do quadro cada, na mesma linha de centro, separadas por um vão estreito de fundo liso; de cada lado do par sobra fundo vazio pelo menos da largura de uma moeda. Cada uma tem uma orla lisa e contínua, igual nos oito lados, sem entalhe e sem serrilha, e um octógono menor concêntrico colado por cima, com cerca de três quartos da largura. Na moeda da esquerda, vazado nesse campo, um perfil facetado virado para a direita, para a outra moeda: crânio hexagonal, nariz em cunha a 45°, queixo reto e pescoço retangular cortado reto, sem olho, sem orelha, sem cabelo e sem nenhum traço interno. Sobre o campo, rente ao alto e atrás da cabeça, quatro folhas chapadas em losango se abrem num leque curto com as pontas para trás; coladas por cima de tudo, inteiras, sem haste e sem fita, sem entrar no vazado, são o único acento da imagem. Na moeda da direita, vazada no centro do campo, uma coroa facetada aberta: uma faixa retangular e três pontas triangulares, cada uma com um losango pequeno no topo, sem escudo e sem cruz. Dentro dos vazados aparece só a folha do fundo, lisa, sem parede e sem borda escurecida. Abaixo do pescoço e em volta da coroa, o campo fica liso. Nenhuma letra, número ou símbolo nas faces. Em volta do par, só fundo vazio.",
+  "alt": "Colagem de papel: as duas faces da mesma moeda octogonal; a cara, um perfil facetado, leva louros, e a coroa fica intacta."
+}
