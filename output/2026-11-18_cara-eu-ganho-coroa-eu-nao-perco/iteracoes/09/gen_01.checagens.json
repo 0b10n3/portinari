@@ -1,0 +1,66 @@
+{
+  "imagem": "output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/09/gen_01.jpg",
+  "modo": "light",
+  "dimensoes": [
+    1376,
+    768
+  ],
+  "proporcao_pedida": "16:9",
+  "cores": [
+    {
+      "rgb": [
+        247,
+        247,
+        245
+      ],
+      "hex_imagem": "#F7F7F5",
+      "fracao": 0.7462,
+      "token_mais_perto": "#F7F7F5",
+      "delta_e": 0.0,
+      "amplitude_luminancia": 0.0056
+    },
+    {
+      "rgb": [
+        126,
+        197,
+        163
+      ],
+      "hex_imagem": "#7EC5A3",
+      "fracao": 0.1376,
+      "token_mais_perto": "#78C9A4",
+      "delta_e": 3.6,
+      "amplitude_luminancia": 0.0052
+    },
+    {
+      "rgb": [
+        47,
+        150,
+        104
+      ],
+      "hex_imagem": "#2F9668",
+      "fracao": 0.0958,
+      "token_mais_perto": "#2D9E67",
+      "delta_e": 6.1,
+      "amplitude_luminancia": 0.0091
+    }
+  ],
+  "tokens": {
+    "#F7F7F5": 0.7443,
+    "#78C9A4": 0.1399,
+    "#2D9E67": 0.0977,
+    "#E6F4EE": 0.0121
+  },
+  "fundo": {
+    "hex": "#F7F7F5",
+    "token": "#F7F7F5",
+    "fracao": 0.7462
+  },
+  "acento_fracao": 0.0033,
+  "par": {
+    "com": "/home/saga/Projects/Syntaxis/pipelines/portinari/output/2026-11-18_cara-eu-ganho-coroa-eu-nao-perco/iteracoes/08/gen_01.jpg",
+    "modo": "dark",
+    "iou": 0.97
+  },
+  "erros": [],
+  "avisos": []
+}
