@@ -710,3 +710,110 @@ acesa, coroa".
 - **Depende de reconhecer a vista de lado.** Quem não lê a borda vê duas moedas e um traço. As faces
   iguais em contorno e a altura comum seguram a leitura, mas é o conceito em que essa leitura mais
   pesa.
+
+## Crítica da rodada 3
+
+Crítico de conceito, 2026-11-20. Julgo C7, C8 e C9 contra o pedido da contenção (as duas faces, com
+detalhes de uma moeda famosa que diferenciem a cara da coroa), contra a marca e contra o que o
+gerador mostrou nesta execução e nas vizinhas. Para isso usei as pesquisas das rodadas 2 e 3 e as
+críticas 04 a 06. Nenhum dos três depende de razão de tamanho entre peças distantes nem de fita
+sobre corte, e os três corrigem o C1 e o C4. Os três compartilham o perfil e a coroa, que são os
+dois maiores riscos de marca da rodada (ver a bandeira vermelha).
+
+**O que as críticas 04 a 06 acrescentam à pesquisa:**
+- As gêmeas saíram iguais, em registro (topo e base no mesmo y) e com o atributo mudado só numa
+  delas nas três voltas: cortes e fita só na da esquerda. Isso responde à dúvida da crítica da
+  rodada 2: o gerador muda uma face e deixa a outra.
+- As moedas inflam: 0,36 e depois 0,30, contra 0,24 pedidos. O vão entre elas abre: 0,084 e 0,064,
+  contra 0,05.
+- Uma faixa fina de acento sai mais grossa que o pedido, com 1,4 a 1,5 vez a medida, e encosta no
+  teto do acento: 1,5%, depois 0,87% e 0,89%.
+- O acento posto sobre uma abertura é recortado junto com ela, mesmo com a instrução chegando
+  íntegra ao gerador.
+- Fora daqui, cabeça tem histórico ruim. Em *Samurais*, as cabeças saíram com contorno arredondado e
+  tom de pele. Em *Frequência*, a cabeça hexagonal passou na B9, mas a pose pedida (inclinada para
+  cima) foi ignorada em duas voltas.
+- Na volta 3 do C1, a fileira "O ▮ O ▮ O" já lembrava uma sequência de caracteres.
+
+| # | Conceito | Nota | Fundo estimado | Maior risco | Por quê |
+| --- | --- | --- | --- | --- | --- |
+| 1º | C7 — Anverso e reverso | 4/5 | ~86% (~75% com as moedas a 0,30, como no C4); 4 massas: fundo, cara, coroa, acento | **O louro.** É a única peça nova além do perfil e da coroa, e reúne quatro riscos. (1) Fica sobre o vazado da cabeça, que é o modo de falha do C4: acento sobre abertura sai recortado junto. (2) Puxa a grinalda inteira, de folhas curvas, e o cabelo pintado de acento. (3) Perfil laureado é o César das moedas romanas: quase um rosto identificável. (4) É a imagem de moeda que mais chama legenda em volta da orla (B3). | É o que responde ao título frase por frase: a cara tem o ganho, e a coroa, inteira, não perde nada. Responde também ao pedido da contenção: o perfil contra a coroa é o detalhe da moeda famosa (6.400 réis) que diferencia as faces. Usa a base que o gerador provou nas três voltas do C4: o mesmo contorno, duas vezes, com uma só das faces mudada. O acento quebra a simetria e segura a leitura de uma moeda só, e não de um díptico (R13). As gêmeas do C4, com um vão de 0,064, tiveram nota 4 em "Uma ideia", mas aqui as faces têm conteúdos diferentes, e isso aproxima o par do díptico. Não leva 5 porque o "não perco" se mostra pela ausência: sem o título, a imagem diz "a cara ganha", e quem completa é o título. |
+| 2º | C8 — O ganho entre as faces | 3/5 | ~86% (~75% inflado); 3 massas: fundo, bloco das faces, losango | **O contato exato.** O losango só se apoia se as moedas se tocarem. O gerador nunca desenhou duas moedas encostadas: no C4 ele abriu o vão de 0,05 para 0,06–0,08. Com as moedas a 0,30, o losango tem ~0,06 de diagonal, a mesma largura desse vão, e cai na fresta (o defeito que a crítica da rodada 2 apontou no C6). | É o mais preciso sobre a arbitragem e o mais seguro no teto (~0,25% inflado). A geometria do V de 90° confere: o quadrado a 45° encaixa seja qual for o tamanho das moedas. Mas a tradução do título se perde: o "ganho, não perco" é assimétrico, e aqui as duas faces valem igual, com o ganho fora delas. Dois octógonos encostados leem "∞", "00" ou óculos, que é o limite de B3. O losango entre octógonos já foi o ornamento do C6. Na pilha clara, o V é desenhado pela orla em `figura-secundaria` sobre Chalk (~1,8:1), e o losango fica sem berço. |
+| 3º | C9 — Frente, borda e verso | 2/5 | ~88% (~77% inflado); 4 massas | **O acento no teto e a leitura de caractere.** Com a moeda inflada como no C4 (a ~0,27), a borda de 1/16 vai a ~0,8% do quadro. Engrossando como a fita do C4 (1,4–1,5 vez), passa de 1% (B10). "O ▮ O" é a sequência que a crítica da volta 3 do C1 já leu como caracteres. | Mostra as duas faces, mas o foco diz outra coisa. Uma moeda de pé, acesa entre cara e coroa, é, no imaginário, "caiu em pé": nem cara nem coroa, a terceira saída que o texto não tem. A "virada" que o diretor vê exige ler a vista de lado de uma elevação, e quem não lê vê uma barra lime entre duas moedas, que é divisor ou "versus". A moldura de "prancha de catálogo" ou "três elevações", se chegar ao prompt, chama rótulo, cota e número (B3). A saída da serrilha não resolve: a 200 px o zigue-zague some, e serrilha é o anticerceio, a leitura de fraude da pesquisa da rodada 2. É a fileira de três que o gerador estica (*Samurais*). |
+
+**Recomendo C7**, porque o critério 1 decide. É o único que diz o título com a imagem: a cara ganha,
+a coroa não perde. Usa o que o gerador provou no C4: o mesmo contorno, duas vezes, em registro, com
+uma só das faces mudada. O C8 é mais fino sobre a arbitragem, mas troca o título por um losango entre
+dois octógonos e depende de um contato que o gerador não mostrou. O C9 põe no foco uma leitura que o
+texto não tem.
+
+**Se o autor quiser outro caminho:** o C8 serve se ele preferir a arbitragem ao título e aceitar que
+a primeira validação é um teste de contato. Nesse caso, o prompt descreve um bloco só, com a cara e a
+coroa como as duas metades de uma peça e uma junta reta entre elas. Não descreve duas moedas que se
+tocam. O losango tem ~1/3 da faceta e fica só no V de cima. O C9 não serve para esta capa, porque o
+acento conta outra história e é o único dos três com risco medido de B10.
+
+**O que corrigir no escolhido (C7):**
+- **O acento vai para o trapézio da orla da cara, e o louro sai.** O diretor deu o trapézio como
+  saída. Proponho usá-lo desde a primeira geração: o de cima à direita, no lado voltado para a coroa
+  (x ≈ 0,44, y ≈ 0,33, dentro da área segura e do recorte 1:1). É o elemento mais estável da
+  execução: três de três no C1. Também é a frase do pedido original: "numa faceta da borda da moeda
+  (o lado que ganha)". A 200 px, o louro e o trapézio dão a mesma leitura, um traço lime no alto da
+  cara. Só o louro traz os quatro riscos da tabela. Com 5 gerações para os dois modos, o louro só
+  entra se o autor fizer questão do sinal de vitória. Nesse caso, são três ou quatro losangos retos,
+  inteiros dentro do vazado da cabeça, sem cruzar o contorno dela, e nunca uma grinalda.
+- **Segurar o tamanho por causa do teto.** Com o campo a 0,75, o trapézio dá ~0,46% do quadro com
+  moedas a 0,24, ~0,73% a 0,30 e ~1,05% a 0,36 (o pior caso do C4). Peça moedas a ~0,20, descritas
+  também por relação ("fundo vazio de cada lado do par pelo menos da largura de uma moeda"), contando
+  que saiam a ~0,26–0,30.
+- **O perfil mínimo, com o polígono nomeado.** "A faceted hexagonal head in profile", do bloco de
+  marca: crânio hexagonal, uma cunha de nariz a 45°, queixo reto e pescoço retangular cortado reto.
+  Sem entalhe de boca: a 200 px ele tem menos de 1 px e é a porta para o lábio curvo (B9). Sem olho,
+  orelha, cabelo ou barba, para nenhum rosto ser identificável. O nariz é o que faz o perfil, e a
+  direção dele é o que o gerador já ignorou em *Frequência*: confira-a na primeira imagem.
+- **Vocabulário fora da parte criativa.** Ficam fora: *obverse*, *reverse*, *heads*, *tails*,
+  *bust*, *laureate*, *catalog*, *numismatic*, *king*, *emperor*, *royal*, *crown jewel*, réis, os
+  nomes dos reis e das moedas da pesquisa e qualquer palavra de inscrição (*legend*, *inscription*,
+  *date*, *denomination*). Nenhuma delas entra nem negada: o lint barra *text* inteira, e o resto
+  chama o que nega. A orla se descreve pelo que é, uma faixa lisa e sem marcas, e o "sem texto" fica
+  com o bloco de marca.
+- **Conferência de texto em três lugares.** Na primeira imagem, conferir a orla em volta do perfil
+  (legenda), o espaço sob o pescoço (data, o exergo) e o campo da coroa (valor). É onde a convenção
+  da moeda põe texto (B3).
+- **Vão de ~0,04 pedido, ~0,06 esperado.** É o que o C4 entregou. O par continua compacto, e o
+  acento numa face só é o que o tira do díptico.
+- **Pilha clara.** A orla em `figura-secundaria` fica com ~1,8:1 sobre Chalk, e a silhueta das
+  moedas fica fraca. Quem lê são o perfil e a coroa (3,2:1) e o trapézio contra o fundo (4,4:1).
+  Confira a variante clara a 200 px antes de gastar volta em detalhe.
+
+**Bandeira vermelha:** a premissa da rodada, "nenhum dos três depende de uma forma que o gerador
+ainda não mostrou que segura", não vale para nenhum dos três. O perfil e a coroa são formas novas
+nos três, e o histórico de cabeça no pipeline é ruim: contorno arredondado e pele em *Samurais*,
+pose ignorada em *Frequência*. São também os três riscos de marca que o tema traz:
+- o perfil pode sair com curva (B9) ou com traço de retrato;
+- a moeda com busto chama legenda, data e valor (B3);
+- a coroa de três pontas com pérolas é o ícone genérico de coroa (emoji, selo "premium" de app), e
+  sozinha num octógono vira selo ou logo (B3).
+
+Se o perfil sair redondo, com traço de rosto ou com texto em volta, trocar C7 por C8 ou por C9 não
+adianta: o defeito é da rodada. Com 5 gerações para os dois modos, a primeira imagem tem de servir
+de teste do perfil e da coroa, mais que de composição. Se ela reprovar por B3 ou por B9 no perfil, a
+decisão volta ao autor antes da segunda.
+
+**Sobre as perguntas do diretor (recomendação; quem decide é o autor):**
+1. **Sim, só a coroa, sem o escudo, aberta e de três pontas.**
+   - O escudo vazio lê como distintivo ou brasão de clube, que é logo (B3). Preenchido, traz
+     símbolos e some a 200 px.
+   - A coroa fechada tem arcos, que são curva (B9), e facetada vira capacete.
+   - Ressalva: três pontas sobre uma faixa é o ícone de coroa que todo mundo conhece. Para ela ler
+     como a coroa de uma moeda, e não como selo, valem três regras. (a) Ela nunca leva acento: coroa
+     lime é o selo "premium". (b) As pontas terminam nos losangos, porque sem eles três triângulos
+     sobre uma faixa leem como "W" ou como serra. Sem cruz, como o diretor já pôs. (c) Ela sempre
+     aparece ao lado do perfil gêmeo: é o par que diz "moeda".
+2. **Não à variante "a coroa trocou de lado".**
+   - Ela desfaz o pedido da contenção, que é diferenciar cara e coroa.
+   - Ela junta os riscos de marca num ponto só. Perfil coroado numa moeda é o retrato de monarca, o
+     prior mais forte de rosto identificável (o perfil de Elizabeth II é o mais cunhado do mundo). E
+     uma coroa lime é ícone de "VIP", que é símbolo.
+   - O verso liso traz de volta a moeda em branco do C1 e do C4.
+   - Com 5 gerações, não cabe um quarto conceito. Se a ideia agradar, é para outra peça.
